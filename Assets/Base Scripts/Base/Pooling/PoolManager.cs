@@ -5,42 +5,11 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 using System;
-public enum ItemType
-{
-    FRUIT,
-    TRAP
-}
+
 public enum PoolName
 {
     // prefabs
-    NULL = 0,
-    FRUIT_PIGGY_GOLD = 1,
-    FRUIT_APPLE = 2,
-    FRUIT_WATER_MELONS = 3,
-    FRUIT_BANANA = 4,
-    FRUIT_STRAW_BERRY = 5,
-    FRUIT_ORANGES = 6,
-    FRUIT_COIN_BOTTLE = 7,
-    FRUIT_GRAPES = 8,
-    FRUIT_LEMON = 9,
-    FRUIT_KIWI = 10,
-    FRUIT_COCONUT = 11,
-    FRUIT_PINE_APPLE = 12,
-    FRUIT_BELL_PEPPER = 13,
-    FRUIT_EGG_PLANT = 14,
-    FRUIT_RED_PUMPKIN = 15,
-    FRUIT_CABBAGE = 16,
-    FRUIT_CARROT = 17,
-    FRUIT_POTATO = 18,
-    TRAP_STUN_CHOPPING_BOARD = 19,
-    TRAP_STUN_ANVIL = 20,
-    TRAP_STUN_BONE = 21,
-    TRAP_DEATH_NEEDLE_TABLE = 22,
-    TRAP_DEATH_BOMB = 23,
-    TRAP_DEATH_ROTTEN_FRUIT = 24,
-    TRAP_DEATH_NEEDLE_SPHERES = 25,
-    CHECK_BOX = 26,
-    TRAP_DEATH_SHIT = 27,
+    NULL = 0
 }
 
 [System.Serializable]

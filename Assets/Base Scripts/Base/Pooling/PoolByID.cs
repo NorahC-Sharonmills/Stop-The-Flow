@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PoolByID : MonoSingleton<PoolByID>
+public class PoolByID : MonoSingletonGlobal<PoolByID>
 {
     private IDictionary<int, List<GameObject>> pools;
 
@@ -37,7 +37,7 @@ public class PoolByID : MonoSingleton<PoolByID>
         return _obj;
     }
 
-    public GameObject GetPrefab(GameObject obj, Vector3 pos, Quaternion quaternion)
+    public GameObject GetPrefab(GameObject obj, Vector3 pos, Quaternion quaternion, Transform parent)
     {
         var id = obj.GetInstanceID();
         if (pools.ContainsKey(id))
@@ -49,26 +49,30 @@ public class PoolByID : MonoSingleton<PoolByID>
                 {
                     pools[id][i].transform.position = pos;
                     pools[id][i].transform.rotation = quaternion;
+                    pools[id][i].transform.parent = parent;
                     pools[id][i].SetActive(true);
 
                     return pools[id][i];
+                }
+                else
+                {
+                    goto a1;
                 }
             }
         }
         else
         {
-            //Create pool
             pools.Add(id, new List<GameObject>());
         }
-
-        var _obj = Instantiate(obj, pos, quaternion) as GameObject;
+        a1:
+        var _obj = Instantiate(obj, pos, quaternion, parent) as GameObject;
         pools[id].Add(_obj);
         return _obj;
     }
 
-    public T GetPrefab<T>(GameObject obj, Vector3 pos, Quaternion quaternion)
+    public T GetPrefab<T>(GameObject obj, Vector3 pos, Quaternion quaternion, Transform parent)
     {
-        var _obj = GetPrefab(obj, pos, quaternion);
+        var _obj = GetPrefab(obj, pos, quaternion, parent);
         return _obj.GetComponent<T>();
     }
 
@@ -81,6 +85,9 @@ public class PoolByID : MonoSingleton<PoolByID>
     public void PushToPool(GameObject obj)
     {
         if (obj != null)
+        {
+            obj.transform.parent = null;
             obj.SetActive(false);
+        }    
     }
 }
