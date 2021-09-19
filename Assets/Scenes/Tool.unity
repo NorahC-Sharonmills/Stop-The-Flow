@@ -167,12 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 2107369889}
-  Objects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Objects: []
 --- !u!1 &1307162261
 GameObject:
   m_ObjectHideFlags: 0

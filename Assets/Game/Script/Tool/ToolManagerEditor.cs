@@ -78,6 +78,7 @@ namespace UnityEditor
                     EditorGUILayout.Space();
                     if (selectCharacter != CharacterType)
                     {
+                        ClearEditor();
                         selectCharacter = CharacterType;
                         selectEnemy = Enum.EnemyType.None;
                         selectObject = Enum.ObjectType.None;
@@ -125,6 +126,7 @@ namespace UnityEditor
                         EditorGUILayout.Space();
                         if (selectEnemy != EnemyType)
                         {
+                            ClearEditor();
                             selectCharacter = Enum.CharacterType.None;
                             selectEnemy = EnemyType;
                             selectObject = Enum.ObjectType.None;
@@ -167,6 +169,7 @@ namespace UnityEditor
                     EditorGUILayout.Space();
                     if (selectObject != Enum.ObjectType.Object)
                     {
+                        ClearEditor();
                         selectCharacter = Enum.CharacterType.None;
                         selectEnemy = Enum.EnemyType.None;
                         selectObject = Enum.ObjectType.Object;
@@ -205,6 +208,7 @@ namespace UnityEditor
                     EditorGUILayout.Space();
                     if (selectObject != Enum.ObjectType.Clear)
                     {
+                        ClearEditor();
                         selectCharacter = Enum.CharacterType.None;
                         selectEnemy = Enum.EnemyType.None;
                         selectObject = Enum.ObjectType.Clear;
@@ -343,6 +347,17 @@ namespace UnityEditor
             }
             EditorGUILayout.EndHorizontal();
         }
+
+        private void ClearEditor()
+        {
+            if (editors != null && editors.Length > 0)
+            {
+                for (int i = 0; i < editors.Length; i++)
+                {
+                    DestroyImmediate(editors[i]);
+                }
+            }
+        }    
     }
 }
 
