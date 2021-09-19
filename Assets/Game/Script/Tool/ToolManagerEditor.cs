@@ -55,7 +55,13 @@ namespace UnityEditor
         {
             base.OnInspectorGUI();
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
-
+            GUILayout.Label("--------------------------------------");
+            if(GUILayout.Button("Reload Preview"))
+            {
+                selectCharacter = Enum.CharacterType.None;
+                selectEnemy = Enum.EnemyType.None;
+                selectObject = Enum.ObjectType.None;
+            }    
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
             AttackType = (Enum.AttackType)EditorGUILayout.EnumPopup("Type of attack: ", AttackType);
