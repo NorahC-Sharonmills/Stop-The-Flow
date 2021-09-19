@@ -8,4 +8,6 @@ public class ToolManager : MonoBehaviour
     public Camera Camera;
     [HideInInspector]
     public List<GameObject> Objects = new List<GameObject>();
+    [HideInInspector]
+    public Transform Center;
 }

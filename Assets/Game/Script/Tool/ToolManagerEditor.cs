@@ -55,13 +55,13 @@ namespace UnityEditor
         {
             base.OnInspectorGUI();
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
-            GUILayout.Label("--------------------------------------");
-            if(GUILayout.Button("Reload Preview"))
-            {
-                selectCharacter = Enum.CharacterType.None;
-                selectEnemy = Enum.EnemyType.None;
-                selectObject = Enum.ObjectType.None;
-            }    
+            //GUILayout.Label("--------------------------------------");
+            //if(GUILayout.Button("Reload Preview"))
+            //{
+            //    selectCharacter = Enum.CharacterType.None;
+            //    selectEnemy = Enum.EnemyType.None;
+            //    selectObject = Enum.ObjectType.None;
+            //}    
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
             AttackType = (Enum.AttackType)EditorGUILayout.EnumPopup("Type of attack: ", AttackType);
@@ -104,6 +104,7 @@ namespace UnityEditor
                         {
                             GameObject _object = Instantiate(Characters[i]);
                             _object.name = _object.name.Replace("(Clone)", "");
+                            _object.transform.position = tool.Center.transform.position;
                             Selection.activeGameObject = _object;
                             tool.Objects.Add(_object);
                         }
@@ -153,6 +154,7 @@ namespace UnityEditor
                             {
                                 GameObject _object = Instantiate(Enemys[i]);
                                 _object.name = _object.name.Replace("(Clone)", "");
+                                _object.transform.position = tool.Center.transform.position;
                                 Selection.activeGameObject = _object;
                                 tool.Objects.Add(_object);
                             }
@@ -193,6 +195,7 @@ namespace UnityEditor
                         {
                             GameObject _object = Instantiate(Objects[i]);
                             _object.name = _object.name.Replace("(Clone)", "");
+                            _object.transform.position = tool.Center.transform.position;
                             Selection.activeGameObject = _object;
                             tool.Objects.Add(_object);
                         }
@@ -232,6 +235,7 @@ namespace UnityEditor
                         {
                             GameObject _object = Instantiate(Clears[i]);
                             _object.name = _object.name.Replace("(Clone)", "");
+                            _object.transform.position = tool.Center.transform.position;
                             Selection.activeGameObject = _object;
                             tool.Objects.Add(_object);
                         }
