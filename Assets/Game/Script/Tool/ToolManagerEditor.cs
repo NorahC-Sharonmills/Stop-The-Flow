@@ -11,8 +11,8 @@ namespace UnityEditor
 
         private Enum.CharacterType CharacterType;
         private Enum.EnemyType EnemyType;
-        private Enum.WaterType WaterType;
-        private Enum.AttackType AttackType;
+        //private Enum.WaterType WaterType;
+        //private Enum.AttackType AttackType;
 
         private GameObject[] Characters;
         private GameObject[] Enemys;
@@ -20,11 +20,6 @@ namespace UnityEditor
         private GameObject[] Clears;
 
         private Editor[] editors;
-
-        //private Enum.ObjectType selectObject;
-        //private Enum.CharacterType selectCharacter;
-        //private Enum.EnemyType selectEnemy;
-
         private bool active = false;
 
         ToolManager tool;
@@ -41,11 +36,6 @@ namespace UnityEditor
         private void OnEnable()
         {
             ObjectType = Enum.ObjectType.None;
-
-            //selectCharacter = Enum.CharacterType.None;
-            //selectEnemy = Enum.EnemyType.None;
-            //selectObject = Enum.ObjectType.None;
-
             Characters = Resources.LoadAll<GameObject>("Prefabs/Character");
             Enemys = Resources.LoadAll<GameObject>("Prefabs/Enemy");
             Objects = Resources.LoadAll<GameObject>("Prefabs/Object");
@@ -61,15 +51,15 @@ namespace UnityEditor
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
 
-            if (GUILayout.Button("Reload", GUILayout.Width(100)))
-            {
-                select = "";
-            }
+            //if (GUILayout.Button("Reload", GUILayout.Width(100)))
+            //{
+            //    select = "";
+            //}
 
-            AttackType = (Enum.AttackType)EditorGUILayout.EnumPopup("Type of attack: ", AttackType);
-            if (AttackType == Enum.AttackType.Water)
+            tool.AttackType = (Enum.AttackType)EditorGUILayout.EnumPopup("Type of attack: ", tool.AttackType);
+            if (tool.AttackType == Enum.AttackType.Water)
             {
-                WaterType = (Enum.WaterType)EditorGUILayout.EnumPopup("Direction of water: ", WaterType);
+                tool.WaterType = (Enum.WaterType)EditorGUILayout.EnumPopup("Direction of water: ", tool.WaterType);
             }
             GUILayout.Label("--------------------------------------");
             ObjectType = (Enum.ObjectType)EditorGUILayout.EnumPopup("Primitive to create:", ObjectType);
@@ -78,9 +68,9 @@ namespace UnityEditor
                 case Enum.ObjectType.Character:
                     CharacterType = (Enum.CharacterType)EditorGUILayout.EnumPopup("Character to create:", CharacterType);
                     EditorGUILayout.Space();
-                    if (select != "character")
+                    if (select != "character" + CharacterType.ToString())
                     {
-                        select = "character";
+                        select = "character" + CharacterType.ToString();
                         ClearEditor();
                         editors = new Editor[Characters.Length];
                     }
@@ -98,6 +88,7 @@ namespace UnityEditor
                         if (editors[i] == null)
                             editors[i] = Editor.CreateEditor(Characters[i]);
                         editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                        editors[i].OnInspectorGUI();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space(5);
                         if (GUILayout.Button("Choose", GUILayout.Width(100)))
@@ -118,16 +109,15 @@ namespace UnityEditor
                 case Enum.ObjectType.Enemy:
                     if (AttackType == Enum.AttackType.Water)
                     {
-                        //EditorGUILayout.Space();
-                        //WaterType = (Enum.WaterType)EditorGUILayout.EnumPopup("Direction of water: ", WaterType);
+   
                     }
                     else
                     {
                         EnemyType = (Enum.EnemyType)EditorGUILayout.EnumPopup("Enemy to create:", EnemyType);
                         EditorGUILayout.Space();
-                        if (select != "enemy")
+                        if (select != "enemy" + EnemyType.ToString())
                         {
-                            select = "enemy";
+                            select = "enemy" + EnemyType.ToString();
                             ClearEditor();
                             editors = new Editor[Enemys.Length];
                         }
@@ -146,6 +136,7 @@ namespace UnityEditor
                             if (editors[i] == null)
                                 editors[i] = Editor.CreateEditor(Enemys[i]);
                             editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                            editors[i].OnInspectorGUI();
                             EditorGUILayout.EndHorizontal();
                             EditorGUILayout.Space(5);
                             if (GUILayout.Button("Choose", GUILayout.Width(100)))
@@ -185,6 +176,7 @@ namespace UnityEditor
                         if (editors[i] == null)
                             editors[i] = Editor.CreateEditor(Objects[i]);
                         editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                        editors[i].OnInspectorGUI();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space(5);
                         if (GUILayout.Button("Choose", GUILayout.Width(100)))
@@ -223,6 +215,7 @@ namespace UnityEditor
                         if (editors[i] == null)
                             editors[i] = Editor.CreateEditor(Clears[i]);
                         editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                        editors[i].OnInspectorGUI();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space(5);
                         if (GUILayout.Button("Choose", GUILayout.Width(100)))
@@ -277,8 +270,8 @@ namespace UnityEditor
                 Game.Level info = new Game.Level();
                 info.LevelData = new Game.LevelData();
                 info.LevelData.SizeCamera = size;
-                info.LevelData.AttackType = AttackType;
-                info.LevelData.WaterType = WaterType;
+                info.LevelData.AttackType = tool.AttackType;
+                info.LevelData.WaterType = tool.WaterType;
                 info.LevelData.Datas = new List<Game.ObjectData>();
                 for (int i = 0; i < tool.Objects.Count; i++)
                 {

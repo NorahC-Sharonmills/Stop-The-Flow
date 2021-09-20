@@ -10,4 +10,8 @@ public class ToolManager : MonoBehaviour
     public List<GameObject> Objects = new List<GameObject>();
     [HideInInspector]
     public Transform Center;
+    [HideInInspector]
+    public Enum.WaterType WaterType;
+    [HideInInspector]
+    public Enum.AttackType AttackType;
 }
