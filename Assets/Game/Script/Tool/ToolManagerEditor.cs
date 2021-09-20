@@ -60,6 +60,12 @@ namespace UnityEditor
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
+
+            if (GUILayout.Button("Reload", GUILayout.Width(100)))
+            {
+                select = "";
+            }
+
             AttackType = (Enum.AttackType)EditorGUILayout.EnumPopup("Type of attack: ", AttackType);
             if (AttackType == Enum.AttackType.Water)
             {
