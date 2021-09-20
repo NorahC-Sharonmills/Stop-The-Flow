@@ -24,6 +24,7 @@ namespace UnityEditor
         private List<Editor> editors3;
         private List<Editor> editors4;
         private bool active = false;
+        private bool clear = false;
 
         ToolManager tool;
         private float size = 6.95f;
@@ -82,6 +83,7 @@ namespace UnityEditor
                     tool.Objects = new List<GameObject>();
                 }       
             }
+            clear = EditorGUILayout.Toggle("Clear level after save data: ", clear);
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
@@ -344,14 +346,17 @@ namespace UnityEditor
                     EditorUtility.SetDirty(this);
                     AssetDatabase.Refresh();
 
-                    if (tool.Objects != null)
+                    if(clear)
                     {
-                        for (int i = 0; i < tool.Objects.Count; i++)
+                        if (tool.Objects != null)
                         {
-                            DestroyImmediate(tool.Objects[i]);
+                            for (int i = 0; i < tool.Objects.Count; i++)
+                            {
+                                DestroyImmediate(tool.Objects[i]);
+                            }
+                            tool.Objects = new List<GameObject>();
                         }
-                        tool.Objects = new List<GameObject>();
-                    }
+                    }    
                 }  
                 else
                 {
