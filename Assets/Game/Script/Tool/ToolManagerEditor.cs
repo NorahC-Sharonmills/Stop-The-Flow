@@ -107,7 +107,7 @@ namespace UnityEditor
                     EditorGUILayout.EndHorizontal();
                     break;
                 case Enum.ObjectType.Enemy:
-                    if (AttackType == Enum.AttackType.Water)
+                    if (tool.AttackType == Enum.AttackType.Water)
                     {
    
                     }
