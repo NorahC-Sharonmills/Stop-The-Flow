@@ -71,6 +71,17 @@ namespace UnityEditor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+            if (GUILayout.Button("Clear", GUILayout.Width(100)))
+            {
+                if(tool.Objects != null)
+                {
+                    for (int i = 0; i < tool.Objects.Count; i++)
+                    {
+                        DestroyImmediate(tool.Objects[i]);
+                    }
+                    tool.Objects = new List<GameObject>();
+                }       
+            }
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
@@ -332,6 +343,15 @@ namespace UnityEditor
 
                     EditorUtility.SetDirty(this);
                     AssetDatabase.Refresh();
+
+                    if (tool.Objects != null)
+                    {
+                        for (int i = 0; i < tool.Objects.Count; i++)
+                        {
+                            DestroyImmediate(tool.Objects[i]);
+                        }
+                        tool.Objects = new List<GameObject>();
+                    }
                 }  
                 else
                 {
@@ -339,55 +359,7 @@ namespace UnityEditor
                 }    
             }
             EditorGUILayout.EndHorizontal();
-        }
-
-        private void ClearEditor()
-        {
-            //if (editors != null && editors.Length > 0)
-            //{
-            //    for (int i = 0; i < editors.Length; i++)
-            //    {
-            //        DestroyImmediate(editors[i]);
-            //    }
-            //}
-        }    
+        }  
     }
 }
-
-//var path = "Assets/Resources/Level/" + property.stringValue + ".json";
-//var path = GetPath(GetText(index));
-//Debug.Log(string.Format("Save Success with {0}", path));
-
-//if (path.Length > 0)
-//{
-//    System.IO.File.WriteAllText(path, _str);
-//}
-
-//EditorUtility.SetDirty(this);
-//AssetDatabase.Refresh();
-
-//char is gameobject
-//EditorGUILayout.BeginHorizontal();
-//EditorGUILayout.BeginHorizontal(GUILayout.Width(300));
-//EditorGUILayout.BeginVertical();
-//GUIStyle bgColor = new GUIStyle();
-//bgColor.normal.background = EditorGUIUtility.whiteTexture;
-
-//if (charsEditor[i] == null)
-//    charsEditor[i] = Editor.CreateEditor(chars[i]);
-
-//charsEditor[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(300, 260), bgColor);
-
-//EditorGUILayout.LabelField(chars[i].name);
-//EditorGUILayout.EndVertical();
-
-//EditorGUILayout.EndHorizontal();
-
-//EditorGUILayout.Space(10);
-
-//EditorGUILayout.BeginHorizontal();
-
-
-//EditorGUILayout.BeginVertical();
-//EditorGUILayout.Space(10);
 
