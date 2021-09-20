@@ -19,7 +19,10 @@ namespace UnityEditor
         private GameObject[] Objects;
         private GameObject[] Clears;
 
-        private Editor[] editors;
+        private List<Editor> editors1;
+        private List<Editor> editors2;
+        private List<Editor> editors3;
+        private List<Editor> editors4;
         private bool active = false;
 
         ToolManager tool;
@@ -42,6 +45,27 @@ namespace UnityEditor
             Clears = Resources.LoadAll<GameObject>("Prefabs/Clear");
 
             tool = (ToolManager)target;
+
+            editors1 = new List<Editor>();
+            for (int i = 0; i < Characters.Length; i++)
+            {
+                editors1.Add(null);
+            }
+            editors2 = new List<Editor>();
+            for (int i = 0; i < Enemys.Length; i++)
+            {
+                editors2.Add(null);
+            }
+            editors3 = new List<Editor>();
+            for (int i = 0; i < Objects.Length; i++)
+            {
+                editors3.Add(null);
+            }
+            editors4 = new List<Editor>();
+            for (int i = 0; i < Clears.Length; i++)
+            {
+                editors4.Add(null);
+            }
         }
 
         public override void OnInspectorGUI()
@@ -50,12 +74,6 @@ namespace UnityEditor
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
-
-            //if (GUILayout.Button("Reload", GUILayout.Width(100)))
-            //{
-            //    select = "";
-            //}
-
             tool.AttackType = (Enum.AttackType)EditorGUILayout.EnumPopup("Type of attack: ", tool.AttackType);
             if (tool.AttackType == Enum.AttackType.Water)
             {
@@ -67,41 +85,35 @@ namespace UnityEditor
             {
                 case Enum.ObjectType.Character:
                     CharacterType = (Enum.CharacterType)EditorGUILayout.EnumPopup("Character to create:", CharacterType);
-                    EditorGUILayout.Space();
-                    if (select != "character" + CharacterType.ToString())
-                    {
-                        select = "character" + CharacterType.ToString();
-                        ClearEditor();
-                        editors = new Editor[Characters.Length];
-                    }
-
+                    EditorGUILayout.Space();  
                     EditorGUILayout.BeginHorizontal();
                     scrollPos1 = EditorGUILayout.BeginScrollView(scrollPos1, GUILayout.Height(300));
 
                     for (int i = 0; i < Characters.Length; i++)
                     {
-                        if (Characters[i].GetComponent<Game.Character>().CharacterType != CharacterType)
-                            continue;
-                        EditorGUILayout.BeginHorizontal();
-                        EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-                        GUIStyle bgColor = new GUIStyle();
-                        if (editors[i] == null)
-                            editors[i] = Editor.CreateEditor(Characters[i]);
-                        editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
-                        editors[i].OnInspectorGUI();
-                        EditorGUILayout.EndHorizontal();
-                        EditorGUILayout.Space(5);
-                        if (GUILayout.Button("Choose", GUILayout.Width(100)))
+                        if (editors1[i] == null)
+                            editors1[i] = Editor.CreateEditor(Characters[i]);
+                        if (Characters[i].GetComponent<Game.Character>().CharacterType == CharacterType)
                         {
-                            GameObject _object = Instantiate(Characters[i]);
-                            _object.name = _object.name.Replace("(Clone)", "");
-                            _object.transform.position = tool.Center.transform.position;
-                            Selection.activeGameObject = _object;
-                            tool.Objects.Add(_object);
-                        }
+                            EditorGUILayout.BeginHorizontal();
+                            GUIStyle bgColor = new GUIStyle();
+                            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+                            editors1[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                            editors1[i].OnInspectorGUI();
+                            EditorGUILayout.EndHorizontal();
+                            EditorGUILayout.Space(5);
+                            if (GUILayout.Button("Choose", GUILayout.Width(100)))
+                            {
+                                GameObject _object = Instantiate(Characters[i]);
+                                _object.name = _object.name.Replace("(Clone)", "");
+                                _object.transform.position = tool.Center.transform.position;
+                                Selection.activeGameObject = _object;
+                                tool.Objects.Add(_object);
+                            }
 
-                        EditorGUILayout.EndHorizontal();
-                        EditorGUILayout.Space();
+                            EditorGUILayout.EndHorizontal();
+                            EditorGUILayout.Space();
+                        }
                     }
                     EditorGUILayout.EndScrollView();
                     EditorGUILayout.EndHorizontal();
@@ -115,41 +127,35 @@ namespace UnityEditor
                     {
                         EnemyType = (Enum.EnemyType)EditorGUILayout.EnumPopup("Enemy to create:", EnemyType);
                         EditorGUILayout.Space();
-                        if (select != "enemy" + EnemyType.ToString())
-                        {
-                            select = "enemy" + EnemyType.ToString();
-                            ClearEditor();
-                            editors = new Editor[Enemys.Length];
-                        }
 
                         EditorGUILayout.BeginHorizontal();
                         scrollPos2 = EditorGUILayout.BeginScrollView(scrollPos2, GUILayout.Height(300));
 
                         for (int i = 0; i < Enemys.Length; i++)
                         {
-                            if (Enemys[i].GetComponent<Game.Enemy>().EnemyType != EnemyType)
-                                continue;
-
-                            EditorGUILayout.BeginHorizontal();
-                            EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-                            GUIStyle bgColor = new GUIStyle();
-                            if (editors[i] == null)
-                                editors[i] = Editor.CreateEditor(Enemys[i]);
-                            editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
-                            editors[i].OnInspectorGUI();
-                            EditorGUILayout.EndHorizontal();
-                            EditorGUILayout.Space(5);
-                            if (GUILayout.Button("Choose", GUILayout.Width(100)))
+                            if (editors2[i] == null)
+                                editors2[i] = Editor.CreateEditor(Enemys[i]);
+                            if (Enemys[i].GetComponent<Game.Enemy>().EnemyType == EnemyType)
                             {
-                                GameObject _object = Instantiate(Enemys[i]);
-                                _object.name = _object.name.Replace("(Clone)", "");
-                                _object.transform.position = tool.Center.transform.position;
-                                Selection.activeGameObject = _object;
-                                tool.Objects.Add(_object);
-                            }
+                                EditorGUILayout.BeginHorizontal();
+                                EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
+                                GUIStyle bgColor = new GUIStyle();
+                                editors2[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                                editors2[i].OnInspectorGUI();
+                                EditorGUILayout.EndHorizontal();
+                                EditorGUILayout.Space(5);
+                                if (GUILayout.Button("Choose", GUILayout.Width(100)))
+                                {
+                                    GameObject _object = Instantiate(Enemys[i]);
+                                    _object.name = _object.name.Replace("(Clone)", "");
+                                    _object.transform.position = tool.Center.transform.position;
+                                    Selection.activeGameObject = _object;
+                                    tool.Objects.Add(_object);
+                                }
 
-                            EditorGUILayout.EndHorizontal();
-                            EditorGUILayout.Space();
+                                EditorGUILayout.EndHorizontal();
+                                EditorGUILayout.Space();
+                            }    
                         }
 
                         EditorGUILayout.EndScrollView();
@@ -158,12 +164,6 @@ namespace UnityEditor
                     break;
                 case Enum.ObjectType.Object:
                     EditorGUILayout.Space();
-                    if (select != "object")
-                    {
-                        select = "object";
-                        ClearEditor();
-                        editors = new Editor[Objects.Length];
-                    }
 
                     EditorGUILayout.BeginHorizontal();
                     scrollPos3 = EditorGUILayout.BeginScrollView(scrollPos3, GUILayout.Height(300));
@@ -173,10 +173,10 @@ namespace UnityEditor
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
                         GUIStyle bgColor = new GUIStyle();
-                        if (editors[i] == null)
-                            editors[i] = Editor.CreateEditor(Objects[i]);
-                        editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
-                        editors[i].OnInspectorGUI();
+                        if (editors3[i] == null)
+                            editors3[i] = Editor.CreateEditor(Objects[i]);
+                        editors3[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                        editors3[i].OnInspectorGUI();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space(5);
                         if (GUILayout.Button("Choose", GUILayout.Width(100)))
@@ -197,12 +197,6 @@ namespace UnityEditor
                     break;
                 case Enum.ObjectType.Clear:
                     EditorGUILayout.Space();
-                    if (select != "clear")
-                    {
-                        select = "clear";
-                        ClearEditor();
-                        editors = new Editor[Clears.Length];
-                    }
 
                     EditorGUILayout.BeginHorizontal();
                     scrollPos4 = EditorGUILayout.BeginScrollView(scrollPos4, GUILayout.Height(300));
@@ -212,10 +206,10 @@ namespace UnityEditor
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
                         GUIStyle bgColor = new GUIStyle();
-                        if (editors[i] == null)
-                            editors[i] = Editor.CreateEditor(Clears[i]);
-                        editors[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
-                        editors[i].OnInspectorGUI();
+                        if (editors4[i] == null)
+                            editors4[i] = Editor.CreateEditor(Clears[i]);
+                        editors4[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                        editors4[i].OnInspectorGUI();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space(5);
                         if (GUILayout.Button("Choose", GUILayout.Width(100)))
@@ -341,13 +335,13 @@ namespace UnityEditor
 
         private void ClearEditor()
         {
-            if (editors != null && editors.Length > 0)
-            {
-                for (int i = 0; i < editors.Length; i++)
-                {
-                    DestroyImmediate(editors[i]);
-                }
-            }
+            //if (editors != null && editors.Length > 0)
+            //{
+            //    for (int i = 0; i < editors.Length; i++)
+            //    {
+            //        DestroyImmediate(editors[i]);
+            //    }
+            //}
         }    
     }
 }
