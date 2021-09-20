@@ -21,9 +21,9 @@ namespace UnityEditor
 
         private Editor[] editors;
 
-        private Enum.ObjectType selectObject;
-        private Enum.CharacterType selectCharacter;
-        private Enum.EnemyType selectEnemy;
+        //private Enum.ObjectType selectObject;
+        //private Enum.CharacterType selectCharacter;
+        //private Enum.EnemyType selectEnemy;
 
         private bool active = false;
 
@@ -35,13 +35,16 @@ namespace UnityEditor
         Vector2 scrollPos4;
         Vector2 scrollPos5;
         string level_name;
+
+        string select = "id";
+
         private void OnEnable()
         {
             ObjectType = Enum.ObjectType.None;
 
-            selectCharacter = Enum.CharacterType.None;
-            selectEnemy = Enum.EnemyType.None;
-            selectObject = Enum.ObjectType.None;
+            //selectCharacter = Enum.CharacterType.None;
+            //selectEnemy = Enum.EnemyType.None;
+            //selectObject = Enum.ObjectType.None;
 
             Characters = Resources.LoadAll<GameObject>("Prefabs/Character");
             Enemys = Resources.LoadAll<GameObject>("Prefabs/Enemy");
@@ -55,13 +58,6 @@ namespace UnityEditor
         {
             base.OnInspectorGUI();
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
-            //GUILayout.Label("--------------------------------------");
-            //if(GUILayout.Button("Reload Preview"))
-            //{
-            //    selectCharacter = Enum.CharacterType.None;
-            //    selectEnemy = Enum.EnemyType.None;
-            //    selectObject = Enum.ObjectType.None;
-            //}    
             size = EditorGUILayout.Slider(size, 5, 20);
             tool.Camera.orthographicSize = size;
             AttackType = (Enum.AttackType)EditorGUILayout.EnumPopup("Type of attack: ", AttackType);
@@ -76,12 +72,10 @@ namespace UnityEditor
                 case Enum.ObjectType.Character:
                     CharacterType = (Enum.CharacterType)EditorGUILayout.EnumPopup("Character to create:", CharacterType);
                     EditorGUILayout.Space();
-                    if (selectCharacter != CharacterType)
+                    if (select != "character")
                     {
+                        select = "character";
                         ClearEditor();
-                        selectCharacter = CharacterType;
-                        selectEnemy = Enum.EnemyType.None;
-                        selectObject = Enum.ObjectType.None;
                         editors = new Editor[Characters.Length];
                     }
 
@@ -125,12 +119,10 @@ namespace UnityEditor
                     {
                         EnemyType = (Enum.EnemyType)EditorGUILayout.EnumPopup("Enemy to create:", EnemyType);
                         EditorGUILayout.Space();
-                        if (selectEnemy != EnemyType)
+                        if (select != "enemy")
                         {
+                            select = "enemy";
                             ClearEditor();
-                            selectCharacter = Enum.CharacterType.None;
-                            selectEnemy = EnemyType;
-                            selectObject = Enum.ObjectType.None;
                             editors = new Editor[Enemys.Length];
                         }
 
@@ -169,12 +161,10 @@ namespace UnityEditor
                     break;
                 case Enum.ObjectType.Object:
                     EditorGUILayout.Space();
-                    if (selectObject != Enum.ObjectType.Object)
+                    if (select != "object")
                     {
+                        select = "object";
                         ClearEditor();
-                        selectCharacter = Enum.CharacterType.None;
-                        selectEnemy = Enum.EnemyType.None;
-                        selectObject = Enum.ObjectType.Object;
                         editors = new Editor[Objects.Length];
                     }
 
@@ -209,12 +199,10 @@ namespace UnityEditor
                     break;
                 case Enum.ObjectType.Clear:
                     EditorGUILayout.Space();
-                    if (selectObject != Enum.ObjectType.Clear)
+                    if (select != "clear")
                     {
+                        select = "clear";
                         ClearEditor();
-                        selectCharacter = Enum.CharacterType.None;
-                        selectEnemy = Enum.EnemyType.None;
-                        selectObject = Enum.ObjectType.Clear;
                         editors = new Editor[Clears.Length];
                     }
 
