@@ -98,10 +98,12 @@ namespace UnityEditor
                             EditorGUILayout.BeginHorizontal();
                             GUIStyle bgColor = new GUIStyle();
                             EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
-                            editors1[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                            editors1[i].OnPreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
                             editors1[i].OnInspectorGUI();
                             EditorGUILayout.EndHorizontal();
                             EditorGUILayout.Space(5);
+                            EditorGUILayout.BeginVertical();
+                            EditorGUILayout.LabelField("Name: " + Characters[i].name);
                             if (GUILayout.Button("Choose", GUILayout.Width(100)))
                             {
                                 GameObject _object = Instantiate(Characters[i]);
@@ -110,7 +112,7 @@ namespace UnityEditor
                                 Selection.activeGameObject = _object;
                                 tool.Objects.Add(_object);
                             }
-
+                            EditorGUILayout.EndVertical();
                             EditorGUILayout.EndHorizontal();
                             EditorGUILayout.Space();
                         }
@@ -140,10 +142,12 @@ namespace UnityEditor
                                 EditorGUILayout.BeginHorizontal();
                                 EditorGUILayout.BeginHorizontal(GUILayout.Width(100));
                                 GUIStyle bgColor = new GUIStyle();
-                                editors2[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                                editors2[i].OnPreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
                                 editors2[i].OnInspectorGUI();
                                 EditorGUILayout.EndHorizontal();
                                 EditorGUILayout.Space(5);
+                                EditorGUILayout.BeginVertical();
+                                EditorGUILayout.LabelField("Name: " + Enemys[i].name);
                                 if (GUILayout.Button("Choose", GUILayout.Width(100)))
                                 {
                                     GameObject _object = Instantiate(Enemys[i]);
@@ -152,7 +156,7 @@ namespace UnityEditor
                                     Selection.activeGameObject = _object;
                                     tool.Objects.Add(_object);
                                 }
-
+                                EditorGUILayout.EndVertical();
                                 EditorGUILayout.EndHorizontal();
                                 EditorGUILayout.Space();
                             }    
@@ -175,10 +179,12 @@ namespace UnityEditor
                         GUIStyle bgColor = new GUIStyle();
                         if (editors3[i] == null)
                             editors3[i] = Editor.CreateEditor(Objects[i]);
-                        editors3[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                        editors3[i].OnPreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
                         editors3[i].OnInspectorGUI();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space(5);
+                        EditorGUILayout.BeginVertical();
+                        EditorGUILayout.LabelField("Name: " + Objects[i].name);
                         if (GUILayout.Button("Choose", GUILayout.Width(100)))
                         {
                             GameObject _object = Instantiate(Objects[i]);
@@ -187,7 +193,7 @@ namespace UnityEditor
                             Selection.activeGameObject = _object;
                             tool.Objects.Add(_object);
                         }
-
+                        EditorGUILayout.EndVertical();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space();
                     }
@@ -208,10 +214,12 @@ namespace UnityEditor
                         GUIStyle bgColor = new GUIStyle();
                         if (editors4[i] == null)
                             editors4[i] = Editor.CreateEditor(Clears[i]);
-                        editors4[i].OnInteractivePreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
+                        editors4[i].OnPreviewGUI(GUILayoutUtility.GetRect(100, 100), bgColor);
                         editors4[i].OnInspectorGUI();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space(5);
+                        EditorGUILayout.BeginVertical();
+                        EditorGUILayout.LabelField("Name: " + Clears[i].name);
                         if (GUILayout.Button("Choose", GUILayout.Width(100)))
                         {
                             GameObject _object = Instantiate(Clears[i]);
@@ -220,7 +228,7 @@ namespace UnityEditor
                             Selection.activeGameObject = _object;
                             tool.Objects.Add(_object);
                         }
-
+                        EditorGUILayout.EndVertical();
                         EditorGUILayout.EndHorizontal();
                         EditorGUILayout.Space();
                     }
