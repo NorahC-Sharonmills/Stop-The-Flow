@@ -264,7 +264,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6817621319531857479}
   - component: {fileID: 6817621319522544039}
-  - component: {fileID: 7342021341420157535}
+  - component: {fileID: -713161000236025322}
   m_Layer: 0
   m_Name: Chick
   m_TagString: Untagged
@@ -309,7 +309,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7342021341420157535
+--- !u!114 &-713161000236025322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,11 +318,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6817621319531895399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d42ff2c068ca46418fae0a5d0659955, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d91b626f9dd7c74482c359c2204035b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectType: 2
-  EnemyType: 1
+  ObjectType: 1
+  CharacterType: 4
 --- !u!1 &6817621319531895401
 GameObject:
   m_ObjectHideFlags: 0
