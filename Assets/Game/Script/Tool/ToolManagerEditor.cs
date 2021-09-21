@@ -291,7 +291,8 @@ namespace UnityEditor
                     Game.ObjectData data = new Game.ObjectData();
                     var entity = tool.Objects[i].GetComponent<Game.Entity>();
                     data.ObjectType = entity.ObjectType;
-                    switch(data.ObjectType)
+                    data.IsEnable = tool.Objects[i].activeSelf;
+                    switch (data.ObjectType)
                     {
                         case Enum.ObjectType.Character:
                             var character = tool.Objects[i].GetComponent<Game.Character>();

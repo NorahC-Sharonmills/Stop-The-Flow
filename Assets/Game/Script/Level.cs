@@ -26,6 +26,7 @@ namespace Game
         public Enum.CharacterType CharacterType;
         public Enum.EnemyType EnemyType;
         public string NameObject;
+        public bool IsEnable = true;
         public Vector3 Postion;
         public Quaternion Rotation;
         public Vector3 LocalScale;
