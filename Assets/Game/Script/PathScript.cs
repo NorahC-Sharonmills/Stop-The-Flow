@@ -3,68 +3,42 @@ using UnityEngine;
 
 public class PathScript : MonoSingletonGlobal<PathScript>
 {
-    //public LineRenderer line;
+    public GameObject meshObject;
     public List<Vector3> points = new List<Vector3>();
+    private MeshFilter meshFilter;
 
-    // Use this for initialization
-    public void DrawLine(LineRenderer line)
+    public void DrawLine(LineRenderer line, Vector3 meshPosition)
     {
         var caret = new GameObject();
-        Vector3 left, right; // A position to the left of the current line
-
-        // For all but the last point
-        for (var i = 0; i < line.positionCount - 1; i++)
-        {
-            caret.transform.position = line.GetPosition(i);
-            caret.transform.LookAt(line.GetPosition(i + 1));
-            right = caret.transform.position + caret.transform.right;
-            left = caret.transform.position - caret.transform.right;
-            Debug.DrawLine(line.GetPosition(i), line.GetPosition(i) + Vector3.up, Color.white, 60f); // Just to visualize what's going on
-            Debug.DrawLine(left, left + Vector3.up, Color.blue, 60f); // Just to visualize what's going on
-            Debug.DrawLine(right, right + Vector3.up, Color.red, 60f); // Just to visualize what's going on
-        }
-
-        // Last point looks backwards and reverses
-        caret.transform.position = line.GetPosition(line.positionCount - 1);
-        caret.transform.LookAt(line.GetPosition(line.positionCount - 2));
-        right = caret.transform.position - caret.transform.right;
-        left = caret.transform.position + caret.transform.right;
-        Debug.DrawLine(caret.transform.position, caret.transform.position + Vector3.up, Color.white, 60f); // Just to visualize what's going on
-        Debug.DrawLine(left, left + Vector3.up, Color.blue, 60f); // Just to visualize what's going on
-        Debug.DrawLine(right, right + Vector3.up, Color.red, 60f); // Just to visualize what's going on
-    }
-
-    public void SpawnLine(LineRenderer line)
-    {
-        points.Clear();
-        GameObject caret = null;
-        caret = new GameObject("Lines");
-
         Vector3 left, right;
         for (var i = 0; i < line.positionCount - 1; i++)
         {
             caret.transform.position = line.GetPosition(i);
             caret.transform.LookAt(line.GetPosition(i + 1));
-            right = caret.transform.position + transform.right * line.startWidth / 2;
-            left = caret.transform.position - transform.right * line.startWidth / 2;
-            points.Add(left);
-            points.Add(right);
+            right = caret.transform.position + caret.transform.right * line.startWidth * 0.5f;
+            left = caret.transform.position - caret.transform.right * line.startWidth * 0.5f;
+
+            if (!points.Contains(left))
+                points.Add(left);
+            if (!points.Contains(right))
+                points.Add(right);
         }
 
         // Last point looks backwards and reverses
         caret.transform.position = line.GetPosition(line.positionCount - 1);
         caret.transform.LookAt(line.GetPosition(line.positionCount - 2));
-        right = caret.transform.position + transform.right * line.startWidth / 2;
-        left = caret.transform.position - transform.right * line.startWidth / 2;
-        points.Add(left);
-        points.Add(right);
-        Destroy(caret);
-        DrawMesh();
+        right = caret.transform.position - caret.transform.right * line.startWidth * 0.5f;
+        left = caret.transform.position + caret.transform.right * line.startWidth * 0.5f;
 
-        line.gameObject.SetActive(false);
+        if (!points.Contains(left))
+            points.Add(left);
+        if (!points.Contains(right))
+            points.Add(right);
+        caret.transform.parent = transform;
+        DrawMesh(meshPosition);
     }
 
-    private void DrawMesh()
+    private void DrawMesh(Vector3 meshPosition)
     {
         Vector3[] verticies = new Vector3[points.Count];
 
@@ -88,12 +62,16 @@ public class PathScript : MonoSingletonGlobal<PathScript>
             triangles[i * position + 2] = 2 * i + 1;
             triangles[i * position + 5] = (2 * i + 1) + 2;
         }
- 
- 
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
+
+        if (meshFilter == null)
+            meshFilter = Instantiate(meshObject).GetComponent<MeshFilter>();
+
+        Mesh mesh = meshFilter.mesh;
         mesh.Clear();
         mesh.vertices = verticies;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+
+        meshObject.transform.position = meshPosition;
     }
 }

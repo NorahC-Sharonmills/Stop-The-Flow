@@ -5,11 +5,10 @@ using UnityEngine;
 public class DrawManager : MonoBehaviour
 {
     public GameObject linePrefabs;
-    public GameObject currentLine;
-
-    public LineRenderer lineRenderer;
-    //public EdgeCollider2D edgeCollider;
-    public List<Vector3> fingerPositions;
+    private GameObject currentLine;
+    private LineRenderer lineRenderer;
+    private List<Vector3> fingerPositions;
+    private Vector3 defaultPostion = Vector3.zero;
 
     private void Start()
     {
@@ -26,7 +25,7 @@ public class DrawManager : MonoBehaviour
         {
             Vector3 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             tempFingerPos.y = 3;
-            if(Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > .1f)
+            if(Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > .2f)
             {
                 UpdateLine(tempFingerPos);
             }
@@ -37,16 +36,15 @@ public class DrawManager : MonoBehaviour
     {
         currentLine = Instantiate(linePrefabs, Vector3.zero, Quaternion.identity);
         lineRenderer = currentLine.GetComponent<LineRenderer>();
-        //edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
 
-        fingerPositions.Clear();
+        fingerPositions = new List<Vector3>();
         var startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         startPos.y = 3;
+        defaultPostion.y = 3;
         fingerPositions.Add(startPos);
         fingerPositions.Add(startPos);
         lineRenderer.SetPosition(0, fingerPositions[0]);
         lineRenderer.SetPosition(1, fingerPositions[1]);
-        //edgeCollider.points = fingerPositions.ToArray();
     }
 
     private void UpdateLine(Vector3 newFingerPos)
@@ -54,6 +52,6 @@ public class DrawManager : MonoBehaviour
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount += 1;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
-        //edgeCollider.points = fingerPositions.ToArray();
+        PathScript.Instance.DrawLine(lineRenderer, defaultPostion);
     }
 }
