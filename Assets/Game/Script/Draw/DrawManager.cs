@@ -4,50 +4,56 @@ using UnityEngine;
 
 public class DrawManager : MonoBehaviour
 {
-    public GameObject drawPrefabs;
+    public GameObject linePrefabs;
+    public GameObject currentLine;
 
-    private GameObject theTrail;
-    private Plane planeObject;
-
-    private Vector3 startPos;
+    public LineRenderer lineRenderer;
+    //public EdgeCollider2D edgeCollider;
+    public List<Vector3> fingerPositions;
 
     private void Start()
     {
-        planeObject = new Plane(Camera.main.transform.forward * -1, this.transform.position);
+
     }
 
     private void Update()
     {
-#if UNITY_EDITOR
-        //if(Input.touchCount > 0)
-        //{
-        //    switch(Input.GetTouch(0).phase)
-        //    {
-        //        case TouchPhase.Moved:
-        //            break;
-        //    }
-        //}
-
         if(Input.GetMouseButtonDown(0))
         {
-            theTrail = Instantiate(drawPrefabs, this.transform.position, Quaternion.identity) as GameObject;
-
-            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float _dis;
-            if(planeObject.Raycast(mouseRay, out _dis))
-            {
-                startPos = mouseRay.GetPoint(_dis);
-            }
+            CreateLine();
         }
-        else if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0))
         {
-            Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float _dis;
-            if (planeObject.Raycast(mouseRay, out _dis))
+            Vector3 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            tempFingerPos.y = 3;
+            if(Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > .1f)
             {
-                theTrail.transform.position = mouseRay.GetPoint(_dis);
+                UpdateLine(tempFingerPos);
             }
         }
-#endif
+    }
+
+    private void CreateLine()
+    {
+        currentLine = Instantiate(linePrefabs, Vector3.zero, Quaternion.identity);
+        lineRenderer = currentLine.GetComponent<LineRenderer>();
+        //edgeCollider = currentLine.GetComponent<EdgeCollider2D>();
+
+        fingerPositions.Clear();
+        var startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        startPos.y = 3;
+        fingerPositions.Add(startPos);
+        fingerPositions.Add(startPos);
+        lineRenderer.SetPosition(0, fingerPositions[0]);
+        lineRenderer.SetPosition(1, fingerPositions[1]);
+        //edgeCollider.points = fingerPositions.ToArray();
+    }
+
+    private void UpdateLine(Vector3 newFingerPos)
+    {
+        fingerPositions.Add(newFingerPos);
+        lineRenderer.positionCount += 1;
+        lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
+        //edgeCollider.points = fingerPositions.ToArray();
     }
 }
