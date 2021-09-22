@@ -66,12 +66,13 @@ public class PathScript : MonoSingletonGlobal<PathScript>
         if (meshFilter == null)
             meshFilter = Instantiate(meshObject).GetComponent<MeshFilter>();
 
+
         Mesh mesh = meshFilter.mesh;
         mesh.Clear();
         mesh.vertices = verticies;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        meshObject.transform.position = meshPosition;
+        meshFilter.transform.position = meshPosition;
     }
 }
