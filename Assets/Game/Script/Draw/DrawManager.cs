@@ -30,6 +30,10 @@ public class DrawManager : MonoBehaviour
                 UpdateLine(tempFingerPos);
             }
         }
+        //if(Input.GetMouseButtonUp(0))
+        //{
+        //    CompleteLine();
+        //}    
     }
 
     private void CreateLine()
@@ -52,6 +56,55 @@ public class DrawManager : MonoBehaviour
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount += 1;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
-        PathScript.Instance.DrawLine(lineRenderer, defaultPostion);
+        //PathScript.Instance.DrawLine(lineRenderer, defaultPostion);
+        CompleteLine();
+    }
+
+    //public float ScaleX = 1.0f;
+    //public float ScaleY = 1.0f;
+    //public float ScaleZ = 1.0f;
+    //public bool RecalculateNormals = false;
+    //private Vector3[] _baseVertices;
+    Mesh mesh = null;
+    private bool IsInit = false;
+
+    public int[] triangles;
+    public Vector3[] vertices;
+
+    private void CompleteLine()
+    {
+        if(!IsInit)
+        {
+            IsInit = true;
+            mesh = new Mesh();
+            mesh.name = "GeneralMesh";
+            GameObject MeshObject = new GameObject();
+            MeshObject.name = "Mesh";
+            var mr = MeshObject.AddComponent<MeshRenderer>();
+            var MeshFilter = MeshObject.AddComponent<MeshFilter>();
+            MeshFilter.mesh = mesh;
+        }    
+
+        lineRenderer.BakeMesh(mesh, Camera.main, false);
+
+        triangles = mesh.triangles;
+        vertices = mesh.vertices;
+
+        //var mesh = MeshObject.GetComponent<MeshFilter>().mesh;
+        //if (_baseVertices == null)
+        //    _baseVertices = mesh.vertices;
+        //var vertices = new Vector3[_baseVertices.Length];
+        //for (var i = 0; i < vertices.Length; i++)
+        //{
+        //    var vertex = _baseVertices[i];
+        //    vertex.x = vertex.x * ScaleX;
+        //    vertex.y = vertex.y * ScaleY;
+        //    vertex.z = vertex.z * ScaleZ;
+        //    vertices[i] = vertex;
+        //}
+        //mesh.vertices = vertices;
+        //if (RecalculateNormals)
+        //    mesh.RecalculateNormals();
+        //mesh.RecalculateBounds();
     }
 }
