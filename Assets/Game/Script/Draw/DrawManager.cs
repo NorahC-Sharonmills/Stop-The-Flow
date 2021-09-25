@@ -10,6 +10,8 @@ public class DrawManager : MonoBehaviour
     private List<Vector3> fingerPositions;
     private Vector3 defaultPostion = Vector3.zero;
 
+    public float distance = 0.25f;
+
     private void Start()
     {
 
@@ -25,7 +27,7 @@ public class DrawManager : MonoBehaviour
         {
             Vector3 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             tempFingerPos.y = 3;
-            if(Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > .2f)
+            if(Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > distance)
             {
                 UpdateLine(tempFingerPos);
             }
@@ -56,8 +58,8 @@ public class DrawManager : MonoBehaviour
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount += 1;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
-        //PathScript.Instance.DrawLine(lineRenderer, defaultPostion);
-        CompleteLine();
+        PathScript.Instance.DrawLine(lineRenderer, defaultPostion);
+        //CompleteLine();
     }
 
     //public float ScaleX = 1.0f;
@@ -70,6 +72,13 @@ public class DrawManager : MonoBehaviour
 
     public int[] triangles;
     public Vector3[] vertices;
+
+    private int[] trianglesModels;
+    private Vector3[] verticesModels;
+
+    
+    public List<int> cacheTriangles = new List<int>();
+    public List<Vector3> cacheVertices = new List<Vector3>();
 
     private void CompleteLine()
     {
@@ -90,6 +99,20 @@ public class DrawManager : MonoBehaviour
         triangles = mesh.triangles;
         vertices = mesh.vertices;
 
+        //int size = 4;
+        //for(int i = 0; i < (int)(vertices.Length / size); i++)
+        //{
+        //    cacheVertices.Add(vertices[i * size]);
+        //    cacheVertices.Add(vertices[i * size + 1]);
+        //    cacheVertices.Add(vertices[i * size + 2]);
+        //    cacheVertices.Add(vertices[i * size + 3]);
+
+        //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size]));
+        //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size + 1]));
+        //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size + 2]));
+        //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size + 3]));
+        //}
+
         //var mesh = MeshObject.GetComponent<MeshFilter>().mesh;
         //if (_baseVertices == null)
         //    _baseVertices = mesh.vertices;
@@ -106,5 +129,12 @@ public class DrawManager : MonoBehaviour
         //if (RecalculateNormals)
         //    mesh.RecalculateNormals();
         //mesh.RecalculateBounds();
+    }
+
+    private Vector3 GeneralBottomPostion(Vector3 vector)
+    {
+        var rp = vector;
+        rp.y += 2;
+        return rp;
     }
 }

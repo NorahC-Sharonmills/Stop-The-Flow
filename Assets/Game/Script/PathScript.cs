@@ -4,119 +4,37 @@ using UnityEngine;
 public class PathScript : MonoSingleton<PathScript>
 {
     public GameObject meshObject;
-    private List<Vector3> points = new List<Vector3>();
-    private MeshFilter meshFilter;
+    private List<Vector3> bottom_points = new List<Vector3>();
+    private List<Vector3> top_points = new List<Vector3>();
+    private List<Vector3> right_point = new List<Vector3>();
+    private List<Vector3> left_point = new List<Vector3>();
+    private Vector3[] forward_point = new Vector3[4];
+    private Vector3[] back_point = new Vector3[4];
+    private MeshFilter bottom_meshFilter;
+    private MeshFilter top_meshFilter;
+    private MeshFilter right_meshFilter;
+    private MeshFilter left_meshFilter;
+    private MeshFilter back_meshFilter;
+    private MeshFilter foward_meshFilter;
 
-    //test
-    private MeshFilter MeshFilter;
-    private Mesh Mesh;
+    private MeshFilter meshFilterTotal;
 
-    [Header("show on inspector")]
-    public int[] ListTriangles;
-    public Vector3[] ListVerticies;
+    int[] triangles_back = new int[]{
+            0,1,2,
+            0,2,3
+        };
+    int[] triangles_foward = new int[]{
+            2,1,0,
+            3,2,0
+        };
 
-    public List<Vector3> ListVerBottoms = new List<Vector3>();
     public Material Mat;
-
-    private void Start()
-    {
-        CreateMesh();
-    }
-
-    private void CreateMesh()
-    {
-        Mesh = new Mesh();
-        Mesh.name = "GeneralMesh";
-
-        Mesh.vertices = GeneralVerts();
-        Mesh.triangles = GeneralTries();
-
-        Mesh.RecalculateNormals();
-        //Mesh.RecalculateBounds();
-
-        GameObject MeshObject = new GameObject();
-        MeshObject.name = "Mesh";
-
-        var mr = MeshObject.AddComponent<MeshRenderer>();
-        mr.materials[0] = Mat;
-
-        MeshFilter = MeshObject.AddComponent<MeshFilter>();
-        MeshFilter.mesh = Mesh;
-    }    
-
-    private Vector3[] GeneralVerts()
-    {
-        return new Vector3[]
-        {
-            //bottom
-            new Vector3(0.5399822f, 3, 4.089711f),
-            new Vector3(0.8399822f, 3, 4.089711f),
-            new Vector3(0.7426509f, 3, 0.7426509f),
-            new Vector3(0.6373134f, 3, 4.23016f),
-
-            //top
-            new Vector3(0.5399822f, 1, 4.089711f),
-            new Vector3(0.8399822f, 1, 4.089711f),
-            new Vector3(0.7426509f, 1, 0.7426509f),
-            new Vector3(0.6373134f, 1, 4.23016f),
-
-            ////left
-            //new Vector3(-1, 0, 1),
-            //new Vector3(-1, 0, -1),
-            //new Vector3(-1, 2, 1),
-            //new Vector3(-1, 2, -1),
-
-            ////right
-            //new Vector3(1, 0, 1),
-            //new Vector3(1, 0, -1),
-            //new Vector3(1, 2, 1),
-            //new Vector3(1, 2, -1),
-
-            ////front
-            //new Vector3(1, 0, -1),
-            //new Vector3(-1, 0, -1),
-            //new Vector3(1, 2, -1),
-            //new Vector3(-1, 2, -1),
-
-            ////back
-            //new Vector3(-1, 0, 1),
-            //new Vector3(1, 0, 1),
-            //new Vector3(-1, 2, 1),
-            //new Vector3(1, 2, 1),
-        };
-    }    
-
-    private int[] GeneralTries()
-    {
-        return new int[]
-        {
-            //bottom
-            0,1,3,
-            0,2,3,
-            ////top
-            //4,5,6,
-            //4,6,7,
-            ////left
-            //9,10,11,
-            //8,10,9,
-            ////right
-            //12,13,15,
-            //14,12,15,
-            ////front
-            //16,17,19,
-            //18,16,19,
-            ////back
-            //20,21,23,
-            //22,20,23
-        };
-    }   
-    
     private Vector3 GeneralBottomPostion(Vector3 vector)
     {
         var rp = vector;
         rp.y -= 2;
         return rp;
-    }    
+    }
 
     public void DrawLine(LineRenderer line, Vector3 meshPosition)
     {
@@ -131,16 +49,32 @@ public class PathScript : MonoSingleton<PathScript>
             top_left = caret.transform.position - caret.transform.right * line.startWidth * 0.5f;
             bot_left = GeneralBottomPostion(top_left);
 
-            if (!points.Contains(top_left))
-                points.Add(top_left);
-            if (!points.Contains(top_right))
-                points.Add(top_right);
+            if (!bottom_points.Contains(top_left))
+                bottom_points.Add(top_left);
+            if (!bottom_points.Contains(top_right))
+                bottom_points.Add(top_right);
 
-            if (!ListVerBottoms.Contains(bot_left))
-                ListVerBottoms.Add(bot_left);
-            if (!ListVerBottoms.Contains(bot_right))
-                ListVerBottoms.Add(bot_right);
+            if (!top_points.Contains(bot_right))
+                top_points.Add(bot_right);
+            if (!top_points.Contains(bot_left))
+                top_points.Add(bot_left);
+
+            if (!left_point.Contains(bot_left))
+                left_point.Add(bot_left);
+            if (!left_point.Contains(top_left))
+                left_point.Add(top_left);
+
+            if (!right_point.Contains(top_right))
+                right_point.Add(top_right);
+            if (!right_point.Contains(bot_right))
+                right_point.Add(bot_right);
         }
+
+        //// First point looks backwards and reverses
+        back_point[0] = top_points[0];
+        back_point[1] = top_points[1];
+        back_point[2] = bottom_points[0];
+        back_point[3] = bottom_points[1];
 
         // Last point looks backwards and reverses
         caret.transform.position = line.GetPosition(line.positionCount - 1);
@@ -150,22 +84,139 @@ public class PathScript : MonoSingleton<PathScript>
         top_left = caret.transform.position + caret.transform.right * line.startWidth * 0.5f;
         bot_left = GeneralBottomPostion(top_left);
 
-        if (!points.Contains(top_left))
-            points.Add(top_left);
-        if (!points.Contains(top_right))
-            points.Add(top_right);
+        if (!bottom_points.Contains(top_left))
+            bottom_points.Add(top_left);
+        if (!bottom_points.Contains(top_right))
+            bottom_points.Add(top_right);
 
-        if (!ListVerBottoms.Contains(bot_left))
-            ListVerBottoms.Add(bot_left);
-        if (!ListVerBottoms.Contains(bot_right))
-            ListVerBottoms.Add(bot_right);
+        if (!top_points.Contains(bot_right))
+            top_points.Add(bot_right);
+        if (!top_points.Contains(bot_left))
+            top_points.Add(bot_left);
+
+        if (!left_point.Contains(bot_left))
+            left_point.Add(bot_left);
+        if (!left_point.Contains(top_left))
+            left_point.Add(top_left);
+
+        if (!right_point.Contains(top_right))
+            right_point.Add(top_right);
+        if (!right_point.Contains(bot_right))
+            right_point.Add(bot_right);
+
+        forward_point[0] = top_points[top_points.Count - 2];
+        forward_point[1] = top_points[top_points.Count - 1];
+        forward_point[2] = bottom_points[bottom_points.Count - 2];
+        forward_point[3] = bottom_points[bottom_points.Count - 1];
+
 
         caret.transform.parent = transform;
 
-        DrawMesh(points, meshPosition);
+        if (bottom_meshFilter == null)
+        {
+            var obj = Instantiate(meshObject);
+            obj.name = "bottom";
+            bottom_meshFilter = obj.GetComponent<MeshFilter>();
+        }    
+
+        if (top_meshFilter == null)
+        {
+            var obj = Instantiate(meshObject);
+            obj.name = "top";
+            top_meshFilter = obj.GetComponent<MeshFilter>();
+        }
+
+        if (left_meshFilter == null)
+        {
+            var obj = Instantiate(meshObject);
+            obj.name = "left";
+            left_meshFilter = obj.GetComponent<MeshFilter>();
+        }
+
+        if (right_meshFilter == null)
+        {
+            var obj = Instantiate(meshObject);
+            obj.name = "right";
+            right_meshFilter = obj.GetComponent<MeshFilter>();
+        }
+
+        if (back_meshFilter == null)
+        {
+            var obj = Instantiate(meshObject);
+            obj.name = "back";
+            back_meshFilter = obj.GetComponent<MeshFilter>();
+        }
+
+        if (foward_meshFilter == null)
+        {
+            var obj = Instantiate(meshObject);
+            obj.name = "foward";
+            foward_meshFilter = obj.GetComponent<MeshFilter>();
+        }
+
+        if (meshFilterTotal == null)
+        {
+            var obj = Instantiate(meshObject);
+            obj.name = "center";
+            meshFilterTotal = obj.GetComponent<MeshFilter>();
+        }
+
+
+        bottom_meshFilter.gameObject.SetActive(true);
+        DrawMesh(bottom_points, meshPosition, bottom_meshFilter);
+        top_meshFilter.gameObject.SetActive(true);
+        DrawMesh(top_points, meshPosition, top_meshFilter);
+        left_meshFilter.gameObject.SetActive(true);
+        DrawMesh(left_point, meshPosition, left_meshFilter);
+        right_meshFilter.gameObject.SetActive(true);
+        DrawMesh(right_point, meshPosition, right_meshFilter);
+        back_meshFilter.gameObject.SetActive(true);
+        DrawMeshWithTriangle(back_point, meshPosition, back_meshFilter, triangles_back);
+        foward_meshFilter.gameObject.SetActive(true);
+        DrawMeshWithTriangle(forward_point, meshPosition, foward_meshFilter, triangles_foward);
+
+        meshFilterTotal.transform.position = meshPosition;
+
+        CombineInstance[] combine = new CombineInstance[6];
+        combine[0].mesh = bottom_meshFilter.sharedMesh;
+        combine[0].transform = bottom_meshFilter.transform.localToWorldMatrix;
+        bottom_meshFilter.gameObject.SetActive(false);
+
+        combine[1].mesh = top_meshFilter.sharedMesh;
+        combine[1].transform = top_meshFilter.transform.localToWorldMatrix;
+        top_meshFilter.gameObject.SetActive(false);
+
+        combine[2].mesh = left_meshFilter.sharedMesh;
+        combine[2].transform = left_meshFilter.transform.localToWorldMatrix;
+        left_meshFilter.gameObject.SetActive(false);
+
+        combine[3].mesh = right_meshFilter.sharedMesh;
+        combine[3].transform = right_meshFilter.transform.localToWorldMatrix;
+        right_meshFilter.gameObject.SetActive(false);
+
+        combine[4].mesh = back_meshFilter.sharedMesh;
+        combine[4].transform = back_meshFilter.transform.localToWorldMatrix;
+        back_meshFilter.gameObject.SetActive(false);
+
+        combine[5].mesh = foward_meshFilter.sharedMesh;
+        combine[5].transform = foward_meshFilter.transform.localToWorldMatrix;
+        foward_meshFilter.gameObject.SetActive(false);
+
+        meshFilterTotal.mesh.Clear();
+        meshFilterTotal.mesh.CombineMeshes(combine);
     }
 
-    private void DrawMesh(List<Vector3> meshPoints, Vector3 meshPosition)
+    private void DrawMeshWithTriangle(Vector3[] verticies, Vector3 meshPosition, MeshFilter meshFilter, int[] triangles)
+    {
+        Mesh mesh = meshFilter.mesh;
+        mesh.Clear();
+        mesh.vertices = verticies;
+        mesh.triangles = triangles;
+        mesh.RecalculateNormals();
+        meshFilter.transform.position = meshPosition;
+    }    
+
+    private void DrawMesh(List<Vector3> meshPoints, Vector3 meshPosition, MeshFilter meshFilter)
     {
         Vector3[] verticies = new Vector3[meshPoints.Count];
 
@@ -174,11 +225,13 @@ public class PathScript : MonoSingleton<PathScript>
             verticies[i] = meshPoints[i];
         }
 
-        int[] triangles = new int[((meshPoints.Count / 2) - 1) * 6];
+        int size = 12;
+
+        int[] triangles = new int[((meshPoints.Count / 2) - 1) * size];
 
         //Works on linear patterns tn = bn+c
-        int position = 6;
-        for (int i = 0; i < (triangles.Length / 6); i++)
+        int position = size;
+        for (int i = 0; i < (triangles.Length / size); i++)
         {
             triangles[i * position] = 2 * i;
             triangles[i * position + 3] = 2 * i;
@@ -190,19 +243,12 @@ public class PathScript : MonoSingleton<PathScript>
             triangles[i * position + 5] = (2 * i + 1) + 2;
         }
 
-        if (meshFilter == null)
-            meshFilter = Instantiate(meshObject).GetComponent<MeshFilter>();
-
 
         Mesh mesh = meshFilter.mesh;
         mesh.Clear();
         mesh.vertices = verticies;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
-
-        ListTriangles = triangles;
-        ListVerticies = verticies;
-
         meshFilter.transform.position = meshPosition;
     }
 }
