@@ -37,6 +37,8 @@ namespace UnityEditor
 
         string select = "id";
 
+        private int level_select = 0;
+
         private void OnEnable()
         {
             ObjectType = Enum.ObjectType.None;
@@ -72,17 +74,43 @@ namespace UnityEditor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+            GUILayout.BeginHorizontal();
+            if(GUILayout.Button("<", GUILayout.Width(25)))
+            {
+                level_select -= 1;
+                if (level_select < 0)
+                    level_select = 0;
+
+
+                ClearAllObject();
+                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                SpawnObject(dataObject);
+            }
+            level_select = EditorGUILayout.IntField(level_select);
+            if (GUILayout.Button(">", GUILayout.Width(25)))
+            {
+                var data = Resources.LoadAll<TextAsset>("Level");
+                level_select += 1;
+                if (level_select > data.Length - 1)
+                    level_select = data.Length - 1;
+
+                ClearAllObject();
+                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                SpawnObject(dataObject);
+            }
+
+            if (GUILayout.Button("Load Level", GUILayout.Width(100)))
+            {
+                ClearAllObject();
+                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                SpawnObject(dataObject);
+            }
+
             if (GUILayout.Button("Clear", GUILayout.Width(100)))
             {
-                if(tool.Objects != null)
-                {
-                    for (int i = 0; i < tool.Objects.Count; i++)
-                    {
-                        DestroyImmediate(tool.Objects[i]);
-                    }
-                    tool.Objects = new List<GameObject>();
-                }       
+                ClearAllObject();
             }
+            GUILayout.EndHorizontal();
             clear = EditorGUILayout.Toggle("Clear level after save data: ", clear);
             active = EditorGUILayout.Toggle("Locked active tool: ", active);
             size = EditorGUILayout.Slider(size, 5, 20);
@@ -349,14 +377,7 @@ namespace UnityEditor
 
                     if(clear)
                     {
-                        if (tool.Objects != null)
-                        {
-                            for (int i = 0; i < tool.Objects.Count; i++)
-                            {
-                                DestroyImmediate(tool.Objects[i]);
-                            }
-                            tool.Objects = new List<GameObject>();
-                        }
+                        ClearAllObject();
                     }    
                 }  
                 else
@@ -365,7 +386,78 @@ namespace UnityEditor
                 }    
             }
             EditorGUILayout.EndHorizontal();
-        }  
+        } 
+        
+        private void ClearAllObject()
+        {
+            Debug.Log("Clear All Object");
+            if (tool.Objects != null)
+            {
+                for (int i = 0; i < tool.Objects.Count; i++)
+                {
+                    DestroyImmediate(tool.Objects[i]);
+                }
+                tool.Objects = new List<GameObject>();
+            }
+        }
+
+        private string LoadLevel(int value)
+        {
+            string path = string.Format("Level/level_{0}", value + 1);
+            var level = Resources.Load<TextAsset>(path);
+            Debug.Log(level.text);
+            level_name = level.name;
+            return level.text;
+        }
+
+        private void SpawnObject(Game.LevelData data)
+        {
+            var objects = data.Datas;
+            string path = "";
+            GameObject obj = null;
+            for(int i = 0; i < objects.Count; i++)
+            {
+                switch(objects[i].ObjectType)
+                {
+                    case Enum.ObjectType.None:
+                        break;
+                    case Enum.ObjectType.Character:
+                        path = string.Format("Prefabs/Character/{0}", objects[i].NameObject);
+                        obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.transform.localPosition = objects[i].Postion;
+                        obj.transform.localRotation = objects[i].Rotation;
+                        obj.transform.localScale = objects[i].LocalScale;
+                        obj.SetActive(objects[i].IsEnable);
+                        break;
+                    case Enum.ObjectType.Enemy:
+                        path = string.Format("Prefabs/Enemy/{0}", objects[i].NameObject);
+                        obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.transform.localPosition = objects[i].Postion;
+                        obj.transform.localRotation = objects[i].Rotation;
+                        obj.transform.localScale = objects[i].LocalScale;
+                        obj.SetActive(objects[i].IsEnable);
+                        break;
+                    case Enum.ObjectType.Object:
+                        path = string.Format("Prefabs/Object/{0}", objects[i].NameObject);
+                        obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.transform.localPosition = objects[i].Postion;
+                        obj.transform.localRotation = objects[i].Rotation;
+                        obj.transform.localScale = objects[i].LocalScale;
+                        obj.SetActive(objects[i].IsEnable);
+                        break;
+                    case Enum.ObjectType.Clear:
+                        path = string.Format("Prefabs/Clear/{0}", objects[i].NameObject);
+                        obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.transform.localPosition = objects[i].Postion;
+                        obj.transform.localRotation = objects[i].Rotation;
+                        obj.transform.localScale = objects[i].LocalScale;
+                        obj.SetActive(objects[i].IsEnable);
+                        break;
+                }
+
+                tool.Objects.Add(obj);
+            }
+        }
     }
 }
 
