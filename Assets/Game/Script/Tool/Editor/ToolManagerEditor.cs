@@ -85,6 +85,7 @@ namespace UnityEditor
                 ClearAllObject();
                 var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
                 SpawnObject(dataObject);
+                SaveData();
             }
             level_select = EditorGUILayout.IntField(level_select);
             if (GUILayout.Button(">", GUILayout.Width(25)))
@@ -97,6 +98,7 @@ namespace UnityEditor
                 ClearAllObject();
                 var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
                 SpawnObject(dataObject);
+                SaveData();
             }
 
             if (GUILayout.Button("Load Level", GUILayout.Width(100)))
@@ -104,6 +106,7 @@ namespace UnityEditor
                 ClearAllObject();
                 var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
                 SpawnObject(dataObject);
+                SaveData();
             }
 
             if (GUILayout.Button("Clear", GUILayout.Width(100)))
@@ -310,83 +313,88 @@ namespace UnityEditor
             level_name = EditorGUILayout.TextField("Level Name: ", level_name);
             if (GUILayout.Button("Save Level"))
             {
-                Game.Level info = new Game.Level();
-                info.LevelData = new Game.LevelData();
-                info.LevelData.SizeCamera = size;
-                info.LevelData.AttackType = tool.AttackType;
-                info.LevelData.WaterType = tool.WaterType;
-                info.LevelData.Datas = new List<Game.ObjectData>();
-                for (int i = 0; i < tool.Objects.Count; i++)
-                {
-                    Game.ObjectData data = new Game.ObjectData();
-                    var entity = tool.Objects[i].GetComponent<Game.Entity>();
-                    data.ObjectType = entity.ObjectType;
-                    data.IsEnable = tool.Objects[i].activeSelf;
-                    switch (data.ObjectType)
-                    {
-                        case Enum.ObjectType.Character:
-                            var character = tool.Objects[i].GetComponent<Game.Character>();
-                            data.CharacterType = character.CharacterType;
-                            data.EnemyType = Enum.EnemyType.None;
-                            data.NameObject = tool.Objects[i].name;
-                            data.Postion = tool.Objects[i].transform.position;
-                            data.Rotation = tool.Objects[i].transform.rotation;
-                            data.LocalScale = tool.Objects[i].transform.localScale;
-                            break;
-                        case Enum.ObjectType.Enemy:
-                            var enemy = tool.Objects[i].GetComponent<Game.Enemy>();
-                            data.CharacterType = Enum.CharacterType.None;
-                            data.EnemyType = enemy.EnemyType;
-                            data.NameObject = tool.Objects[i].name;
-                            data.Postion = tool.Objects[i].transform.position;
-                            data.Rotation = tool.Objects[i].transform.rotation;
-                            data.LocalScale = tool.Objects[i].transform.localScale;
-                            break;
-                        case Enum.ObjectType.Object:
-                            data.CharacterType = Enum.CharacterType.None;
-                            data.EnemyType = Enum.EnemyType.None;
-                            data.NameObject = tool.Objects[i].name;
-                            data.Postion = tool.Objects[i].transform.position;
-                            data.Rotation = tool.Objects[i].transform.rotation;
-                            data.LocalScale = tool.Objects[i].transform.localScale;
-                            break;
-                        case Enum.ObjectType.Clear:
-                            data.CharacterType = Enum.CharacterType.None;
-                            data.EnemyType = Enum.EnemyType.None;
-                            data.NameObject = tool.Objects[i].name;
-                            data.Postion = tool.Objects[i].transform.position;
-                            data.Rotation = tool.Objects[i].transform.rotation;
-                            data.LocalScale = tool.Objects[i].transform.localScale;
-                            break;
-                    }
-                    info.LevelData.Datas.Add(data);
-                }
-                if(!string.IsNullOrEmpty(level_name))
-                {
-                    var _str = JsonUtility.ToJson(info);
-                    var path = "Assets/Resources/Level/" + level_name + ".json";
-                    Debug.Log(string.Format("Save Success with path {0}", path));
-
-                    if (path.Length > 0)
-                    {
-                        System.IO.File.WriteAllText(path, _str);
-                    }
-
-                    EditorUtility.SetDirty(this);
-                    AssetDatabase.Refresh();
-
-                    if(clear)
-                    {
-                        ClearAllObject();
-                    }    
-                }  
-                else
-                {
-                    EditorUtility.DisplayDialog("Chưa có tên", "Chưa nhập tên level chị oiiiiiii, nhập nhé...", "Okayy");
-                }    
+                SaveData();  
             }
             EditorGUILayout.EndHorizontal();
-        } 
+        }
+
+        private void SaveData()
+        {
+            Game.Level info = new Game.Level();
+            info.LevelData = new Game.LevelData();
+            info.LevelData.SizeCamera = size;
+            info.LevelData.AttackType = tool.AttackType;
+            info.LevelData.WaterType = tool.WaterType;
+            info.LevelData.Datas = new List<Game.ObjectData>();
+            for (int i = 0; i < tool.Objects.Count; i++)
+            {
+                Game.ObjectData data = new Game.ObjectData();
+                var entity = tool.Objects[i].GetComponent<Game.Entity>();
+                data.ObjectType = entity.ObjectType;
+                data.IsEnable = tool.Objects[i].activeSelf;
+                switch (data.ObjectType)
+                {
+                    case Enum.ObjectType.Character:
+                        var character = tool.Objects[i].GetComponent<Game.Character>();
+                        data.CharacterType = character.CharacterType;
+                        data.EnemyType = Enum.EnemyType.None;
+                        data.NameObject = tool.Objects[i].name;
+                        data.Postion = tool.Objects[i].transform.position;
+                        data.Rotation = tool.Objects[i].transform.rotation;
+                        data.LocalScale = tool.Objects[i].transform.localScale;
+                        break;
+                    case Enum.ObjectType.Enemy:
+                        var enemy = tool.Objects[i].GetComponent<Game.Enemy>();
+                        data.CharacterType = Enum.CharacterType.None;
+                        data.EnemyType = enemy.EnemyType;
+                        data.NameObject = tool.Objects[i].name;
+                        data.Postion = tool.Objects[i].transform.position;
+                        data.Rotation = tool.Objects[i].transform.rotation;
+                        data.LocalScale = tool.Objects[i].transform.localScale;
+                        break;
+                    case Enum.ObjectType.Object:
+                        data.CharacterType = Enum.CharacterType.None;
+                        data.EnemyType = Enum.EnemyType.None;
+                        data.NameObject = tool.Objects[i].name;
+                        data.Postion = tool.Objects[i].transform.position;
+                        data.Rotation = tool.Objects[i].transform.rotation;
+                        data.LocalScale = tool.Objects[i].transform.localScale;
+                        break;
+                    case Enum.ObjectType.Clear:
+                        data.CharacterType = Enum.CharacterType.None;
+                        data.EnemyType = Enum.EnemyType.None;
+                        data.NameObject = tool.Objects[i].name;
+                        data.Postion = tool.Objects[i].transform.position;
+                        data.Rotation = tool.Objects[i].transform.rotation;
+                        data.LocalScale = tool.Objects[i].transform.localScale;
+                        break;
+                }
+                info.LevelData.Datas.Add(data);
+            }
+            if (!string.IsNullOrEmpty(level_name))
+            {
+                var _str = JsonUtility.ToJson(info);
+                var path = "Assets/Resources/Level/" + level_name + ".json";
+                Debug.Log(string.Format("Save Success with path {0}", path));
+
+                if (path.Length > 0)
+                {
+                    System.IO.File.WriteAllText(path, _str);
+                }
+
+                EditorUtility.SetDirty(this);
+                AssetDatabase.Refresh();
+
+                if (clear)
+                {
+                    ClearAllObject();
+                }
+            }
+            else
+            {
+                EditorUtility.DisplayDialog("Chưa có tên", "Chưa nhập tên level chị oiiiiiii, nhập nhé...", "Okayy");
+            }
+        }
         
         private void ClearAllObject()
         {
@@ -424,6 +432,7 @@ namespace UnityEditor
                     case Enum.ObjectType.Character:
                         path = string.Format("Prefabs/Character/{0}", objects[i].NameObject);
                         obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.name = obj.name.Replace("(Clone)", "");
                         obj.transform.localPosition = objects[i].Postion;
                         obj.transform.localRotation = objects[i].Rotation;
                         obj.transform.localScale = objects[i].LocalScale;
@@ -432,6 +441,7 @@ namespace UnityEditor
                     case Enum.ObjectType.Enemy:
                         path = string.Format("Prefabs/Enemy/{0}", objects[i].NameObject);
                         obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.name = obj.name.Replace("(Clone)", "");
                         obj.transform.localPosition = objects[i].Postion;
                         obj.transform.localRotation = objects[i].Rotation;
                         obj.transform.localScale = objects[i].LocalScale;
@@ -440,6 +450,7 @@ namespace UnityEditor
                     case Enum.ObjectType.Object:
                         path = string.Format("Prefabs/Object/{0}", objects[i].NameObject);
                         obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.name = obj.name.Replace("(Clone)", "");
                         obj.transform.localPosition = objects[i].Postion;
                         obj.transform.localRotation = objects[i].Rotation;
                         obj.transform.localScale = objects[i].LocalScale;
@@ -448,6 +459,7 @@ namespace UnityEditor
                     case Enum.ObjectType.Clear:
                         path = string.Format("Prefabs/Clear/{0}", objects[i].NameObject);
                         obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.name = obj.name.Replace("(Clone)", "");
                         obj.transform.localPosition = objects[i].Postion;
                         obj.transform.localRotation = objects[i].Rotation;
                         obj.transform.localScale = objects[i].LocalScale;
