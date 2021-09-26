@@ -554,10 +554,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshObject: {fileID: 420978592164595365, guid: cbd026bd7e4a640ecb361c58dbee62f5, type: 3}
-  forward_point: []
-  back_point: []
-  ListTriangles: 
-  ListVerticies: []
   Mat: {fileID: 2100000, guid: 2c5598955cebb334d8bdd8e2af940684, type: 2}
 --- !u!4 &1911962145
 Transform:
