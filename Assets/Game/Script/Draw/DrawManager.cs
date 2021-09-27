@@ -50,7 +50,8 @@ public class DrawManager : MonoBehaviour
                 if (hit.collider.name == "Plane")
                 {
                     Vector3 tempFingerPos = hit.point;
-                    if(Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > distance)
+                    float _distance = Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]);
+                    if (_distance > distance && _distance < 2 * distance)
                     {
                         UpdateLine(tempFingerPos);
                     }  

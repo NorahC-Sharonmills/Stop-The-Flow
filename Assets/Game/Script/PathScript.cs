@@ -233,7 +233,8 @@ public class PathScript : MonoSingleton<PathScript>
     public void CompleteLine()
     {
         m_IndexPoint = 0;
-        meshObjectInstance.AddComponent<Rigidbody>();
+        var rig = meshObjectInstance.AddComponent<Rigidbody>();
+        rig.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationY;
     }    
 
     private void DrawMeshWithTriangle(Vector3[] verticies, Vector3 meshPosition, MeshFilter meshFilter, int[] triangles)
