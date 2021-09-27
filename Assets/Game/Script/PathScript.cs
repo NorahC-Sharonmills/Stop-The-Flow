@@ -4,7 +4,7 @@ using UnityEngine;
 public class PathScript : MonoSingleton<PathScript>
 {
     public GameObject meshObject;
-    private List<Vector3> bottom_points = new List<Vector3>();
+    [SerializeField] private List<Vector3> bottom_points = new List<Vector3>();
     private List<Vector3> top_points = new List<Vector3>();
     private List<Vector3> right_point = new List<Vector3>();
     private List<Vector3> left_point = new List<Vector3>();
@@ -37,11 +37,14 @@ public class PathScript : MonoSingleton<PathScript>
         return rp;
     }
 
-    public void DrawLine(LineRenderer line, Vector3 meshPosition, float hight)
+    int m_IndexPoint = 0;
+    private List<GameObject> m_ListCenterPoints = new List<GameObject>();
+    public void DrawLine(LineRenderer line, Vector3 meshPosition, float hight, float distance)
     {
-        var caret = new GameObject();
+        var caret = new GameObject(string.Format("point_{0}", m_IndexPoint));
+        caret.layer = 9;
         Vector3 top_left, top_right, bot_left, bot_right;
-        for (var i = 0; i < line.positionCount - 1; i++)
+        for (var i = 1; i < line.positionCount - 1; i++)
         {
             caret.transform.position = line.GetPosition(i);
             caret.transform.LookAt(line.GetPosition(i + 1));
@@ -205,13 +208,32 @@ public class PathScript : MonoSingleton<PathScript>
 
         meshFilterTotal.mesh.Clear();
         meshFilterTotal.mesh.CombineMeshes(combine);
+
+        if(!m_ListCenterPoints.Contains(caret) && m_IndexPoint != 0)
+        {
+            m_ListCenterPoints.Add(caret);
+            var boxCollider = caret.AddComponent<BoxCollider>();
+            Vector3 boxCenter = Vector3.zero;
+            if (m_IndexPoint == 0)
+                boxCenter.y -= (hight * 0.5f);
+            else
+                boxCenter.y += (hight * 0.5f);
+            boxCenter.z = line.startWidth;
+            boxCollider.center = boxCenter;
+
+            Vector3 boxSize = Vector3.one;
+            boxSize.x = line.startWidth * 0.65f;
+            boxSize.z = line.startWidth * 2f * 0.6f;
+            boxCollider.size = boxSize;
+        }
+
+        m_IndexPoint += 1;
     }
 
-    MeshCollider meshColTotal;
     public void CompleteLine()
     {
-        meshColTotal = meshObjectInstance.AddComponent<MeshCollider>();
-        meshColTotal.sharedMesh = meshFilterTotal.sharedMesh;
+        m_IndexPoint = 0;
+        meshObjectInstance.AddComponent<Rigidbody>();
     }    
 
     private void DrawMeshWithTriangle(Vector3[] verticies, Vector3 meshPosition, MeshFilter meshFilter, int[] triangles)

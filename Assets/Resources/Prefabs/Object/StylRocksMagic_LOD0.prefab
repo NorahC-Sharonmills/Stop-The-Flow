@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1548837047316033901}
   - component: {fileID: -2831665333089004840}
+  - component: {fileID: 419758029878253628}
   m_Layer: 0
   m_Name: StylRocksMagic_LOD0
   m_TagString: Untagged
@@ -49,6 +50,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 3
+--- !u!54 &419758029878253628
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176720462095903703}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &676274825659024376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56,6 +73,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1548837047316033901}
     m_Modifications:
+    - target: {fileID: 652350250345728396, guid: 2c2fd9cd7f114c3429836b1d2a17fe93, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1336414088597152318, guid: 2c2fd9cd7f114c3429836b1d2a17fe93, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1851246827825585822, guid: 2c2fd9cd7f114c3429836b1d2a17fe93, type: 3}
       propertyPath: m_Name
       value: StylRocksMagic_1_LOD0
@@ -108,7 +133,9 @@ PrefabInstance:
       propertyPath: ObjectType
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8111391196801043768, guid: 2c2fd9cd7f114c3429836b1d2a17fe93, type: 3}
+    - {fileID: 652350250345728396, guid: 2c2fd9cd7f114c3429836b1d2a17fe93, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2c2fd9cd7f114c3429836b1d2a17fe93, type: 3}
 --- !u!4 &1584062118529590185 stripped
 Transform:
@@ -129,6 +156,10 @@ PrefabInstance:
     - target: {fileID: 2907541935674854948, guid: b20616675454eff4d96f08f2e954af14, type: 3}
       propertyPath: ObjectType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261456448304436699, guid: b20616675454eff4d96f08f2e954af14, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3940587522465671413, guid: b20616675454eff4d96f08f2e954af14, type: 3}
       propertyPath: m_RootOrder
@@ -174,7 +205,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4365703922677176114, guid: b20616675454eff4d96f08f2e954af14, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2907541935674854948, guid: b20616675454eff4d96f08f2e954af14, type: 3}
+    - {fileID: 4365703922677176114, guid: b20616675454eff4d96f08f2e954af14, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b20616675454eff4d96f08f2e954af14, type: 3}
 --- !u!4 &1663785932655479188 stripped
 Transform:
@@ -195,6 +232,14 @@ PrefabInstance:
     - target: {fileID: 4410883803184568277, guid: 7314b9d34785e5940a8ef2a45ac3503a, type: 3}
       propertyPath: m_Name
       value: StylRocksMagic_2_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5991507328451605225, guid: 7314b9d34785e5940a8ef2a45ac3503a, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496635785371892044, guid: 7314b9d34785e5940a8ef2a45ac3503a, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188846887578481509, guid: 7314b9d34785e5940a8ef2a45ac3503a, type: 3}
       propertyPath: m_RootOrder
@@ -240,7 +285,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8332323696429204156, guid: 7314b9d34785e5940a8ef2a45ac3503a, type: 3}
+    - {fileID: 6496635785371892044, guid: 7314b9d34785e5940a8ef2a45ac3503a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7314b9d34785e5940a8ef2a45ac3503a, type: 3}
 --- !u!4 &6475203225547264568 stripped
 Transform:
@@ -302,11 +349,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1681381832477462058, guid: abf2a0eb6df7a144b8ac342669952bd8, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4070161772080499734, guid: abf2a0eb6df7a144b8ac342669952bd8, type: 3}
       propertyPath: m_Name
       value: StylRocksMagic_3_LOD0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6598176796823997255, guid: abf2a0eb6df7a144b8ac342669952bd8, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -8240901576283921538, guid: abf2a0eb6df7a144b8ac342669952bd8, type: 3}
+    - {fileID: 1681381832477462058, guid: abf2a0eb6df7a144b8ac342669952bd8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: abf2a0eb6df7a144b8ac342669952bd8, type: 3}
 --- !u!4 &5502552588968037231 stripped
 Transform:
@@ -323,6 +380,14 @@ PrefabInstance:
     - target: {fileID: 2913557352379464819, guid: 4944276ff6bc3a44e8a8da53180655a5, type: 3}
       propertyPath: ObjectType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3137693155744753867, guid: 4944276ff6bc3a44e8a8da53180655a5, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4550395741252099896, guid: 4944276ff6bc3a44e8a8da53180655a5, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6530906115176955355, guid: 4944276ff6bc3a44e8a8da53180655a5, type: 3}
       propertyPath: m_Name
@@ -372,7 +437,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2913557352379464819, guid: 4944276ff6bc3a44e8a8da53180655a5, type: 3}
+    - {fileID: 3137693155744753867, guid: 4944276ff6bc3a44e8a8da53180655a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4944276ff6bc3a44e8a8da53180655a5, type: 3}
 --- !u!4 &1239961725689002587 stripped
 Transform:

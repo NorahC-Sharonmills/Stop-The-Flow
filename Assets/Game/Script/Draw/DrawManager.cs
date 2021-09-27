@@ -41,7 +41,11 @@ public class DrawManager : MonoBehaviour
             //    UpdateLine(tempFingerPos);
             //}
 
-            if (Physics.Raycast(m_Camera.ScreenToWorldPoint(Input.mousePosition), m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity))
+            int layerMask = 1 << 9;
+            layerMask = ~layerMask;
+
+
+            if (Physics.Raycast(m_Camera.ScreenToWorldPoint(Input.mousePosition), m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 if (hit.collider.name == "Plane")
                 {
@@ -77,7 +81,7 @@ public class DrawManager : MonoBehaviour
                 lineRenderer.SetPosition(0, fingerPositions[0]);
                 lineRenderer.SetPosition(1, fingerPositions[1]);
 
-                position.y = hight + 0.05f;
+                position.y = hight + 0.06f;
             }
         }
         //Ray ray  = Camera.main.ScreenPointToRay()
@@ -94,7 +98,7 @@ public class DrawManager : MonoBehaviour
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount += 1;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
-        PathScript.Instance.DrawLine(lineRenderer, position, hight);
+        PathScript.Instance.DrawLine(lineRenderer, position, hight, distance);
     }
 
     ////public float ScaleX = 1.0f;

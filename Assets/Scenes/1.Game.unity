@@ -180,7 +180,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 1911962144}
   - component: {fileID: 1911962147}
   - component: {fileID: 1911962146}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'Path '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,6 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshObject: {fileID: 420978592164595365, guid: cbd026bd7e4a640ecb361c58dbee62f5, type: 3}
+  bottom_points: []
   Mat: {fileID: 2100000, guid: 2c5598955cebb334d8bdd8e2af940684, type: 2}
 --- !u!4 &1911962145
 Transform:

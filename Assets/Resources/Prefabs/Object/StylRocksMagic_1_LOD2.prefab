@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2278988287356897597}
   - component: {fileID: 6054976864246822823}
   - component: {fileID: -1310576227107363242}
+  - component: {fileID: 3106795088838134227}
   m_Layer: 0
   m_Name: StylRocksMagic_1_LOD2
   m_TagString: Untagged
@@ -94,7 +95,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5481270621755539314, guid: c2f79e21e006fba4c8c77c508b688343, type: 3}
 --- !u!114 &-1310576227107363242
@@ -110,3 +111,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 3
+  IsKiematic: 0
+--- !u!54 &3106795088838134227
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086920094576190308}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
