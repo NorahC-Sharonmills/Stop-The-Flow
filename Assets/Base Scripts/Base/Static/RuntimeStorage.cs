@@ -16,10 +16,27 @@ public static class RuntimeStorageData
     private static string _dataSound = OptimizeComponent.GetStringOptimize(Application.persistentDataPath, "/", HashLib.GetHashStringAndDeviceID(StaticVariable.DATA_SOUND));
     private static string _dataPlayer = OptimizeComponent.GetStringOptimize(Application.persistentDataPath, "/", HashLib.GetHashStringAndDeviceID(StaticVariable.DATA_PLAYER));
 
+    public static bool IsReady
+    {
+        get
+        {
+            if (SOUND == null || PLAYER == null)
+                return false;
+            return true;
+        }
+    }
+
     public static void ReadAllData()
     {
         SOUND = ReadData<SoundSerializable>(DATATYPE.SOUND) as SoundSerializable;
         PLAYER = ReadData<PlayerSerializable>(DATATYPE.PLAYER) as PlayerSerializable;
+        LogSystem.LogSuccess("Load all data in game");
+    }
+
+    public static void ReadNewData()
+    {
+        SOUND = ReadNew<SoundSerializable>(DATATYPE.SOUND) as SoundSerializable;
+        PLAYER = ReadNew<PlayerSerializable>(DATATYPE.PLAYER) as PlayerSerializable;
         LogSystem.LogSuccess("Load all data in game");
     }
 
@@ -44,6 +61,12 @@ public static class RuntimeStorageData
             var data = GetDataDefault<T>(dataType);
             return data;
         }
+    }
+
+    public static T ReadNew<T>(DATATYPE dataType) where T : class, new()
+    {
+        var data = GetDataDefault<T>(dataType);
+        return data;
     }
 
     public static void DeleteData(DATATYPE dataType)

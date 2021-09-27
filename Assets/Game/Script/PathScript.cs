@@ -18,6 +18,7 @@ public class PathScript : MonoSingleton<PathScript>
     private MeshFilter foward_meshFilter;
 
     private MeshFilter meshFilterTotal;
+    private GameObject meshObjectInstance;
 
     int[] triangles_back = new int[]{
             0,1,2,
@@ -29,14 +30,14 @@ public class PathScript : MonoSingleton<PathScript>
         };
 
     public Material Mat;
-    private Vector3 GeneralBottomPostion(Vector3 vector)
+    private Vector3 GeneralBottomPostion(Vector3 vector, float hight)
     {
         var rp = vector;
-        rp.y -= 2;
+        rp.y -= hight;
         return rp;
     }
 
-    public void DrawLine(LineRenderer line, Vector3 meshPosition)
+    public void DrawLine(LineRenderer line, Vector3 meshPosition, float hight)
     {
         var caret = new GameObject();
         Vector3 top_left, top_right, bot_left, bot_right;
@@ -45,9 +46,9 @@ public class PathScript : MonoSingleton<PathScript>
             caret.transform.position = line.GetPosition(i);
             caret.transform.LookAt(line.GetPosition(i + 1));
             top_right = caret.transform.position + caret.transform.right * line.startWidth * 0.5f;
-            bot_right = GeneralBottomPostion(top_right);
+            bot_right = GeneralBottomPostion(top_right, hight);
             top_left = caret.transform.position - caret.transform.right * line.startWidth * 0.5f;
-            bot_left = GeneralBottomPostion(top_left);
+            bot_left = GeneralBottomPostion(top_left, hight);
 
             if (!bottom_points.Contains(top_left))
                 bottom_points.Add(top_left);
@@ -80,9 +81,9 @@ public class PathScript : MonoSingleton<PathScript>
         caret.transform.position = line.GetPosition(line.positionCount - 1);
         caret.transform.LookAt(line.GetPosition(line.positionCount - 2));
         top_right = caret.transform.position - caret.transform.right * line.startWidth * 0.5f;
-        bot_right = GeneralBottomPostion(top_right);
+        bot_right = GeneralBottomPostion(top_right, hight);
         top_left = caret.transform.position + caret.transform.right * line.startWidth * 0.5f;
-        bot_left = GeneralBottomPostion(top_left);
+        bot_left = GeneralBottomPostion(top_left, hight);
 
         if (!bottom_points.Contains(top_left))
             bottom_points.Add(top_left);
@@ -156,24 +157,24 @@ public class PathScript : MonoSingleton<PathScript>
 
         if (meshFilterTotal == null)
         {
-            var obj = Instantiate(meshObject);
-            obj.name = "center";
-            meshFilterTotal = obj.GetComponent<MeshFilter>();
+            meshObjectInstance = this.gameObject;
+            meshObjectInstance.name = "center";
+            meshFilterTotal = meshObjectInstance.GetComponent<MeshFilter>();
         }
 
 
         bottom_meshFilter.gameObject.SetActive(true);
-        DrawMesh(bottom_points, meshPosition, bottom_meshFilter);
+        DrawMesh(bottom_points, Vector3.zero, bottom_meshFilter);
         top_meshFilter.gameObject.SetActive(true);
-        DrawMesh(top_points, meshPosition, top_meshFilter);
+        DrawMesh(top_points, Vector3.zero, top_meshFilter);
         left_meshFilter.gameObject.SetActive(true);
-        DrawMesh(left_point, meshPosition, left_meshFilter);
+        DrawMesh(left_point, Vector3.zero, left_meshFilter);
         right_meshFilter.gameObject.SetActive(true);
-        DrawMesh(right_point, meshPosition, right_meshFilter);
+        DrawMesh(right_point, Vector3.zero, right_meshFilter);
         back_meshFilter.gameObject.SetActive(true);
-        DrawMeshWithTriangle(back_point, meshPosition, back_meshFilter, triangles_back);
+        DrawMeshWithTriangle(back_point, Vector3.zero, back_meshFilter, triangles_back);
         foward_meshFilter.gameObject.SetActive(true);
-        DrawMeshWithTriangle(forward_point, meshPosition, foward_meshFilter, triangles_foward);
+        DrawMeshWithTriangle(forward_point, Vector3.zero, foward_meshFilter, triangles_foward);
 
         meshFilterTotal.transform.position = meshPosition;
 
@@ -206,6 +207,13 @@ public class PathScript : MonoSingleton<PathScript>
         meshFilterTotal.mesh.CombineMeshes(combine);
     }
 
+    MeshCollider meshColTotal;
+    public void CompleteLine()
+    {
+        meshColTotal = meshObjectInstance.AddComponent<MeshCollider>();
+        meshColTotal.sharedMesh = meshFilterTotal.sharedMesh;
+    }    
+
     private void DrawMeshWithTriangle(Vector3[] verticies, Vector3 meshPosition, MeshFilter meshFilter, int[] triangles)
     {
         Mesh mesh = meshFilter.mesh;
@@ -225,7 +233,7 @@ public class PathScript : MonoSingleton<PathScript>
             verticies[i] = meshPoints[i];
         }
 
-        int size = 12;
+        int size = 6;
 
         int[] triangles = new int[((meshPoints.Count / 2) - 1) * size];
 
@@ -234,12 +242,11 @@ public class PathScript : MonoSingleton<PathScript>
         for (int i = 0; i < (triangles.Length / size); i++)
         {
             triangles[i * position] = 2 * i;
-            triangles[i * position + 3] = 2 * i;
-
             triangles[i * position + 1] = 2 * i + 3;
-            triangles[i * position + 4] = (2 * i + 3) - 1;
-
             triangles[i * position + 2] = 2 * i + 1;
+
+            triangles[i * position + 3] = 2 * i;
+            triangles[i * position + 4] = (2 * i + 3) - 1;
             triangles[i * position + 5] = (2 * i + 1) + 2;
         }
 
