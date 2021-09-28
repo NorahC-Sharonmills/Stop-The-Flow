@@ -383,7 +383,6 @@
 		{
 			WaterMaterial.SetColor ("_Color", fill);
 			WaterMaterial.SetColor ("_StrokeColor", stroke);
-
 		}
 
 	}

@@ -7,9 +7,13 @@ public class DrawManager : MonoBehaviour
     public GameObject linePrefabs;
     private GameObject currentLine;
     private LineRenderer lineRenderer;
+    private GameObject currentWaterLine;
+    private LineRenderer lineWaterRender;
     private List<Vector3> fingerPositions;
+    private List<Vector2> fingerWaterPositions;
 
     [SerializeField] private Camera m_Camera;
+    [SerializeField] private Camera m_WaterCamera;
 
     public float distance = 0.1f;
     public float hight = 0.5f;
@@ -31,15 +35,15 @@ public class DrawManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             CreateLine();
+            CreatedLine2d();
         }
         if(Input.GetMouseButton(0))
         {
-            //Vector3 tempFingerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //tempFingerPos.y = 3;
-            //if(Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]) > distance)
-            //{
-            //    UpdateLine(tempFingerPos);
-            //}
+            Vector2 tempFingerWaterPos = m_WaterCamera.ScreenToWorldPoint(Input.mousePosition);
+            if (Vector3.Distance(tempFingerWaterPos, fingerWaterPositions[fingerWaterPositions.Count - 1]) > distance)
+            {
+                UpdateLine2d(tempFingerWaterPos);
+            }
 
             int layerMask = 1 << 9;
             layerMask = ~layerMask;
@@ -85,13 +89,20 @@ public class DrawManager : MonoBehaviour
                 position.y = hight + 0.06f;
             }
         }
-        //Ray ray  = Camera.main.ScreenPointToRay()
+    }
 
-        //startPos.y = 3;
-        //fingerPositions.Add(startPos);
-        //fingerPositions.Add(startPos);
-        //lineRenderer.SetPosition(0, fingerPositions[0]);
-        //lineRenderer.SetPosition(1, fingerPositions[1]);
+    private void CreatedLine2d()
+    {
+        currentWaterLine = Instantiate(linePrefabs, Vector2.zero, Quaternion.identity);
+        lineWaterRender = currentWaterLine.GetComponent<LineRenderer>();
+
+        fingerWaterPositions = new List<Vector2>();
+
+        Vector2 startPos = m_WaterCamera.ScreenToWorldPoint(Input.mousePosition);
+        fingerWaterPositions.Add(startPos);
+        fingerWaterPositions.Add(startPos);
+        lineWaterRender.SetPosition(0, fingerWaterPositions[0]);
+        lineWaterRender.SetPosition(1, fingerWaterPositions[1]);
     }
 
     private void UpdateLine(Vector3 newFingerPos)
@@ -100,6 +111,13 @@ public class DrawManager : MonoBehaviour
         lineRenderer.positionCount += 1;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
         PathScript.Instance.DrawLine(lineRenderer, position, hight, distance);
+    }
+
+    private void UpdateLine2d(Vector2 newWaterFingerPos)
+    {
+        fingerWaterPositions.Add(newWaterFingerPos);
+        lineWaterRender.positionCount += 1;
+        lineWaterRender.SetPosition(lineWaterRender.positionCount - 1, newWaterFingerPos);
     }
 
     ////public float ScaleX = 1.0f;
