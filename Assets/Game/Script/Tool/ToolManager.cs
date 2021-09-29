@@ -14,4 +14,6 @@ public class ToolManager : MonoBehaviour
     public Enum.WaterType WaterType;
     [HideInInspector]
     public Enum.AttackType AttackType;
+    [HideInInspector]
+    public string LevelName = "";
 }

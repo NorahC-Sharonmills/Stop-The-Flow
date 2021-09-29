@@ -994,6 +994,8 @@ GameObject:
   - component: {fileID: 2156180079196142817}
   - component: {fileID: 2156180079205716737}
   - component: {fileID: 6180876798287911449}
+  - component: {fileID: 8234362212359583516}
+  - component: {fileID: 7733986017999597388}
   m_Layer: 0
   m_Name: Bat Lord
   m_TagString: Untagged
@@ -1084,6 +1086,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectType: 2
   EnemyType: 1
+--- !u!54 &8234362212359583516
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156180079196364993}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7733986017999597388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156180079196364993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.849469, z: 1}
+  m_Center: {x: 0, y: 0.8606075, z: 0}
 --- !u!1 &2156180079196364995
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ namespace UnityEditor
         Vector2 scrollPos3;
         Vector2 scrollPos4;
         Vector2 scrollPos5;
-        string level_name;
+        //string level_name;
 
         string select = "id";
 
@@ -310,7 +310,7 @@ namespace UnityEditor
             EditorGUILayout.Space();
 
             EditorGUILayout.BeginHorizontal();
-            level_name = EditorGUILayout.TextField("Level Name: ", level_name);
+            tool.LevelName = EditorGUILayout.TextField("Level Name: ", tool.LevelName);
             if (GUILayout.Button("Save Level"))
             {
                 SaveData();  
@@ -371,10 +371,10 @@ namespace UnityEditor
                 }
                 info.LevelData.Datas.Add(data);
             }
-            if (!string.IsNullOrEmpty(level_name))
+            if (!string.IsNullOrEmpty(tool.LevelName))
             {
                 var _str = JsonUtility.ToJson(info);
-                var path = "Assets/Resources/Level/" + level_name + ".json";
+                var path = "Assets/Resources/Level/" + tool.LevelName + ".json";
                 Debug.Log(string.Format("Save Success with path {0}", path));
 
                 if (path.Length > 0)
@@ -414,7 +414,7 @@ namespace UnityEditor
             string path = string.Format("Level/level_{0}", value + 1);
             var level = Resources.Load<TextAsset>(path);
             Debug.Log(level.text);
-            level_name = level.name;
+            tool.LevelName = level.name;
             return level.text;
         }
 

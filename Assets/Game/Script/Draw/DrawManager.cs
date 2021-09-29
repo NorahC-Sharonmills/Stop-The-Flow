@@ -5,12 +5,15 @@ using UnityEngine;
 public class DrawManager : MonoBehaviour
 {
     public GameObject linePrefabs;
+
     private GameObject currentLine;
     private LineRenderer lineRenderer;
+    private List<Vector3> fingerPositions;
+
     private GameObject currentWaterLine;
     private LineRenderer lineWaterRender;
-    private List<Vector3> fingerPositions;
     private List<Vector2> fingerWaterPositions;
+    private EdgeCollider2D edgeWaterCollider;
 
     [SerializeField] private Camera m_Camera;
     [SerializeField] private Camera m_WaterCamera;
@@ -103,6 +106,9 @@ public class DrawManager : MonoBehaviour
         fingerWaterPositions.Add(startPos);
         lineWaterRender.SetPosition(0, fingerWaterPositions[0]);
         lineWaterRender.SetPosition(1, fingerWaterPositions[1]);
+
+        edgeWaterCollider = currentWaterLine.AddComponent<EdgeCollider2D>();
+        edgeWaterCollider.edgeRadius = lineWaterRender.startWidth * 2;
     }
 
     private void UpdateLine(Vector3 newFingerPos)
@@ -118,6 +124,8 @@ public class DrawManager : MonoBehaviour
         fingerWaterPositions.Add(newWaterFingerPos);
         lineWaterRender.positionCount += 1;
         lineWaterRender.SetPosition(lineWaterRender.positionCount - 1, newWaterFingerPos);
+
+        edgeWaterCollider.SetPoints(fingerWaterPositions);
     }
 
     ////public float ScaleX = 1.0f;
