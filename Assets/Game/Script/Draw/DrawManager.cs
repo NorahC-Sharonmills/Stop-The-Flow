@@ -57,8 +57,10 @@ public class DrawManager : MonoBehaviour
                 if (hit.collider.name == "Plane")
                 {
                     Vector3 tempFingerPos = hit.point;
+                    if (fingerPositions.Count < 0)
+                        CreateLine();
                     float _distance = Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]);
-                    if (_distance > distance && _distance < 2 * distance)
+                    if (_distance > distance && _distance < 4 * distance)
                     {
                         UpdateLine(tempFingerPos);
                     }  
@@ -67,8 +69,11 @@ public class DrawManager : MonoBehaviour
         }  
         if(Input.GetMouseButtonUp(0))
         {
+            if (fingerPositions.Count < 10)
+                return;
             PathScript.Instance.CompleteLine();
             IsComplete = true;
+            StaticVariable.GameState = GameState.PLAY;
         }    
     }
 

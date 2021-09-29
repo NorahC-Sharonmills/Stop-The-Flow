@@ -20,5 +20,15 @@ namespace Game
 
             GameManager.LoadScene(SceneName.Game, true);
         }
+
+        public void Replay()
+        {
+            GameManager.LoadScene(SceneName.Game, true);
+        }
+
+        public void TapToPlay()
+        {
+            StaticVariable.GameState = GameState.PLAY;
+        }
     }
 }

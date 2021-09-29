@@ -4,7 +4,7 @@ using UnityEngine;
 public class PathScript : MonoSingleton<PathScript>
 {
     public GameObject meshObject;
-    [SerializeField] private List<Vector3> bottom_points = new List<Vector3>();
+    private List<Vector3> bottom_points = new List<Vector3>();
     private List<Vector3> top_points = new List<Vector3>();
     private List<Vector3> right_point = new List<Vector3>();
     private List<Vector3> left_point = new List<Vector3>();
@@ -223,6 +223,7 @@ public class PathScript : MonoSingleton<PathScript>
 
             Vector3 boxSize = Vector3.one;
             boxSize.x = line.startWidth * 0.65f;
+            boxSize.y = hight;
             boxSize.z = line.startWidth * 2f * 0.6f;
             boxCollider.size = boxSize;
         }
@@ -232,9 +233,11 @@ public class PathScript : MonoSingleton<PathScript>
 
     public void CompleteLine()
     {
+        if (meshObjectInstance == null)
+            return;
         m_IndexPoint = 0;
         var rig = meshObjectInstance.AddComponent<Rigidbody>();
-        rig.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationY;
+        rig.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }    
 
     private void DrawMeshWithTriangle(Vector3[] verticies, Vector3 meshPosition, MeshFilter meshFilter, int[] triangles)

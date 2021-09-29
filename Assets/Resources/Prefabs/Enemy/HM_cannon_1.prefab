@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4644639317241508}
   - component: {fileID: 33226221045410906}
   - component: {fileID: 23736066574048636}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HM_cannon1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4165866241402844}
   - component: {fileID: 33133011448851302}
   - component: {fileID: 23292398894046642}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HM_cannon_pivot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,14 +106,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207707176573204}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.15463278, y: 0, z: 0, w: 0.987972}
   m_LocalPosition: {x: 0, y: 1.7145721, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4574405651562524}
   m_Father: {fileID: 4458445124252350}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.791, y: 0, z: 0}
 --- !u!33 &33133011448851302
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -174,13 +174,13 @@ GameObject:
   - component: {fileID: 4420940651482308}
   - component: {fileID: 135998450749102454}
   - component: {fileID: 114217725907745512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Zone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4420940651482308
 Transform:
   m_ObjectHideFlags: 0
@@ -232,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4458445124252350}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SCALED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567176924082346}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.16530576, z: 0, w: 0.9862424}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_Children:
@@ -256,7 +256,7 @@ Transform:
   - {fileID: 4420940651482308}
   m_Father: {fileID: 4509344712265162}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -19.03, z: 0}
 --- !u!1 &1581042289249566
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 4394049866950266}
   - component: {fileID: 33756437984452148}
   - component: {fileID: 23229273421519162}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HM_cannon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 6470068432179444947}
   - component: {fileID: 3960617177506617197}
   - component: {fileID: 702445583131107448}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HM_cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674050128692650}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a682e4e961f99c0498ca12fad03ef8fc, type: 3}
   m_Name: 
@@ -411,6 +411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectType: 2
   EnemyType: 3
+  m_Bullet: {fileID: 1240887441953726, guid: 8a976dcd328a4664c85144f33b9c46b0, type: 3}
+  m_BulletPositionSpawner: {fileID: 4574405651562524}
 --- !u!54 &3960617177506617197
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -449,7 +451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4574405651562524}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: shootElement_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897587484924326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.539, z: 0.54}
+  m_LocalPosition: {x: -0, y: 0.539, z: 0.281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4165866241402844}

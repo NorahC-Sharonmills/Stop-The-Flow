@@ -11,6 +11,17 @@ namespace Game
         {
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         }
+
+        private void OnApplicationQuit()
+        {
+            RuntimeStorageData.SaveAllData();
+        }
+
+        private void OnApplicationPause(bool IsPause)
+        {
+            if (IsPause)
+                RuntimeStorageData.SaveAllData();
+        }
     }
 }
 
