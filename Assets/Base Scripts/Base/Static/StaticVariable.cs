@@ -3,8 +3,8 @@ using UnityEngine;
 
 public enum GameState
 {
+    DRAW,
     PLAY,
-    HOME,
     END,
     PAUSE
 }

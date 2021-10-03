@@ -4,7 +4,7 @@ using UnityEngine;
 public class PathScript : MonoSingleton<PathScript>
 {
     public GameObject meshObject;
-    private List<Vector3> bottom_points = new List<Vector3>();
+    [SerializeField] private List<Vector3> bottom_points = new List<Vector3>();
     private List<Vector3> top_points = new List<Vector3>();
     private List<Vector3> right_point = new List<Vector3>();
     private List<Vector3> left_point = new List<Vector3>();
@@ -18,6 +18,7 @@ public class PathScript : MonoSingleton<PathScript>
     private MeshFilter foward_meshFilter;
 
     private MeshFilter meshFilterTotal;
+    private GameObject meshObjectInstance;
 
     int[] triangles_back = new int[]{
             0,1,2,
@@ -29,25 +30,28 @@ public class PathScript : MonoSingleton<PathScript>
         };
 
     public Material Mat;
-    private Vector3 GeneralBottomPostion(Vector3 vector)
+    private Vector3 GeneralBottomPostion(Vector3 vector, float hight)
     {
         var rp = vector;
-        rp.y -= 2;
+        rp.y -= hight;
         return rp;
     }
 
-    public void DrawLine(LineRenderer line, Vector3 meshPosition)
+    int m_IndexPoint = 0;
+    private List<GameObject> m_ListCenterPoints = new List<GameObject>();
+    public void DrawLine(LineRenderer line, Vector3 meshPosition, float hight, float distance)
     {
-        var caret = new GameObject();
+        var caret = new GameObject(string.Format("point_{0}", m_IndexPoint));
+        caret.layer = 9;
         Vector3 top_left, top_right, bot_left, bot_right;
-        for (var i = 0; i < line.positionCount - 1; i++)
+        for (var i = 1; i < line.positionCount - 1; i++)
         {
             caret.transform.position = line.GetPosition(i);
             caret.transform.LookAt(line.GetPosition(i + 1));
             top_right = caret.transform.position + caret.transform.right * line.startWidth * 0.5f;
-            bot_right = GeneralBottomPostion(top_right);
+            bot_right = GeneralBottomPostion(top_right, hight);
             top_left = caret.transform.position - caret.transform.right * line.startWidth * 0.5f;
-            bot_left = GeneralBottomPostion(top_left);
+            bot_left = GeneralBottomPostion(top_left, hight);
 
             if (!bottom_points.Contains(top_left))
                 bottom_points.Add(top_left);
@@ -80,9 +84,9 @@ public class PathScript : MonoSingleton<PathScript>
         caret.transform.position = line.GetPosition(line.positionCount - 1);
         caret.transform.LookAt(line.GetPosition(line.positionCount - 2));
         top_right = caret.transform.position - caret.transform.right * line.startWidth * 0.5f;
-        bot_right = GeneralBottomPostion(top_right);
+        bot_right = GeneralBottomPostion(top_right, hight);
         top_left = caret.transform.position + caret.transform.right * line.startWidth * 0.5f;
-        bot_left = GeneralBottomPostion(top_left);
+        bot_left = GeneralBottomPostion(top_left, hight);
 
         if (!bottom_points.Contains(top_left))
             bottom_points.Add(top_left);
@@ -156,24 +160,24 @@ public class PathScript : MonoSingleton<PathScript>
 
         if (meshFilterTotal == null)
         {
-            var obj = Instantiate(meshObject);
-            obj.name = "center";
-            meshFilterTotal = obj.GetComponent<MeshFilter>();
+            meshObjectInstance = this.gameObject;
+            meshObjectInstance.name = "center";
+            meshFilterTotal = meshObjectInstance.GetComponent<MeshFilter>();
         }
 
 
         bottom_meshFilter.gameObject.SetActive(true);
-        DrawMesh(bottom_points, meshPosition, bottom_meshFilter);
+        DrawMesh(bottom_points, Vector3.zero, bottom_meshFilter);
         top_meshFilter.gameObject.SetActive(true);
-        DrawMesh(top_points, meshPosition, top_meshFilter);
+        DrawMesh(top_points, Vector3.zero, top_meshFilter);
         left_meshFilter.gameObject.SetActive(true);
-        DrawMesh(left_point, meshPosition, left_meshFilter);
+        DrawMesh(left_point, Vector3.zero, left_meshFilter);
         right_meshFilter.gameObject.SetActive(true);
-        DrawMesh(right_point, meshPosition, right_meshFilter);
+        DrawMesh(right_point, Vector3.zero, right_meshFilter);
         back_meshFilter.gameObject.SetActive(true);
-        DrawMeshWithTriangle(back_point, meshPosition, back_meshFilter, triangles_back);
+        DrawMeshWithTriangle(back_point, Vector3.zero, back_meshFilter, triangles_back);
         foward_meshFilter.gameObject.SetActive(true);
-        DrawMeshWithTriangle(forward_point, meshPosition, foward_meshFilter, triangles_foward);
+        DrawMeshWithTriangle(forward_point, Vector3.zero, foward_meshFilter, triangles_foward);
 
         meshFilterTotal.transform.position = meshPosition;
 
@@ -204,7 +208,34 @@ public class PathScript : MonoSingleton<PathScript>
 
         meshFilterTotal.mesh.Clear();
         meshFilterTotal.mesh.CombineMeshes(combine);
+
+        if(!m_ListCenterPoints.Contains(caret) && m_IndexPoint != 0)
+        {
+            m_ListCenterPoints.Add(caret);
+            var boxCollider = caret.AddComponent<BoxCollider>();
+            Vector3 boxCenter = Vector3.zero;
+            if (m_IndexPoint == 0)
+                boxCenter.y -= (hight * 0.5f);
+            else
+                boxCenter.y += (hight * 0.5f);
+            boxCenter.z = line.startWidth;
+            boxCollider.center = boxCenter;
+
+            Vector3 boxSize = Vector3.one;
+            boxSize.x = line.startWidth * 0.65f;
+            boxSize.z = line.startWidth * 2f * 0.6f;
+            boxCollider.size = boxSize;
+        }
+
+        m_IndexPoint += 1;
     }
+
+    public void CompleteLine()
+    {
+        m_IndexPoint = 0;
+        var rig = meshObjectInstance.AddComponent<Rigidbody>();
+        rig.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationY;
+    }    
 
     private void DrawMeshWithTriangle(Vector3[] verticies, Vector3 meshPosition, MeshFilter meshFilter, int[] triangles)
     {
@@ -225,7 +256,7 @@ public class PathScript : MonoSingleton<PathScript>
             verticies[i] = meshPoints[i];
         }
 
-        int size = 12;
+        int size = 6;
 
         int[] triangles = new int[((meshPoints.Count / 2) - 1) * size];
 
@@ -234,12 +265,11 @@ public class PathScript : MonoSingleton<PathScript>
         for (int i = 0; i < (triangles.Length / size); i++)
         {
             triangles[i * position] = 2 * i;
-            triangles[i * position + 3] = 2 * i;
-
             triangles[i * position + 1] = 2 * i + 3;
-            triangles[i * position + 4] = (2 * i + 3) - 1;
-
             triangles[i * position + 2] = 2 * i + 1;
+
+            triangles[i * position + 3] = 2 * i;
+            triangles[i * position + 4] = (2 * i + 3) - 1;
             triangles[i * position + 5] = (2 * i + 1) + 2;
         }
 
