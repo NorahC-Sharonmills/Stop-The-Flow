@@ -12,60 +12,34 @@ public class MetaballParticleClass : MonoBehaviour {
 		set{ _active = value;
 			if (MObject) {
 				MObject.SetActive (value);
-
-				if (tr)
-					tr.Clear ();
-
 			}
 		}
 	}
-	public bool witinTarget; // si esta dentro de la zona de vaso de vidrio en la meta
 
+	private Rigidbody m_Rig;
+	private bool _active;
 
+    void Start()
+    {
+        MObject = gameObject;
+		m_Rig = this.GetComponent<Rigidbody>();
+    }
 
-	bool _active;
-	float delta;
-	Rigidbody2D rb;
-	TrailRenderer tr;
+    private void OnCollisionEnter(Collision col)
+    {
+		if(col.collider.name.Contains("point"))
+        {
+			m_Rig.velocity = Vector3.zero;
 
-	void Start () {
-		//MObject = gameObject;
-		rb = GetComponent<Rigidbody2D> ();
-		tr = GetComponent<TrailRenderer> ();
-	}
+		}			
+    }
 
-	void Update () {
-
-		if (Active == true) {
-
-			VelocityLimiter ();
-
-			if (LifeTime < 0)
-				return;
-
-			if (delta > LifeTime) {
-				delta *= 0;
-				Active = false;
-			} else {
-				delta += Time.deltaTime;
-			}
-
+    private void OnCollisionExit(Collision col)
+    {
+		if (col.collider.name.Contains("point"))
+		{
+			m_Rig.velocity = Vector3.zero;
 
 		}
-
 	}
-
-
-
-	void VelocityLimiter()
-	{
-		
-		
-		Vector2 _vel = rb.velocity;
-		if (_vel.y < -8f) {
-			_vel.y = -8f;
-		}
-		rb.velocity = _vel;
-	}
-
 }

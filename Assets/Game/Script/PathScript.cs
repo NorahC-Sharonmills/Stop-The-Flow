@@ -222,9 +222,9 @@ public class PathScript : MonoSingleton<PathScript>
             boxCollider.center = boxCenter;
 
             Vector3 boxSize = Vector3.one;
-            boxSize.x = line.startWidth * 0.65f;
+            boxSize.x = line.startWidth * 1f;
             boxSize.y = hight;
-            boxSize.z = line.startWidth * 2f * 0.6f;
+            boxSize.z = line.startWidth * 2f * 0.8f;
             boxCollider.size = boxSize;
         }
 
@@ -237,6 +237,9 @@ public class PathScript : MonoSingleton<PathScript>
             return;
         m_IndexPoint = 0;
         var rig = meshObjectInstance.AddComponent<Rigidbody>();
+        rig.useGravity = false;
+        rig.interpolation = RigidbodyInterpolation.Interpolate;
+        rig.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rig.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }    
 

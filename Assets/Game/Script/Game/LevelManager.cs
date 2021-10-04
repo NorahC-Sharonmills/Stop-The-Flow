@@ -13,6 +13,13 @@ namespace Game
             PLAY
         }
 
+        [System.Serializable]
+        public struct DataTank
+        {
+            public Enum.WaterType waterType;
+            public GameObject waterTank;
+        }
+
         [SerializeField] private Camera m_Camera;
         [Header("Hiện lên để xem thông tin level")]
         [SerializeField] private Level m_Level;
@@ -29,6 +36,12 @@ namespace Game
         private Vector3 m_CameraDrawRotation = new Vector3(90f, 0f, 0f);
         private Vector3 m_CameraPlayPosition = new Vector3(0f, 70f, -60f);
         private Vector3 m_CameraPlayRotation = new Vector3(34f, 0f, 0f);
+
+        [Header("Water")]
+        public GameObject Water2DSpawn;
+
+        [Header("Water Tank")]
+        public DataTank[] dataTanks;
         protected override void Awake()
         {
             base.Awake();
@@ -55,7 +68,28 @@ namespace Game
                     Characters.Add(_object);
             }
 
+            if(m_Level.LevelData.AttackType == Enum.AttackType.Water)
+            {
+                Water2DSpawn.SetActive(true);
+                ActiveWater(m_Level.LevelData.WaterType);
+            }
+
             StaticVariable.GameState = GameState.PAUSE;
+        }
+
+        private void ActiveWater(Enum.WaterType waterType)
+        {
+            for(int i = 0; i < dataTanks.Length; i++)
+            {
+                if(dataTanks[i].waterType == waterType)
+                {
+                    dataTanks[i].waterTank.SetActive(true);
+                }
+                else
+                {
+                    dataTanks[i].waterTank.SetActive(false);
+                }
+            }
         }
 
         public void ChangePositionCamera(CameraType type, bool IsLerp, System.Action Complete)

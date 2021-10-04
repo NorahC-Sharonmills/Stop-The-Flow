@@ -38,15 +38,15 @@ public class DrawManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             CreateLine();
-            CreatedLine2d();
+            //CreatedLine2d();
         }
         if(Input.GetMouseButton(0))
         {
-            Vector2 tempFingerWaterPos = m_WaterCamera.ScreenToWorldPoint(Input.mousePosition);
-            if (Vector3.Distance(tempFingerWaterPos, fingerWaterPositions[fingerWaterPositions.Count - 1]) > distance)
-            {
-                UpdateLine2d(tempFingerWaterPos);
-            }
+            //Vector2 tempFingerWaterPos = m_WaterCamera.ScreenToWorldPoint(Input.mousePosition);
+            //if (Vector3.Distance(tempFingerWaterPos, fingerWaterPositions[fingerWaterPositions.Count - 1]) > distance)
+            //{
+            //    UpdateLine2d(tempFingerWaterPos);
+            //}
 
             int layerMask = 1 << 9;
             layerMask = ~layerMask;

@@ -8,9 +8,9 @@
 	public struct microSpawn{
 		public Vector3 pos;
 		public int amount;
-		public Vector2 initVel;
+		public Vector3 initVel;
 
-		public microSpawn(Vector3 pos, int amount, Vector2 initVel)
+		public microSpawn(Vector3 pos, int amount, Vector3 initVel)
 		{
 			this.pos = pos;
 			this.amount = amount;
@@ -71,7 +71,7 @@
 		/// <summary>
 		/// The initial speed of particles after spawn.
 		/// </summary>
-		public Vector2 initSpeed = new Vector2(1f,-1.8f);
+		public Vector3 initSpeed = new Vector3(0f, 0f, -1.8f);
 
 
 		[Separator()]
@@ -152,7 +152,8 @@
 			_parent = new GameObject ("_metaBalls");
 			_parent.hideFlags = HideFlags.HideInHierarchy;
 			WaterDropsObjects [0].transform.SetParent (_parent.transform);
-			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, 1f);
+			WaterDropsObjects[0].transform.eulerAngles = new Vector3(90f, 0f, 0f);
+			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, size);
 			WaterDropsObjects [0].GetComponent<MetaballParticleClass>().Active = false;
 
 
@@ -163,7 +164,8 @@
 				WaterDropsObjects[i] = Instantiate(WaterDropsObjects[0], gameObject.transform.position, new Quaternion(0,0,0,0)) as GameObject;
 				WaterDropsObjects [i].GetComponent<MetaballParticleClass>().Active = false;
 				WaterDropsObjects [i].transform.SetParent (_parent.transform);
-				WaterDropsObjects [i].transform.localScale = new Vector3 (size, size, 1f);
+				WaterDropsObjects[i].transform.eulerAngles = new Vector3(90f, 0f, 0f);
+				WaterDropsObjects [i].transform.localScale = new Vector3 (size, size, size);
                 WaterDropsObjects[i].layer = WaterDropsObjects[0].layer;
                 //WaterDropsObjects[i].SetActive(false);
             }
@@ -179,13 +181,13 @@
             instance.Spawn();
         }
 
-		public void RunMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
+		public void RunMicroSpawn(Vector3 pos, int amount, Vector3 initVel)
 		{
 			addMicroSpawn (pos, amount, initVel);
 			executeMicroSpawns ();
 		}
 
-		public void addMicroSpawn(Vector3 pos, int amount, Vector2 initVel)
+		public void addMicroSpawn(Vector3 pos, int amount, Vector3 initVel)
 		{
 			microSpawns.Add( new microSpawn (pos, amount, initVel));
 		}
@@ -217,7 +219,7 @@
 			StartCoroutine (loop(pos, initSpeed, count));
 		}
 
-		public void Spawn(int count, Vector3 pos, Vector2 InitVelocity, float delay = 0f){
+		public void Spawn(int count, Vector3 pos, Vector3 InitVelocity, float delay = 0f){
 			executeMicroSpawns ();
 			StartCoroutine (loop(pos, InitVelocity, count, delay));
 		}
@@ -250,22 +252,21 @@
 			for (int i = 0; i < WaterDropsObjects.Length; i++) {
 				if (WaterDropsObjects [i].GetComponent<MetaballParticleClass> ().Active == true) {
 					WaterDropsObjects [i].GetComponent<MetaballParticleClass> ().Active = false;
-				}
-				WaterDropsObjects [i].GetComponent<MetaballParticleClass> ().witinTarget = false;			
+				}		
 			}
 
 
 
 
 			gameObject.transform.localEulerAngles = Vector3.zero;
-			initSpeed = new Vector2 (0, -2f);
+			initSpeed = new Vector3 (0, 0, -2f);
 
 			DefaultCount = AllBallsCount;
 			usableDropsCount = DefaultCount;
 			//Dynamic = false;
 		}
 
-		IEnumerator loop(Vector3 _pos, Vector2 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true){
+		IEnumerator loop(Vector3 _pos, Vector3 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true){
 			yield return new WaitForSeconds (delay);
 
 			_breakLoop = false;
@@ -287,18 +288,17 @@
 					MetaBall.LifeTime = LifeTime;
 					WaterDropsObjects [i].transform.position = transform.position;
 					MetaBall.Active = true;
-					MetaBall.witinTarget = false;
 
-					if (_initSpeed == Vector2.zero)
+					if (_initSpeed == Vector3.zero)
 						_initSpeed = initSpeed;
 
 					if (DynamicChanges) {
 						_initSpeed = initSpeed;
-						MetaBall.transform.localScale = new Vector3 (size, size, 1f);
+						MetaBall.transform.localScale = new Vector3 (size, size, size);
 						SetWaterColor (FillColor, StrokeColor);
 					}
 
-					WaterDropsObjects [i].GetComponent<Rigidbody2D> ().velocity = _initSpeed;
+					WaterDropsObjects [i].GetComponent<Rigidbody> ().velocity = _initSpeed;
 
 
 					// Count limiter
@@ -323,7 +323,7 @@
 		}
 
 
-        void SpawnAllParticles(Vector3 _pos, Vector2 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true)
+        void SpawnAllParticles(Vector3 _pos, Vector3 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true)
         {
            
 
@@ -344,19 +344,18 @@
                     MetaBall.LifeTime = LifeTime;
                     WaterDropsObjects[i].transform.position = transform.position;
                     MetaBall.Active = true;
-                    MetaBall.witinTarget = false;
 
-                    if (_initSpeed == Vector2.zero)
+                    if (_initSpeed == Vector3.zero)
                         _initSpeed = initSpeed;
 
                     if (DynamicChanges)
                     {
                         _initSpeed = initSpeed;
-                        MetaBall.transform.localScale = new Vector3(size, size, 1f);
+                        MetaBall.transform.localScale = new Vector3(size, size, size);
                         SetWaterColor(FillColor, StrokeColor);
                     }
 
-                    WaterDropsObjects[i].GetComponent<Rigidbody2D>().velocity = _initSpeed;
+                    WaterDropsObjects[i].GetComponent<Rigidbody>().velocity = _initSpeed;
 
 
                     // Count limiter
