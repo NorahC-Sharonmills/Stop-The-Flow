@@ -238,7 +238,7 @@ public class PathScript : MonoSingleton<PathScript>
         m_IndexPoint = 0;
         var rig = meshObjectInstance.AddComponent<Rigidbody>();
         rig.useGravity = false;
-        rig.interpolation = RigidbodyInterpolation.Interpolate;
+        rig.interpolation = RigidbodyInterpolation.None;
         rig.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rig.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }    

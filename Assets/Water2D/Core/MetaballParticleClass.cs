@@ -25,21 +25,31 @@ public class MetaballParticleClass : MonoBehaviour {
 		m_Rig = this.GetComponent<Rigidbody>();
     }
 
+	private bool isCollision = false;
+	private RigidbodyConstraints _cache;
     private void OnCollisionEnter(Collision col)
     {
 		if(col.collider.name.Contains("point"))
         {
-			m_Rig.velocity = Vector3.zero;
+			if (isCollision)
+				return;
+			isCollision = true;
 
-		}			
+			_cache = m_Rig.constraints;
+
+			m_Rig.constraints = m_Rig.constraints | RigidbodyConstraints.FreezePositionZ;
+			CoroutineUtils.PlayCoroutine(() =>
+			{
+				m_Rig.constraints = _cache;
+			}, 1f);
+		}
     }
 
     private void OnCollisionExit(Collision col)
     {
-		if (col.collider.name.Contains("point"))
-		{
-			m_Rig.velocity = Vector3.zero;
-
-		}
-	}
+  //      if (col.collider.name.Contains("point"))
+  //      {
+		//	m_Rig.constraints = _cache;
+		//}
+    }
 }
