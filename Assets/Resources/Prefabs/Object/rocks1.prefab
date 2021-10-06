@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3364538}
   - component: {fileID: 2358192}
   - component: {fileID: 3708270824218274914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 3313446}
   - component: {fileID: 2391026}
   - component: {fileID: 3794579659089248900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3381020}
   - component: {fileID: 2311336}
   - component: {fileID: 3660123791860920966}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 464228}
   - component: {fileID: 3984503367087153560}
   - component: {fileID: 4407767458377349951}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rocks1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 3
-  IsKiematic: 0
 --- !u!54 &4407767458377349951
 Rigidbody:
   m_ObjectHideFlags: 0

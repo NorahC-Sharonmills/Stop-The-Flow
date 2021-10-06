@@ -32,22 +32,18 @@ public class DrawManager : MonoBehaviour
 
     private void Update()
     {
+        if (StaticVariable.GameState != GameState.DRAW)
+            return;
+
         if (IsComplete)
             return;
 
         if(Input.GetMouseButtonDown(0))
         {
             CreateLine();
-            //CreatedLine2d();
         }
         if(Input.GetMouseButton(0))
         {
-            //Vector2 tempFingerWaterPos = m_WaterCamera.ScreenToWorldPoint(Input.mousePosition);
-            //if (Vector3.Distance(tempFingerWaterPos, fingerWaterPositions[fingerWaterPositions.Count - 1]) > distance)
-            //{
-            //    UpdateLine2d(tempFingerWaterPos);
-            //}
-
             int layerMask = 1 << 9;
             layerMask = ~layerMask;
 
@@ -73,7 +69,19 @@ public class DrawManager : MonoBehaviour
                 return;
             PathScript.Instance.CompleteLine();
             IsComplete = true;
-            StaticVariable.GameState = GameState.PLAY;
+            CameraController.Instance.MoveToView(() =>
+            {
+                StaticVariable.GameState = GameState.PLAY;
+                CoroutineUtils.PlayCoroutine(() =>
+                {
+                    Game.LevelManager.Instance.Tank.waterFall.SetActive(false);
+                }, 0.1f);
+
+                CoroutineUtils.PlayCoroutine(() =>
+                {
+                    Game.LevelManager.Instance.OnVictory();
+                }, 5f);
+            });
         }    
     }
 
@@ -132,80 +140,4 @@ public class DrawManager : MonoBehaviour
 
         edgeWaterCollider.SetPoints(fingerWaterPositions);
     }
-
-    ////public float ScaleX = 1.0f;
-    ////public float ScaleY = 1.0f;
-    ////public float ScaleZ = 1.0f;
-    ////public bool RecalculateNormals = false;
-    ////private Vector3[] _baseVertices;
-    //Mesh mesh = null;
-    //private bool IsInit = false;
-
-    //public int[] triangles;
-    //public Vector3[] vertices;
-
-    //private int[] trianglesModels;
-    //private Vector3[] verticesModels;
-
-    
-    //public List<int> cacheTriangles = new List<int>();
-    //public List<Vector3> cacheVertices = new List<Vector3>();
-
-    //private void CompleteLine()
-    //{
-    //    if(!IsInit)
-    //    {
-    //        IsInit = true;
-    //        mesh = new Mesh();
-    //        mesh.name = "GeneralMesh";
-    //        GameObject MeshObject = new GameObject();
-    //        MeshObject.name = "Mesh";
-    //        var mr = MeshObject.AddComponent<MeshRenderer>();
-    //        var MeshFilter = MeshObject.AddComponent<MeshFilter>();
-    //        MeshFilter.mesh = mesh;
-    //    }    
-
-    //    lineRenderer.BakeMesh(mesh, Camera.main, false);
-
-    //    triangles = mesh.triangles;
-    //    vertices = mesh.vertices;
-
-    //    //int size = 4;
-    //    //for(int i = 0; i < (int)(vertices.Length / size); i++)
-    //    //{
-    //    //    cacheVertices.Add(vertices[i * size]);
-    //    //    cacheVertices.Add(vertices[i * size + 1]);
-    //    //    cacheVertices.Add(vertices[i * size + 2]);
-    //    //    cacheVertices.Add(vertices[i * size + 3]);
-
-    //    //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size]));
-    //    //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size + 1]));
-    //    //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size + 2]));
-    //    //    cacheVertices.Add(GeneralBottomPostion(vertices[i * size + 3]));
-    //    //}
-
-    //    //var mesh = MeshObject.GetComponent<MeshFilter>().mesh;
-    //    //if (_baseVertices == null)
-    //    //    _baseVertices = mesh.vertices;
-    //    //var vertices = new Vector3[_baseVertices.Length];
-    //    //for (var i = 0; i < vertices.Length; i++)
-    //    //{
-    //    //    var vertex = _baseVertices[i];
-    //    //    vertex.x = vertex.x * ScaleX;
-    //    //    vertex.y = vertex.y * ScaleY;
-    //    //    vertex.z = vertex.z * ScaleZ;
-    //    //    vertices[i] = vertex;
-    //    //}
-    //    //mesh.vertices = vertices;
-    //    //if (RecalculateNormals)
-    //    //    mesh.RecalculateNormals();
-    //    //mesh.RecalculateBounds();
-    //}
-
-    //private Vector3 GeneralBottomPostion(Vector3 vector)
-    //{
-    //    var rp = vector;
-    //    rp.y += 2;
-    //    return rp;
-    //}
 }

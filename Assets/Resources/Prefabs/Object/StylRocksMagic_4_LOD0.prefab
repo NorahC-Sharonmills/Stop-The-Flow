@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4550395741252099896}
   - component: {fileID: 2913557352379464819}
   - component: {fileID: 3137693155744753867}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylRocksMagic_4_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 3
-  IsKiematic: 0
 --- !u!54 &3137693155744753867
 Rigidbody:
   m_ObjectHideFlags: 0

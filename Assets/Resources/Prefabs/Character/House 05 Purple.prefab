@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3340872}
   - component: {fileID: 2386140}
   - component: {fileID: 6501826}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3343360}
   - component: {fileID: 2374326}
   - component: {fileID: 6591830}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 2306844}
   - component: {fileID: 6511224}
   - component: {fileID: -8619089363542484473}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: House 05 Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}

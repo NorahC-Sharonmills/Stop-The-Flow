@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8227451784593903084}
   - component: {fileID: 4999847855504957750}
   - component: {fileID: 8245638435550683211}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 3
-  IsKiematic: 0
 --- !u!54 &4999847855504957750
 Rigidbody:
   m_ObjectHideFlags: 0

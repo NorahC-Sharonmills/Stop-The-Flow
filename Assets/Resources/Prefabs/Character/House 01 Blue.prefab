@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415584}
   - component: {fileID: 6598876}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 496520}
   - component: {fileID: 3345092}
   - component: {fileID: 2348130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Windvane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 486636}
   - component: {fileID: 6591158}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 3314012}
   - component: {fileID: 2325076}
   - component: {fileID: 6564986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 473574}
   - component: {fileID: 3377830}
   - component: {fileID: 2322068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Flag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 3305174}
   - component: {fileID: 2364854}
   - component: {fileID: -3639649647783560688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: House 01 Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

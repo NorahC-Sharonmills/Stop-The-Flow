@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 431342}
   - component: {fileID: 6543224}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 3394560}
   - component: {fileID: 2391700}
   - component: {fileID: -4496399592689181906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tent 01 Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447124}
   - component: {fileID: 6520776}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448042}
   - component: {fileID: 6509900}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

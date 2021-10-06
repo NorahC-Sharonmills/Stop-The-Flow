@@ -6,6 +6,9 @@ namespace Game
 {
     public class UIManager : MonoSingleton<UIManager>
     {
+        public GameObject m_Tap;
+        public GameObject m_Victory;
+
         public void ButtonNext()
         {
             RuntimeStorageData.PLAYER.level += 1;
@@ -26,9 +29,26 @@ namespace Game
             GameManager.LoadScene(SceneName.Game, true);
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            m_Tap.SetActive(true);
+            m_Victory.SetActive(false);
+        }
+
         public void TapToPlay()
         {
-            StaticVariable.GameState = GameState.PLAY;
+            m_Tap.SetActive(false);
+            CameraController.Instance.MoveToDraw(() =>
+            {
+                StaticVariable.GameState = GameState.DRAW;
+            });
         }
+
+        public void ShowVictoryUI()
+        {
+            m_Victory.SetActive(true);
+        }    
     }
 }

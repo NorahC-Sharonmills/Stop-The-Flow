@@ -18,6 +18,8 @@ namespace Game
         {
             public Enum.WaterType waterType;
             public GameObject waterTank;
+            public GameObject waterFall;
+            public Vector3 waterGravity;
         }
 
         [SerializeField] private Camera m_Camera;
@@ -71,25 +73,31 @@ namespace Game
             if(m_Level.LevelData.AttackType == Enum.AttackType.Water)
             {
                 Water2DSpawn.SetActive(true);
-                ActiveWater(m_Level.LevelData.WaterType);
+                Tank = ActiveWater(m_Level.LevelData.WaterType);
             }
 
             StaticVariable.GameState = GameState.PAUSE;
         }
 
-        private void ActiveWater(Enum.WaterType waterType)
+        public DataTank Tank;
+        private DataTank ActiveWater(Enum.WaterType waterType)
         {
+            DataTank data = dataTanks[0];
+
             for(int i = 0; i < dataTanks.Length; i++)
             {
                 if(dataTanks[i].waterType == waterType)
                 {
-                    dataTanks[i].waterTank.SetActive(true);
+                    data = dataTanks[i];
+                    data.waterTank.SetActive(true);
                 }
                 else
                 {
                     dataTanks[i].waterTank.SetActive(false);
                 }
             }
+
+            return data;
         }
 
         public void ChangePositionCamera(CameraType type, bool IsLerp, System.Action Complete)
@@ -116,6 +124,38 @@ namespace Game
                         break;
                 }
             }
+        }
+
+        private bool IsVictory = false;
+        private bool IsLose = false;
+
+        public void OnVictory()
+        {
+            if (IsLose)
+                return;
+
+            IsVictory = true;
+            IsLose = false;
+
+            Debug.Log("Victory");
+            for(int i = 0; i < Characters.Count; i++)
+            {
+                var script = Characters[i].GetComponent<Character>();
+                script.ShowVictory();
+            }
+
+            Game.UIManager.Instance.ShowVictoryUI();
+        }
+
+        public void OnLose()
+        {
+            if (IsVictory)
+                return;
+
+            IsLose = true;
+            IsVictory = false;
+
+            Debug.Log("Lose");
         }
     }
 }

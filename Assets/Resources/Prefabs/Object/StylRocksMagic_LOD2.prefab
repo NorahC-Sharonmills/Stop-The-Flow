@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6373031145168936870}
   - component: {fileID: 2207121819729664448}
   - component: {fileID: 2235003135132383165}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StylRocksMagic_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 441980}
   - component: {fileID: 3336298}
   - component: {fileID: 2320814}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: red_mushroom (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 464574}
   - component: {fileID: 3347156}
   - component: {fileID: 2339038}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: red_mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 449846}
   - component: {fileID: 8557076832676624497}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: red_mushooms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 474274}
   - component: {fileID: 3303040}
   - component: {fileID: 2318360}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: red_mushroom (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

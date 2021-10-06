@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 472604}
   - component: {fileID: 3368110}
   - component: {fileID: 2312840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_short (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 492406}
   - component: {fileID: 3386690}
   - component: {fileID: 2343656}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 408374}
   - component: {fileID: 3396850}
   - component: {fileID: 2376260}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_short (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 489706}
   - component: {fileID: 3305818}
   - component: {fileID: 2342868}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 425262}
   - component: {fileID: 3388172}
   - component: {fileID: 2335610}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 401018}
   - component: {fileID: -8358617146498389101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rocks2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 404176}
   - component: {fileID: 3362870}
   - component: {fileID: 2307088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_short
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 471992}
   - component: {fileID: 3380254}
   - component: {fileID: 2391942}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_short (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 470978}
   - component: {fileID: 3350100}
   - component: {fileID: 2337518}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_short (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 481994}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: grass_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 438022}
   - component: {fileID: 3351784}
   - component: {fileID: 2336388}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

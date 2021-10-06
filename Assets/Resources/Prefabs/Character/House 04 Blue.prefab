@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 439484}
   - component: {fileID: 19852556}
   - component: {fileID: 19994778}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4786,7 +4786,7 @@ GameObject:
   - component: {fileID: 3338894}
   - component: {fileID: 2324166}
   - component: {fileID: 6545396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4882,7 +4882,7 @@ GameObject:
   - component: {fileID: 2352512}
   - component: {fileID: 6553374}
   - component: {fileID: -7377796802250241883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: House 04 Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

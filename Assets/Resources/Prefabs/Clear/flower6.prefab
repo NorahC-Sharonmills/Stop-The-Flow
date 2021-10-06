@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 420614}
   - component: {fileID: 3348664}
   - component: {fileID: 2399840}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 483088}
   - component: {fileID: 3395574}
   - component: {fileID: 2352334}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_small (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 491038}
   - component: {fileID: 3331656}
   - component: {fileID: 2375326}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_small (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 421362}
   - component: {fileID: 3355388}
   - component: {fileID: 2364586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: flower_head2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 458622}
   - component: {fileID: -9096564583151721386}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: flower6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 467712}
   - component: {fileID: 3304394}
   - component: {fileID: 2316192}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leaf_small (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 452628}
   - component: {fileID: 3345106}
   - component: {fileID: 2358076}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

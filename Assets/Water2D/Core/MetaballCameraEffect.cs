@@ -114,8 +114,8 @@ namespace UnityStandardAssets.ImageEffects
 		RenderTexture buffer2;
         void OnRenderImage(RenderTexture source, RenderTexture destination)
         {
-			//if(!Application.isPlaying)
-			//	return;
+            //if (Application.isPlaying)
+            //    return;
 
             int rtW = source.width / 4;
             int rtH = source.height / 4;

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4644639317241508}
   - component: {fileID: 33226221045410906}
   - component: {fileID: 23736066574048636}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: HM_cannon1_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4165866241402844}
   - component: {fileID: 33133011448851302}
   - component: {fileID: 23292398894046642}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: HM_cannon_pivot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4420940651482308}
   - component: {fileID: 135998450749102454}
   - component: {fileID: 114217725907745512}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Zone1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4458445124252350}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: SCALED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 4394049866950266}
   - component: {fileID: 33756437984452148}
   - component: {fileID: 23229273421519162}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: HM_cannon1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 6470068432179444947}
   - component: {fileID: 3960617177506617197}
   - component: {fileID: 702445583131107448}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: HM_cannon_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4574405651562524}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: shootElement_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

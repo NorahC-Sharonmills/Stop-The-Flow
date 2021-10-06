@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2313130}
   - component: {fileID: 6596494}
   - component: {fileID: 4688050181839261001}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Market 03 Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
