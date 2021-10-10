@@ -25,42 +25,20 @@ public class MetaballParticleClass : MonoBehaviour {
 		m_Rig = this.GetComponent<Rigidbody>();
     }
 
-	private bool isCollision = false;
-	private RigidbodyConstraints _cache;
+	bool isConnect = false;
+	RigidbodyConstraints constraints;
+
     private void OnCollisionEnter(Collision col)
     {
 		if(col.collider.name.Contains("point"))
-        {	
-			if(m_Rig.velocity.z <= -3f)
-                gameObject.SetActive(false);
-
-			if (isCollision)
+        {
+			if (isConnect)
 				return;
-			isCollision = true;
 
-			m_Rig.velocity = Vector3.zero;
-		}
+			isConnect = true;
+			transform.parent = col.transform;
+			Destroy(m_Rig);
+			gameObject.layer = 8;
+        }
     }
-
-    private void OnCollisionStay(Collision col)
-    {
-		if (col.collider.name.Contains("point"))
-		{
-			if (m_Rig.velocity.z <= -1.5f)
-				gameObject.SetActive(false);
-			else
-				Debug.Log(m_Rig.velocity.z);
-		}
-	}
-
-    private void OnCollisionExit(Collision col)
-    {
-		//if (col.collider.name.Contains("point"))
-		//{
-  //          if (m_Rig.velocity.z <= -0.79f)
-  //              gameObject.SetActive(false);
-  //          else
-  //              Debug.Log(m_Rig.velocity);
-  //      }
-	}
 }
