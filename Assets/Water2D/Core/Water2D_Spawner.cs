@@ -38,6 +38,7 @@
 		/// Drops objects array.
 		/// </summary>
 		public GameObject [] WaterDropsObjects;
+		public GameObject [] WaterDropsPositions;
 
 		/// <summary>
 		/// The size of each drop.
@@ -143,8 +144,6 @@
 
 		GameObject _parent;
 
-
-
 		void Start()
 		{
 			//Application.targetFrameRate = 60;
@@ -158,10 +157,24 @@
 
 
 
+			var distance = (int)(WaterDropsObjects.Length / 5);
 
 
-            for (int i = 1; i < WaterDropsObjects.Length; i++) {
-				WaterDropsObjects[i] = Instantiate(WaterDropsObjects[0], gameObject.transform.position, new Quaternion(0,0,0,0)) as GameObject;
+			for (int i = 1; i < WaterDropsObjects.Length; i++) 
+			{
+				var pos = Vector3.zero;
+				if (i > 0 && i <= distance)
+					pos = WaterDropsPositions[0].transform.position;
+				else if (i > distance && i <= distance * 2)
+					pos = WaterDropsPositions[1].transform.position;
+				else if (i > distance * 2 && i < distance * 3)
+					pos = WaterDropsPositions[2].transform.position;
+				else if (i > distance * 3 && i < distance * 4)
+					pos = WaterDropsPositions[3].transform.position;
+				else
+					pos = WaterDropsPositions[4].transform.position;
+
+				WaterDropsObjects[i] = Instantiate(WaterDropsObjects[0], pos, Quaternion.identity) as GameObject;
 				WaterDropsObjects [i].GetComponent<MetaballParticleClass>().Active = false;
 				WaterDropsObjects [i].transform.SetParent (_parent.transform);
 				WaterDropsObjects[i].transform.eulerAngles = new Vector3(90f, 0f, 0f);
@@ -205,23 +218,23 @@
                 SpawnAll();
             }
             else {
-                StartCoroutine(loop(gameObject.transform.position, initSpeed, count));
+                StartCoroutine(loop(initSpeed, count));
             }
 			
 		}
 
         public void SpawnAll() {
-            SpawnAllParticles(gameObject.transform.position, initSpeed, DefaultCount);
+            SpawnAllParticles(initSpeed, DefaultCount);
         }
 
 		public void Spawn(int count, Vector3 pos){
 			executeMicroSpawns ();
-			StartCoroutine (loop(pos, initSpeed, count));
+			StartCoroutine (loop(initSpeed, count));
 		}
 
 		public void Spawn(int count, Vector3 pos, Vector3 InitVelocity, float delay = 0f){
 			executeMicroSpawns ();
-			StartCoroutine (loop(pos, InitVelocity, count, delay));
+			StartCoroutine (loop(InitVelocity, count, delay));
 		}
 
 		void executeMicroSpawns()
@@ -233,7 +246,7 @@
 				for (int i = 0; i < microSpawns.Count; i++) {
 					//Spawn (microSpawns [i].amount, microSpawns [i].pos, microSpawns [i].initVel);
 					DynamicChanges = false;
-					StartCoroutine (loop(microSpawns [i].pos, microSpawns [i].initVel, microSpawns [i].amount ,0f));
+					StartCoroutine (loop(microSpawns [i].initVel, microSpawns [i].amount ,0f));
 				}
 
 				microSpawns.Clear ();
@@ -266,7 +279,7 @@
 			//Dynamic = false;
 		}
 
-		IEnumerator loop(Vector3 _pos, Vector3 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true){
+		IEnumerator loop(Vector3 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true){
 			yield return new WaitForSeconds (delay);
 
 			_breakLoop = false;
@@ -274,6 +287,7 @@
 			IsWaterInScene = true;
 
 			int auxCount = 0;
+			var distance = (int)(WaterDropsObjects.Length / 5);
 			while (true) {
 				for (int i = 0; i < WaterDropsObjects.Length; i++) {
 
@@ -285,8 +299,20 @@
 					if (MetaBall.Active == true)
 						continue;
 
+					var pos = Vector3.zero;
+					if (i > 0 && i <= distance)
+						pos = WaterDropsPositions[0].transform.position;
+					else if (i > distance && i <= distance * 2)
+						pos = WaterDropsPositions[1].transform.position;
+					else if (i > distance * 2 && i < distance * 3)
+						pos = WaterDropsPositions[2].transform.position;
+					else if (i > distance * 3 && i < distance * 4)
+						pos = WaterDropsPositions[3].transform.position;
+					else
+						pos = WaterDropsPositions[4].transform.position;
+
 					MetaBall.LifeTime = LifeTime;
-					WaterDropsObjects [i].transform.position = transform.position;
+					WaterDropsObjects [i].transform.position = pos;
 					MetaBall.Active = true;
 
 					if (_initSpeed == Vector3.zero)
@@ -323,16 +349,17 @@
 		}
 
 
-        void SpawnAllParticles(Vector3 _pos, Vector3 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true)
+        void SpawnAllParticles(Vector3 _initSpeed, int count = -1, float delay = 0f, bool waitBetweenDropSpawn = true)
         {
            
 
             IsWaterInScene = true;
 
             int auxCount = 0;
-           // while (true)
-            //{
-                for (int i = 0; i < WaterDropsObjects.Length; i++)
+			var distance = (int)(WaterDropsObjects.Length / 5);
+			// while (true)
+			//{
+			for (int i = 0; i < WaterDropsObjects.Length; i++)
                 {
 
 
@@ -341,7 +368,19 @@
                     if (MetaBall.Active == true)
                         continue;
 
-                    MetaBall.LifeTime = LifeTime;
+				var pos = Vector3.zero;
+				if (i > 0 && i <= distance)
+					pos = WaterDropsPositions[0].transform.position;
+				else if (i > distance && i <= distance * 2)
+					pos = WaterDropsPositions[1].transform.position;
+				else if (i > distance * 2 && i < distance * 3)
+					pos = WaterDropsPositions[2].transform.position;
+				else if (i > distance * 3 && i < distance * 4)
+					pos = WaterDropsPositions[3].transform.position;
+				else
+					pos = WaterDropsPositions[4].transform.position;
+
+				MetaBall.LifeTime = LifeTime;
                     WaterDropsObjects[i].transform.position = transform.position;
                     MetaBall.Active = true;
 

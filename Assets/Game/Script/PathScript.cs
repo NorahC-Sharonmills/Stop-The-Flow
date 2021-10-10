@@ -224,7 +224,7 @@ public class PathScript : MonoSingleton<PathScript>
             Vector3 boxSize = Vector3.one;
             boxSize.x = line.startWidth * 1f;
             boxSize.y = hight;
-            boxSize.z = line.startWidth * 2f * 0.8f;
+            boxSize.z = line.startWidth * 2f * 0.7f;
             boxCollider.size = boxSize;
         }
 
@@ -237,7 +237,7 @@ public class PathScript : MonoSingleton<PathScript>
             return;
         m_IndexPoint = 0;
         var rig = meshObjectInstance.AddComponent<Rigidbody>();
-        rig.mass = 100;
+        rig.mass = 1;
         rig.useGravity = false;
         rig.interpolation = RigidbodyInterpolation.None;
         rig.collisionDetectionMode = CollisionDetectionMode.Continuous;

@@ -65,7 +65,7 @@ public class DrawManager : MonoBehaviour
         }  
         if(Input.GetMouseButtonUp(0))
         {
-            if (fingerPositions.Count < 10)
+            if (fingerPositions.Count < 3)
                 return;
             PathScript.Instance.CompleteLine();
             IsComplete = true;

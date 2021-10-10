@@ -20,6 +20,7 @@ namespace Game
             public GameObject waterTank;
             public GameObject waterFall;
             public Vector3 waterGravity;
+            public Transform[] waterPosition;
         }
 
         [SerializeField] private Camera m_Camera;
@@ -73,7 +74,7 @@ namespace Game
             if(m_Level.LevelData.AttackType == Enum.AttackType.Water)
             {
                 Water2DSpawn.SetActive(true);
-                Tank = ActiveWater(m_Level.LevelData.WaterType);
+                Tank = ActiveWater(m_Level.LevelData.WaterType);   
             }
 
             StaticVariable.GameState = GameState.PAUSE;
@@ -95,6 +96,13 @@ namespace Game
                 {
                     dataTanks[i].waterTank.SetActive(false);
                 }
+            }
+
+            switch (waterType)
+            {
+                case Enum.WaterType.Top:
+                    Physics.gravity = data.waterGravity;
+                        break;
             }
 
             return data;
