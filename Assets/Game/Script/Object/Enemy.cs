@@ -76,6 +76,7 @@ namespace Game
                     if (IsShoot && !IsAttack)
                     {
                         moveDir = (m_Target.position - transform.position).normalized;
+                        transform.forward = moveDir;
                         m_Rigibody.velocity = moveDir * speed * Time.deltaTime;
                     }
                     break;
