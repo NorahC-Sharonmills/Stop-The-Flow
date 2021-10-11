@@ -26,7 +26,6 @@ public class MetaballParticleClass : MonoBehaviour {
     }
 
 	bool isConnect = false;
-	RigidbodyConstraints constraints;
 
     private void OnCollisionEnter(Collision col)
     {
@@ -41,4 +40,12 @@ public class MetaballParticleClass : MonoBehaviour {
 			gameObject.layer = 8;
         }
     }
+
+    private void OnCollisionExit(Collision col)
+    {
+		if (col.collider.name.Contains("point"))
+		{
+			Debug.Log(m_Rig.velocity.z);
+		}
+	}
 }

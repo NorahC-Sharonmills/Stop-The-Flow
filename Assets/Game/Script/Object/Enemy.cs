@@ -8,8 +8,16 @@ namespace Game
     {
         public Enum.EnemyType EnemyType;
         private Collider m_Collider;
+        [Header("weapon")]
         public GameObject m_Bullet;
         public Transform m_BulletPositionSpawner;
+        public Transform m_Target;
+        [Header("animal")]
+        public Animator m_Animation;
+        public string m_IdleAnim;
+        public string m_RunAnim;
+        public string m_AttackAnim;
+
 
         protected override void Awake()
         {
@@ -22,6 +30,10 @@ namespace Game
                 case Enum.EnemyType.Weapon:
                     m_Rigibody.isKinematic = true;
                     break;
+                case Enum.EnemyType.Animal:
+                    //m_Rigibody.isKinematic = true;
+                    m_Animation.Play(m_IdleAnim);
+                    break;
             }    
         }
 
@@ -30,8 +42,12 @@ namespace Game
             switch (EnemyType)
             {
                 case Enum.EnemyType.Weapon:
-                    m_Rigibody.isKinematic = true;
                     IsShoot = false;
+                    m_Target = Game.LevelManager.Instance.Characters[0].transform;
+                    break;
+                case Enum.EnemyType.Animal:
+                    IsShoot = false;
+                    m_Target = Game.LevelManager.Instance.Characters[0].transform;
                     break;
             }
         }
@@ -45,11 +61,55 @@ namespace Game
                     case Enum.EnemyType.Weapon:
                         OnceShoot();
                         break;
+                    case Enum.EnemyType.Animal:
+                        OnceAttack();
+                        break;
                 }
             }
         }
 
+        private void FixedUpdate()
+        {
+            switch (EnemyType)
+            {
+                case Enum.EnemyType.Animal:
+                    if (IsShoot && !IsAttack)
+                    {
+                        moveDir = (m_Target.position - transform.position).normalized;
+                        m_Rigibody.velocity = moveDir * speed * Time.deltaTime;
+                    }
+                    break;
+            }
+        }
+
         private bool IsShoot = false;
+        private bool IsAttack = false;
+        Vector3 moveDir;
+        private float speed = 100f;
+        private void OnceAttack()
+        {
+            if (IsShoot)
+                return;
+            IsShoot = true;
+            m_Animation.Play(m_RunAnim);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.collider.name == "character")
+            {
+
+                switch (EnemyType)
+                {
+                    case Enum.EnemyType.Animal:
+                        IsAttack = true;
+                        m_Rigibody.isKinematic = true;
+                        m_Animation.Play(m_AttackAnim);
+                        break;
+                }
+            }
+        }
+
         private void OnceShoot()
         {
             if (IsShoot)
@@ -57,7 +117,10 @@ namespace Game
             IsShoot = true;
 
             var bullet = Instantiate(m_Bullet, m_BulletPositionSpawner.position, Quaternion.identity).GetComponent<Game.Bullet>();
-            bullet.AddForce(m_BulletPositionSpawner.forward * 800);
+
+            moveDir = (m_Target.position - transform.position).normalized;
+            bullet.transform.forward = moveDir;
+            bullet.AddForce(moveDir);
         }
     }
 }

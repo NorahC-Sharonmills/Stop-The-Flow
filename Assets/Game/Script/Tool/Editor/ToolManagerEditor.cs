@@ -84,6 +84,11 @@ namespace UnityEditor
 
                 ClearAllObject();
                 var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                tool.AttackType = dataObject.AttackType;
+                if(tool.AttackType == Enum.AttackType.Water)
+                {
+                    tool.WaterType = dataObject.WaterType;
+                }      
                 SpawnObject(dataObject);
                 SaveData();
             }
@@ -97,6 +102,11 @@ namespace UnityEditor
 
                 ClearAllObject();
                 var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                tool.AttackType = dataObject.AttackType;
+                if (tool.AttackType == Enum.AttackType.Water)
+                {
+                    tool.WaterType = dataObject.WaterType;
+                }
                 SpawnObject(dataObject);
                 SaveData();
             }
@@ -105,6 +115,11 @@ namespace UnityEditor
             {
                 ClearAllObject();
                 var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                tool.AttackType = dataObject.AttackType;
+                if (tool.AttackType == Enum.AttackType.Water)
+                {
+                    tool.WaterType = dataObject.WaterType;
+                }
                 SpawnObject(dataObject);
                 SaveData();
             }

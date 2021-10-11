@@ -53,6 +53,9 @@ public class DrawManager : MonoBehaviour
                 if (hit.collider.name == "Plane")
                 {
                     Vector3 tempFingerPos = hit.point;
+                    if (fingerPositions == null)
+                        CreateLine();
+
                     if (fingerPositions.Count < 0)
                         CreateLine();
                     float _distance = Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]);
@@ -65,6 +68,9 @@ public class DrawManager : MonoBehaviour
         }  
         if(Input.GetMouseButtonUp(0))
         {
+            if (fingerPositions == null)
+                return;
+
             if (fingerPositions.Count < 3)
                 return;
             PathScript.Instance.CompleteLine();
@@ -74,7 +80,14 @@ public class DrawManager : MonoBehaviour
                 StaticVariable.GameState = GameState.PLAY;
                 CoroutineUtils.PlayCoroutine(() =>
                 {
-                    Game.LevelManager.Instance.Tank.waterFall.SetActive(false);
+                    switch(Game.LevelManager.Instance.m_AttackType)
+                    {
+                        case Enum.AttackType.Enemy:
+                            break;
+                        case Enum.AttackType.Water:
+                            Game.LevelManager.Instance.Tank.waterFall.SetActive(false);
+                            break;
+                    }
                 }, 0.1f);
 
                 CoroutineUtils.PlayCoroutine(() =>

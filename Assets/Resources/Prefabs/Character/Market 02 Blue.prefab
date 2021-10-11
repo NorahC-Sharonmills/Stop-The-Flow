@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2348676}
   - component: {fileID: 6594360}
   - component: {fileID: 8083238191318487710}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Market 02 Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

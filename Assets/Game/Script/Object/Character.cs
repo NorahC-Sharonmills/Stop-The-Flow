@@ -18,25 +18,46 @@ namespace Game
             Anim = this.GetComponent<Animator>();
         }
 
+        private string[] detechedCollisions = new string[]
+            {
+                "Plane",
+                "rock"
+            };
+
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.collider.name != "Plane")
+            for(int i = 0; i < detechedCollisions.Length; i++)
             {
-                Game.LevelManager.Instance.OnLose();
-                ShowDead();
-            }    
+                if (collision.collider.name.Contains(detechedCollisions[i]))
+                    return;
+            }
+
+            Debug.Log(collision.collider.name);
+
+            Game.LevelManager.Instance.OnLose();
+            ShowDead();
         }
 
         public void ShowVictory()
         {
             m_Rigibody.isKinematic = true;
-            Anim.Play("Victory");
+            switch(CharacterType)
+            {
+                case Enum.CharacterType.Human:
+                    Anim.Play("Victory");
+                    break;
+            }    
         }
 
         public void ShowDead()
         {
             m_Rigibody.isKinematic = true;
-            Anim.Play("Dead");
+            switch (CharacterType)
+            {
+                case Enum.CharacterType.Human:
+                    Anim.Play("Dead");
+                    break;
+            }
         }
     }
 }

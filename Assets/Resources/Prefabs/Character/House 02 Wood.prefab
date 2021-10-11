@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2397700}
   - component: {fileID: 6587680}
   - component: {fileID: 7488819602527053947}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: House 02 Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 422924}
   - component: {fileID: 19826064}
   - component: {fileID: 19939958}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4898,7 +4898,7 @@ GameObject:
   - component: {fileID: 3362860}
   - component: {fileID: 2364568}
   - component: {fileID: 6553784}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}

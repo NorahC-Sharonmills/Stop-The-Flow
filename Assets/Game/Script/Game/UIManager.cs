@@ -6,8 +6,9 @@ namespace Game
 {
     public class UIManager : MonoSingleton<UIManager>
     {
-        public GameObject m_Tap;
-        public GameObject m_Victory;
+        public GameObject m_TapUI;
+        public GameObject m_VictoryUI;
+        public GameObject m_LoseUI;
 
         public void ButtonNext()
         {
@@ -33,13 +34,14 @@ namespace Game
         {
             base.Awake();
 
-            m_Tap.SetActive(true);
-            m_Victory.SetActive(false);
+            m_TapUI.SetActive(true);
+            m_VictoryUI.SetActive(false);
+            m_LoseUI.SetActive(false);
         }
 
         public void TapToPlay()
         {
-            m_Tap.SetActive(false);
+            m_TapUI.SetActive(false);
             CameraController.Instance.MoveToDraw(() =>
             {
                 StaticVariable.GameState = GameState.DRAW;
@@ -48,7 +50,12 @@ namespace Game
 
         public void ShowVictoryUI()
         {
-            m_Victory.SetActive(true);
+            m_VictoryUI.SetActive(true);
+        }    
+
+        public void ShowLoseUI()
+        {
+            m_LoseUI.SetActive(true);
         }    
     }
 }

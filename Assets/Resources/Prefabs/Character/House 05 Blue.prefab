@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3342622}
   - component: {fileID: 2332726}
   - component: {fileID: 6548484}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3367564}
   - component: {fileID: 2392628}
   - component: {fileID: 6545022}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 2351504}
   - component: {fileID: 6545342}
   - component: {fileID: 1801434651583471491}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: House 05 Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}

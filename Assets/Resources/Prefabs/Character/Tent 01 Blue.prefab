@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3311976}
   - component: {fileID: 2351804}
   - component: {fileID: 5390484639083362675}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Tent 01 Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 487094}
   - component: {fileID: 6515312}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Collider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 421100}
   - component: {fileID: 6571342}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Collider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490166}
   - component: {fileID: 6516324}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: Collider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

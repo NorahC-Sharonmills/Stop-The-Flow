@@ -68,7 +68,10 @@ namespace Game
                 _object.SetActive(true);
 
                 if (objects[i].ObjectType == Enum.ObjectType.Character)
+                {
+                    _object.name = "character";
                     Characters.Add(_object);
+                }
             }
 
             if(m_Level.LevelData.AttackType == Enum.AttackType.Water)
@@ -163,7 +166,7 @@ namespace Game
             IsLose = true;
             IsVictory = false;
 
-            Debug.Log("Lose");
+            Game.UIManager.Instance.ShowLoseUI();
         }
     }
 }
