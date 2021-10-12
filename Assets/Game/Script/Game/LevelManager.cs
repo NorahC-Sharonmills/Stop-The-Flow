@@ -23,6 +23,7 @@ namespace Game
             public Transform[] waterPosition;
         }
 
+        [HideInInspector] public float m_SizeCamera = 6.95f;
         [SerializeField] private Camera m_Camera;
         [Header("Hiện lên để xem thông tin level")]
         [SerializeField] private Level m_Level;
@@ -49,9 +50,11 @@ namespace Game
         {
             base.Awake();
             m_Level = ResourceManager.GetLevel(RuntimeStorageData.PLAYER.level);
-            m_Camera.orthographicSize = m_Level.LevelData.SizeCamera;
+            //m_Camera.orthographicSize = m_Level.LevelData.SizeCamera;
             m_AttackType = m_Level.LevelData.AttackType;
             m_WaterType = m_Level.LevelData.WaterType;
+
+            m_SizeCamera = m_Level.LevelData.SizeCamera;
 
 
             var objects = m_Level.LevelData.Datas;
@@ -88,16 +91,11 @@ namespace Game
         {
             DataTank data = dataTanks[0];
 
-            for(int i = 0; i < dataTanks.Length; i++)
+            for (int i = 0; i < dataTanks.Length; i++)
             {
-                if(dataTanks[i].waterType == waterType)
+                if (dataTanks[i].waterType == waterType)
                 {
                     data = dataTanks[i];
-                    data.waterTank.SetActive(true);
-                }
-                else
-                {
-                    dataTanks[i].waterTank.SetActive(false);
                 }
             }
 
