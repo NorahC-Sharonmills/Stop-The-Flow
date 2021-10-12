@@ -105,7 +105,10 @@ namespace Game
             {
                 case Enum.WaterType.Top:
                     Physics.gravity = data.waterGravity;
-                        break;
+                    break;
+                case Enum.WaterType.Bottom:
+                    Physics.gravity = data.waterGravity;
+                    break;
             }
 
             return data;
