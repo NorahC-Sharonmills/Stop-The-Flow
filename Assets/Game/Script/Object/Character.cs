@@ -32,7 +32,8 @@ namespace Game
                     return;
             }
 
-            Debug.Log(collision.collider.name);
+            if (Game.LevelManager.Instance.IsVictory)
+                return;
 
             Game.LevelManager.Instance.OnLose();
             ShowDead();

@@ -96,6 +96,7 @@ namespace Game
                 if (dataTanks[i].waterType == waterType)
                 {
                     data = dataTanks[i];
+                    data.waterTank.SetActive(true);
                 }
             }
 
@@ -138,8 +139,8 @@ namespace Game
             }
         }
 
-        private bool IsVictory = false;
-        private bool IsLose = false;
+        [HideInInspector] public bool IsVictory = false;
+        [HideInInspector] public bool IsLose = false;
 
         public void OnVictory()
         {
