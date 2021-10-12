@@ -1163,7 +1163,7 @@ MonoBehaviour:
   m_BulletPositionSpawner: {fileID: 0}
   m_Target: {fileID: 0}
   m_Animation: {fileID: 902391672081818022}
-  m_IdleAnim: Underground
+  m_IdleAnim: Idle
   m_RunAnim: Run
   m_AttackAnim: Attack
 --- !u!54 &4836856401293752473
@@ -1193,8 +1193,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.1670675, z: 1}
-  m_Center: {x: 0, y: 0.55307007, z: 0}
+  m_Size: {x: 0.307973, y: 1.1184503, z: 1.0680683}
+  m_Center: {x: -0.002836153, y: 0.5773787, z: -0.3261603}
 --- !u!1 &902391672072327784
 GameObject:
   m_ObjectHideFlags: 0

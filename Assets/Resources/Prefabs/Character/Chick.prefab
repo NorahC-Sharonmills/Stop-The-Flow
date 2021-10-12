@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 6817621319522544039}
   - component: {fileID: -713161000236025322}
   - component: {fileID: 5266242622343889138}
-  - component: {fileID: 4291186614498402741}
+  - component: {fileID: 9005769374389304429}
   m_Layer: 12
   m_Name: Chick
   m_TagString: Untagged
@@ -339,10 +339,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
---- !u!136 &4291186614498402741
-CapsuleCollider:
+--- !u!65 &9005769374389304429
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -351,10 +351,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.25, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.6165301, y: 0.5825891, z: 0.6440538}
+  m_Center: {x: -0.012462765, y: 0.20870546, z: 0.0012990683}
 --- !u!1 &6817621319531895401
 GameObject:
   m_ObjectHideFlags: 0

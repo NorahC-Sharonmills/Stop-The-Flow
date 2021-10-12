@@ -144,6 +144,8 @@ namespace Game
         {
             if (IsLose)
                 return;
+            if (IsVictory)
+                return;
 
             IsVictory = true;
             IsLose = false;
@@ -160,6 +162,8 @@ namespace Game
 
         public void OnLose()
         {
+            if (IsLose)
+                return;
             if (IsVictory)
                 return;
 

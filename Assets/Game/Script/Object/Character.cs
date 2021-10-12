@@ -46,6 +46,9 @@ namespace Game
                 case Enum.CharacterType.Human:
                     Anim.Play("Victory");
                     break;
+                case Enum.CharacterType.Animal:
+                    Anim.Play("Victory");
+                    break;
             }    
         }
 
@@ -55,6 +58,9 @@ namespace Game
             switch (CharacterType)
             {
                 case Enum.CharacterType.Human:
+                    Anim.Play("Dead");
+                    break;
+                case Enum.CharacterType.Animal:
                     Anim.Play("Dead");
                     break;
             }

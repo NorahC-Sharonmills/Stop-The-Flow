@@ -32,7 +32,7 @@ namespace Game
                     break;
                 case Enum.EnemyType.Animal:
                     //m_Rigibody.isKinematic = true;
-                    m_Animation.Play(m_IdleAnim);
+                    m_Animation.Play(m_IdleAnim); 
                     break;
             }    
         }
@@ -75,7 +75,9 @@ namespace Game
                 case Enum.EnemyType.Animal:
                     if (IsShoot && !IsAttack)
                     {
-                        moveDir = (m_Target.position - transform.position).normalized;
+                        var targetPostion = m_Target.position;
+                        targetPostion.y = transform.position.y;
+                        moveDir = (targetPostion - transform.position).normalized;
                         transform.forward = moveDir;
                         m_Rigibody.velocity = moveDir * speed * Time.deltaTime;
                     }
@@ -106,6 +108,17 @@ namespace Game
                         IsAttack = true;
                         m_Rigibody.isKinematic = true;
                         m_Animation.Play(m_AttackAnim);
+                        AnimationClip[] clips = m_Animation.runtimeAnimatorController.animationClips;
+                        for (int i = 0; i < clips.Length; i++)
+                        {
+                            if (clips[i].name == m_AttackAnim)
+                            {
+                                CoroutineUtils.PlayCoroutine(() =>
+                                {
+                                    m_Animation.Play(m_IdleAnim);
+                                }, clips[i].length);
+                            }
+                        }
                         break;
                 }
             }
