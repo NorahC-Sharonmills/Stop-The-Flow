@@ -215,7 +215,10 @@
 			executeMicroSpawns ();
             if (DelayBetweenParticles == 0f)
             {
-                SpawnAll();
+				CoroutineUtils.PlayCoroutine(() =>
+				{
+					SpawnAll();
+				}, 0.1f);
             }
             else {
                 StartCoroutine(loop(initSpeed, count));
@@ -288,6 +291,7 @@
 
 			int auxCount = 0;
 			var distance = (int)(WaterDropsObjects.Length / 5);
+			int count_delay = 0;
 			while (true) {
 				for (int i = 0; i < WaterDropsObjects.Length; i++) {
 
@@ -300,16 +304,17 @@
 						continue;
 
 					var pos = Vector3.zero;
-					if (i > 0 && i <= distance)
-						pos = WaterDropsPositions[0].transform.position;
-					else if (i > distance && i <= distance * 2)
-						pos = WaterDropsPositions[1].transform.position;
-					else if (i > distance * 2 && i < distance * 3)
-						pos = WaterDropsPositions[2].transform.position;
-					else if (i > distance * 3 && i < distance * 4)
-						pos = WaterDropsPositions[3].transform.position;
-					else
-						pos = WaterDropsPositions[4].transform.position;
+					pos = WaterDropsPositions[0].transform.position;
+					//if (i > 0 && i <= distance)
+					//	pos = WaterDropsPositions[0].transform.position;
+					//else if (i > distance && i <= distance * 2)
+					//	pos = WaterDropsPositions[1].transform.position;
+					//else if (i > distance * 2 && i < distance * 3)
+					//	pos = WaterDropsPositions[2].transform.position;
+					//else if (i > distance * 3 && i < distance * 4)
+					//	pos = WaterDropsPositions[3].transform.position;
+					//else
+					//	pos = WaterDropsPositions[4].transform.position;
 
 					MetaBall.LifeTime = LifeTime;
 					WaterDropsObjects [i].transform.position = pos;
@@ -336,7 +341,17 @@
 					}
 
 					if(waitBetweenDropSpawn)
-						yield return new WaitForSeconds (DelayBetweenParticles);
+                    {
+						count_delay += 1;
+						if(count_delay == 20)
+                        {
+							yield return new WaitForSeconds(0.001f);
+							count_delay = 0;
+						}							
+                    }						
+
+					//if(waitBetweenDropSpawn)
+					//	yield return new WaitForSeconds (0.0001f);
 
 				}
 				yield return new WaitForEndOfFrame ();

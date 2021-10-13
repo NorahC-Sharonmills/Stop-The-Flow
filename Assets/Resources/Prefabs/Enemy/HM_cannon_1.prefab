@@ -389,6 +389,10 @@ MonoBehaviour:
   m_Bullet: {fileID: 1240887441953726, guid: 8a976dcd328a4664c85144f33b9c46b0, type: 3}
   m_BulletPositionSpawner: {fileID: 4574405651562524}
   m_Target: {fileID: 0}
+  m_Animation: {fileID: 0}
+  m_IdleAnim: 
+  m_RunAnim: 
+  m_AttackAnim: 
 --- !u!54 &3960617177506617197
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -441,10 +445,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897587484924326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.539, z: 0.281}
+  m_LocalRotation: {x: -0.1139041, y: -0, z: -0, w: 0.99349177}
+  m_LocalPosition: {x: -0, y: 0.323, z: -0.066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4165866241402844}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -13.081, y: 0, z: 0}
