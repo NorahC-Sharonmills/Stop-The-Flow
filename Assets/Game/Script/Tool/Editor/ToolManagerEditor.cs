@@ -37,7 +37,7 @@ namespace UnityEditor
 
         string select = "id";
 
-        private int level_select = 0;
+        //private int level_select = 0;
 
         private void OnEnable()
         {
@@ -77,13 +77,13 @@ namespace UnityEditor
             GUILayout.BeginHorizontal();
             if(GUILayout.Button("<", GUILayout.Width(25)))
             {
-                level_select -= 1;
-                if (level_select < 0)
-                    level_select = 0;
+                tool.Level -= 1;
+                if (tool.Level < 0)
+                    tool.Level = 0;
 
 
                 ClearAllObject();
-                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(tool.Level)).LevelData;
                 tool.AttackType = dataObject.AttackType;
                 if(tool.AttackType == Enum.AttackType.Water)
                 {
@@ -92,16 +92,16 @@ namespace UnityEditor
                 SpawnObject(dataObject);
                 SaveData();
             }
-            level_select = EditorGUILayout.IntField(level_select);
+            tool.Level = EditorGUILayout.IntField(tool.Level);
             if (GUILayout.Button(">", GUILayout.Width(25)))
             {
                 var data = Resources.LoadAll<TextAsset>("Level");
-                level_select += 1;
-                if (level_select > data.Length - 1)
-                    level_select = data.Length - 1;
+                tool.Level += 1;
+                if (tool.Level > data.Length - 1)
+                    tool.Level = data.Length - 1;
 
                 ClearAllObject();
-                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(tool.Level)).LevelData;
                 tool.AttackType = dataObject.AttackType;
                 if (tool.AttackType == Enum.AttackType.Water)
                 {
@@ -114,7 +114,7 @@ namespace UnityEditor
             if (GUILayout.Button("Load Level", GUILayout.Width(100)))
             {
                 ClearAllObject();
-                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(level_select)).LevelData;
+                var dataObject = JsonUtility.FromJson<Game.Level>(LoadLevel(tool.Level)).LevelData;
                 tool.AttackType = dataObject.AttackType;
                 if (tool.AttackType == Enum.AttackType.Water)
                 {
@@ -122,6 +122,31 @@ namespace UnityEditor
                 }
                 SpawnObject(dataObject);
                 SaveData();
+            }
+
+            var instantiate_water = tool.Objects.Find(x => x.name == "Water");
+
+            if (tool.AttackType == Enum.AttackType.Water)
+            {
+                if (tool.WaterObject == null)
+                {
+                    tool.WaterObject = Resources.Load<GameObject>("Prefabs/Water");
+                }
+
+                if (instantiate_water == null)
+                {
+                    var water = Instantiate(tool.WaterObject);
+                    water.name = "Water";
+                    tool.Objects.Add(water);
+                }
+            }
+            else
+            {
+                if (instantiate_water != null)
+                {
+                    tool.Objects.Remove(instantiate_water);
+                    DestroyImmediate(instantiate_water);
+                }
             }
 
             if (GUILayout.Button("Clear", GUILayout.Width(100)))
@@ -344,53 +369,69 @@ namespace UnityEditor
             for (int i = 0; i < tool.Objects.Count; i++)
             {
                 Game.ObjectData data = new Game.ObjectData();
-                var entity = tool.Objects[i].GetComponent<Game.Entity>();
-                data.ObjectType = entity.ObjectType;
-                data.IsEnable = tool.Objects[i].activeSelf;
-                switch (data.ObjectType)
+                if(tool.Objects[i].name == "Water")
                 {
-                    case Enum.ObjectType.Character:
-                        var character = tool.Objects[i].GetComponent<Game.Character>();
-                        data.CharacterType = character.CharacterType;
-                        data.EnemyType = Enum.EnemyType.None;
-                        data.NameObject = tool.Objects[i].name;
-                        data.Postion = tool.Objects[i].transform.position;
-                        data.Rotation = tool.Objects[i].transform.rotation;
-                        data.LocalScale = tool.Objects[i].transform.localScale;
-                        break;
-                    case Enum.ObjectType.Enemy:
-                        var enemy = tool.Objects[i].GetComponent<Game.Enemy>();
-                        data.CharacterType = Enum.CharacterType.None;
-                        data.EnemyType = enemy.EnemyType;
-                        data.NameObject = tool.Objects[i].name;
-                        data.Postion = tool.Objects[i].transform.position;
-                        data.Rotation = tool.Objects[i].transform.rotation;
-                        data.LocalScale = tool.Objects[i].transform.localScale;
-                        break;
-                    case Enum.ObjectType.Object:
-                        data.CharacterType = Enum.CharacterType.None;
-                        data.EnemyType = Enum.EnemyType.None;
-                        data.NameObject = tool.Objects[i].name;
-                        data.Postion = tool.Objects[i].transform.position;
-                        data.Rotation = tool.Objects[i].transform.rotation;
-                        data.LocalScale = tool.Objects[i].transform.localScale;
-                        break;
-                    case Enum.ObjectType.Clear:
-                        data.CharacterType = Enum.CharacterType.None;
-                        data.EnemyType = Enum.EnemyType.None;
-                        data.NameObject = tool.Objects[i].name;
-                        data.Postion = tool.Objects[i].transform.position;
-                        data.Rotation = tool.Objects[i].transform.rotation;
-                        data.LocalScale = tool.Objects[i].transform.localScale;
-                        break;
+                    data.ObjectType = Enum.ObjectType.None;
+                    data.IsEnable = true;
+                    data.CharacterType = Enum.CharacterType.None;
+                    data.CharacterType = Enum.CharacterType.None;
+                    data.NameObject = "Water";
+                    data.Postion = tool.Objects[i].transform.position;
+                    data.Rotation = tool.Objects[i].transform.rotation;
+                    data.LocalScale = tool.Objects[i].transform.localScale;
                 }
+                else
+                {
+                    var entity = tool.Objects[i].GetComponent<Game.Entity>();
+                    data.ObjectType = entity.ObjectType;
+                    data.IsEnable = tool.Objects[i].activeSelf;
+                    switch (data.ObjectType)
+                    {
+                        case Enum.ObjectType.Character:
+                            var character = tool.Objects[i].GetComponent<Game.Character>();
+                            data.CharacterType = character.CharacterType;
+                            data.EnemyType = Enum.EnemyType.None;
+                            data.NameObject = tool.Objects[i].name;
+                            data.Postion = tool.Objects[i].transform.position;
+                            data.Rotation = tool.Objects[i].transform.rotation;
+                            data.LocalScale = tool.Objects[i].transform.localScale;
+                            break;
+                        case Enum.ObjectType.Enemy:
+                            var enemy = tool.Objects[i].GetComponent<Game.Enemy>();
+                            data.CharacterType = Enum.CharacterType.None;
+                            data.EnemyType = enemy.EnemyType;
+                            data.NameObject = tool.Objects[i].name;
+                            data.Postion = tool.Objects[i].transform.position;
+                            data.Rotation = tool.Objects[i].transform.rotation;
+                            data.LocalScale = tool.Objects[i].transform.localScale;
+                            break;
+                        case Enum.ObjectType.Object:
+                            data.CharacterType = Enum.CharacterType.None;
+                            data.EnemyType = Enum.EnemyType.None;
+                            data.NameObject = tool.Objects[i].name;
+                            data.Postion = tool.Objects[i].transform.position;
+                            data.Rotation = tool.Objects[i].transform.rotation;
+                            data.LocalScale = tool.Objects[i].transform.localScale;
+                            break;
+                        case Enum.ObjectType.Clear:
+                            data.CharacterType = Enum.CharacterType.None;
+                            data.EnemyType = Enum.EnemyType.None;
+                            data.NameObject = tool.Objects[i].name;
+                            data.Postion = tool.Objects[i].transform.position;
+                            data.Rotation = tool.Objects[i].transform.rotation;
+                            data.LocalScale = tool.Objects[i].transform.localScale;
+                            break;
+                    }
+                }
+                
                 info.LevelData.Datas.Add(data);
             }
             if (!string.IsNullOrEmpty(tool.LevelName))
             {
                 var _str = JsonUtility.ToJson(info);
                 var path = "Assets/Resources/Level/" + tool.LevelName + ".json";
-                Debug.Log(string.Format("Save Success with path {0}", path));
+                Debug.Log(_str);
+                Debug.Log(string.Format("path {0}", path));
 
                 if (path.Length > 0)
                 {
@@ -443,6 +484,13 @@ namespace UnityEditor
                 switch(objects[i].ObjectType)
                 {
                     case Enum.ObjectType.None:
+                        path = string.Format("Prefabs/Water");
+                        obj = Instantiate(Resources.Load<GameObject>(path));
+                        obj.name = obj.name.Replace("(Clone)", "");
+                        obj.transform.localPosition = objects[i].Postion;
+                        obj.transform.localRotation = objects[i].Rotation;
+                        obj.transform.localScale = objects[i].LocalScale;
+                        obj.SetActive(objects[i].IsEnable);
                         break;
                     case Enum.ObjectType.Character:
                         path = string.Format("Prefabs/Character/{0}", objects[i].NameObject);

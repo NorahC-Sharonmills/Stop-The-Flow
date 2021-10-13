@@ -16,4 +16,8 @@ public class ToolManager : MonoBehaviour
     public Enum.AttackType AttackType;
     [HideInInspector]
     public string LevelName = "";
+    [HideInInspector]
+    public GameObject WaterObject = null;
+    [HideInInspector]
+    public int Level = 0;
 }

@@ -24,7 +24,7 @@ namespace Game
         }
 
         [HideInInspector] public float m_SizeCamera = 6.95f;
-        [SerializeField] private Camera m_Camera;
+        //[SerializeField] private Camera m_Camera;
         [Header("Hiện lên để xem thông tin level")]
         [SerializeField] private Level m_Level;
         [Header("Hiện thông tin attack")]
@@ -34,12 +34,12 @@ namespace Game
         [HideInInspector]
         public List<GameObject> Characters = new List<GameObject>();
 
-        private Vector3 m_CameraOpenPositon = new Vector3(0f, 70f, -20f);
-        private Vector3 m_CameraOpenRotation = new Vector3(70f, 0f, 0f);
-        private Vector3 m_CameraDrawPosition = new Vector3(0f, 70f, 6.5f);
-        private Vector3 m_CameraDrawRotation = new Vector3(90f, 0f, 0f);
-        private Vector3 m_CameraPlayPosition = new Vector3(0f, 70f, -60f);
-        private Vector3 m_CameraPlayRotation = new Vector3(34f, 0f, 0f);
+        //private Vector3 m_CameraOpenPositon = new Vector3(0f, 70f, -20f);
+        //private Vector3 m_CameraOpenRotation = new Vector3(70f, 0f, 0f);
+        //private Vector3 m_CameraDrawPosition = new Vector3(0f, 70f, 6.5f);
+        //private Vector3 m_CameraDrawRotation = new Vector3(90f, 0f, 0f);
+        //private Vector3 m_CameraPlayPosition = new Vector3(0f, 70f, -60f);
+        //private Vector3 m_CameraPlayRotation = new Vector3(34f, 0f, 0f);
 
         [Header("Water")]
         public GameObject Water2DSpawn;
@@ -86,7 +86,7 @@ namespace Game
             StaticVariable.GameState = GameState.PAUSE;
         }
 
-        public DataTank Tank;
+        [HideInInspector] public DataTank Tank;
         private DataTank ActiveWater(Enum.WaterType waterType)
         {
             DataTank data = dataTanks[0];
@@ -113,31 +113,31 @@ namespace Game
             return data;
         }
 
-        public void ChangePositionCamera(CameraType type, bool IsLerp, System.Action Complete)
-        {
-            if (IsLerp)
-            {
+        //public void ChangePositionCamera(CameraType type, bool IsLerp, System.Action Complete)
+        //{
+        //    if (IsLerp)
+        //    {
 
-            }
-            else
-            {
-                switch (type)
-                {
-                    case CameraType.PLAY:
-                        m_Camera.transform.position = m_CameraOpenPositon;
-                        m_Camera.transform.eulerAngles = m_CameraOpenRotation;
-                        break;
-                    case CameraType.DRAW:
-                        m_Camera.transform.position = m_CameraDrawPosition;
-                        m_Camera.transform.eulerAngles = m_CameraDrawRotation;
-                        break;
-                    case CameraType.START:
-                        m_Camera.transform.position = m_CameraPlayPosition;
-                        m_Camera.transform.eulerAngles = m_CameraPlayRotation;
-                        break;
-                }
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        switch (type)
+        //        {
+        //            case CameraType.PLAY:
+        //                m_Camera.transform.position = m_CameraOpenPositon;
+        //                m_Camera.transform.eulerAngles = m_CameraOpenRotation;
+        //                break;
+        //            case CameraType.DRAW:
+        //                m_Camera.transform.position = m_CameraDrawPosition;
+        //                m_Camera.transform.eulerAngles = m_CameraDrawRotation;
+        //                break;
+        //            case CameraType.START:
+        //                m_Camera.transform.position = m_CameraPlayPosition;
+        //                m_Camera.transform.eulerAngles = m_CameraPlayRotation;
+        //                break;
+        //        }
+        //    }
+        //}
 
         [HideInInspector] public bool IsVictory = false;
         [HideInInspector] public bool IsLose = false;

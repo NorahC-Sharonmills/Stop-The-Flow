@@ -53,6 +53,7 @@ namespace Game
                 switch (objects.ObjectType)
                 {
                     case Enum.ObjectType.None:
+                        path = string.Format("Prefabs/{0}", objects.NameObject);
                         break;
                     case Enum.ObjectType.Character:
                         path = string.Format("Prefabs/Character/{0}", objects.NameObject);
