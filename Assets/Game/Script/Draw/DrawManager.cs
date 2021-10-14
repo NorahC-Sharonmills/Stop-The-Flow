@@ -19,7 +19,7 @@ public class DrawManager : MonoBehaviour
     [SerializeField] private Camera m_WaterCamera;
 
     public float distance = 0.1f;
-    public float hight = 0.5f;
+    public float hight = 0.25f;
 
     private Vector3 position = Vector3.zero;
 
