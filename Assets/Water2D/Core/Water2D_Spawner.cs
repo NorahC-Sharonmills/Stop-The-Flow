@@ -38,7 +38,7 @@
 		/// Drops objects array.
 		/// </summary>
 		public GameObject [] WaterDropsObjects;
-		public GameObject [] WaterDropsPositions;
+		public GameObject WaterDropsPosition;
 
 		/// <summary>
 		/// The size of each drop.
@@ -162,18 +162,7 @@
 
 			for (int i = 1; i < WaterDropsObjects.Length; i++) 
 			{
-				var pos = Vector3.zero;
-				if (i > 0 && i <= distance)
-					pos = WaterDropsPositions[0].transform.position;
-				else if (i > distance && i <= distance * 2)
-					pos = WaterDropsPositions[1].transform.position;
-				else if (i > distance * 2 && i < distance * 3)
-					pos = WaterDropsPositions[2].transform.position;
-				else if (i > distance * 3 && i < distance * 4)
-					pos = WaterDropsPositions[3].transform.position;
-				else
-					pos = WaterDropsPositions[4].transform.position;
-
+				var pos = WaterDropsPosition.transform.position;
 				WaterDropsObjects[i] = Instantiate(WaterDropsObjects[0], pos, Quaternion.identity) as GameObject;
 				WaterDropsObjects [i].GetComponent<MetaballParticleClass>().Active = false;
 				WaterDropsObjects [i].transform.SetParent (_parent.transform);
@@ -303,18 +292,7 @@
 					if (MetaBall.Active == true)
 						continue;
 
-					var pos = Vector3.zero;
-					pos = WaterDropsPositions[0].transform.position;
-					//if (i > 0 && i <= distance)
-					//	pos = WaterDropsPositions[0].transform.position;
-					//else if (i > distance && i <= distance * 2)
-					//	pos = WaterDropsPositions[1].transform.position;
-					//else if (i > distance * 2 && i < distance * 3)
-					//	pos = WaterDropsPositions[2].transform.position;
-					//else if (i > distance * 3 && i < distance * 4)
-					//	pos = WaterDropsPositions[3].transform.position;
-					//else
-					//	pos = WaterDropsPositions[4].transform.position;
+					var pos = WaterDropsPosition.transform.position;
 
 					MetaBall.LifeTime = LifeTime;
 					WaterDropsObjects [i].transform.position = pos;
@@ -383,20 +361,10 @@
                     if (MetaBall.Active == true)
                         continue;
 
-				var pos = Vector3.zero;
-				if (i > 0 && i <= distance)
-					pos = WaterDropsPositions[0].transform.position;
-				else if (i > distance && i <= distance * 2)
-					pos = WaterDropsPositions[1].transform.position;
-				else if (i > distance * 2 && i < distance * 3)
-					pos = WaterDropsPositions[2].transform.position;
-				else if (i > distance * 3 && i < distance * 4)
-					pos = WaterDropsPositions[3].transform.position;
-				else
-					pos = WaterDropsPositions[4].transform.position;
+				var pos = WaterDropsPosition.transform.position;
 
 				MetaBall.LifeTime = LifeTime;
-                    WaterDropsObjects[i].transform.position = transform.position;
+                    WaterDropsObjects[i].transform.position = pos;
                     MetaBall.Active = true;
 
                     if (_initSpeed == Vector3.zero)

@@ -100,16 +100,7 @@ namespace Game
                 }
             }
 
-            switch (waterType)
-            {
-                case Enum.WaterType.Top:
-                    Physics.gravity = data.waterGravity;
-                    break;
-                case Enum.WaterType.Bottom:
-                    Physics.gravity = data.waterGravity;
-                    break;
-            }
-
+            Physics.gravity = data.waterGravity;
             return data;
         }
 
