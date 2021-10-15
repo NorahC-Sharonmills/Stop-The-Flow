@@ -124,7 +124,20 @@ namespace UnityEditor
                 SaveData();
             }
 
-            var instantiate_water = tool.Objects.Find(x => x.name == "Water");
+            GameObject instantiate_water = null;
+            for(int i = 0; i < tool.Objects.Count; i++)
+            {
+                if(tool.Objects[i] == null)
+                {
+                    continue;
+                }
+
+                if(tool.Objects[i].name == "Water")
+                {
+                    instantiate_water = tool.Objects[i];
+                    break;
+                }
+            }    
 
             if (tool.AttackType == Enum.AttackType.Water)
             {
