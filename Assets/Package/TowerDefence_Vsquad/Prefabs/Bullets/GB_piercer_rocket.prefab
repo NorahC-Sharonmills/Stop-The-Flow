@@ -4828,9 +4828,9 @@ GameObject:
   - component: {fileID: 4693274976780832}
   - component: {fileID: 33624544424198368}
   - component: {fileID: 23227812853602014}
-  - component: {fileID: 114730740510779602}
-  - component: {fileID: 136522884417654972}
   - component: {fileID: 54256439225926448}
+  - component: {fileID: 9011376768467924924}
+  - component: {fileID: 8596362457097845606}
   m_Layer: 11
   m_Name: GB_piercer_rocket
   m_TagString: Untagged
@@ -4902,35 +4902,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &114730740510779602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346145665620568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32cc6e3515664d249959f57754ecc91b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactParticle: {fileID: 1842692474500718, guid: ee3b2e55932f8bd47b5507f5fb1b67d8, type: 3}
-  ShootElement: {fileID: 0}
-  TankDamage: 10
---- !u!136 &136522884417654972
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346145665620568}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.12
-  m_Height: 0.65
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &54256439225926448
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4947,6 +4918,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9011376768467924924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346145665620568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cb36ff7ba4ba747baa61bc6765f57a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Rig: {fileID: 54256439225926448}
+  impactParticle: {fileID: 1842692474500718, guid: ee3b2e55932f8bd47b5507f5fb1b67d8, type: 3}
+--- !u!65 &8596362457097845606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346145665620568}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22492224, y: 0.23175713, z: 0.65193474}
+  m_Center: {x: -0.0026774406, y: 0.00013780966, z: 0}
 --- !u!1 &1474323805535688
 GameObject:
   m_ObjectHideFlags: 0

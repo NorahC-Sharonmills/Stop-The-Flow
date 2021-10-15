@@ -14,6 +14,7 @@ namespace Game
         {
             base.Awake();
             m_Rigibody.useGravity = false;
+            m_Rigibody.constraints = RigidbodyConstraints.FreezeAll;
 
             Anim = this.GetComponent<Animator>();
         }
@@ -26,11 +27,16 @@ namespace Game
 
         private void OnCollisionEnter(Collision collision)
         {
-            for(int i = 0; i < detechedCollisions.Length; i++)
+            Debug.Log(collision.collider.name);
+
+            if(collision.collider.gameObject.layer != LayerMask.NameToLayer("Bullet"))
             {
-                if (collision.collider.name.Contains(detechedCollisions[i]))
-                    return;
-            }
+                for (int i = 0; i < detechedCollisions.Length; i++)
+                {
+                    if (collision.collider.name.Contains(detechedCollisions[i]))
+                        return;
+                }
+            }    
 
             if (Game.LevelManager.Instance.IsVictory)
                 return;

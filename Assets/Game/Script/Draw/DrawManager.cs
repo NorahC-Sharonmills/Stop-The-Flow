@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrawManager : MonoBehaviour
+public class DrawManager : MonoSingleton<DrawManager>
 {
     public GameObject linePrefabs;
 

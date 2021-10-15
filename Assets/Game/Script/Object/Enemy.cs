@@ -28,13 +28,14 @@ namespace Game
             switch (EnemyType)
             {
                 case Enum.EnemyType.Weapon:
+                    DrawManager.Instance.hight = 1f;
                     m_Rigibody.isKinematic = true;
                     break;
                 case Enum.EnemyType.Animal:
                     //m_Rigibody.isKinematic = true;
                     m_Animation.Play(m_IdleAnim); 
                     break;
-            }    
+            }
         }
 
         private void Start()
