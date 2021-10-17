@@ -33,7 +33,7 @@ namespace Game
             // thêm các đoạn load các thứ vào đây
             yield return ResourceManager.Instance.InitializedResource();
 
-
+            Game.Setting.Instance.Initializeded();
 
 
 

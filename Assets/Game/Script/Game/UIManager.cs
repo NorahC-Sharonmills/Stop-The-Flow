@@ -64,15 +64,21 @@ namespace Game
 
         public void TapToPlay()
         {
-            m_HomeUI.SetActive(false);
+            if (Game.GameManager.PopupStatus == PopupStatus.Show)
+                return;
+
+            ShowGameUI();
             CameraController.Instance.MoveToDraw(() =>
             {
                 StaticVariable.GameState = GameState.DRAW;
             });
+
+
         }
 
         public void ShowGameUI()
         {
+            m_HomeUI.SetActive(false);
             m_GameUI.SetActive(true);
             m_LevelUI.SetActive(true);
         }
@@ -97,6 +103,11 @@ namespace Game
 
             m_LevelUI.SetActive(false);
             m_HomeUI.SetActive(false);
+        }
+
+        public void OnSettingShow()
+        {
+            Game.Setting.Instance.OnShow();
         }
     }
 }
