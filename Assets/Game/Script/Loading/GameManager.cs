@@ -13,12 +13,26 @@ namespace Game
 
     public class GameManager : MonoSingletonGlobal<GameManager>
     { 
-        public static void LoadScene(string scene, bool isLoading = false)
+        public static void LoadScene(string scene, bool isLoading = false, bool isFade = false)
         {
-            SceneManager.LoadScene(scene, LoadSceneMode.Single);
+            IsFade = isFade;
+            if(IsFade)
+            {
+                Game.Fade.Instance.ShowFade();
+                CoroutineUtils.PlayCoroutine(() =>
+                {
+                    SceneManager.LoadScene(scene, LoadSceneMode.Single);
+                }, 0.2f);
+            }
+            else
+            {
+                SceneManager.LoadScene(scene, LoadSceneMode.Single);
+            }
+
         }
 
         public static PopupStatus PopupStatus = PopupStatus.Hide;
+        public static bool IsFade = false;
 
         private void OnApplicationQuit()
         {

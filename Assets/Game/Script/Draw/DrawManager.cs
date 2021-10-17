@@ -20,6 +20,8 @@ public class DrawManager : MonoSingleton<DrawManager>
 
     public float distance = 0.1f;
     public float hight = 0.25f;
+    private float m_TimerToVictory = 0;
+    public float m_TimeToVictory = 5f;
 
     private Vector3 position = Vector3.zero;
 
@@ -30,15 +32,35 @@ public class DrawManager : MonoSingleton<DrawManager>
         IsComplete = false;
     }
 
+    private void CheckingVictory()
+    {
+        if (StaticVariable.GameState != GameState.PLAY)
+            return;
+
+        if (!IsComplete)
+            return;
+
+        if (Game.LevelManager.Instance.IsLose)
+            return;
+
+        m_TimerToVictory += Time.deltaTime;
+        if (m_TimerToVictory > m_TimeToVictory)
+        {
+            Game.LevelManager.Instance.OnVictory();
+        }
+    }
+
     private void Update()
     {
+        CheckingVictory();
+
         if (StaticVariable.GameState != GameState.DRAW)
             return;
 
         if (IsComplete)
             return;
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             CreateLine();
         }
@@ -90,10 +112,10 @@ public class DrawManager : MonoSingleton<DrawManager>
                     }
                 }, 0.1f);
 
-                CoroutineUtils.PlayCoroutine(() =>
-                {
-                    Game.LevelManager.Instance.OnVictory();
-                }, 5f);
+                //CoroutineUtils.PlayCoroutine(() =>
+                //{
+                //    Game.LevelManager.Instance.OnVictory();
+                //}, 5f);
             });
         }    
     }

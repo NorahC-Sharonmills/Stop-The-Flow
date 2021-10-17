@@ -26,7 +26,7 @@ namespace Game
         public void ButtonNext()
         {
             RuntimeStorageData.PLAYER.level += 1;
-            GameManager.LoadScene(SceneName.Game, true);
+            GameManager.LoadScene(SceneName.Game, true, false);
         }
 
         public void ButtonBack()
@@ -35,12 +35,12 @@ namespace Game
             if (RuntimeStorageData.PLAYER.level < 1)
                 RuntimeStorageData.PLAYER.level = 1;
 
-            GameManager.LoadScene(SceneName.Game, true);
+            GameManager.LoadScene(SceneName.Game, true, false);
         }
 
         public void Replay()
         {
-            GameManager.LoadScene(SceneName.Game, true);
+            GameManager.LoadScene(SceneName.Game, true, true);
         }
 
         protected override void Awake()
@@ -92,8 +92,12 @@ namespace Game
 
         public void ShowLoseUI()
         {
-            m_LoseUI.SetActive(true);
-            m_LevelUI.SetActive(false);
+            //m_LoseUI.SetActive(true);
+            //m_LevelUI.SetActive(false);
+            CoroutineUtils.PlayCoroutine(() =>
+            {
+                Replay();
+            }, 3f);
         }    
 
         public void OpenShop()
