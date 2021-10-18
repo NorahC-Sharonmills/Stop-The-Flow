@@ -26,6 +26,7 @@ public class DrawManager : MonoSingleton<DrawManager>
     private Vector3 position = Vector3.zero;
 
     private bool IsComplete = false;
+    [SerializeField, Range(0f, 1f)] public float radius = 0.2f;
 
     private void Start()
     {
@@ -70,7 +71,7 @@ public class DrawManager : MonoSingleton<DrawManager>
             layerMask = ~layerMask;
 
 
-            if (Physics.Raycast(m_Camera.ScreenToWorldPoint(Input.mousePosition), m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask))
+            if (Physics.SphereCast(m_Camera.ScreenToWorldPoint(Input.mousePosition), radius, m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 if (hit.collider.name == "Plane")
                 {

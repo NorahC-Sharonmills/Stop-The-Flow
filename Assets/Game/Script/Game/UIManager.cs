@@ -62,6 +62,21 @@ namespace Game
             m_ShopCamera.SetActive(false);
         }
 
+        public void Home()
+        {
+            m_HomeUI.SetActive(true);
+            m_LevelUI.SetActive(true);
+
+            m_GameCamera.SetActive(true);
+
+
+            m_VictoryUI.SetActive(false);
+            m_LoseUI.SetActive(false);
+            m_GameUI.SetActive(false);
+
+            m_ShopCamera.SetActive(false);
+        }
+
         public void TapToPlay()
         {
             if (Game.GameManager.PopupStatus == PopupStatus.Show)
@@ -104,6 +119,8 @@ namespace Game
         {
             m_GameCamera.SetActive(false);
             m_ShopCamera.SetActive(true);
+
+            Game.Shop.Instance.Show();
 
             m_LevelUI.SetActive(false);
             m_HomeUI.SetActive(false);

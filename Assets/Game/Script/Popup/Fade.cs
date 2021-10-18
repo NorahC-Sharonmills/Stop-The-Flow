@@ -6,6 +6,7 @@ namespace Game
 {
     public class Fade : MonoSingletonGlobal<Fade>
     {
+        public GameObject m_Canvas;
         public GameObject m_FadeObject;
         public Animator m_Animator;
 
@@ -32,6 +33,7 @@ namespace Game
 
         public void ShowFade()
         {
+            m_Canvas.SetActive(true);
             m_FadeObject.SetActive(true);
             m_Animator.Play("FadeIn");
             CoroutineUtils.PlayCoroutine(() =>
@@ -39,6 +41,7 @@ namespace Game
                 m_Animator.Play("FadeOut");
                 CoroutineUtils.PlayCoroutine(() =>
                 {
+                    m_Canvas.SetActive(false);
                     m_FadeObject.SetActive(false);
                 }, FadeOut_Time);
             }, FadeIn_Time);
@@ -46,6 +49,8 @@ namespace Game
 
         public void FadeIn(bool isAuto = false)
         {
+            m_Canvas.SetActive(true);
+            m_FadeObject.SetActive(true);
             m_Animator.Play("FadeIn");
             if(isAuto)
             {
@@ -58,6 +63,7 @@ namespace Game
         
         public void FadeOut(bool isAuto = false)
         {
+            m_Canvas.SetActive(true);
             m_Animator.Play("FadeOut");
             if (isAuto)
             {
