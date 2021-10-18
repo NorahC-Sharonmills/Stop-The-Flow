@@ -74,6 +74,29 @@ namespace Game
                     break;
                 case Enum.CharacterType.Animal:
                     m_Animator.Play("Victory");
+                    m_Animator.SetBool("Eat", false);
+                    //m_Animator.SetTrigger("Jump");
+                    for(int i = 0; i < m_Animator.runtimeAnimatorController.animationClips.Length; i++)
+                    {
+                        if(m_Animator.runtimeAnimatorController.animationClips[i].name == "Jump W Root")
+                        {
+                            m_Animator.Play("Jump W Root");
+                            System.Action jump = () =>
+                            {
+                                m_Animator.Play("Jump W Root");
+                            };
+                            CoroutineUtils.PlayManyCoroutine(0, m_Animator.runtimeAnimatorController.animationClips[i].length, jump, jump, jump, jump, jump);
+                        }
+                        //if (m_Animator.runtimeAnimatorController.animationClips[i].name == "Turn Head")
+                        //{
+                        //    m_Animator.Play("Turn Head");
+                        //    System.Action jump = () =>
+                        //    {
+                        //        m_Animator.Play("Turn Head");
+                        //    };
+                        //    CoroutineUtils.PlayManyCoroutine(0, m_Animator.runtimeAnimatorController.animationClips[i].length, jump, jump, jump, jump, jump);
+                        //}                     
+                    }
                     break;
             }    
         }

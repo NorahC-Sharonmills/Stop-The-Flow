@@ -26,6 +26,7 @@ public class DrawManager : MonoSingleton<DrawManager>
     private Vector3 position = Vector3.zero;
 
     private bool IsComplete = false;
+    private bool IsLine = false;
     [SerializeField, Range(0f, 1f)] public float radius = 0.2f;
 
     private void Start()
@@ -65,6 +66,10 @@ public class DrawManager : MonoSingleton<DrawManager>
         {
             CreateLine();
         }
+
+        if (!IsLine)
+            return;
+
         if(Input.GetMouseButton(0))
         {
             int layerMask = 1 << 9;
@@ -139,6 +144,7 @@ public class DrawManager : MonoSingleton<DrawManager>
                 lineRenderer.SetPosition(1, fingerPositions[1]);
 
                 position.y = hight + 0.06f;
+                IsLine = true;
             }
         }
     }
