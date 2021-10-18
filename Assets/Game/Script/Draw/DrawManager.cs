@@ -82,7 +82,7 @@ public class DrawManager : MonoSingleton<DrawManager>
                     if (fingerPositions.Count < 0)
                         CreateLine();
                     float _distance = Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]);
-                    if (_distance > distance && _distance < 4 * distance)
+                    if (_distance > distance && _distance < 2.5f * distance)
                     {
                         UpdateLine(tempFingerPos);
                     }  
@@ -128,7 +128,7 @@ public class DrawManager : MonoSingleton<DrawManager>
 
         fingerPositions = new List<Vector3>();
 
-        if (Physics.Raycast(m_Camera.ScreenToWorldPoint(Input.mousePosition), m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity))
+        if (Physics.SphereCast(m_Camera.ScreenToWorldPoint(Input.mousePosition), radius, m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity))
         {
             if(hit.collider.name == "Plane")
             {
