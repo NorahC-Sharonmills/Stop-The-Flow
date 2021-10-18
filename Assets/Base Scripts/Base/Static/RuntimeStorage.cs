@@ -100,7 +100,20 @@ public static class RuntimeStorageData
                 case DATATYPE.PLAYER:
                     var _player = new PlayerSerializable();
                     _player.id = SystemInfo.deviceUniqueIdentifier;
+                    _player.level = 1;
                     _player.coin = 0;
+                    _player.character_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabOutfits[0].name;
+                    _player.characters_bought = new System.Collections.Generic.List<string>();
+                    _player.characters_bought.Add(_player.character_using);
+                    _player.hair_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabHairs[0].name;
+                    _player.hairs_bought = new System.Collections.Generic.List<string>();
+                    _player.hairs_bought.Add(_player.hair_using);
+                    _player.hat_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabHats[0].name;
+                    _player.hats_bought = new System.Collections.Generic.List<string>();
+                    _player.hats_bought.Add(_player.hat_using);
+                    _player.utility_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabsUtilitys[0].name;
+                    _player.utility_bought = new System.Collections.Generic.List<string>();
+                    _player.utility_bought.Add(_player.utility_using);
                     return _player as T;
                 default:
                     return null;

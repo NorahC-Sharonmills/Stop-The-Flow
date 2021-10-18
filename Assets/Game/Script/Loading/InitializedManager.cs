@@ -34,7 +34,7 @@ namespace Game
             yield return ResourceManager.Instance.InitializedResource();
 
             Game.Setting.Instance.Initializeded();
-
+            Game.Shop.Instance.Initializeded();
 
 
 

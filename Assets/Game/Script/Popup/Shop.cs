@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -17,6 +18,14 @@ namespace Game
 
         [Header("tab")]
         public GameObject[] tabs;
+        public Image[] buttons;
+        public Color m_DisableColor;
+        public Color m_EnableColor;
+
+        private List<ShopItem> Clothes = new List<ShopItem>();
+        private List<ShopItem> Hats = new List<ShopItem>();
+        private List<ShopItem> Hairs = new List<ShopItem>();
+        private List<ShopItem> Utilitys = new List<ShopItem>();
 
         protected override void Awake()
         {
@@ -29,6 +38,9 @@ namespace Game
                 ImageObject.name = Data.m_PrefabOutfits[i].name;
 
                 ShopItem Item = ImageObject.GetComponent<ShopItem>();
+                Item.id = ImageObject.name;
+                Item.type = "Clothes";
+                Clothes.Add(Item);
                 Item.UIObject3D.ObjectPrefab = Data.m_PrefabOutfits[i].transform;
             }
 
@@ -39,6 +51,9 @@ namespace Game
                 ImageObject.name = Data.m_PrefabHairs[i].name;
 
                 ShopItem Item = ImageObject.GetComponent<ShopItem>();
+                Item.id = ImageObject.name;
+                Item.type = "Hair";
+                Hairs.Add(Item);
                 Item.UIObject3D.ObjectPrefab = Data.m_PrefabHairs[i].transform;
             }
 
@@ -49,6 +64,9 @@ namespace Game
                 ImageObject.name = Data.m_PrefabHats[i].name;
 
                 ShopItem Item = ImageObject.GetComponent<ShopItem>();
+                Item.id = ImageObject.name;
+                Item.type = "Hat";
+                Hats.Add(Item);
                 Item.UIObject3D.ObjectPrefab = Data.m_PrefabHats[i].transform;
             }
 
@@ -59,10 +77,16 @@ namespace Game
                 ImageObject.name = Data.m_PrefabsUtilitys[i].name;
 
                 ShopItem Item = ImageObject.GetComponent<ShopItem>();
+                Item.id = ImageObject.name;
+                Item.type = "Utility";
+                Utilitys.Add(Item);
                 Item.UIObject3D.ObjectPrefab = Data.m_PrefabsUtilitys[i].transform;
             }
+        }
 
-            OnTab("clothes");
+        public void Initializeded()
+        {
+
         }
 
         public void Show()
@@ -70,6 +94,8 @@ namespace Game
             m_Canvas.SetActive(true);
             m_ShopObject.SetActive(true);
             m_Animator.Play("Show");
+
+            OnTab("clothes");
         }
 
         public void Home()
@@ -88,21 +114,46 @@ namespace Game
             for(int i = 0; i < tabs.Length; i++)
             {
                 tabs[i].SetActive(false);
+                buttons[i].color = m_DisableColor;
             }
 
             switch(tab)
             {
                 case "clothes":
                     tabs[0].SetActive(true);
+                    buttons[0].color = m_EnableColor;
+
+                    for(int i = 0; i < Clothes.Count; i++)
+                    {
+                        Clothes[i].Initialized();
+                    }
                     break;
                 case "hair":
                     tabs[1].SetActive(true);
+                    buttons[1].color = m_EnableColor;
+
+                    for (int i = 0; i < Hairs.Count; i++)
+                    {
+                        Hairs[i].Initialized();
+                    }
                     break;
                 case "hat":
                     tabs[2].SetActive(true);
+                    buttons[2].color = m_EnableColor;
+
+                    for (int i = 0; i < Hats.Count; i++)
+                    {
+                        Hats[i].Initialized();
+                    }
                     break;
                 case "utility":
                     tabs[3].SetActive(true);
+                    buttons[3].color = m_EnableColor;
+
+                    for (int i = 0; i < Utilitys.Count; i++)
+                    {
+                        Utilitys[i].Initialized();
+                    }
                     break;
             }    
         }    
