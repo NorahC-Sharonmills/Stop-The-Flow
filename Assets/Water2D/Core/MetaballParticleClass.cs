@@ -45,7 +45,7 @@ public class MetaballParticleClass : MonoBehaviour {
     {
 		if (col.collider.name.Contains("point"))
 		{
-			Debug.Log(m_Rig.velocity.z);
+
 		}
 	}
 }

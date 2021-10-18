@@ -358,6 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectType: 1
   CharacterType: 4
+  m_ScaleForce: 0.5
 --- !u!54 &3961394356818393408
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -8,7 +8,11 @@ namespace Game
     {
         public Enum.CharacterType CharacterType;
 
-        private Animator Anim;
+        private Animator m_Animator;
+
+        //private Collider m_Collider;
+
+        [Range(0.1f, 10f)] public float m_ScaleForce = 0.1f;
 
         protected override void Awake()
         {
@@ -16,7 +20,13 @@ namespace Game
             m_Rigibody.useGravity = false;
             m_Rigibody.constraints = RigidbodyConstraints.FreezeAll;
 
-            Anim = this.GetComponent<Animator>();
+            m_Animator = this.GetComponent<Animator>();
+            switch(CharacterType)
+            {
+                case Enum.CharacterType.Animal:
+                    m_Animator.SetBool("Eat", true);
+                    break;
+            }
         }
 
         private string[] detechedCollisions = new string[]
@@ -25,25 +35,34 @@ namespace Game
                 "rock"
             };
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnCollisionEnter(Collision col)
         {
-            Debug.Log(collision.collider.name);
-
-            if(collision.collider.gameObject.layer != LayerMask.NameToLayer("Bullet"))
+            if(col.collider.gameObject.layer != LayerMask.NameToLayer("Bullet"))
             {
                 for (int i = 0; i < detechedCollisions.Length; i++)
                 {
-                    if (collision.collider.name.Contains(detechedCollisions[i]))
+                    if (col.collider.name.Contains(detechedCollisions[i]))
                         return;
                 }
             }    
 
             if (Game.LevelManager.Instance.IsVictory)
                 return;
-
+            direction = Physics.gravity + col.gameObject.GetComponent<Rigidbody>().velocity;
             Game.LevelManager.Instance.OnLose();
             ShowDead();
         }
+
+        private void FixedUpdate()
+        {
+            if(IsForce)
+            {
+                m_Rigibody.MovePosition(transform.position + direction.normalized * m_ScaleForce * Time.deltaTime);
+            }
+        }
+
+        private bool IsForce = false;
+        private Vector3 direction; 
 
         public void ShowVictory()
         {
@@ -51,24 +70,29 @@ namespace Game
             switch(CharacterType)
             {
                 case Enum.CharacterType.Human:
-                    Anim.Play("Victory");
+                    m_Animator.Play("Victory");
                     break;
                 case Enum.CharacterType.Animal:
-                    Anim.Play("Victory");
+                    m_Animator.Play("Victory");
                     break;
             }    
         }
 
         public void ShowDead()
         {
-            m_Rigibody.isKinematic = true;
+            //m_Rigibody.isKinematic = true;
+            m_Rigibody.constraints = RigidbodyConstraints.FreezePositionY | 
+                RigidbodyConstraints.FreezeRotationX | 
+                RigidbodyConstraints.FreezeRotationZ;
             switch (CharacterType)
             {
                 case Enum.CharacterType.Human:
-                    Anim.Play("Dead");
+                    IsForce = true;
+                    m_Animator.Play("Dead");
                     break;
                 case Enum.CharacterType.Animal:
-                    Anim.Play("Dead");
+                    IsForce = true;
+                    m_Animator.Play("Dead");
                     break;
             }
         }

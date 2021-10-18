@@ -626,6 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectType: 1
   CharacterType: 1
+  m_ScaleForce: 1.5
 --- !u!136 &-186754169961388422
 CapsuleCollider:
   m_ObjectHideFlags: 0
