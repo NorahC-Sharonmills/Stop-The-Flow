@@ -476,6 +476,72 @@ Transform:
   m_Father: {fileID: 590704425}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &91275961
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 2904018094973314528, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973314528, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+--- !u!4 &91275962 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2904018094973745600, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+  m_PrefabInstance: {fileID: 91275961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &115056374
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +696,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151253506}
   m_CullTransparentMesh: 1
+--- !u!1001 &152768487
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344089187284, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2496540344089187284, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+--- !u!4 &152768488 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2496540344088891380, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+  m_PrefabInstance: {fileID: 152768487}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &189696914
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,6 +2144,99 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 100}
   m_Center: {x: 0, y: 0, z: 8.075764}
+--- !u!1 &438675495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438675496}
+  - component: {fileID: 438675497}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &438675496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438675495}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: 0, z: -137}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 480002790}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
+--- !u!108 &438675497
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438675495}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &444603491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,6 +2557,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 720564186}
+  - {fileID: 2035917504}
+  - {fileID: 438675496}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2544,6 +2771,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519913898}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &523787303
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261487841, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 09
+      objectReference: {fileID: 0}
+    - target: {fileID: 3978152662261487841, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+--- !u!4 &523787304 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3978152662261122241, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+  m_PrefabInstance: {fileID: 523787303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &526214782
 GameObject:
   m_ObjectHideFlags: 0
@@ -5203,6 +5496,72 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 100}
   m_Center: {x: 0, y: 0, z: 8.075764}
+--- !u!1001 &1078438488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890998693, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2188836896890998693, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+--- !u!4 &1078438489 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2188836896890901381, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+  m_PrefabInstance: {fileID: 1078438488}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1082367727
 GameObject:
   m_ObjectHideFlags: 0
@@ -5954,6 +6313,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265579207}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1286225693
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 1010543162041649725, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162041649725, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+--- !u!4 &1286225694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1010543162042013213, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+  m_PrefabInstance: {fileID: 1286225693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1295973786
 GameObject:
   m_ObjectHideFlags: 0
@@ -6164,42 +6589,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323362837}
   m_CullTransparentMesh: 1
---- !u!84 &1346305766
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 3
-  m_Width: 1080
-  m_Height: 1920
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 1
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!84 &1349517462
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -6547,6 +6936,72 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1383749502
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 8879577703394696527, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394696527, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+--- !u!4 &1383749503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8879577703394984303, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+  m_PrefabInstance: {fileID: 1383749502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1384498150
 GameObject:
   m_ObjectHideFlags: 0
@@ -7662,6 +8117,72 @@ Transform:
   m_Father: {fileID: 590704425}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1758744854
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 1876245824535997, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824535997, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+--- !u!4 &1758744855 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1876245824823709, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+  m_PrefabInstance: {fileID: 1758744854}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1773528949
 GameObject:
   m_ObjectHideFlags: 0
@@ -8586,6 +9107,7 @@ MonoBehaviour:
   m_AttackType: 0
   m_WaterType: 0
   Characters: []
+  Enemys: []
   Water2DSpawn: {fileID: 88644179}
   dataTanks:
   - waterType: 0
@@ -9130,6 +9652,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890251325}
   m_CullTransparentMesh: 1
+--- !u!1001 &1907896635
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010542345, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 05
+      objectReference: {fileID: 0}
+    - target: {fileID: 120706534010542345, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+--- !u!4 &1907896636 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 120706534010504491, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+  m_PrefabInstance: {fileID: 1907896635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1911962143
 GameObject:
   m_ObjectHideFlags: 0
@@ -9417,6 +10005,148 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!84 &2013159351
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 3
+  m_Width: 374
+  m_Height: 712
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 1
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+--- !u!1 &2035917503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035917504}
+  m_Layer: 0
+  m_Name: Outfits
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2035917504
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035917503}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1078438489}
+  - {fileID: 2114711984}
+  - {fileID: 91275962}
+  - {fileID: 2051908583}
+  - {fileID: 1907896636}
+  - {fileID: 152768488}
+  - {fileID: 1758744855}
+  - {fileID: 1383749503}
+  - {fileID: 523787304}
+  - {fileID: 1286225694}
+  m_Father: {fileID: 480002790}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1001 &2051908582
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 3951570640678994554, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640678994554, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+--- !u!4 &2051908583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3951570640679427674, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+  m_PrefabInstance: {fileID: 2051908582}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2097549952
 GameObject:
   m_ObjectHideFlags: 0
@@ -9598,6 +10328,72 @@ MonoBehaviour:
   m_RatioAspect: 1
   m_RatioAspectDefatlt: 1
   m_ScaleRatio: 1
+--- !u!1001 &2114711983
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2035917504}
+    m_Modifications:
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158901426, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_Name
+      value: Fair Aqua Female Outfit Fan 02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662904705158901426, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+--- !u!4 &2114711984 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+  m_PrefabInstance: {fileID: 2114711983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2114835907
 GameObject:
   m_ObjectHideFlags: 0
@@ -10812,7 +11608,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 8
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 1346305766}
+  m_TargetTexture: {fileID: 2013159351}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1

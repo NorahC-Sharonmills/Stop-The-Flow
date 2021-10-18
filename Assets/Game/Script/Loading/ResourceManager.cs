@@ -9,6 +9,11 @@ namespace Game
         [SerializeField]
         private TextAsset[] levels;
 
+        [SerializeField]
+        private ShopScriptableObject shopInfo;
+
+        public ShopScriptableObject ShopInfo => shopInfo;
+
         private Dictionary<int, Level> LevelDics = new Dictionary<int, Level>();
         private Dictionary<string, GameObject> PrefabDics = new Dictionary<string, GameObject>();
 
