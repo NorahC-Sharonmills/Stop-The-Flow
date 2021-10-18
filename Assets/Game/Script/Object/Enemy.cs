@@ -17,6 +17,8 @@ namespace Game
         public string m_IdleAnim;
         public string m_RunAnim;
         public string m_AttackAnim;
+        public string m_ClipAttack;
+        public string m_VictoryAnim;
 
 
         protected override void Awake()
@@ -112,13 +114,17 @@ namespace Game
                         AnimationClip[] clips = m_Animation.runtimeAnimatorController.animationClips;
                         for (int i = 0; i < clips.Length; i++)
                         {
-                            if (clips[i].name == m_AttackAnim)
+                            if (clips[i].name == m_ClipAttack)
                             {
                                 CoroutineUtils.PlayCoroutine(() =>
                                 {
-                                    m_Animation.Play(m_IdleAnim);
+                                    for(int i = 0; i < Game.LevelManager.Instance.Enemys.Count; i++)
+                                    {
+                                        Game.LevelManager.Instance.Enemys[i].GetComponent<Animator>().Play(m_VictoryAnim);
+                                    }
                                 }, clips[i].length);
                             }
+                            Debug.Log(clips[i].name);
                         }
                         break;
                 }

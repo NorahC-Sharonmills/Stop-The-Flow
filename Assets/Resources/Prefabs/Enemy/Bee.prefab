@@ -544,6 +544,8 @@ MonoBehaviour:
   m_IdleAnim: Idle
   m_RunAnim: Run
   m_AttackAnim: Attack
+  m_ClipAttack: Bite Attack
+  m_VictoryAnim: Victory
 --- !u!54 &5296707852118414617
 Rigidbody:
   m_ObjectHideFlags: 0

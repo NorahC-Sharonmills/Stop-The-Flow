@@ -33,6 +33,8 @@ namespace Game
 
         [HideInInspector]
         public List<GameObject> Characters = new List<GameObject>();
+        [HideInInspector]
+        public List<GameObject> Enemys = new List<GameObject>();
 
         //private Vector3 m_CameraOpenPositon = new Vector3(0f, 70f, -20f);
         //private Vector3 m_CameraOpenRotation = new Vector3(70f, 0f, 0f);
@@ -74,6 +76,10 @@ namespace Game
                 {
                     _object.name = "character";
                     Characters.Add(_object);
+                }
+                if (objects[i].ObjectType == Enum.ObjectType.Enemy)
+                {
+                    Enemys.Add(_object);
                 }
             }
 

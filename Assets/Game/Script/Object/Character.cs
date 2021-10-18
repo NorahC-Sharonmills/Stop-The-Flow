@@ -86,16 +86,7 @@ namespace Game
                                 m_Animator.Play("Jump W Root");
                             };
                             CoroutineUtils.PlayManyCoroutine(0, m_Animator.runtimeAnimatorController.animationClips[i].length, jump, jump, jump, jump, jump);
-                        }
-                        //if (m_Animator.runtimeAnimatorController.animationClips[i].name == "Turn Head")
-                        //{
-                        //    m_Animator.Play("Turn Head");
-                        //    System.Action jump = () =>
-                        //    {
-                        //        m_Animator.Play("Turn Head");
-                        //    };
-                        //    CoroutineUtils.PlayManyCoroutine(0, m_Animator.runtimeAnimatorController.animationClips[i].length, jump, jump, jump, jump, jump);
-                        //}                     
+                        }                   
                     }
                     break;
             }    
@@ -117,6 +108,13 @@ namespace Game
                     IsForce = true;
                     m_Animator.Play("Dead");
                     break;
+            }
+
+            if (Game.LevelManager.Instance.m_AttackType == Enum.AttackType.Enemy)
+            {
+                IsForce = false;
+                m_Rigibody.isKinematic = true;
+                m_Rigibody.constraints = RigidbodyConstraints.FreezeAll;
             }
         }
     }
