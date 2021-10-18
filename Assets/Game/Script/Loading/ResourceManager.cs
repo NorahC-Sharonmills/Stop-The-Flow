@@ -14,6 +14,62 @@ namespace Game
 
         public ShopScriptableObject ShopInfo => shopInfo;
 
+        public GameObject GetClothesWithId(string id)
+        {
+            GameObject rs = null;
+            for(int i = 0; i < shopInfo.m_PrefabOutfits.Length; i++)
+            {
+                if(shopInfo.m_PrefabOutfits[i].name == id)
+                {
+                    rs = shopInfo.m_PrefabOutfits[i];
+                }
+            }
+
+            return rs;
+        }
+
+        public GameObject GetUtilityWithId(string id)
+        {
+            GameObject rs = null;
+            for (int i = 0; i < shopInfo.m_PrefabsUtilitys.Length; i++)
+            {
+                if (shopInfo.m_PrefabsUtilitys[i].name == id)
+                {
+                    rs = shopInfo.m_PrefabsUtilitys[i];
+                }
+            }
+
+            return rs;
+        }
+
+        public GameObject GetHairWithId(string id)
+        {
+            GameObject rs = null;
+            for (int i = 0; i < shopInfo.m_PrefabHairs.Length; i++)
+            {
+                if (shopInfo.m_PrefabHairs[i].name == id)
+                {
+                    rs = shopInfo.m_PrefabHairs[i];
+                }
+            }
+
+            return rs;
+        }
+
+        public GameObject GetHatWithId(string id)
+        {
+            GameObject rs = null;
+            for (int i = 0; i < shopInfo.m_PrefabHats.Length; i++)
+            {
+                if (shopInfo.m_PrefabHats[i].name == id)
+                {
+                    rs = shopInfo.m_PrefabHats[i];
+                }
+            }
+
+            return rs;
+        }
+
         private Dictionary<int, Level> LevelDics = new Dictionary<int, Level>();
         private Dictionary<string, GameObject> PrefabDics = new Dictionary<string, GameObject>();
 
