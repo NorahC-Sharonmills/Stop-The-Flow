@@ -116,4 +116,51 @@ public class ShopItem : MonoBehaviour
                 break;
         }    
     }
+
+    public void OnClick()
+    {
+        switch (type)
+        {
+            case "Clothes":
+                if (RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+            case "Hat":
+                if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+            case "Hair":
+                if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+            case "Utility":
+                if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
+                {
+                    
+                }
+                else
+                {
+                    
+                }
+                break;
+        }
+    }
 }

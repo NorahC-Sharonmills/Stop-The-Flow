@@ -87,7 +87,7 @@ public class DrawManager : MonoSingleton<DrawManager>
                     if (fingerPositions.Count < 0)
                         CreateLine();
                     float _distance = Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]);
-                    if (_distance > distance && _distance < 2.5f * distance)
+                    if (_distance > distance && _distance < 4f * distance)
                     {
                         UpdateLine(tempFingerPos);
                     }  
