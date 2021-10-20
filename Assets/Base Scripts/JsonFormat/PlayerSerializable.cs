@@ -11,6 +11,7 @@ public class PlayerSerializable
     public int coin = 0;
     public string character_using = "";
     public int character_color_using = 0;
+    public string character_skin_color_using = "";
     public List<string> characters_bought;
     public string hat_using = "";
     public List<string> hats_bought;

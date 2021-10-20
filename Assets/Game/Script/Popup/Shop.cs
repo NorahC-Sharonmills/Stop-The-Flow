@@ -132,11 +132,23 @@ namespace Game
                     {
                         SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetComponent<ShopCharacter>().GetSkinnedMeshRenderer;
                         Material[] mats = Renderer.materials;
-                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[index];
+                        switch(RuntimeStorageData.PLAYER.character_skin_color_using)
+                        {
+                            case "white":
+                                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[index];
+                                break;
+                            case "black":
+                                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialBlackOutfitsColors[index];
+                                break;
+                            default:
+                                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[index];
+                                break;
+                        }
                         Renderer.materials = mats;
                         Clothes[i].UIObject3D.HardUpdateDisplay();
 
                         m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
+                        m_Characters[i].GetHeadMeshRenderer.materials = mats;
                     }
                     RuntimeStorageData.PLAYER.character_color_using = index;
                     break;
@@ -149,6 +161,42 @@ namespace Game
                 case "utility":
 
                     break;
+            }
+        }
+
+        public void ChooseSkinColor(int index)
+        {
+            switch(index)
+            {
+                case 0:
+                    RuntimeStorageData.PLAYER.character_skin_color_using = "white";
+                    break;
+                case 1:
+                    RuntimeStorageData.PLAYER.character_skin_color_using = "black";
+                    break;
+            }
+
+            for (int i = 0; i < m_CharacterNoCameraRenderers.Length; i++)
+            {
+                SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetComponent<ShopCharacter>().GetSkinnedMeshRenderer;
+                Material[] mats = Renderer.materials;
+                switch (RuntimeStorageData.PLAYER.character_skin_color_using)
+                {
+                    case "white":
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.character_color_using];
+                        break;
+                    case "black":
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialBlackOutfitsColors[RuntimeStorageData.PLAYER.character_color_using];
+                        break;
+                    default:
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.character_color_using];
+                        break;
+                }
+                Renderer.materials = mats;
+                Clothes[i].UIObject3D.HardUpdateDisplay();
+
+                m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
+                m_Characters[i].GetHeadMeshRenderer.materials = mats;
             }
         }
 
@@ -167,6 +215,7 @@ namespace Game
                 Renderer.materials = mats;
 
                 m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
+                m_Characters[i].GetHeadMeshRenderer.materials = mats;
             }
 
             m_ShopObjectPreview.SetActive(true);

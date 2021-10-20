@@ -12,6 +12,10 @@ public class ShopScriptableObject : ScriptableObject
     public Material[] m_MaterialBlackOutfitsColors;
     [Header("Hats")]
     public GameObject[] m_PrefabHats;
+    [Header("Hair")]
     public GameObject[] m_PrefabHairs;
+    public Color[] m_HairColors;
+    public Material[] m_MaterialHairColors;
+    [Header("Utility")]
     public GameObject[] m_PrefabsUtilitys;
 }
