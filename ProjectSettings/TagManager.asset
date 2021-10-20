@@ -24,7 +24,7 @@ TagManager:
   - Character
   - Particles
   - UIObject3D
-  - 
+  - CameraNoRenderer
   - 
   - 
   - 

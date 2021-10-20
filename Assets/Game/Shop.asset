@@ -23,6 +23,33 @@ MonoBehaviour:
   - {fileID: 8883176887528421111, guid: 6c006f6f3ba340449b0e4fa67294ea0d, type: 3}
   - {fileID: 8296732793525335725, guid: 0fee0b45cdd674a4c89bfeea8d3ab807, type: 3}
   - {fileID: 2079093814985865628, guid: ba0eae37c35c1af48919c57842b968c0, type: 3}
+  m_OutfitsColors:
+  - {r: 0.14117648, g: 0.28627452, b: 0.5686275, a: 1}
+  - {r: 0.23529413, g: 0.08235294, b: 0.49411768, a: 1}
+  - {r: 0.6862745, g: 0.15294118, b: 0.03137255, a: 1}
+  - {r: 0.1137255, g: 0.2901961, b: 0.09411766, a: 1}
+  - {r: 0.20000002, g: 0.07058824, b: 0.007843138, a: 1}
+  - {r: 0.43137258, g: 0.2392157, b: 0.14117648, a: 1}
+  - {r: 0.04705883, g: 0.03529412, b: 0.03137255, a: 1}
+  - {r: 0.50980395, g: 0.5058824, b: 0.5568628, a: 1}
+  m_MaterialWhiteOutfitsColors:
+  - {fileID: 2100000, guid: b7254f03ac35b7045a26d59c3da6164e, type: 2}
+  - {fileID: 2100000, guid: 232d95423ec7ceb4195b330cc708bb3e, type: 2}
+  - {fileID: 2100000, guid: 4d924d8a9e2b426488b78b63ca17b9e6, type: 2}
+  - {fileID: 2100000, guid: 469e6bf00645d744386d1f8f6701e29a, type: 2}
+  - {fileID: 2100000, guid: 194cc28fc0ff32146b0276318dd32519, type: 2}
+  - {fileID: 2100000, guid: 7b00046762f19e847a0c63351fd877a3, type: 2}
+  - {fileID: 2100000, guid: ba11da9dca515714595db73b1fe33e28, type: 2}
+  - {fileID: 2100000, guid: e1534694aee6ada4a9c42cfbd1b9948e, type: 2}
+  m_MaterialBlackOutfitsColors:
+  - {fileID: 2100000, guid: b8385d239f40bcb41bf0604b6526a624, type: 2}
+  - {fileID: 2100000, guid: 50b4776da7db7c14793a1253d54c3ba1, type: 2}
+  - {fileID: 2100000, guid: 6fc55da9f6aa179429d80d2e29785be4, type: 2}
+  - {fileID: 2100000, guid: 20ee787fefb98154a94ff466cac0713b, type: 2}
+  - {fileID: 2100000, guid: c1cb9198663479f46a4241a66cb52452, type: 2}
+  - {fileID: 2100000, guid: 580682c12c4ada84fad0d50eebdbf1d5, type: 2}
+  - {fileID: 2100000, guid: c7492b2fd1f5c31448984915a123f18d, type: 2}
+  - {fileID: 2100000, guid: c2d044c9986a24848a50ab785922b5a5, type: 2}
   m_PrefabHats:
   - {fileID: 1965783042414192300, guid: a56098d3a8b167c42bf79c0104f85ea2, type: 3}
   - {fileID: 139305812354261223, guid: 680c3c8aa9d049c4080c25ca1de6e0b9, type: 3}

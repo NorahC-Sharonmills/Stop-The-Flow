@@ -27,6 +27,16 @@ namespace Game
         private List<ShopItem> Hairs = new List<ShopItem>();
         private List<ShopItem> Utilitys = new List<ShopItem>();
 
+        private string RuntimeTab = "";
+
+        [Header("color")]
+        public Image[] Colors;
+
+        [Header("character")]
+        public GameObject m_ShopObjectPreview;
+        public ShopCharacter[] m_Characters;
+        public Transform[] m_CharacterNoCameraRenderers;
+
         protected override void Awake()
         {
             base.Awake();
@@ -41,7 +51,8 @@ namespace Game
                 Item.id = ImageObject.name;
                 Item.type = "Clothes";
                 Clothes.Add(Item);
-                Item.UIObject3D.ObjectPrefab = Data.m_PrefabOutfits[i].transform;
+                //Item.UIObject3D.ObjectPrefab = Data.m_PrefabOutfits[i].transform;
+                Item.UIObject3D.ObjectPrefab = m_CharacterNoCameraRenderers[i].transform;
             }
 
             for (int i = 0; i < Data.m_PrefabHairs.Length; i++)
@@ -86,7 +97,59 @@ namespace Game
 
         public void Initializeded()
         {
+            for(int i = 0; i < Colors.Length; i++)
+            {
+                if (i < Game.ResourceManager.Instance.ShopInfo.m_OutfitsColors.Length)
+                {
+                    Colors[i].gameObject.SetActive(true);
+                    Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_OutfitsColors[i];
+                }
+                else
+                {
+                    Colors[i].gameObject.SetActive(false);
+                }    
+            }
 
+            for (int i = 0; i < m_Characters.Length; i++)
+            {
+                if (m_Characters[i].name == RuntimeStorageData.PLAYER.character_using)
+                {
+                    m_Characters[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    m_Characters[i].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        public void ChooseColor(int index)
+        {
+            switch (RuntimeTab)
+            {
+                case "clothes":
+                    for (int i = 0; i < m_CharacterNoCameraRenderers.Length; i++)
+                    {
+                        SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetComponent<ShopCharacter>().GetSkinnedMeshRenderer;
+                        Material[] mats = Renderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[index];
+                        Renderer.materials = mats;
+                        Clothes[i].UIObject3D.HardUpdateDisplay();
+
+                        m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
+                    }
+                    RuntimeStorageData.PLAYER.character_color_using = index;
+                    break;
+                case "hair":
+
+                    break;
+                case "hat":
+
+                    break;
+                case "utility":
+
+                    break;
+            }
         }
 
         public void Show()
@@ -96,6 +159,17 @@ namespace Game
             m_Animator.Play("Show");
 
             OnTab("clothes");
+            for (int i = 0; i < m_CharacterNoCameraRenderers.Length; i++)
+            {
+                SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetChild(0).GetComponent<SkinnedMeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.character_color_using];
+                Renderer.materials = mats;
+
+                m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
+            }
+
+            m_ShopObjectPreview.SetActive(true);
         }
 
         public void Home()
@@ -103,6 +177,8 @@ namespace Game
             m_Animator.Play("Hide");
             CoroutineUtils.PlayCoroutine(() =>
             {
+                m_ShopObjectPreview.SetActive(false);
+
                 m_Canvas.SetActive(false);
                 m_ShopObject.SetActive(false);
                 Game.UIManager.Instance.Home();
@@ -117,7 +193,9 @@ namespace Game
                 buttons[i].color = m_DisableColor;
             }
 
-            switch(tab)
+            RuntimeTab = tab;
+
+            switch (tab)
             {
                 case "clothes":
                     tabs[0].SetActive(true);
