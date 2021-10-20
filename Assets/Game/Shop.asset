@@ -77,30 +77,22 @@ MonoBehaviour:
   - {fileID: 1448277091664952558, guid: 9a85a07c857e21f4d8b576205c7fbf1d, type: 3}
   m_PrefabHairs:
   - {fileID: 767596297787518490, guid: fda0e6ab194b8e2449c1e159d4352b5c, type: 3}
-  - {fileID: 2961267692768688755, guid: fb00bd4a382328c40b5dd4a054b2b808, type: 3}
-  - {fileID: 2777389209935765095, guid: df0a9d5c40e708c4ea471c222ceece4a, type: 3}
-  - {fileID: 6775366434484583608, guid: 409f1477c6e8b5f46a457932bc66700b, type: 3}
-  - {fileID: 927227973507216003, guid: b7af08d9237324d4bbf5baf6e1a8b763, type: 3}
   - {fileID: 7468842487408217534, guid: b68cb115a44193b498df41cca2a4d50f, type: 3}
-  - {fileID: 3160915200888952156, guid: 6defb88dbca478247b661da99d66fb00, type: 3}
-  - {fileID: 8117968653864447219, guid: 5476a55bb366e594dae600d02c9b5d8a, type: 3}
-  - {fileID: 252468260051075378, guid: d9ee96d775bcf0d45b7106cd3c0cf0dd, type: 3}
-  - {fileID: 2296272862838503004, guid: c224ae3c1b541dd44b24cf4f10c612f7, type: 3}
   - {fileID: 4924266742347531847, guid: dc5eada394b96fb40be969eaa3de7245, type: 3}
-  - {fileID: 5495670341260415001, guid: 2fa2de7344659044abaa6a02151dc458, type: 3}
-  - {fileID: 5857979118759457789, guid: 501e7d915fb7c5e4b9286daf80bef3e9, type: 3}
-  - {fileID: 196393792644860181, guid: b59b0494db2521345b1fb1388d873d5b, type: 3}
-  - {fileID: 1192854258716757426, guid: 1bc4917d9dc56bc47bddd2f9b4eddae4, type: 3}
   - {fileID: 5990443608223805308, guid: 6ba5d18664bf47844834ed33dcb7d0a4, type: 3}
-  - {fileID: 1906518707231548909, guid: 59f5f90294adef8488f3fd98e4ae1965, type: 3}
-  - {fileID: 6292086847481413979, guid: dbeb9d3e6631d3f4dac581b616f2804b, type: 3}
-  - {fileID: 1148165632872372495, guid: 64e9e13d8d59c8145b5078985286985e, type: 3}
-  - {fileID: 7133673840755527366, guid: a2011ff6b78409144aa83667c66058e7, type: 3}
   - {fileID: 2064475137625342566, guid: 96fefc9fb7946254798634ff9ced83c6, type: 3}
-  - {fileID: 8156350784341707764, guid: 2de85458977819548aceeff9f3db938a, type: 3}
-  - {fileID: 6359219853891810015, guid: 74e70f250bd9f6942b83c7e8c081fd63, type: 3}
-  - {fileID: 576368655019240283, guid: 341431e3500916849b4a0caaf179dfc2, type: 3}
-  - {fileID: 5364822056888939205, guid: d83571b631e5d07428afb54b6f4ccbe4, type: 3}
+  m_HairColors:
+  - {r: 0.58431375, g: 0.58431375, b: 0.58431375, a: 1}
+  - {r: 1, g: 0.85490197, b: 0.10980392, a: 1}
+  - {r: 1, g: 0.49411765, b: 0, a: 1}
+  - {r: 0.8784314, g: 0.8784314, b: 0.8784314, a: 1}
+  - {r: 1, g: 0.41568628, b: 0, a: 1}
+  m_MaterialHairColors:
+  - {fileID: 2100000, guid: 4db6327b0b1c2694b82efcb74bf68cae, type: 2}
+  - {fileID: 2100000, guid: 92ada1a6b0e61b64ab62a9bf49fd9787, type: 2}
+  - {fileID: 2100000, guid: c8f6534713b3c7a4db17b55886c94ff0, type: 2}
+  - {fileID: 2100000, guid: 2beff28159dec3240b754307575a1987, type: 2}
+  - {fileID: 2100000, guid: 7fd8ba9882f5af846bf72297db73a048, type: 2}
   m_PrefabsUtilitys:
   - {fileID: 7220741941403520613, guid: 0dc79c6d403cd864b8013f0b3406cc6f, type: 3}
   - {fileID: 7764562031160403526, guid: 6b681932e2c88fd44b7d18d393c1329b, type: 3}

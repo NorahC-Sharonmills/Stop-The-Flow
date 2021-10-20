@@ -97,19 +97,6 @@ namespace Game
 
         public void Initializeded()
         {
-            for(int i = 0; i < Colors.Length; i++)
-            {
-                if (i < Game.ResourceManager.Instance.ShopInfo.m_OutfitsColors.Length)
-                {
-                    Colors[i].gameObject.SetActive(true);
-                    Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_OutfitsColors[i];
-                }
-                else
-                {
-                    Colors[i].gameObject.SetActive(false);
-                }    
-            }
-
             for (int i = 0; i < m_Characters.Length; i++)
             {
                 if (m_Characters[i].name == RuntimeStorageData.PLAYER.character_using)
@@ -153,6 +140,8 @@ namespace Game
                     RuntimeStorageData.PLAYER.character_color_using = index;
                     break;
                 case "hair":
+
+
 
                     break;
                 case "hat":
@@ -254,6 +243,19 @@ namespace Game
                     {
                         Clothes[i].Initialized();
                     }
+
+                    for (int i = 0; i < Colors.Length; i++)
+                    {
+                        if (i < Game.ResourceManager.Instance.ShopInfo.m_OutfitsColors.Length)
+                        {
+                            Colors[i].gameObject.SetActive(true);
+                            Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_OutfitsColors[i];
+                        }
+                        else
+                        {
+                            Colors[i].gameObject.SetActive(false);
+                        }
+                    }
                     break;
                 case "hair":
                     tabs[1].SetActive(true);
@@ -262,6 +264,19 @@ namespace Game
                     for (int i = 0; i < Hairs.Count; i++)
                     {
                         Hairs[i].Initialized();
+                    }
+
+                    for (int i = 0; i < Colors.Length; i++)
+                    {
+                        if (i < Game.ResourceManager.Instance.ShopInfo.m_HairColors.Length)
+                        {
+                            Colors[i].gameObject.SetActive(true);
+                            Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_HairColors[i];
+                        }
+                        else
+                        {
+                            Colors[i].gameObject.SetActive(false);
+                        }
                     }
                     break;
                 case "hat":
