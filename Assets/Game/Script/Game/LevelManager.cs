@@ -118,32 +118,6 @@ namespace Game
             }
         }
 
-        //public void ChangePositionCamera(CameraType type, bool IsLerp, System.Action Complete)
-        //{
-        //    if (IsLerp)
-        //    {
-
-        //    }
-        //    else
-        //    {
-        //        switch (type)
-        //        {
-        //            case CameraType.PLAY:
-        //                m_Camera.transform.position = m_CameraOpenPositon;
-        //                m_Camera.transform.eulerAngles = m_CameraOpenRotation;
-        //                break;
-        //            case CameraType.DRAW:
-        //                m_Camera.transform.position = m_CameraDrawPosition;
-        //                m_Camera.transform.eulerAngles = m_CameraDrawRotation;
-        //                break;
-        //            case CameraType.START:
-        //                m_Camera.transform.position = m_CameraPlayPosition;
-        //                m_Camera.transform.eulerAngles = m_CameraPlayRotation;
-        //                break;
-        //        }
-        //    }
-        //}
-
         [HideInInspector] public bool IsVictory = false;
         [HideInInspector] public bool IsLose = false;
 
