@@ -110,6 +110,14 @@ namespace Game
             return data;
         }
 
+        private void Update()
+        {
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                Game.Setting.Instance.ConnectionError();
+            }
+        }
+
         //public void ChangePositionCamera(CameraType type, bool IsLerp, System.Action Complete)
         //{
         //    if (IsLerp)

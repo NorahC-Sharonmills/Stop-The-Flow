@@ -26,10 +26,17 @@ namespace Game
         [Header("Show")]
         public GameObject m_Canvas;
         public GameObject m_PanelSetting;
+        public GameObject m_ConnectionError;
         
         public void Initializeded()
         {
 
+        }
+
+        public void ConnectionError()
+        {
+            m_ConnectionError.SetActive(true);
+            m_Canvas.SetActive(true);
         }
 
         public void OnShow()
