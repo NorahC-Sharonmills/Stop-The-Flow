@@ -36,6 +36,12 @@ namespace Game
         public GameObject m_ShopObjectPreview;
         public ShopCharacter[] m_Characters;
         public Transform[] m_CharacterNoCameraRenderers;
+        [Header("Hair")]
+        public Transform[] m_HairNoCameraRenderers;
+        [Header("Hat")]
+        public Transform[] m_HatNoCameraRenderers;
+        [Header("Utility")]
+        public Transform[] m_UtilityCameraRenderers;
 
         protected override void Awake()
         {
@@ -51,8 +57,7 @@ namespace Game
                 Item.id = ImageObject.name;
                 Item.type = "Clothes";
                 Clothes.Add(Item);
-                //Item.UIObject3D.ObjectPrefab = Data.m_PrefabOutfits[i].transform;
-                Item.UIObject3D.ObjectPrefab = m_CharacterNoCameraRenderers[i].transform;
+                Item.UIObject3D.ObjectPrefab = m_CharacterNoCameraRenderers[i];
             }
 
             for (int i = 0; i < Data.m_PrefabHairs.Length; i++)
@@ -65,7 +70,7 @@ namespace Game
                 Item.id = ImageObject.name;
                 Item.type = "Hair";
                 Hairs.Add(Item);
-                Item.UIObject3D.ObjectPrefab = Data.m_PrefabHairs[i].transform;
+                Item.UIObject3D.ObjectPrefab = m_HairNoCameraRenderers[i];
             }
 
             for (int i = 0; i < Data.m_PrefabHats.Length; i++)
@@ -78,7 +83,7 @@ namespace Game
                 Item.id = ImageObject.name;
                 Item.type = "Hat";
                 Hats.Add(Item);
-                Item.UIObject3D.ObjectPrefab = Data.m_PrefabHats[i].transform;
+                Item.UIObject3D.ObjectPrefab = m_HatNoCameraRenderers[i];
             }
 
             for (int i = 0; i < Data.m_PrefabsUtilitys.Length; i++)
@@ -91,7 +96,65 @@ namespace Game
                 Item.id = ImageObject.name;
                 Item.type = "Utility";
                 Utilitys.Add(Item);
-                Item.UIObject3D.ObjectPrefab = Data.m_PrefabsUtilitys[i].transform;
+                Item.UIObject3D.ObjectPrefab = m_UtilityCameraRenderers[i];
+            }
+        }
+
+        public void ChooseSkinPreviewWithId(string str)
+        {
+            for (int i = 0; i < m_Characters.Length; i++)
+            {
+                if (m_Characters[i].name == str)
+                {
+                    m_Characters[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    m_Characters[i].gameObject.SetActive(false);
+                }
+            }
+        }   
+        
+        public void ChooseHairPreviewWithId(string str)
+        {
+            HairChoose = str;
+            for (int i = 0; i < m_Characters.Length; i++)
+            {
+                MeshRenderer Renderer = m_Characters[i].GetHairWithName(str);
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
+                Renderer.materials = mats;
+            }
+        }
+
+        public void ChooseHatPreviewWithId(string str)
+        {
+            HatChoose = str;
+            for (int i = 0; i < m_Characters.Length; i++)
+            {
+                MeshRenderer Renderer = m_Characters[i].GetHatWithName(str);
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
+                Renderer.materials = mats;
+            }
+        }
+
+        public void ChooseUtilityPreviewWithId(string str)
+        {
+            UtilityChoose = str;
+            for (int i = 0; i < m_Characters.Length; i++)
+            {
+                MeshRenderer Renderer = m_Characters[i].GetFaceWithName(str);
+                Material[] mats = Renderer.materials;
+
+                int NumberFace = 0;
+                if (m_Characters[i].gameObject.activeInHierarchy)
+                {
+                    NumberFace = m_Characters[i].GetIndexOfFace(str);
+                }
+
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[RuntimeStorageData.PLAYER.utility_color_using + (NumberFace * 5)];
+                Renderer.materials = mats;
             }
         }
 
@@ -107,9 +170,66 @@ namespace Game
                 {
                     m_Characters[i].gameObject.SetActive(false);
                 }
+
+                MeshRenderer HairRenderer = m_Characters[i].GetHairWithName(RuntimeStorageData.PLAYER.hair_using);
+                Material[] Hairmats = HairRenderer.materials;
+                Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
+                HairRenderer.materials = Hairmats;
+
+                MeshRenderer HatRenderer = m_Characters[i].GetHatWithName(RuntimeStorageData.PLAYER.hat_using);
+                Material[] HatMats = HatRenderer.materials;
+                HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
+                HatRenderer.materials = HatMats;
+
+                MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.utility_using);
+                Material[] FaceMats = FaceRenderer.materials;
+                FaceMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[RuntimeStorageData.PLAYER.utility_color_using];
+                FaceRenderer.materials = FaceMats;
             }
+
+            for (int i = 0; i < m_CharacterNoCameraRenderers.Length; i++)
+            {
+                SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetChild(0).GetComponent<SkinnedMeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.character_color_using];
+                Renderer.materials = mats;
+
+                m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
+                m_Characters[i].GetHeadMeshRenderer.materials = mats;
+            }
+
+            for (int i = 0; i < m_HairNoCameraRenderers.Length; i++)
+            {
+                MeshRenderer Renderer = m_HairNoCameraRenderers[i].GetComponent<MeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
+                Renderer.materials = mats;
+            }
+
+            for (int i = 0; i < m_HatNoCameraRenderers.Length; i++)
+            {
+                MeshRenderer Renderer = m_HatNoCameraRenderers[i].GetComponent<MeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
+                Renderer.materials = mats;
+            }
+
+            for (int i = 0; i < m_UtilityCameraRenderers.Length; i++)
+            {
+                MeshRenderer Renderer = m_UtilityCameraRenderers[i].GetComponent<MeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[RuntimeStorageData.PLAYER.utility_color_using + (i * 5)];
+                Renderer.materials = mats;
+            }
+
+            HairChoose = RuntimeStorageData.PLAYER.hair_using;
+            HatChoose = RuntimeStorageData.PLAYER.hat_using;
+            UtilityChoose = RuntimeStorageData.PLAYER.utility_using;
         }
 
+        public string HairChoose = "";
+        public string HatChoose = "";
+        public string UtilityChoose = "";
         public void ChooseColor(int index)
         {
             switch (RuntimeTab)
@@ -132,23 +252,97 @@ namespace Game
                                 break;
                         }
                         Renderer.materials = mats;
-                        Clothes[i].UIObject3D.HardUpdateDisplay();
 
                         m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
                         m_Characters[i].GetHeadMeshRenderer.materials = mats;
                     }
+
+
+                    for (int i = 0; i < Clothes.Count; i++)
+                    {
+                        Clothes[i].UIObject3D.HardUpdateDisplay();
+                    }
+
                     RuntimeStorageData.PLAYER.character_color_using = index;
                     break;
                 case "hair":
+                    for(int i = 0; i < m_HairNoCameraRenderers.Length; i++)
+                    {
+                        MeshRenderer Renderer = m_HairNoCameraRenderers[i].GetComponent<MeshRenderer>();
+                        Material[] mats = Renderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[index];
+                        Renderer.materials = mats;
+                    }
 
+                    for (int i = 0; i < Hairs.Count; i++)
+                    {
+                        Hairs[i].UIObject3D.HardUpdateDisplay();
+                    }
 
+                    for (int i = 0; i < m_Characters.Length; i++)
+                    {
+                        MeshRenderer Renderer = m_Characters[i].GetHairWithName(HairChoose);
+                        Material[] mats = Renderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[index];
+                        Renderer.materials = mats;
+                    }
 
+                    RuntimeStorageData.PLAYER.hair_color_using = index;
                     break;
                 case "hat":
+                    for (int i = 0; i < m_HatNoCameraRenderers.Length; i++)
+                    {
+                        MeshRenderer Renderer = m_HatNoCameraRenderers[i].GetComponent<MeshRenderer>();
+                        Material[] mats = Renderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[index];
+                        Renderer.materials = mats;                   
+                    }
 
+                    for(int i = 0; i < Hats.Count; i++)
+                    {
+                        Hats[i].UIObject3D.HardUpdateDisplay();
+                    }    
+
+                    for (int i = 0; i < m_Characters.Length; i++)
+                    {
+                        MeshRenderer Renderer = m_Characters[i].GetHatWithName(HatChoose);
+                        Material[] mats = Renderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[index];
+                        Renderer.materials = mats;
+                    }
+
+                    RuntimeStorageData.PLAYER.hat_color_using = index;
                     break;
                 case "utility":
+                    for (int i = 0; i < m_UtilityCameraRenderers.Length; i++)
+                    {
+                        MeshRenderer Renderer = m_UtilityCameraRenderers[i].GetComponent<MeshRenderer>();
+                        Material[] mats = Renderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[index + (i * 5)];
+                        Renderer.materials = mats;
+                    }    
+                    
+                    for(int i = 0; i < Utilitys.Count; i++)
+                    {
+                        Utilitys[i].UIObject3D.HardUpdateDisplay();
+                    }
 
+                    for (int i = 0; i < m_Characters.Length; i++)
+                    {
+                        MeshRenderer Renderer = m_Characters[i].GetFaceWithName(UtilityChoose);
+
+                        int NumberFace = 0;
+                        if (m_Characters[i].gameObject.activeInHierarchy)
+                        {
+                            NumberFace = m_Characters[i].GetIndexOfFace(UtilityChoose);
+                        }
+
+                        Material[] mats = Renderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[index + NumberFace * 5];
+                        Renderer.materials = mats;
+                    }
+
+                    RuntimeStorageData.PLAYER.utility_color_using = index;
                     break;
             }
         }
@@ -196,16 +390,6 @@ namespace Game
             m_Animator.Play("Show");
 
             OnTab("clothes");
-            for (int i = 0; i < m_CharacterNoCameraRenderers.Length; i++)
-            {
-                SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetChild(0).GetComponent<SkinnedMeshRenderer>();
-                Material[] mats = Renderer.materials;
-                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.character_color_using];
-                Renderer.materials = mats;
-
-                m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
-                m_Characters[i].GetHeadMeshRenderer.materials = mats;
-            }
 
             m_ShopObjectPreview.SetActive(true);
         }
@@ -287,6 +471,19 @@ namespace Game
                     {
                         Hats[i].Initialized();
                     }
+
+                    for (int i = 0; i < Colors.Length; i++)
+                    {
+                        if (i < Game.ResourceManager.Instance.ShopInfo.m_HatColors.Length)
+                        {
+                            Colors[i].gameObject.SetActive(true);
+                            Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_HatColors[i];
+                        }
+                        else
+                        {
+                            Colors[i].gameObject.SetActive(false);
+                        }
+                    }
                     break;
                 case "utility":
                     tabs[3].SetActive(true);
@@ -295,6 +492,19 @@ namespace Game
                     for (int i = 0; i < Utilitys.Count; i++)
                     {
                         Utilitys[i].Initialized();
+                    }
+
+                    for (int i = 0; i < Colors.Length; i++)
+                    {
+                        if (i < Game.ResourceManager.Instance.ShopInfo.m_UtilityColors.Length)
+                        {
+                            Colors[i].gameObject.SetActive(true);
+                            Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_UtilityColors[i];
+                        }
+                        else
+                        {
+                            Colors[i].gameObject.SetActive(false);
+                        }
                     }
                     break;
             }    

@@ -14,10 +14,13 @@ public class PlayerSerializable
     public string character_skin_color_using = "";
     public List<string> characters_bought;
     public string hat_using = "";
+    public int hat_color_using = 0;
     public List<string> hats_bought;
     public string hair_using = "";
+    public int hair_color_using = 0;
     public List<string> hairs_bought;
     public string utility_using = "";
+    public int utility_color_using = 0;
     public List<string> utility_bought;
 
 }

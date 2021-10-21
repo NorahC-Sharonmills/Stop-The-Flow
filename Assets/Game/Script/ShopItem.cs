@@ -122,41 +122,29 @@ public class ShopItem : MonoBehaviour
         switch (type)
         {
             case "Clothes":
+                Game.Shop.Instance.ChooseSkinPreviewWithId(id);
                 if (RuntimeStorageData.PLAYER.characters_bought.Contains(id))
-                {
-                    
-                }
-                else
                 {
                     
                 }
                 break;
             case "Hat":
+                Game.Shop.Instance.ChooseHatPreviewWithId(id);
                 if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
-                {
-                    
-                }
-                else
                 {
                     
                 }
                 break;
             case "Hair":
+                Game.Shop.Instance.ChooseHairPreviewWithId(id);
                 if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
-                {
-                    
-                }
-                else
                 {
                     
                 }
                 break;
             case "Utility":
+                Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
                 if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
-                {
-                    
-                }
-                else
                 {
                     
                 }
