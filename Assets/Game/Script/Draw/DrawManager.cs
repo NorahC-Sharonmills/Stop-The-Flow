@@ -102,7 +102,14 @@ public class DrawManager : MonoSingleton<DrawManager>
             if (fingerPositions.Count < 3)
                 return;
 
-            Water2D.Water2D_Spawner.instance.Spawn();
+            switch (Game.LevelManager.Instance.m_AttackType)
+            {
+                case Enum.AttackType.Enemy:
+                    break;
+                case Enum.AttackType.Water:
+                    Water2D.Water2D_Spawner.instance.Spawn();
+                    break;
+            }
             PathScript.Instance.CompleteLine();
             IsComplete = true;
             CameraController.Instance.MoveToView(() =>

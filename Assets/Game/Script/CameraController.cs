@@ -20,7 +20,7 @@ public class CameraController : MonoSingleton<CameraController>
         base.Awake();
         transform.position = CameraPositionView;
         transform.eulerAngles = CameraRotationView;
-        OffsetCameraSize = 0.7f;
+        OffsetCameraSize = 0.8f;
         IsView = false;
         IsDraw = false;
     }
@@ -51,7 +51,7 @@ public class CameraController : MonoSingleton<CameraController>
         {
             for(int i = 0; i < CameraOffsets.Length; i++)
             {
-                CameraOffsets[0].Offset = value;
+                CameraOffsets[i].Offset = value;
             }    
         }
     }    
@@ -64,7 +64,7 @@ public class CameraController : MonoSingleton<CameraController>
             {
                 transform.eulerAngles = Vector3.Lerp(CameraRotationView, CameraRotationDraw, timeElapsed / lerpDuration);
                 transform.position = Vector3.Lerp(CameraPositionView, CameraPositionDraw, timeElapsed / lerpDuration);
-                OffsetCameraSize = Mathf.Lerp(0.7f, 1f, timeElapsed / lerpDuration);
+                OffsetCameraSize = Mathf.Lerp(0.8f, 1f, timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
             }
             else
@@ -81,7 +81,7 @@ public class CameraController : MonoSingleton<CameraController>
             {
                 transform.eulerAngles = Vector3.Lerp(CameraRotationDraw, CameraRotationView, timeElapsed / lerpDuration);
                 transform.position = Vector3.Lerp(CameraPositionDraw, CameraPositionView, timeElapsed / lerpDuration);
-                OffsetCameraSize = Mathf.Lerp(1f, 0.7f, timeElapsed / lerpDuration);
+                OffsetCameraSize = Mathf.Lerp(1f, 0.8f, timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
             }
             else
