@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class CameraController : MonoSingleton<CameraController>
 {
-    private Vector3 CameraRotationView = new Vector3(-35f, 0f, 0f);
+    private Vector3 CameraPositionView = new Vector3(0f, 0f, -8.5f);
+    private Vector3 CameraRotationView = new Vector3(-65f, 0f, 0f);
+
+    private Vector3 CameraPositionDraw = new Vector3(0f, 0f, 0f);
     private Vector3 CameraRotationDraw = new Vector3(0f, 0f, 0f);
 
     private bool IsView = false;
     private bool IsDraw = false;
 
+    public CameraAutoSize[] CameraOffsets;
+
     protected override void Awake()
     {
         base.Awake();
+        transform.position = CameraPositionView;
         transform.eulerAngles = CameraRotationView;
+        OffsetCameraSize = 0.7f;
         IsView = false;
         IsDraw = false;
     }
@@ -37,6 +44,18 @@ public class CameraController : MonoSingleton<CameraController>
     float timeElapsed;
     float lerpDuration = 0.7f;
 
+    public float OffsetCameraSize
+    {
+        get { return CameraOffsets[0].Offset; }
+        set
+        {
+            for(int i = 0; i < CameraOffsets.Length; i++)
+            {
+                CameraOffsets[0].Offset = value;
+            }    
+        }
+    }    
+
     void Update()
     {
         if(IsDraw)
@@ -44,6 +63,8 @@ public class CameraController : MonoSingleton<CameraController>
             if (timeElapsed < lerpDuration)
             {
                 transform.eulerAngles = Vector3.Lerp(CameraRotationView, CameraRotationDraw, timeElapsed / lerpDuration);
+                transform.position = Vector3.Lerp(CameraPositionView, CameraPositionDraw, timeElapsed / lerpDuration);
+                OffsetCameraSize = Mathf.Lerp(0.7f, 1f, timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
             }
             else
@@ -59,6 +80,8 @@ public class CameraController : MonoSingleton<CameraController>
             if (timeElapsed < lerpDuration)
             {
                 transform.eulerAngles = Vector3.Lerp(CameraRotationDraw, CameraRotationView, timeElapsed / lerpDuration);
+                transform.position = Vector3.Lerp(CameraPositionDraw, CameraPositionView, timeElapsed / lerpDuration);
+                OffsetCameraSize = Mathf.Lerp(1f, 0.7f, timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
             }
             else

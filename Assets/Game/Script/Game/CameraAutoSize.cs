@@ -16,14 +16,16 @@ public class CameraAutoSize : MonoBehaviour
         m_Camera = this.GetComponent<Camera>();
     }
 
+    [Range(0.5f, 1.5f)] public float Offset = 1;
+
     void Update()
     {
         m_RatioAspect = m_Camera.aspect;
         m_RatioAspectDefatlt = m_DefaultSize.y / m_DefaultSize.x;
         m_ScaleRatio = m_RatioAspectDefatlt / m_RatioAspect;
-        if (m_Camera.orthographicSize != Game.LevelManager.Instance.m_SizeCamera * m_ScaleRatio)
+        if (m_Camera.orthographicSize != Game.LevelManager.Instance.m_SizeCamera * m_ScaleRatio * Offset)
         {
-            m_Camera.orthographicSize = Game.LevelManager.Instance.m_SizeCamera * m_ScaleRatio;
+            m_Camera.orthographicSize = Game.LevelManager.Instance.m_SizeCamera * m_ScaleRatio * Offset;
         }
     }
 }
