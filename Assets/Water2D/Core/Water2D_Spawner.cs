@@ -84,37 +84,37 @@
 		public bool DynamicChanges = true;
 
         [Space(20f)]
-        [Header("Runtime actions")]
+        //[Header("Runtime actions")]
 
-        [ButtonAttribute("Start!", "Water2D.Water2D_Spawner", "RunSpawner")]public bool btn_0;
-		static void RunSpawner()
-		{
-            instance.Spawn();
+  //      [ButtonAttribute("Start!", "Water2D.Water2D_Spawner", "RunSpawner")]public bool btn_0;
+		//static void RunSpawner()
+		//{
+  //          instance.Spawn();
 
-        }
+  //      }
 
-        [ButtonAttribute("Stop", "Water2D.Water2D_Spawner", "JustStopSpawner")] public bool btn_1;
-        static void JustStopSpawner()
-        {
-            instance._breakLoop = true;
+  //      [ButtonAttribute("Stop", "Water2D.Water2D_Spawner", "JustStopSpawner")] public bool btn_1;
+  //      static void JustStopSpawner()
+  //      {
+  //          instance._breakLoop = true;
 
-        }
-        [ButtonAttribute("Stop and restore", "Water2D.Water2D_Spawner", "StopSpawner")] public bool btn_2;
-        static void StopSpawner()
-        {
-            instance.Restore();
+  //      }
+  //      [ButtonAttribute("Stop and restore", "Water2D.Water2D_Spawner", "StopSpawner")] public bool btn_2;
+  //      static void StopSpawner()
+  //      {
+  //          instance.Restore();
 
-        }
+  //      }
 
-        [Separator()]
+        //[Separator()]
 
-        [ButtonAttribute("Help?", "Water2D.Water2D_Spawner", "askHelp")] public bool btn;
-        static void askHelp()
-        {
-            string email = "info@2ddlpro.com";
-            string subject = "Water 2D Help!";
-            Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + "");
-        }
+        //[ButtonAttribute("Help?", "Water2D.Water2D_Spawner", "askHelp")] public bool btn;
+        //static void askHelp()
+        //{
+        //    string email = "info@2ddlpro.com";
+        //    string subject = "Water 2D Help!";
+        //    Application.OpenURL("mailto:" + email + "?subject=" + subject + "&body=" + "");
+        //}
 
 
 
@@ -149,7 +149,7 @@
 			//Application.targetFrameRate = 60;
 
 			_parent = new GameObject ("_metaBalls");
-			_parent.hideFlags = HideFlags.HideInHierarchy;
+			//_parent.hideFlags = HideFlags.HideInHierarchy;
 			WaterDropsObjects [0].transform.SetParent (_parent.transform);
 			WaterDropsObjects[0].transform.eulerAngles = new Vector3(90f, 0f, 0f);
 			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, size);
@@ -169,7 +169,6 @@
 				WaterDropsObjects[i].transform.eulerAngles = new Vector3(90f, 0f, 0f);
 				WaterDropsObjects [i].transform.localScale = new Vector3 (size, size, size);
                 WaterDropsObjects[i].layer = WaterDropsObjects[0].layer;
-                //WaterDropsObjects[i].SetActive(false);
             }
 
             WaterDropsObjects[0].SetActive(false);
@@ -180,14 +179,14 @@
 			microSpawns = new List<microSpawn>(5); // Up to 5 microspwawn
 
 
-            instance.Spawn();
+            //instance.Spawn();
         }
 
-		public void RunMicroSpawn(Vector3 pos, int amount, Vector3 initVel)
-		{
-			addMicroSpawn (pos, amount, initVel);
-			executeMicroSpawns ();
-		}
+		//public void RunMicroSpawn(Vector3 pos, int amount, Vector3 initVel)
+		//{
+		//	addMicroSpawn (pos, amount, initVel);
+		//	executeMicroSpawns ();
+		//}
 
 		public void addMicroSpawn(Vector3 pos, int amount, Vector3 initVel)
 		{
@@ -224,10 +223,10 @@
 			StartCoroutine (loop(initSpeed, count));
 		}
 
-		public void Spawn(int count, Vector3 pos, Vector3 InitVelocity, float delay = 0f){
-			executeMicroSpawns ();
-			StartCoroutine (loop(InitVelocity, count, delay));
-		}
+		//public void Spawn(int count, Vector3 pos, Vector3 InitVelocity, float delay = 0f){
+		//	executeMicroSpawns ();
+		//	StartCoroutine (loop(InitVelocity, count, delay));
+		//}
 
 		void executeMicroSpawns()
 		{

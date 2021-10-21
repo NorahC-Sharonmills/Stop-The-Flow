@@ -32,7 +32,8 @@ namespace Game
         private string[] detechedCollisions = new string[]
             {
                 "Plane",
-                "rock"
+                "rock",
+                "wall"
             };
 
         private void OnCollisionEnter(Collision col)
@@ -41,14 +42,18 @@ namespace Game
             {
                 for (int i = 0; i < detechedCollisions.Length; i++)
                 {
-                    if (col.collider.name.Contains(detechedCollisions[i]))
+                    if (col.gameObject.name.Contains(detechedCollisions[i]))
                         return;
                 }
-            }    
+            }
 
             if (Game.LevelManager.Instance.IsVictory)
                 return;
-            direction = Physics.gravity + col.gameObject.GetComponent<Rigidbody>().velocity;
+            Rigidbody colRig = col.gameObject.GetComponent<Rigidbody>();
+            if (colRig == null)
+                return;
+
+            direction = Physics.gravity + colRig.velocity;
             Game.LevelManager.Instance.OnLose();
             ShowDead();
         }
@@ -75,7 +80,6 @@ namespace Game
                 case Enum.CharacterType.Animal:
                     m_Animator.Play("Victory");
                     m_Animator.SetBool("Eat", false);
-                    //m_Animator.SetTrigger("Jump");
                     for(int i = 0; i < m_Animator.runtimeAnimatorController.animationClips.Length; i++)
                     {
                         if(m_Animator.runtimeAnimatorController.animationClips[i].name == "Jump W Root")

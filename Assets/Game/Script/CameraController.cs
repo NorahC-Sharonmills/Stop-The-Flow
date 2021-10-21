@@ -42,7 +42,7 @@ public class CameraController : MonoSingleton<CameraController>
     }
 
     float timeElapsed;
-    float lerpDuration = 0.7f;
+    float lerpDuration = 1f;
 
     public float OffsetCameraSize
     {

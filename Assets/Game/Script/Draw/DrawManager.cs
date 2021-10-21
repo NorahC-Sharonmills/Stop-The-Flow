@@ -101,6 +101,8 @@ public class DrawManager : MonoSingleton<DrawManager>
 
             if (fingerPositions.Count < 3)
                 return;
+
+            Water2D.Water2D_Spawner.instance.Spawn();
             PathScript.Instance.CompleteLine();
             IsComplete = true;
             CameraController.Instance.MoveToView(() =>
@@ -116,12 +118,7 @@ public class DrawManager : MonoSingleton<DrawManager>
                             Game.LevelManager.Instance.Tank.waterFall.SetActive(false);
                             break;
                     }
-                }, 0.1f);
-
-                //CoroutineUtils.PlayCoroutine(() =>
-                //{
-                //    Game.LevelManager.Instance.OnVictory();
-                //}, 5f);
+                }, 0.5f);
             });
         }    
     }
@@ -149,37 +146,11 @@ public class DrawManager : MonoSingleton<DrawManager>
         }
     }
 
-    private void CreatedLine2d()
-    {
-        currentWaterLine = Instantiate(linePrefabs, Vector2.zero, Quaternion.identity);
-        lineWaterRender = currentWaterLine.GetComponent<LineRenderer>();
-
-        fingerWaterPositions = new List<Vector2>();
-
-        Vector2 startPos = m_WaterCamera.ScreenToWorldPoint(Input.mousePosition);
-        fingerWaterPositions.Add(startPos);
-        fingerWaterPositions.Add(startPos);
-        lineWaterRender.SetPosition(0, fingerWaterPositions[0]);
-        lineWaterRender.SetPosition(1, fingerWaterPositions[1]);
-
-        edgeWaterCollider = currentWaterLine.AddComponent<EdgeCollider2D>();
-        edgeWaterCollider.edgeRadius = lineWaterRender.startWidth * 2;
-    }
-
     private void UpdateLine(Vector3 newFingerPos)
     {
         fingerPositions.Add(newFingerPos);
         lineRenderer.positionCount += 1;
         lineRenderer.SetPosition(lineRenderer.positionCount - 1, newFingerPos);
         PathScript.Instance.DrawLine(lineRenderer, position, hight, distance);
-    }
-
-    private void UpdateLine2d(Vector2 newWaterFingerPos)
-    {
-        fingerWaterPositions.Add(newWaterFingerPos);
-        lineWaterRender.positionCount += 1;
-        lineWaterRender.SetPosition(lineWaterRender.positionCount - 1, newWaterFingerPos);
-
-        edgeWaterCollider.SetPoints(fingerWaterPositions);
     }
 }
