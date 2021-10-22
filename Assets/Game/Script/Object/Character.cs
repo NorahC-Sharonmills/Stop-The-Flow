@@ -123,6 +123,8 @@ namespace Game
             {
                 case Enum.CharacterType.Human:
                     m_Animator.Play("Victory");
+                    CharacterInfo.SetFace(ShopCharacter.FaceType.Happy);
+                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
                     break;
                 case Enum.CharacterType.Animal:
                     m_Animator.Play("Victory");
@@ -154,6 +156,8 @@ namespace Game
                 case Enum.CharacterType.Human:
                     IsForce = true;
                     m_Animator.Play("Dead");
+                    CharacterInfo.SetFace(ShopCharacter.FaceType.Angry);
+                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
                     break;
                 case Enum.CharacterType.Animal:
                     IsForce = true;
