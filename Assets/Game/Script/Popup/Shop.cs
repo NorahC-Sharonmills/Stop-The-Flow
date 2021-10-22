@@ -43,6 +43,21 @@ namespace Game
         [Header("Utility")]
         public Transform[] m_UtilityCameraRenderers;
 
+        public GameObject GetSkinRuntime()
+        {
+            GameObject rs = null;
+
+            for(int i = 0; i < m_Characters.Length; i++)
+            {
+                if(m_Characters[i].name == RuntimeStorageData.PLAYER.character_using)
+                {
+                    rs = m_Characters[i].gameObject;
+                }
+            }
+
+            return rs;
+        }
+
         protected override void Awake()
         {
             base.Awake();

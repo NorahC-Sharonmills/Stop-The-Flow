@@ -108,16 +108,49 @@ namespace Game
             return rs;
         }
 
+        public enum FaceType
+        {
+            Worried,
+            Angry,
+            Happy
+        }
+
+        public void SetFace(FaceType faceType)
+        {
+            switch(faceType)
+            {
+                case FaceType.Happy:
+                    GetFaceWithName("Female Face 01 Black");
+                    break;
+                case FaceType.Angry:
+                    GetFaceWithName("Female Face 02 Black");
+                    break;
+                case FaceType.Worried:
+                    GetFaceWithName("Female Face 03 Black");
+                    break;
+            }    
+        }    
+
         private Transform m_FaceContainer = null;
         public MeshRenderer GetFaceWithName(string str)
         {
+            Debug.Log(str);
             if (m_FaceContainer == null)
             {
-                m_FaceContainer = new GameObject("FaceContainer").transform;
-                m_FaceContainer.parent = m_Head;
-                m_FaceContainer.localPosition = Vector3.zero;
-                m_FaceContainer.localRotation = Quaternion.identity;
-                m_FaceContainer.localScale = Vector3.one;
+                for(int i = 0; i < m_Head.childCount; i++)
+                {
+                    if (m_Head.GetChild(i).name == "FaceContainer")
+                        m_FaceContainer = m_Head.GetChild(i);
+                }    
+
+                if(m_FaceContainer == null)
+                {
+                    m_FaceContainer = new GameObject("FaceContainer").transform;
+                    m_FaceContainer.parent = m_Head;
+                    m_FaceContainer.localPosition = Vector3.zero;
+                    m_FaceContainer.localRotation = Quaternion.identity;
+                    m_FaceContainer.localScale = Vector3.one;
+                }    
             }
 
             MeshRenderer rs = null;
