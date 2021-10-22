@@ -117,11 +117,12 @@ namespace Game
                         path = string.Format("Prefabs/{0}", objects.NameObject);
                         break;
                     case Enum.ObjectType.Character:
+                        if (objects.NameObject.Contains("Character"))
+                            objects.NameObject = "Character";
                         path = string.Format("Prefabs/Character/{0}", objects.NameObject);
                         break;
                     case Enum.ObjectType.Enemy:
                         path = string.Format("Prefabs/Enemy/{0}", objects.NameObject);
-
                         break;
                     case Enum.ObjectType.Object:
                         path = string.Format("Prefabs/Object/{0}", objects.NameObject);

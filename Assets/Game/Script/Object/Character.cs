@@ -8,11 +8,14 @@ namespace Game
     {
         public Enum.CharacterType CharacterType;
 
+        public RuntimeAnimatorController m_AnimatorController;
         private Animator m_Animator;
 
         //private Collider m_Collider;
 
         [Range(0.1f, 10f)] public float m_ScaleForce = 0.1f;
+
+        private GameObject CharacterModels;
 
         protected override void Awake()
         {
@@ -26,6 +29,42 @@ namespace Game
                 case Enum.CharacterType.Animal:
                     m_Animator.SetBool("Eat", true);
                     break;
+                case Enum.CharacterType.Human:
+                    m_Animator.enabled = false;
+                    CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
+                    CharacterModels.transform.localPosition = Vector3.zero;
+                    CharacterModels.transform.localRotation = Quaternion.identity;
+                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    m_Animator = CharacterModels.GetComponent<Animator>();
+                    m_Animator.runtimeAnimatorController = m_AnimatorController;
+                    break;
+            }
+        }
+
+        public void ReloadCharacter()
+        {
+            switch (CharacterType)
+            {
+                case Enum.CharacterType.Human:
+                    CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
+                    CharacterModels.transform.localPosition = Vector3.zero;
+                    CharacterModels.transform.localRotation = Quaternion.identity;
+                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    break;
+            }
+        }
+
+        private void SetGameLayerRecursive(GameObject _go, int _layer)
+        {
+            _go.layer = _layer;
+            foreach (Transform child in _go.transform)
+            {
+                child.gameObject.layer = _layer;
+
+                Transform _HasChildren = child.GetComponentInChildren<Transform>();
+                if (_HasChildren != null)
+                    SetGameLayerRecursive(child.gameObject, _layer);
+
             }
         }
 
