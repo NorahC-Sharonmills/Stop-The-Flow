@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 33723539589179704}
   - component: {fileID: 23225288114659820}
   - component: {fileID: 4135600467468826609}
+  - component: {fileID: -5332823108876458520}
   m_Layer: 7
   m_Name: GB_River_1
   m_TagString: Untagged
@@ -95,3 +96,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 4
+--- !u!65 &-5332823108876458520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316417375040806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
+  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
