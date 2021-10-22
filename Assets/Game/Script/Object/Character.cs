@@ -16,6 +16,10 @@ namespace Game
         [Range(0.1f, 10f)] public float m_ScaleForce = 0.1f;
 
         private GameObject CharacterModels;
+        private ShopCharacter CharacterInfo;
+
+        [Header("Human")]
+        public Material[] FaceStates;
 
         protected override void Awake()
         {
@@ -34,9 +38,13 @@ namespace Game
                     CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
                     CharacterModels.transform.localPosition = Vector3.zero;
                     CharacterModels.transform.localRotation = Quaternion.identity;
-                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
                     m_Animator = CharacterModels.GetComponent<Animator>();
                     m_Animator.runtimeAnimatorController = m_AnimatorController;
+
+                    CharacterInfo = CharacterModels.GetComponent<ShopCharacter>();
+                    CharacterInfo.SetFace(ShopCharacter.FaceType.Worried);
+
+                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
                     break;
             }
         }

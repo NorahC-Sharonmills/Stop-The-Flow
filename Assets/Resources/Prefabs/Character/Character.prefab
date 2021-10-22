@@ -69,6 +69,10 @@ MonoBehaviour:
   CharacterType: 1
   m_AnimatorController: {fileID: 9100000, guid: 174f913ebc08a4ce697f0982d1492e1a, type: 2}
   m_ScaleForce: 1.5
+  FaceStates:
+  - {fileID: 2100000, guid: e29e9123afe7ced4ca20af693705fdea, type: 2}
+  - {fileID: 2100000, guid: 1b59a744cc4cc224bb90b113349206d8, type: 2}
+  - {fileID: 2100000, guid: 14856e772c3784347a8b616432f9ba8c, type: 2}
 --- !u!136 &2813494287980320900
 CapsuleCollider:
   m_ObjectHideFlags: 0
