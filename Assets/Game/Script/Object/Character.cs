@@ -80,7 +80,8 @@ namespace Game
             {
                 "Plane",
                 "rock",
-                "wall"
+                "wall",
+                "Fir"
             };
 
         private void OnCollisionEnter(Collision col)
@@ -93,6 +94,8 @@ namespace Game
                         return;
                 }
             }
+
+            Debug.Log(col.gameObject.name);
 
             if (Game.LevelManager.Instance.IsVictory)
                 return;
@@ -147,6 +150,8 @@ namespace Game
 
         public void ShowDead()
         {
+            Debug.Log("Dead");
+
             //m_Rigibody.isKinematic = true;
             m_Rigibody.constraints = RigidbodyConstraints.FreezePositionY | 
                 RigidbodyConstraints.FreezeRotationX | 

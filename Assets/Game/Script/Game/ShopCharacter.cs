@@ -137,7 +137,6 @@ namespace Game
         private Transform m_FaceContainer = null;
         public MeshRenderer GetFaceWithName(string str)
         {
-            Debug.Log(str);
             if (m_FaceContainer == null)
             {
                 for(int i = 0; i < m_Head.childCount; i++)
