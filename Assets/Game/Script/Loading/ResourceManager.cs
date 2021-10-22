@@ -9,6 +9,11 @@ namespace Game
         [SerializeField]
         private TextAsset[] levels;
 
+        public TextAsset GetLevelInTool(int level)
+        {
+            return levels[level];
+        }    
+
         [SerializeField]
         private ShopScriptableObject shopInfo;
 

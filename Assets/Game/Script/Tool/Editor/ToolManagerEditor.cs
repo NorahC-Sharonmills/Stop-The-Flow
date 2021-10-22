@@ -362,9 +362,10 @@ namespace UnityEditor
 
             EditorGUILayout.Space();
 
+            EditorGUILayout.LabelField(string.Format("Save as level : {0}", tool.Level));
             EditorGUILayout.BeginHorizontal();
-            tool.LevelName = EditorGUILayout.TextField("Level Name: ", tool.LevelName);
-            if (GUILayout.Button("Save Level"))
+            tool.LevelName = EditorGUILayout.TextField("File Name: ", tool.LevelName);
+            if (GUILayout.Button("Save File"))
             {
                 SaveData();  
             }
@@ -443,8 +444,8 @@ namespace UnityEditor
             {
                 var _str = JsonUtility.ToJson(info);
                 var path = "Assets/Resources/Level/" + tool.LevelName + ".json";
-                Debug.Log(_str);
-                Debug.Log(string.Format("path {0}", path));
+                //Debug.Log(_str);
+                //Debug.Log(string.Format("path {0}", path));
 
                 if (path.Length > 0)
                 {
@@ -480,9 +481,12 @@ namespace UnityEditor
 
         private string LoadLevel(int value)
         {
-            string path = string.Format("Level/level_{0}", value + 1);
-            var level = Resources.Load<TextAsset>(path);
-            Debug.Log(level.text);
+            Game.ResourceManager rs = GameObject.Find("ResourceManager").GetComponent<Game.ResourceManager>();
+
+            var level = rs.GetLevelInTool(value);
+
+            //string path = string.Format("Level/level_{0}", value + 1);
+            //var level = Resources.Load<TextAsset>(path);
             tool.LevelName = level.name;
             return level.text;
         }
