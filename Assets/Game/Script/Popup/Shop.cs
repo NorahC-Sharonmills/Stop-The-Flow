@@ -192,9 +192,12 @@ namespace Game
                 HairRenderer.materials = Hairmats;
 
                 MeshRenderer HatRenderer = m_Characters[i].GetHatWithName(RuntimeStorageData.PLAYER.hat_using);
-                Material[] HatMats = HatRenderer.materials;
-                HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
-                HatRenderer.materials = HatMats;
+                if(HatRenderer != null)
+                {
+                    Material[] HatMats = HatRenderer.materials;
+                    HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
+                    HatRenderer.materials = HatMats;
+                }    
 
                 MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.utility_using);
                 Material[] FaceMats = FaceRenderer.materials;

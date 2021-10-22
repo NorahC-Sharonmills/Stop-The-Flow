@@ -105,7 +105,10 @@ namespace Game
             string path = "";
             GameObject obj = null;
 
-            if(Instance.PrefabDics.ContainsKey(objects.NameObject))
+            if (objects.NameObject.Contains("Character"))
+                objects.NameObject = "Character";
+
+            if (Instance.PrefabDics.ContainsKey(objects.NameObject))
             {
                 obj = Instance.PrefabDics[objects.NameObject];
             }
@@ -117,8 +120,6 @@ namespace Game
                         path = string.Format("Prefabs/{0}", objects.NameObject);
                         break;
                     case Enum.ObjectType.Character:
-                        if (objects.NameObject.Contains("Character"))
-                            objects.NameObject = "Character";
                         path = string.Format("Prefabs/Character/{0}", objects.NameObject);
                         break;
                     case Enum.ObjectType.Enemy:

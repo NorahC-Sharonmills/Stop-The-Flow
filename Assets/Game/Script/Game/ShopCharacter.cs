@@ -100,6 +100,9 @@ namespace Game
 
             if (rs == null)
             {
+                var findObject = Game.ResourceManager.Instance.GetHatWithId(str);
+                if (findObject == null)
+                    return rs;
                 GameObject HatObject = Instantiate(Game.ResourceManager.Instance.GetHatWithId(str), m_HatContainer) as GameObject;
                 HatObject.name = HatObject.name.Replace("(Clone)", "");
                 rs = HatObject.GetComponent<MeshRenderer>();
