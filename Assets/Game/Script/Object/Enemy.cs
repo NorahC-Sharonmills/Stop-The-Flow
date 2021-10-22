@@ -26,6 +26,9 @@ namespace Game
             base.Awake();
 
             m_Collider = this.GetComponent<Collider>();
+            if (m_Animation == null)
+                m_Animation = this.GetComponent<Animator>();
+
 
             switch (EnemyType)
             {
