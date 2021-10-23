@@ -89,6 +89,12 @@ namespace Game
                 Tank = ActiveWater(m_Level.LevelData.WaterType);   
             }
 
+            if(RuntimeStorageData.PLAYER.level == 3 && PlayerPrefs.GetInt("Key_RateUs", 0) == 0)
+            {
+                Game.Rate.Instance.Show();
+                PlayerPrefs.SetInt("Key_RateUs", 1);
+            }
+
             StaticVariable.GameState = GameState.PAUSE;
         }
 
