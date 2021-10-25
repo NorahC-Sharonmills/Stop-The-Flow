@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 958822892623041394}
   - component: {fileID: 952708004839399344}
   - component: {fileID: 941845293939782362}
-  - component: {fileID: 983942931678654394}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &983942931678654394
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956293333993234644}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
-  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &6342128913124610309
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +92,6 @@ GameObject:
   - component: {fileID: 6343539203283116707}
   - component: {fileID: 6376562698836307553}
   - component: {fileID: 6364906041789645579}
-  - component: {fileID: 6404402338128010859}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -177,19 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6404402338128010859
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6342128913124610309}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
-  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &6922747074192361572
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +173,6 @@ GameObject:
   - component: {fileID: 6924717799615953858}
   - component: {fileID: 6948865730221602560}
   - component: {fileID: 6937229249535711850}
-  - component: {fileID: 6985167217425352458}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -272,19 +243,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6985167217425352458
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6922747074192361572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
-  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &8299378410360700441
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +254,6 @@ GameObject:
   - component: {fileID: 8297411028596739519}
   - component: {fileID: 8309297343102599549}
   - component: {fileID: 8321003150173711383}
-  - component: {fileID: 8345053472538997111}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -367,19 +324,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8345053472538997111
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8299378410360700441}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
-  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &8799007792052324852
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +335,7 @@ GameObject:
   - component: {fileID: 3899995923702535946}
   - component: {fileID: 2506338568124337469}
   - component: {fileID: 982014012121471140}
+  - component: {fileID: 2669673495662830503}
   m_Layer: 7
   m_Name: wall
   m_TagString: Untagged
@@ -446,6 +391,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2669673495662830503
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8799007792052324852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8641894, y: 1.8281817, z: 9.002775}
+  m_Center: {x: 0.91820157, y: 0.41409087, z: 2.4568806}
 --- !u!1 &9217086701886751610
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +415,6 @@ GameObject:
   - component: {fileID: 9215112961530360028}
   - component: {fileID: 9193103430582664222}
   - component: {fileID: 9205040373724156276}
-  - component: {fileID: 9154532571779173396}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -528,16 +485,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &9154532571779173396
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9217086701886751610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
-  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}

@@ -72,15 +72,9 @@ public class MetaballParticleClass : MonoBehaviour {
 				}
 				return;
 			}
-			if (col.collider.name.Contains("Sand"))
+			if (col.collider.name.Contains("PositionFX"))
 			{
-				Vector3 pos = transform.position;
-				if (Mathf.Abs(pos.y - (int)pos.y) < 0.01f)
-				{
-					pos.y = transform.position.y * 2;
-					var fx = PoolByID.Instance.GetPrefab(Game.ResourceManager.Instance.m_EffectWaterSmoke, pos, transform.rotation, null);
-					PoolByID.Instance.PushToPoolWithTime(fx, 1f);
-				}
+				col.transform.GetComponent<PositionFX>().SpawnFX();
 				return;
 			}
 			
