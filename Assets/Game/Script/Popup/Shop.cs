@@ -246,17 +246,23 @@ namespace Game
                 }
 
                 MeshRenderer HairRenderer = m_Characters[i].GetHairWithName(RuntimeStorageData.PLAYER.hair_using);
-                Material[] Hairmats = HairRenderer.materials;
-                Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
-                HairRenderer.materials = Hairmats;
+                if(RuntimeStorageData.PLAYER.hair_using != "None")
+                {
+                    Material[] Hairmats = HairRenderer.materials;
+                    Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
+                    HairRenderer.materials = Hairmats;
+                }
+
 
                 MeshRenderer HatRenderer = m_Characters[i].GetHatWithName(RuntimeStorageData.PLAYER.hat_using);
-                if(HatRenderer != null)
+                if(RuntimeStorageData.PLAYER.hat_using != "None")
                 {
                     Material[] HatMats = HatRenderer.materials;
                     HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
                     HatRenderer.materials = HatMats;
-                }    
+                }
+
+                MeshRenderer UtilityRenderer = m_Characters[i].GetItemOnHand(RuntimeStorageData.PLAYER.utility_using);
 
                 MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.face_using);
                 Material[] FaceMats = FaceRenderer.materials;
@@ -448,6 +454,8 @@ namespace Game
                 m_ShopObject.SetActive(false);
                 Game.UIManager.Instance.Home();
             }, 0.2f);
+
+            Game.LevelManager.Instance.Characters[0].GetComponent<Game.Character>().ReloadCharacter();
         }
 
         public void OnTab(string tab)

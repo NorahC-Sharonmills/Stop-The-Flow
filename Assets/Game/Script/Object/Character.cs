@@ -35,28 +35,48 @@ namespace Game
                     break;
                 case Enum.CharacterType.Human:
                     m_Animator.enabled = false;
-                    CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
-                    CharacterModels.transform.localPosition = Vector3.zero;
-                    CharacterModels.transform.localRotation = Quaternion.identity;
-                    m_Animator = CharacterModels.GetComponent<Animator>();
-                    m_Animator.runtimeAnimatorController = m_AnimatorController;
-
-                    CharacterInfo = CharacterModels.GetComponent<ShopCharacter>();
-                    CharacterInfo.SetFace(ShopCharacter.FaceType.Worried);
-
-                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    ReloadCharacter();
                     break;
             }
         }
+
 
         public void ReloadCharacter()
         {
             switch (CharacterType)
             {
                 case Enum.CharacterType.Human:
-                    CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
+                    bool IsCreated = true;
+                    GameObject prefabs = Game.Shop.Instance.GetSkinRuntime();
+                    for (int i = 0; i < transform.childCount; i++)
+                    {
+                        if(transform.GetChild(i).name == prefabs.name)
+                        {
+                            IsCreated = false;
+                            transform.GetChild(i).gameObject.SetActive(true);
+                            CharacterModels = transform.GetChild(i).gameObject;
+                        }
+                        else
+                        {
+                            transform.GetChild(i).gameObject.SetActive(false);
+                        }
+                    }
+                    if (IsCreated)
+                    {
+                        CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
+                        CharacterModels.name = CharacterModels.name.Replace("(Clone)", "");
+                    }
+
                     CharacterModels.transform.localPosition = Vector3.zero;
                     CharacterModels.transform.localRotation = Quaternion.identity;
+                    m_Animator = CharacterModels.GetComponent<Animator>();
+                    m_Animator.enabled = true;
+                    m_Animator.runtimeAnimatorController = m_AnimatorController;
+                    m_Animator.Play("Idle");
+
+                    CharacterInfo = CharacterModels.GetComponent<ShopCharacter>();
+                    CharacterInfo.SetFace(ShopCharacter.FaceType.Worried);
+
                     SetGameLayerRecursive(CharacterModels, gameObject.layer);
                     break;
             }
