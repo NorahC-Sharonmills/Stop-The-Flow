@@ -63,6 +63,9 @@ namespace Game
 
             if(rs == null)
             {
+                var findObject = Game.ResourceManager.Instance.GetHairWithId(str);
+                if (findObject == null)
+                    return rs;
                 GameObject HairObject = Instantiate(Game.ResourceManager.Instance.GetHairWithId(str), m_HairContainer) as GameObject;
                 HairObject.name = HairObject.name.Replace("(Clone)", "");
                 rs = HairObject.GetComponent<MeshRenderer>();

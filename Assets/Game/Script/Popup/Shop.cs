@@ -75,6 +75,16 @@ namespace Game
                 Item.UIObject3D.ObjectPrefab = m_CharacterNoCameraRenderers[i];
             }
 
+            GameObject ImageObjectHairNone = Instantiate(m_ImagePrefabs, m_GridHair);
+            ImageObjectHairNone.SetActive(true);
+            ImageObjectHairNone.name = "None";
+
+            ShopItem ItemHairNone = ImageObjectHairNone.GetComponent<ShopItem>();
+            ItemHairNone.id = ImageObjectHairNone.name;
+            ItemHairNone.type = "Hair";
+            Hairs.Add(ItemHairNone);
+            ItemHairNone.UIObject3D.ObjectPrefab = null;
+
             for (int i = 0; i < Data.m_PrefabHairs.Length; i++)
             {
                 GameObject ImageObject = Instantiate(m_ImagePrefabs, m_GridHair);
@@ -87,6 +97,16 @@ namespace Game
                 Hairs.Add(Item);
                 Item.UIObject3D.ObjectPrefab = m_HairNoCameraRenderers[i];
             }
+
+            GameObject ImageObjectHitNone = Instantiate(m_ImagePrefabs, m_GridHat);
+            ImageObjectHitNone.SetActive(true);
+            ImageObjectHitNone.name = "None";
+
+            ShopItem ItemHitNone = ImageObjectHitNone.GetComponent<ShopItem>();
+            ItemHitNone.id = ImageObjectHitNone.name;
+            ItemHitNone.type = "Hat";
+            Hats.Add(ItemHitNone);
+            ItemHitNone.UIObject3D.ObjectPrefab = null;
 
             for (int i = 0; i < Data.m_PrefabHats.Length; i++)
             {
@@ -101,7 +121,7 @@ namespace Game
                 Item.UIObject3D.ObjectPrefab = m_HatNoCameraRenderers[i];
             }
 
-            for (int i = 0; i < Data.m_PrefabsUtilitys.Length; i++)
+            for(int i = 0; i < Data.m_PrefabsUtilitys.Length; i++)
             {
                 GameObject ImageObject = Instantiate(m_ImagePrefabs, m_GridUtility);
                 ImageObject.SetActive(true);
@@ -111,7 +131,8 @@ namespace Game
                 Item.id = ImageObject.name;
                 Item.type = "Utility";
                 Utilitys.Add(Item);
-                Item.UIObject3D.ObjectPrefab = m_UtilityCameraRenderers[i];
+                Item.UIObject3D.ObjectPrefab = Data.m_PrefabsUtilitys[i].transform;
+                Item.UIObject3D.TargetRotation = new Vector3(-37.5f, -270f, 0f);
             }
         }
 
@@ -136,6 +157,8 @@ namespace Game
             for (int i = 0; i < m_Characters.Length; i++)
             {
                 MeshRenderer Renderer = m_Characters[i].GetHairWithName(str);
+                if (str == "None")
+                    continue;
                 Material[] mats = Renderer.materials;
                 mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
                 Renderer.materials = mats;
@@ -145,9 +168,12 @@ namespace Game
         public void ChooseHatPreviewWithId(string str)
         {
             HatChoose = str;
+
             for (int i = 0; i < m_Characters.Length; i++)
             {
                 MeshRenderer Renderer = m_Characters[i].GetHatWithName(str);
+                if (str == "None")
+                    continue;
                 Material[] mats = Renderer.materials;
                 mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
                 Renderer.materials = mats;
@@ -168,7 +194,7 @@ namespace Game
                     NumberFace = m_Characters[i].GetIndexOfFace(str);
                 }
 
-                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[RuntimeStorageData.PLAYER.utility_color_using + (NumberFace * 5)];
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialFaceColors[RuntimeStorageData.PLAYER.utility_color_using + (NumberFace * 5)];
                 Renderer.materials = mats;
             }
         }
@@ -201,7 +227,7 @@ namespace Game
 
                 MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.utility_using);
                 Material[] FaceMats = FaceRenderer.materials;
-                FaceMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[RuntimeStorageData.PLAYER.utility_color_using];
+                FaceMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialFaceColors[RuntimeStorageData.PLAYER.utility_color_using];
                 FaceRenderer.materials = FaceMats;
             }
 
@@ -229,14 +255,6 @@ namespace Game
                 MeshRenderer Renderer = m_HatNoCameraRenderers[i].GetComponent<MeshRenderer>();
                 Material[] mats = Renderer.materials;
                 mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
-                Renderer.materials = mats;
-            }
-
-            for (int i = 0; i < m_UtilityCameraRenderers.Length; i++)
-            {
-                MeshRenderer Renderer = m_UtilityCameraRenderers[i].GetComponent<MeshRenderer>();
-                Material[] mats = Renderer.materials;
-                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[RuntimeStorageData.PLAYER.utility_color_using + (i * 5)];
                 Renderer.materials = mats;
             }
 
@@ -332,35 +350,6 @@ namespace Game
                     RuntimeStorageData.PLAYER.hat_color_using = index;
                     break;
                 case "utility":
-                    for (int i = 0; i < m_UtilityCameraRenderers.Length; i++)
-                    {
-                        MeshRenderer Renderer = m_UtilityCameraRenderers[i].GetComponent<MeshRenderer>();
-                        Material[] mats = Renderer.materials;
-                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[index + (i * 5)];
-                        Renderer.materials = mats;
-                    }    
-                    
-                    for(int i = 0; i < Utilitys.Count; i++)
-                    {
-                        Utilitys[i].UIObject3D.HardUpdateDisplay();
-                    }
-
-                    for (int i = 0; i < m_Characters.Length; i++)
-                    {
-                        MeshRenderer Renderer = m_Characters[i].GetFaceWithName(UtilityChoose);
-
-                        int NumberFace = 0;
-                        if (m_Characters[i].gameObject.activeInHierarchy)
-                        {
-                            NumberFace = m_Characters[i].GetIndexOfFace(UtilityChoose);
-                        }
-
-                        Material[] mats = Renderer.materials;
-                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialUtilityColors[index + NumberFace * 5];
-                        Renderer.materials = mats;
-                    }
-
-                    RuntimeStorageData.PLAYER.utility_color_using = index;
                     break;
             }
         }
@@ -514,10 +503,10 @@ namespace Game
 
                     for (int i = 0; i < Colors.Length; i++)
                     {
-                        if (i < Game.ResourceManager.Instance.ShopInfo.m_UtilityColors.Length)
+                        if (i < Game.ResourceManager.Instance.ShopInfo.m_FaceColors.Length)
                         {
                             Colors[i].gameObject.SetActive(true);
-                            Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_UtilityColors[i];
+                            Colors[i].color = Game.ResourceManager.Instance.ShopInfo.m_FaceColors[i];
                         }
                         else
                         {

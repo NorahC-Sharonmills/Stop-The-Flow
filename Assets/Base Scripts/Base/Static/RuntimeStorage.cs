@@ -109,10 +109,12 @@ public static class RuntimeStorageData
                     _player.hair_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabHairs[2].name;
                     _player.hairs_bought = new System.Collections.Generic.List<string>();
                     _player.hairs_bought.Add(_player.hair_using);
+                    _player.hairs_bought.Add("None");
                     _player.hair_color_using = 1;
-                    _player.hat_using = "";
+                    _player.hat_using = "None";
                     _player.hats_bought = new System.Collections.Generic.List<string>();
-                    _player.utility_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabsUtilitys[0].name;
+                    _player.hats_bought.Add(_player.hat_using);
+                    _player.utility_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabsFaces[0].name;
                     _player.utility_bought = new System.Collections.Generic.List<string>();
                     _player.utility_bought.Add(_player.utility_using);
                     return _player as T;

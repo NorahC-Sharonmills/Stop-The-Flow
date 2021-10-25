@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ShopItem : MonoBehaviour
 {
     public UIObject3D UIObject3D;
+    public GameObject m_None;
+    public GameObject m_Image;
     public GameObject m_ObjectUsing;
     public GameObject m_ObjectLocked;
     public Image m_BoderUsing;
@@ -20,6 +22,9 @@ public class ShopItem : MonoBehaviour
 
     public void Initialized()
     {
+        m_None.SetActive(false);
+        m_Image.SetActive(true);
+
         switch(type)
         {
             case "Clothes":
@@ -67,8 +72,15 @@ public class ShopItem : MonoBehaviour
                     m_ObjectLocked.SetActive(true);
                     m_ObjectUsing.SetActive(false);
                 }
+
+                if (id == "None")
+                {
+                    m_ObjectLocked.SetActive(false);
+                    m_None.SetActive(true);
+                    m_Image.SetActive(false);
+                }
                 break;
-            case "Hair":
+            case "Hair": 
                 if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
                 {
                     if (RuntimeStorageData.PLAYER.hair_using == id)
@@ -89,6 +101,13 @@ public class ShopItem : MonoBehaviour
                     m_BoderUsing.color = ColorLocked;
                     m_ObjectLocked.SetActive(true);
                     m_ObjectUsing.SetActive(false);
+                }
+                Debug.Log(id);
+                if (id == "None")
+                {
+                    m_ObjectLocked.SetActive(false);
+                    m_None.SetActive(true);
+                    m_Image.SetActive(false);
                 }
                 break;
             case "Utility":
@@ -123,31 +142,31 @@ public class ShopItem : MonoBehaviour
         {
             case "Clothes":
                 Game.Shop.Instance.ChooseSkinPreviewWithId(id);
-                if (RuntimeStorageData.PLAYER.characters_bought.Contains(id))
-                {
+                //if (RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                //{
                     
-                }
+                //}
                 break;
             case "Hat":
                 Game.Shop.Instance.ChooseHatPreviewWithId(id);
-                if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
-                {
+                //if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                //{
                     
-                }
+                //}
                 break;
             case "Hair":
                 Game.Shop.Instance.ChooseHairPreviewWithId(id);
-                if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
-                {
+                //if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                //{
                     
-                }
+                //}
                 break;
             case "Utility":
                 Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
-                if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
-                {
+                //if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
+                //{
                     
-                }
+                //}
                 break;
         }
     }

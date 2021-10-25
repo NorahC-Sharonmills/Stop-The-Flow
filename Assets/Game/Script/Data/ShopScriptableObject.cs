@@ -18,8 +18,20 @@ public class ShopScriptableObject : ScriptableObject
     public GameObject[] m_PrefabHairs;
     public Color[] m_HairColors;
     public Material[] m_MaterialHairColors;
+    [Header("Face")]
+    //public GameObject[] m_PrefabsUtilitys;
+    //public Color[] m_UtilityColors;
+    //public Material[] m_MaterialUtilityColors;
+    public GameObject[] m_PrefabsFaces;
+    public Color[] m_FaceColors;
+    public Material[] m_MaterialFaceColors;
     [Header("Utility")]
     public GameObject[] m_PrefabsUtilitys;
-    public Color[] m_UtilityColors;
-    public Material[] m_MaterialUtilityColors;
+    public PositionUtility[] m_UtilityPositions;
+}
+
+public enum PositionUtility
+{
+    Back,
+    Hand
 }
