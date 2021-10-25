@@ -335,12 +335,12 @@ namespace UI.ThreeDimensional
         /// </summary>
         public void HardUpdateDisplay()
         {
-            var color = imageComponent.color;
-            if (Application.isPlaying)
-            {
-                imageComponent.color = new Color(0, 0, 0, 0);
-                //imageComponent.sprite = null;
-            }
+            //var color = imageComponent.color;
+            //if (Application.isPlaying)
+            //{
+            //    imageComponent.color = new Color(0, 0, 0, 0);
+            //    //imageComponent.sprite = null;
+            //}
 
             DestroyResources();
 
@@ -348,7 +348,7 @@ namespace UI.ThreeDimensional
 
             //UpdateDisplay();
             UIObject3DTimer.AtEndOfFrame(() => UpdateDisplay(), this);
-            UIObject3DTimer.DelayedCall(0.05f, () => { imageComponent.color = color; }, this, true);
+            //UIObject3DTimer.DelayedCall(0.05f, () => { imageComponent.color = color; }, this, true);
         }
 
         private void _Destroy(UnityEngine.Object o)
@@ -362,12 +362,12 @@ namespace UI.ThreeDimensional
         /// </summary>
         void Start()
         {
-            var color = imageComponent.color;
-            if (Application.isPlaying)
-            {
-                imageComponent.color = new Color(0, 0, 0, 0);
-                //imageComponent.sprite = null;
-            }
+            //var color = imageComponent.color;
+            //if (Application.isPlaying)
+            //{
+            //    imageComponent.color = new Color(0, 0, 0, 0);
+            //    //imageComponent.sprite = null;
+            //}
 
             UIObject3DTimer.AtEndOfFrame(() => SetStarted(), this, true);
             UIObject3DTimer.AtEndOfFrame(() => OnEnable(), this);
@@ -379,7 +379,7 @@ namespace UI.ThreeDimensional
                 Cleanup();
                 UpdateDisplay();
 
-                UIObject3DTimer.DelayedCall(0.05f, () => { imageComponent.color = color; }, this, true);
+                //UIObject3DTimer.DelayedCall(0.05f, () => { imageComponent.color = color; }, this, true);
             }, this, true);
         }
 
@@ -524,9 +524,14 @@ namespace UI.ThreeDimensional
             UIObject3DUtilities.UnRegisterTargetContainer(this);
         }
 
+        private RawImage raw;
+
         void Prepare()
         {
-            if (imageComponent.sprite != sprite) imageComponent.sprite = sprite;
+            //if (imageComponent.sprite != sprite) imageComponent.sprite = sprite;
+            if (raw == null)
+                raw = transform.GetChild(0).GetComponent<RawImage>();
+            if (raw.texture != this.renderTexture) raw.texture = this.renderTexture;
 
             SetupTargetCamera();
         }
@@ -667,37 +672,37 @@ namespace UI.ThreeDimensional
             }
         }
 
-        [SerializeField, HideInInspector]
-        private UIObject3DImage _imageComponent;
-        /// <summary>
-        /// An image component which renders the sprite created by UIObject3D
-        /// </summary>
-        public UIObject3DImage imageComponent
-        {
-            get
-            {
-                bool setProperties = false;
-                if (_imageComponent == null)
-                {
-                    _imageComponent = this.GetComponent<UIObject3DImage>();
-                    setProperties = true;
-                }
+        //[SerializeField, HideInInspector]
+        //private UIObject3DImage _imageComponent;
+        ///// <summary>
+        ///// An image component which renders the sprite created by UIObject3D
+        ///// </summary>
+        //public UIObject3DImage imageComponent
+        //{
+        //    get
+        //    {
+        //        bool setProperties = false;
+        //        if (_imageComponent == null)
+        //        {
+        //            _imageComponent = this.GetComponent<UIObject3DImage>();
+        //            setProperties = true;
+        //        }
 
-                if (_imageComponent == null)
-                {
-                    _imageComponent = this.gameObject.AddComponent<UIObject3DImage>();
-                    setProperties = true;
-                }
+        //        if (_imageComponent == null)
+        //        {
+        //            _imageComponent = this.gameObject.AddComponent<UIObject3DImage>();
+        //            setProperties = true;
+        //        }
 
-                if (setProperties)
-                {
-                    _imageComponent.type = Image.Type.Simple;
-                    _imageComponent.preserveAspect = true;
-                }
+        //        if (setProperties)
+        //        {
+        //            _imageComponent.type = Image.Type.Simple;
+        //            _imageComponent.preserveAspect = true;
+        //        }
 
-                return _imageComponent;
-            }
-        }
+        //        return _imageComponent;
+        //    }
+        //}
 
         private Texture2D _texture2D;
         protected Texture2D texture2D
