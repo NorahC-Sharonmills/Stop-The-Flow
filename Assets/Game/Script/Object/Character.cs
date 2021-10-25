@@ -77,7 +77,44 @@ namespace Game
                     CharacterInfo = CharacterModels.GetComponent<ShopCharacter>();
                     CharacterInfo.SetFace(ShopCharacter.FaceType.Worried);
 
+                    ReloadAccessory();
+
                     SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    break;
+            }
+        }
+
+        public void ReloadAccessory()
+        {
+            switch (CharacterType)
+            {
+                case Enum.CharacterType.Human:
+                    for (int i = 0; i < transform.childCount; i++)
+                    {
+                        if (transform.GetChild(i).gameObject.activeInHierarchy)
+                        {
+                            CharacterModels = transform.GetChild(i).gameObject;
+                        }
+                    }
+
+                    var HairRenderer = CharacterInfo.GetHairWithName(RuntimeStorageData.PLAYER.hair_using);
+                    if(HairRenderer != null)
+                    {
+                        Material[] Hairmats = HairRenderer.materials;
+                        Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
+                        HairRenderer.materials = Hairmats;
+                    }
+
+                    var HatRenderer = CharacterInfo.GetHatWithName(RuntimeStorageData.PLAYER.hat_using);
+                    if (HatRenderer != null)
+                    {
+                        Material[] HatMats = HatRenderer.materials;
+                        HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
+                        HatRenderer.materials = HatMats;
+                    }
+
+                    var UtilityRenderer = CharacterInfo.GetItemOnHand(RuntimeStorageData.PLAYER.utility_using);
+
                     break;
             }
         }

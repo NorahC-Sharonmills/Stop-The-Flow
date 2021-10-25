@@ -91,6 +91,21 @@ namespace Game
             return rs;
         }
 
+        public GameObject GetHairRuntime()
+        {
+            GameObject rs = null;
+
+            for(int i = 0; i < m_HairNoCameraRenderers.Length; i++)
+            {
+                if (m_HairNoCameraRenderers[i].name == RuntimeStorageData.PLAYER.hair_using)
+                {
+                    rs = m_HairNoCameraRenderers[i].gameObject;
+                }
+            }
+
+            return rs;
+        }
+
         protected override void Awake()
         {
             base.Awake();
