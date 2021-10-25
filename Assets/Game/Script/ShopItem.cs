@@ -148,17 +148,31 @@ public class ShopItem : MonoBehaviour
         switch (type)
         {
             case "Clothes":
+                RuntimeStorageData.PLAYER.character_using = id;
+                if (!RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                    RuntimeStorageData.PLAYER.characters_bought.Add(id);
                 Game.Shop.Instance.ChooseSkinPreviewWithId(id);
                 break;
             case "Hat":
+                RuntimeStorageData.PLAYER.hat_using = id;
+                if (!RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                    RuntimeStorageData.PLAYER.hats_bought.Add(id);
                 Game.Shop.Instance.ChooseHatPreviewWithId(id);
                 break;
             case "Hair":
+                RuntimeStorageData.PLAYER.hair_using = id;
+                if (!RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                    RuntimeStorageData.PLAYER.hairs_bought.Add(id);
                 Game.Shop.Instance.ChooseHairPreviewWithId(id);
                 break;
             case "Utility":
+                RuntimeStorageData.PLAYER.utility_using = id;
+                if (!RuntimeStorageData.PLAYER.utility_bought.Contains(id))
+                    RuntimeStorageData.PLAYER.utility_bought.Add(id);
                 Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
                 break;
         }
+
+        Game.Shop.Instance.ReloadButton(type);
     }
 }

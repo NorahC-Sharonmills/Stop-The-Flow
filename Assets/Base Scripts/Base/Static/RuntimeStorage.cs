@@ -114,9 +114,10 @@ public static class RuntimeStorageData
                     _player.hat_using = "None";
                     _player.hats_bought = new System.Collections.Generic.List<string>();
                     _player.hats_bought.Add(_player.hat_using);
-                    _player.utility_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabsFaces[0].name;
+                    _player.face_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabsFaces[0].name;
+                    _player.utility_using = "None";
                     _player.utility_bought = new System.Collections.Generic.List<string>();
-                    _player.utility_bought.Add(_player.utility_using);
+                    _player.utility_bought.Add("None");
                     return _player as T;
                 default:
                     return null;

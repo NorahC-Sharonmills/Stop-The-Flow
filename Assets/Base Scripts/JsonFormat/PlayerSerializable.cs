@@ -19,6 +19,7 @@ public class PlayerSerializable
     public string hair_using = "";
     public int hair_color_using = 0;
     public List<string> hairs_bought;
+    public string face_using = "";
     public string utility_using = "";
     public int utility_color_using = 0;
     public List<string> utility_bought;

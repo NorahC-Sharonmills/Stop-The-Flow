@@ -27,6 +27,37 @@ namespace Game
         private List<ShopItem> Hairs = new List<ShopItem>();
         private List<ShopItem> Utilitys = new List<ShopItem>();
 
+        public void ReloadButton(string str)
+        {
+            switch(str)
+            {
+                case "Clothes":
+                    for(int i = 0; i < Clothes.Count; i++)
+                    {
+                        Clothes[i].Initialized();
+                    }    
+                    break;
+                case "Hat":
+                    for (int i = 0; i < Hats.Count; i++)
+                    {
+                        Hats[i].Initialized();
+                    }
+                    break;
+                case "Hair":
+                    for (int i = 0; i < Hairs.Count; i++)
+                    {
+                        Hairs[i].Initialized();
+                    }
+                    break;
+                case "Utility":
+                    for (int i = 0; i < Utilitys.Count; i++)
+                    {
+                        Utilitys[i].Initialized();
+                    }
+                    break;
+            }    
+        }    
+
         private string RuntimeTab = "";
 
         public GameObject m_ListColorObject;
@@ -227,9 +258,9 @@ namespace Game
                     HatRenderer.materials = HatMats;
                 }    
 
-                MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.utility_using);
+                MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.face_using);
                 Material[] FaceMats = FaceRenderer.materials;
-                FaceMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialFaceColors[RuntimeStorageData.PLAYER.utility_color_using];
+                FaceMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialFaceColors[0];
                 FaceRenderer.materials = FaceMats;
             }
 
