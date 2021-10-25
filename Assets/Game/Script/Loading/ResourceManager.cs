@@ -33,7 +33,7 @@ namespace Game
             return rs;
         }
 
-        public GameObject GetUtilityWithId(string id)
+        public GameObject GetFaceWithId(string id)
         {
             GameObject rs = null;
             for (int i = 0; i < shopInfo.m_PrefabsFaces.Length; i++)
@@ -41,6 +41,20 @@ namespace Game
                 if (shopInfo.m_PrefabsFaces[i].name == id)
                 {
                     rs = shopInfo.m_PrefabsFaces[i];
+                }
+            }
+
+            return rs;
+        }    
+
+        public GameObject GetUtilityWithId(string id)
+        {
+            GameObject rs = null;
+            for (int i = 0; i < shopInfo.m_PrefabsFaces.Length; i++)
+            {
+                if (shopInfo.m_PrefabsUtilitys[i].name == id)
+                {
+                    rs = shopInfo.m_PrefabsUtilitys[i];
                 }
             }
 

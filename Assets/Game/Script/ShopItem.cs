@@ -102,7 +102,7 @@ public class ShopItem : MonoBehaviour
                     m_ObjectLocked.SetActive(true);
                     m_ObjectUsing.SetActive(false);
                 }
-                Debug.Log(id);
+
                 if (id == "None")
                 {
                     m_ObjectLocked.SetActive(false);
@@ -132,6 +132,13 @@ public class ShopItem : MonoBehaviour
                     m_ObjectLocked.SetActive(true);
                     m_ObjectUsing.SetActive(false);
                 }
+
+                if (id == "None")
+                {
+                    m_ObjectLocked.SetActive(false);
+                    m_None.SetActive(true);
+                    m_Image.SetActive(false);
+                }
                 break;
         }    
     }
@@ -142,31 +149,15 @@ public class ShopItem : MonoBehaviour
         {
             case "Clothes":
                 Game.Shop.Instance.ChooseSkinPreviewWithId(id);
-                //if (RuntimeStorageData.PLAYER.characters_bought.Contains(id))
-                //{
-                    
-                //}
                 break;
             case "Hat":
                 Game.Shop.Instance.ChooseHatPreviewWithId(id);
-                //if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
-                //{
-                    
-                //}
                 break;
             case "Hair":
                 Game.Shop.Instance.ChooseHairPreviewWithId(id);
-                //if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
-                //{
-                    
-                //}
                 break;
             case "Utility":
                 Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
-                //if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
-                //{
-                    
-                //}
                 break;
         }
     }

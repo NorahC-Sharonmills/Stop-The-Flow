@@ -29,6 +29,8 @@ namespace Game
 
         private string RuntimeTab = "";
 
+        public GameObject m_ListColorObject;
+
         [Header("color")]
         public Image[] Colors;
 
@@ -121,7 +123,17 @@ namespace Game
                 Item.UIObject3D.ObjectPrefab = m_HatNoCameraRenderers[i];
             }
 
-            for(int i = 0; i < Data.m_PrefabsUtilitys.Length; i++)
+            GameObject ImageObjectUtilityNone = Instantiate(m_ImagePrefabs, m_GridUtility);
+            ImageObjectUtilityNone.SetActive(true);
+            ImageObjectUtilityNone.name = "None";
+
+            ShopItem ItemUtilityNone = ImageObjectUtilityNone.GetComponent<ShopItem>();
+            ItemUtilityNone.id = ImageObjectUtilityNone.name;
+            ItemUtilityNone.type = "Utility";
+            Utilitys.Add(ItemUtilityNone);
+            ItemUtilityNone.UIObject3D.ObjectPrefab = null;
+
+            for (int i = 0; i < Data.m_PrefabsUtilitys.Length; i++)
             {
                 GameObject ImageObject = Instantiate(m_ImagePrefabs, m_GridUtility);
                 ImageObject.SetActive(true);
@@ -185,17 +197,7 @@ namespace Game
             UtilityChoose = str;
             for (int i = 0; i < m_Characters.Length; i++)
             {
-                MeshRenderer Renderer = m_Characters[i].GetFaceWithName(str);
-                Material[] mats = Renderer.materials;
-
-                int NumberFace = 0;
-                if (m_Characters[i].gameObject.activeInHierarchy)
-                {
-                    NumberFace = m_Characters[i].GetIndexOfFace(str);
-                }
-
-                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialFaceColors[RuntimeStorageData.PLAYER.utility_color_using + (NumberFace * 5)];
-                Renderer.materials = mats;
+                MeshRenderer Renderer = m_Characters[i].GetItemOnHand(str);
             }
         }
 
@@ -263,8 +265,11 @@ namespace Game
             UtilityChoose = RuntimeStorageData.PLAYER.utility_using;
         }
 
+        [HideInInspector]
         public string HairChoose = "";
+        [HideInInspector]
         public string HatChoose = "";
+        [HideInInspector]
         public string UtilityChoose = "";
         public void ChooseColor(int index)
         {
@@ -302,7 +307,7 @@ namespace Game
                     RuntimeStorageData.PLAYER.character_color_using = index;
                     break;
                 case "hair":
-                    for(int i = 0; i < m_HairNoCameraRenderers.Length; i++)
+                    for (int i = 0; i < m_HairNoCameraRenderers.Length; i++)
                     {
                         MeshRenderer Renderer = m_HairNoCameraRenderers[i].GetComponent<MeshRenderer>();
                         Material[] mats = Renderer.materials;
@@ -427,6 +432,7 @@ namespace Game
             switch (tab)
             {
                 case "clothes":
+                    m_ListColorObject.SetActive(true);
                     tabs[0].SetActive(true);
                     buttons[0].color = m_EnableColor;
 
@@ -449,6 +455,7 @@ namespace Game
                     }
                     break;
                 case "hair":
+                    m_ListColorObject.SetActive(true);
                     tabs[1].SetActive(true);
                     buttons[1].color = m_EnableColor;
 
@@ -471,6 +478,7 @@ namespace Game
                     }
                     break;
                 case "hat":
+                    m_ListColorObject.SetActive(true);
                     tabs[2].SetActive(true);
                     buttons[2].color = m_EnableColor;
 
@@ -493,6 +501,7 @@ namespace Game
                     }
                     break;
                 case "utility":
+                    m_ListColorObject.SetActive(false);
                     tabs[3].SetActive(true);
                     buttons[3].color = m_EnableColor;
 

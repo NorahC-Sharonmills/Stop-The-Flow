@@ -106,7 +106,7 @@ namespace Game
                 var findObject = Game.ResourceManager.Instance.GetHatWithId(str);
                 if (findObject == null)
                     return rs;
-                GameObject HatObject = Instantiate(Game.ResourceManager.Instance.GetHatWithId(str), m_HatContainer) as GameObject;
+                GameObject HatObject = Instantiate(findObject, m_HatContainer) as GameObject;
                 HatObject.name = HatObject.name.Replace("(Clone)", "");
                 rs = HatObject.GetComponent<MeshRenderer>();
             }
@@ -174,13 +174,64 @@ namespace Game
 
             if(rs == null)
             {
-                GameObject FaceObject = Instantiate(Game.ResourceManager.Instance.GetUtilityWithId(str), m_FaceContainer) as GameObject;
+                var findObject = Game.ResourceManager.Instance.GetFaceWithId(str);
+                if (findObject == null)
+                    return rs;
+                GameObject FaceObject = Instantiate(findObject, m_FaceContainer) as GameObject;
                 FaceObject.name = FaceObject.name.Replace("(Clone)", "");
                 rs = FaceObject.GetComponent<MeshRenderer>();
             }
 
             return rs;
         }
+
+        private Transform m_HandContainer = null;
+        public MeshRenderer GetItemOnHand(string str)
+        {
+            if (m_HandContainer == null)
+            {
+                for (int i = 0; i < m_Head.childCount; i++)
+                {
+                    if (m_Head.GetChild(i).name == "HandContainer")
+                        m_HandContainer = m_Head.GetChild(i);
+                }
+
+                if (m_HandContainer == null)
+                {
+                    m_HandContainer = new GameObject("HandContainer").transform;
+                    m_HandContainer.parent = m_RHand;
+                    m_HandContainer.localPosition = Vector3.zero;
+                    m_HandContainer.localRotation = Quaternion.identity;
+                    m_HandContainer.localScale = Vector3.one;
+                }
+            }
+
+            MeshRenderer rs = null;
+            for (int i = 0; i < m_HandContainer.childCount; i++)
+            {
+                if (m_HandContainer.GetChild(i).name == str)
+                {
+                    rs = m_HandContainer.GetChild(i).GetComponent<MeshRenderer>();
+                    m_HandContainer.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    m_HandContainer.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+
+            if (rs == null)
+            {
+                var findObject = Game.ResourceManager.Instance.GetUtilityWithId(str);
+                if (findObject == null)
+                    return rs;
+                GameObject FaceObject = Instantiate(findObject, m_HandContainer) as GameObject;
+                FaceObject.name = FaceObject.name.Replace("(Clone)", "");
+                rs = FaceObject.GetComponent<MeshRenderer>();
+            }
+
+            return rs;
+        }    
 
         public int GetIndexOfFace(string str)
         {
