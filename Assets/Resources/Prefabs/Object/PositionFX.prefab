@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 410549472510065576}
   - component: {fileID: 5275692975139579624}
   - component: {fileID: 4960518427916027905}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PositionFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
