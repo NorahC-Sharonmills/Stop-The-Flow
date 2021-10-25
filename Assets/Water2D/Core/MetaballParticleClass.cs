@@ -72,22 +72,26 @@ public class MetaballParticleClass : MonoBehaviour {
 				}
 				return;
 			}
-			if (col.collider.name.Contains("PositionFX"))
-			{
-				col.transform.GetComponent<PositionFX>().SpawnFX();
-				return;
-			}
 			
 			Debug.Log(col.collider.name);
 
 		}			
     }
 
-    private void OnCollisionExit(Collision col)
+    private void Onc(Collision col)
     {
 		if (col.collider.name.Contains("point"))
 		{
 
+		}
+	}
+
+    private void OnTriggerEnter(Collider col)
+    {
+		if (col.name.Contains("PositionFX"))
+		{
+			col.GetComponent<PositionFX>().SpawnFX();
+			return;
 		}
 	}
 }
