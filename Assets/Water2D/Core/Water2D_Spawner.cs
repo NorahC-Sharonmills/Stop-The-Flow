@@ -149,7 +149,7 @@
 			//Application.targetFrameRate = 60;
 
 			_parent = new GameObject ("_metaBalls");
-			//_parent.hideFlags = HideFlags.HideInHierarchy;
+			_parent.hideFlags = HideFlags.HideInHierarchy;
 			WaterDropsObjects [0].transform.SetParent (_parent.transform);
 			WaterDropsObjects[0].transform.eulerAngles = new Vector3(90f, 0f, 0f);
 			WaterDropsObjects [0].transform.localScale = new Vector3 (size, size, size);

@@ -6,14 +6,18 @@ namespace Game
 {
     public class ResourceManager : MonoSingletonGlobal<ResourceManager>
     {
+        [Header("Level")]
         [SerializeField]
         private TextAsset[] levels;
+        [Header("Effect")]
+        public GameObject m_EffectWaterSmoke;
 
         public TextAsset GetLevelInTool(int level)
         {
             return levels[level];
         }    
 
+        [Header("Shop")]
         [SerializeField]
         private ShopScriptableObject shopInfo;
 

@@ -152,8 +152,6 @@ namespace Game
                 }
             }
 
-            Debug.Log(col.gameObject.name);
-
             if (Game.LevelManager.Instance.IsVictory)
                 return;
             Rigidbody colRig = col.gameObject.GetComponent<Rigidbody>();

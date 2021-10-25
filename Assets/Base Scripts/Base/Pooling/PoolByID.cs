@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PoolByID : MonoSingletonGlobal<PoolByID>
+public class PoolByID : MonoSingleton<PoolByID>
 {
     private IDictionary<int, List<GameObject>> pools;
 
@@ -86,8 +86,21 @@ public class PoolByID : MonoSingletonGlobal<PoolByID>
     {
         if (obj != null)
         {
-            obj.transform.parent = null;
             obj.SetActive(false);
         }    
+    }
+
+    public void PushToPoolWithTime(GameObject obj, float time)
+    {
+        if (obj != null)
+        {
+            CoroutineUtils.PlayCoroutine(() =>
+            {
+                if(obj != null)
+                {
+                    obj.SetActive(false);
+                }             
+            }, time);
+        }
     }
 }
