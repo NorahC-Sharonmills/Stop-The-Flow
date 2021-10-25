@@ -190,9 +190,13 @@ namespace Game
                 Item.type = "Utility";
                 Utilitys.Add(Item);
                 Item.UIObject3D.ObjectPrefab = Data.m_PrefabsUtilitys[i].transform;
-                Item.UIObject3D.TargetRotation = new Vector3(-37.5f, -270f, 0f);
+                Item.UIObject3D.TargetRotation = DefaultRotationUtility;
+                Item.UIObject3D.CameraDistance = Data.m_UtilityShowSettings[i].CameraDistance;
+                Item.UIObject3D.CameraFOV = Data.m_UtilityShowSettings[i].CameraFOV;
             }
         }
+
+        private Vector3 DefaultRotationUtility = new Vector3(-37.5f, -270f, 0f);
 
         public void ChooseSkinPreviewWithId(string str)
         {

@@ -25,6 +25,14 @@ public class ShopScriptableObject : ScriptableObject
     [Header("Utility")]
     public GameObject[] m_PrefabsUtilitys;
     public PositionUtility[] m_UtilityPositions;
+    public UtilityCameraSetting[] m_UtilityShowSettings;
+}
+
+[System.Serializable]
+public struct UtilityCameraSetting
+{
+    public float CameraFOV;
+    public float CameraDistance;
 }
 
 public enum PositionUtility

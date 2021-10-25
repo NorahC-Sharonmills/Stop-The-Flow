@@ -123,3 +123,14 @@ MonoBehaviour:
   - {fileID: 7911968637173581320, guid: 1972212758fe84c409c37e03c72a0d1e, type: 3}
   - {fileID: 863404280245594232, guid: b27e5b801d3bcaf4097eacf2d25d1e16, type: 3}
   m_UtilityPositions: 01000000010000000100000001000000010000000000000000000000000000000000000000000000
+  m_UtilityShowSettings:
+  - CameraFOV: 35
+    CameraDistance: -10
+  - CameraFOV: 20
+    CameraDistance: -7.5
+  - CameraFOV: 20
+    CameraDistance: -10
+  - CameraFOV: 20
+    CameraDistance: -8
+  - CameraFOV: 20
+    CameraDistance: -10
