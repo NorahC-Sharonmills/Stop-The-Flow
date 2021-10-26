@@ -11,6 +11,7 @@ namespace Game
         private TextAsset[] levels;
         [Header("Effect")]
         public GameObject m_EffectWaterSmoke;
+        public GameObject m_EffectHelp;
 
         public TextAsset GetLevelInTool(int level)
         {
