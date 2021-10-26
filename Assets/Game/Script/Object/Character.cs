@@ -21,6 +21,9 @@ namespace Game
         [Header("Human")]
         public Material[] FaceStates;
 
+        private Vector3 m_Position;
+        private Quaternion m_Rotation;
+
         protected override void Awake()
         {
             base.Awake();
@@ -36,6 +39,19 @@ namespace Game
                 case Enum.CharacterType.Human:
                     m_Animator.enabled = false;
                     ReloadCharacter();
+                    break;
+            }
+        }
+
+        private void LateUpdate()
+        {
+            switch (CharacterType)
+            {
+                case Enum.CharacterType.Animal:
+                    break;
+                case Enum.CharacterType.Human:
+                    CharacterModels.transform.localPosition = Vector3.zero;
+                    CharacterModels.transform.localRotation = Quaternion.identity;
                     break;
             }
         }
