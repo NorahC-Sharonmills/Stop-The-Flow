@@ -62,6 +62,20 @@ namespace Game
             m_ShopCamera.SetActive(false);
         }
 
+#if UNITY_EDITOR
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                ButtonBack();
+            }
+            if(Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                ButtonNext();
+            }    
+        }
+#endif
+
         public void Home()
         {
             m_HomeUI.SetActive(true);
