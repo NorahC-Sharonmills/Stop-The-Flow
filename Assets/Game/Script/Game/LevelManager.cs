@@ -82,6 +82,7 @@ namespace Game
                     Vector3 rot = Vector3.right * 25f;
                     GameObject fx = PoolByID.Instance.GetPrefab(Game.ResourceManager.Instance.m_EffectHelp, pos, Quaternion.identity, null);
                     fx.transform.eulerAngles = rot;
+                    helps.Add(fx);
                 }
                 if (objects[i].ObjectType == Enum.ObjectType.Enemy)
                 {
@@ -103,6 +104,15 @@ namespace Game
 
             StaticVariable.GameState = GameState.PAUSE;
         }
+
+        private List<GameObject> helps = new List<GameObject>();
+        public void HideHelpIcon()
+        {
+            for(int i = 0; i < helps.Count; i++)
+            {
+                PoolByID.Instance.PushToPool(helps[i]);
+            }    
+        }    
 
         [HideInInspector] public DataTank Tank;
         private DataTank ActiveWater(Enum.WaterType waterType)

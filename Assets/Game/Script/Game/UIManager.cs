@@ -83,6 +83,7 @@ namespace Game
                 return;
 
             ShowGameUI();
+            Game.LevelManager.Instance.HideHelpIcon();
             CameraController.Instance.MoveToDraw(() =>
             {
                 StaticVariable.GameState = GameState.DRAW;
