@@ -76,13 +76,16 @@ namespace Game
                 {
                     _object.name = "character";
                     Characters.Add(_object);
-                    Vector3 pos = _object.transform.position;
-                    pos.x = 0.65f;
-                    pos.y = 2.3f;
-                    Vector3 rot = Vector3.right * 25f;
-                    GameObject fx = PoolByID.Instance.GetPrefab(Game.ResourceManager.Instance.m_EffectHelp, pos, Quaternion.identity, null);
-                    fx.transform.eulerAngles = rot;
-                    helps.Add(fx);
+                    if(objects[i].CharacterType == Enum.CharacterType.Human)
+                    {
+                        Vector3 pos = _object.transform.position;
+                        pos.x += 0.65f;
+                        pos.y = 2.3f;
+                        Vector3 rot = Vector3.right * 25f;
+                        GameObject fx = PoolByID.Instance.GetPrefab(Game.ResourceManager.Instance.m_EffectHelp, pos, Quaternion.identity, null);
+                        fx.transform.eulerAngles = rot;
+                        helps.Add(fx);
+                    }    
                 }
                 if (objects[i].ObjectType == Enum.ObjectType.Enemy)
                 {
