@@ -113,7 +113,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &440894
 Transform:
@@ -207,6 +207,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectType: 1
   CharacterType: 3
+  m_AnimatorController: {fileID: 0}
+  m_ScaleForce: 0.1
+  FaceStates: []
 --- !u!1 &192524
 GameObject:
   m_ObjectHideFlags: 0
