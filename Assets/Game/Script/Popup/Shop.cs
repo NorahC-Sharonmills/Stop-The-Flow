@@ -144,6 +144,7 @@ namespace Game
                 Item.type = "Hair";
                 Hairs.Add(Item);
                 Item.UIObject3D.ObjectPrefab = m_HairNoCameraRenderers[i];
+                Item.UIObject3D.LightIntensity = 1.1f;
             }
 
             GameObject ImageObjectHitNone = Instantiate(m_ImagePrefabs, m_GridHat);
