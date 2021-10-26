@@ -245,6 +245,7 @@ namespace Game
 
         public void ChooseUtilityPreviewWithId(string str)
         {
+            Debug.Log(str);
             UtilityChoose = str;
             for (int i = 0; i < m_Characters.Length; i++)
             {

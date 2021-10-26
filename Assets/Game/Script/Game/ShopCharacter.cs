@@ -206,6 +206,8 @@ namespace Game
                 }
             }
 
+            Debug.Log("Get item");
+
             MeshRenderer rs = null;
             for (int i = 0; i < m_HandContainer.childCount; i++)
             {
@@ -220,6 +222,8 @@ namespace Game
                 }
             }
 
+            Debug.Log("Get item 2");
+
             if (rs == null)
             {
                 var findObject = Game.ResourceManager.Instance.GetUtilityWithId(str);
@@ -229,6 +233,8 @@ namespace Game
                 FaceObject.name = FaceObject.name.Replace("(Clone)", "");
                 rs = FaceObject.GetComponent<MeshRenderer>();
             }
+
+            Debug.Log("Get item 3");
 
             return rs;
         }    

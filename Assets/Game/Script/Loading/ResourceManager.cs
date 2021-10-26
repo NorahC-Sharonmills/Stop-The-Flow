@@ -54,7 +54,7 @@ namespace Game
         public GameObject GetUtilityWithId(string id)
         {
             GameObject rs = null;
-            for (int i = 0; i < shopInfo.m_PrefabsFaces.Length; i++)
+            for (int i = 0; i < shopInfo.m_PrefabsUtilitys.Length; i++)
             {
                 if (shopInfo.m_PrefabsUtilitys[i].name == id)
                 {
