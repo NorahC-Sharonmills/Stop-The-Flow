@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 958822892623041394}
   - component: {fileID: 952708004839399344}
   - component: {fileID: 941845293939782362}
+  - component: {fileID: 3549452867182481761}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -81,6 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3549452867182481761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956293333993234644}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
+  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &6342128913124610309
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +106,7 @@ GameObject:
   - component: {fileID: 6343539203283116707}
   - component: {fileID: 6376562698836307553}
   - component: {fileID: 6364906041789645579}
+  - component: {fileID: 8395930980387199863}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -162,6 +177,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8395930980387199863
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6342128913124610309}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
+  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &6922747074192361572
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +201,7 @@ GameObject:
   - component: {fileID: 6924717799615953858}
   - component: {fileID: 6948865730221602560}
   - component: {fileID: 6937229249535711850}
+  - component: {fileID: 8460012294610549371}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -243,6 +272,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8460012294610549371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6922747074192361572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
+  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &8299378410360700441
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +296,7 @@ GameObject:
   - component: {fileID: 8297411028596739519}
   - component: {fileID: 8309297343102599549}
   - component: {fileID: 8321003150173711383}
+  - component: {fileID: 4865296533015594374}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -324,6 +367,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4865296533015594374
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8299378410360700441}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
+  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
 --- !u!1 &8799007792052324852
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +471,7 @@ GameObject:
   - component: {fileID: 9215112961530360028}
   - component: {fileID: 9193103430582664222}
   - component: {fileID: 9205040373724156276}
+  - component: {fileID: 3771543408017665030}
   m_Layer: 7
   m_Name: GB_Sand
   m_TagString: Untagged
@@ -485,3 +542,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3771543408017665030
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217086701886751610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8240961, y: 1.8240957, z: 1.8241023}
+  m_Center: {x: 0.9120473, y: 0.91204786, z: -0.91205114}
