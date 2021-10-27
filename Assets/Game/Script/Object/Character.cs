@@ -37,6 +37,7 @@ namespace Game
                     m_Animator.SetBool("Eat", true);
                     break;
                 case Enum.CharacterType.Human:
+                    //SoundManager.Instance.PlayLoopInfinity(Sound.SCREAM);
                     m_Animator.enabled = false;
                     ReloadCharacter();
                     break;
@@ -50,6 +51,12 @@ namespace Game
                 case Enum.CharacterType.Animal:
                     break;
                 case Enum.CharacterType.Human:
+                    if(StaticVariable.GameState == GameState.PAUSE &&
+                        Game.LevelManager.Instance.IsVictory == false &&
+                        Game.LevelManager.Instance.IsLose == false)
+                    {
+                        SoundManager.Instance.PlaySoundAsyncWithDelay(Sound.SCREAM, 1f);
+                    }    
                     CharacterModels.transform.localPosition = Vector3.zero;
                     CharacterModels.transform.localRotation = Quaternion.identity;
                     break;

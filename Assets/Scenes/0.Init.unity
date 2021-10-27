@@ -6543,7 +6543,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSourceNormal: {fileID: 1064640181}
   audioSourceSpecial: {fileID: 1064640180}
-  sounds: []
+  sounds:
+  - sound: 3
+    clip: {fileID: 8300000, guid: b2b4606b6e9dd4b5aa26fbe706e603d9, type: 3}
 --- !u!4 &1064640179
 Transform:
   m_ObjectHideFlags: 0
@@ -9755,7 +9757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1735288840
 AudioSource:
   m_ObjectHideFlags: 0

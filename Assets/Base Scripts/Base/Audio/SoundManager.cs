@@ -6,19 +6,11 @@ using UnityEngine.SceneManagement;
 
 public enum Sound
 {
-    POPUP_OPEN,
     POPUP_CLOSE,
+    POPUP_OPEN,
     CLICK,
-    BUTTON,
-    SPLASH, 
-    SPLASH_COIN,
-    STUN,
-    DEATH,
-    BOMB,
-    TIME,
-    EXPLOSIVE_BALL, 
-    CLIAM_COIN,
-    SCALE_COIN
+    SCREAM,
+    WIN
 }
 
 public class SoundManager : MonoSingletonGlobal<SoundManager>
@@ -95,7 +87,7 @@ public class SoundManager : MonoSingletonGlobal<SoundManager>
         audioSourceNormal.Stop();
     }
 
-    public void PlaySoundAsync(Sound sound, float volume = 1f)
+    public void PlaySoundAsync(Sound sound)
     {
         if (!isPlayingAsync)
         {
@@ -104,6 +96,16 @@ public class SoundManager : MonoSingletonGlobal<SoundManager>
             StartCoroutine(PlaySoundWithUpdate(clip, length));
         }
     }
+
+    public void PlaySoundAsyncWithDelay(Sound sound, float delay)
+    {
+        if (!isPlayingAsync)
+        {
+            AudioClip clip = ConvertToClip(sound);
+            float length = GetSoundLength(sound);
+            StartCoroutine(PlaySoundWithUpdate(clip, length + delay));
+        }
+    }    
 
     private bool isPlayingAsync = false;
     IEnumerator PlaySoundWithUpdate(AudioClip clip, float length, float volume = 1f)
