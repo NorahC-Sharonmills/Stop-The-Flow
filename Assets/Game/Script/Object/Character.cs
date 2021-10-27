@@ -51,12 +51,12 @@ namespace Game
                 case Enum.CharacterType.Animal:
                     break;
                 case Enum.CharacterType.Human:
-                    if(StaticVariable.GameState == GameState.PAUSE &&
-                        Game.LevelManager.Instance.IsVictory == false &&
-                        Game.LevelManager.Instance.IsLose == false)
-                    {
-                        SoundManager.Instance.PlaySoundAsyncWithDelay(Sound.SCREAM, 2.5f);
-                    }    
+                    //if(StaticVariable.GameState == GameState.PAUSE &&
+                    //    Game.LevelManager.Instance.IsVictory == false &&
+                    //    Game.LevelManager.Instance.IsLose == false)
+                    //{
+                    //    SoundManager.Instance.PlaySoundAsyncWithDelay(Sound.SCREAM, 2.5f);
+                    //}    
                     CharacterModels.transform.localPosition = Vector3.zero;
                     CharacterModels.transform.localRotation = Quaternion.identity;
                     break;
@@ -229,6 +229,8 @@ namespace Game
         public void ShowDead()
         {
             Debug.Log("Dead");
+
+            SoundManager.Instance.PlayOnShot(Sound.SCREAM);
 
             //m_Rigibody.isKinematic = true;
             m_Rigibody.constraints = RigidbodyConstraints.FreezePositionY | 
