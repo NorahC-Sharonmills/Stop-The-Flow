@@ -153,6 +153,7 @@ public class ShopItem : MonoBehaviour
                     //da mua
                     RuntimeStorageData.PLAYER.character_using = id;
                     Game.Shop.Instance.ChooseSkinPreviewWithId(id);
+                    Game.Shop.Instance.ReloadButton(type);
                 }
                 else
                 {
@@ -163,6 +164,7 @@ public class ShopItem : MonoBehaviour
                         if (!RuntimeStorageData.PLAYER.characters_bought.Contains(id))
                             RuntimeStorageData.PLAYER.characters_bought.Add(id);
                         Game.Shop.Instance.ChooseSkinPreviewWithId(id);
+                        Game.Shop.Instance.ReloadButton(type);
                     }, () =>
                     {
 
@@ -175,6 +177,7 @@ public class ShopItem : MonoBehaviour
                     //da mua
                     RuntimeStorageData.PLAYER.hat_using = id;
                     Game.Shop.Instance.ChooseHatPreviewWithId(id);
+                    Game.Shop.Instance.ReloadButton(type);
                 }
                 else
                 {
@@ -185,6 +188,7 @@ public class ShopItem : MonoBehaviour
                         if (!RuntimeStorageData.PLAYER.hats_bought.Contains(id))
                             RuntimeStorageData.PLAYER.hats_bought.Add(id);
                         Game.Shop.Instance.ChooseHatPreviewWithId(id);
+                        Game.Shop.Instance.ReloadButton(type);
                     }, () =>
                     {
 
@@ -198,6 +202,7 @@ public class ShopItem : MonoBehaviour
                     //da mua
                     RuntimeStorageData.PLAYER.hair_using = id;
                     Game.Shop.Instance.ChooseHairPreviewWithId(id);
+                    Game.Shop.Instance.ReloadButton(type);
                 }
                 else
                 {
@@ -208,6 +213,7 @@ public class ShopItem : MonoBehaviour
                         if (!RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
                             RuntimeStorageData.PLAYER.hairs_bought.Add(id);
                         Game.Shop.Instance.ChooseHairPreviewWithId(id);
+                        Game.Shop.Instance.ReloadButton(type);
                     }, () =>
                     {
 
@@ -220,6 +226,7 @@ public class ShopItem : MonoBehaviour
                     //da mua
                     RuntimeStorageData.PLAYER.utility_using = id;
                     Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
+                    Game.Shop.Instance.ReloadButton(type);
                 }
                 else
                 {
@@ -230,6 +237,7 @@ public class ShopItem : MonoBehaviour
                         if (!RuntimeStorageData.PLAYER.utility_bought.Contains(id))
                             RuntimeStorageData.PLAYER.utility_bought.Add(id);
                         Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
+                        Game.Shop.Instance.ReloadButton(type);
                     }, () =>
                     {
 
@@ -237,7 +245,5 @@ public class ShopItem : MonoBehaviour
                 }
                 break;
         }
-
-        Game.Shop.Instance.ReloadButton(type);
     }
 }
