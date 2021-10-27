@@ -103,6 +103,7 @@ namespace Game
             CameraController.Instance.MoveToDraw(() =>
             {
                 StaticVariable.GameState = GameState.DRAW;
+                Game.LevelManager.Instance.ActiveTutorial();
             });
 
 

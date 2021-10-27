@@ -36,13 +36,6 @@ namespace Game
         [HideInInspector]
         public List<GameObject> Enemys = new List<GameObject>();
 
-        //private Vector3 m_CameraOpenPositon = new Vector3(0f, 70f, -20f);
-        //private Vector3 m_CameraOpenRotation = new Vector3(70f, 0f, 0f);
-        //private Vector3 m_CameraDrawPosition = new Vector3(0f, 70f, 6.5f);
-        //private Vector3 m_CameraDrawRotation = new Vector3(90f, 0f, 0f);
-        //private Vector3 m_CameraPlayPosition = new Vector3(0f, 70f, -60f);
-        //private Vector3 m_CameraPlayRotation = new Vector3(34f, 0f, 0f);
-
         [Header("Water")]
         public GameObject Water2DSpawn;
 
@@ -105,9 +98,21 @@ namespace Game
                 PlayerPrefs.SetInt("Key_RateUs", 1);
             }
 
+            if(RuntimeStorageData.PLAYER.level == 1 && PlayerPrefs.GetInt("Key_Tut", 0) == 0)
+            {
+                Tutorial = Instantiate(Game.ResourceManager.Instance.m_Tutorial);
+                Tutorial.transform.position = new Vector3(0f, 0f, 9f);
+                Tutorial.transform.eulerAngles = new Vector3(90f, 0f, 0f);
+                Tutorial.name = Tutorial.name.Replace("(Clone)", "");
+                Tutorial.gameObject.SetActive(false);
+                IsTutorial = true;
+            }
+
             StaticVariable.GameState = GameState.PAUSE;
         }
 
+        private GameObject Tutorial;
+        private bool IsTutorial = false;
         private List<GameObject> helps = new List<GameObject>();
         public void HideHelpIcon()
         {
@@ -115,6 +120,24 @@ namespace Game
             {
                 PoolByID.Instance.PushToPool(helps[i]);
             }    
+        }
+
+        public void ActiveTutorial()
+        {
+            if (IsTutorial)
+            {
+                Tutorial.gameObject.SetActive(true);
+            }
+        }
+
+        public void HideTutorial()
+        {
+            if(IsTutorial)
+            {
+                IsTutorial = false;
+                PlayerPrefs.SetInt("Key_Tut", 1);
+                Tutorial.gameObject.SetActive(false);
+            }
         }    
 
         [HideInInspector] public DataTank Tank;

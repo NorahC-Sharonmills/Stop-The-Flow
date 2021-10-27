@@ -10778,6 +10778,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: f437f17b078d3423a964b5b62ffe2331, type: 3}
   m_EffectWaterSmoke: {fileID: 6759128158045782395, guid: 8da3c750ce888d04fba68bb83f979601, type: 3}
   m_EffectHelp: {fileID: 5738263469160799820, guid: 7ee7cac6d365e496f8743bf812b81826, type: 3}
+  m_Tutorial: {fileID: 138030438990747034, guid: 6d7a3e3cbb7114c7ba3432d00349ac25, type: 3}
   shopInfo: {fileID: 11400000, guid: aac867063e4304841898e4921a6fe791, type: 2}
 --- !u!1 &1833930861
 GameObject:

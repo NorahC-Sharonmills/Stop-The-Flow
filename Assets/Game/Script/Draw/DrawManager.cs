@@ -165,6 +165,8 @@ public class DrawManager : MonoSingleton<DrawManager>
                 IsLine = true;
             }
         }
+
+        Game.LevelManager.Instance.HideTutorial();
     }
 
     private void UpdateLine(Vector3 newFingerPos)
