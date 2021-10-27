@@ -25,9 +25,12 @@ namespace Game
 
         public void ButtonNext()
         {
-            SoundManager.Instance.PlayOnShot(Sound.CLICK);
-            RuntimeStorageData.PLAYER.level += 1;
-            GameManager.LoadScene(SceneName.Game, true, false);
+            IronSourceManager.Instance.ShowInter(() =>
+            {
+                SoundManager.Instance.PlayOnShot(Sound.CLICK);
+                RuntimeStorageData.PLAYER.level += 1;
+                GameManager.LoadScene(SceneName.Game, true, false);
+            });
         }
 
         public void ButtonBack()
@@ -127,13 +130,23 @@ namespace Game
         {
             CoroutineUtils.PlayCoroutine(() =>
             {
-                Replay();
+                Game.GameManager.Instance.Lose(() =>
+                {
+                    Replay();
+                }, () =>
+                {
+                    IronSourceManager.Instance.ShowInter(() =>
+                    {
+                        Replay();
+                    });
+                });
+                //Replay();
             }, 3f);
         }    
 
         public void OpenShop()
         {
-            SoundManager.Instance.PlayOnShot(Sound.CLICK);
+            //SoundManager.Instance.PlayOnShot(Sound.CLICK);
             m_GameCamera.SetActive(false);
             m_ShopCamera.SetActive(true);
 

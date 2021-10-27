@@ -31,6 +31,30 @@ namespace Game
 
         }
 
+        private int LoseValue = 0;
+        private int VictoryValue = 0;
+        public void Lose(System.Action success, System.Action fail)
+        {
+            LoseValue += 1;
+            VictoryValue = 0;
+            if(LoseValue < 3)
+            {
+                success?.Invoke();
+            }
+            else
+            {
+                LoseValue = 0;
+                fail?.Invoke();
+            }
+        }
+
+        public void Victory(System.Action success, System.Action fail)
+        {
+            LoseValue = 0;
+            VictoryValue += 1;
+            success?.Invoke();
+        }    
+
         public static PopupStatus PopupStatus = PopupStatus.Hide;
         public static bool IsFade = false;
 

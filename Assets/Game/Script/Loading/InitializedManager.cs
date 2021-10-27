@@ -30,16 +30,18 @@ namespace Game
             {
                 RuntimeStorageData.ReadAllData();
             }
+
+            // kiểm tra xem data đã sẵn sàng chưa
+            yield return new WaitUntil(() => RuntimeStorageData.IsReady);
+
             // thêm các đoạn load các thứ vào đây
             yield return ResourceManager.Instance.InitializedResource();
+            yield return IronSourceManager.Instance.InitializedIronsource();
 
             Game.Setting.Instance.Initializeded();
             Game.Shop.Instance.Initializeded();
 
 
-
-            // kiểm tra xem data đã sẵn sàng chưa
-            yield return new WaitUntil(() => RuntimeStorageData.IsReady);
             GameManager.LoadScene(SceneName.Game);
         }
     }

@@ -148,28 +148,93 @@ public class ShopItem : MonoBehaviour
         switch (type)
         {
             case "Clothes":
-                RuntimeStorageData.PLAYER.character_using = id;
-                if (!RuntimeStorageData.PLAYER.characters_bought.Contains(id))
-                    RuntimeStorageData.PLAYER.characters_bought.Add(id);
-                Game.Shop.Instance.ChooseSkinPreviewWithId(id);
+                if(RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                {
+                    //da mua
+                    RuntimeStorageData.PLAYER.character_using = id;
+                    Game.Shop.Instance.ChooseSkinPreviewWithId(id);
+                }
+                else
+                {
+                    //chua mua
+                    IronSourceManager.Instance.ShowReward(() =>
+                    {
+                        RuntimeStorageData.PLAYER.character_using = id;
+                        if (!RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                            RuntimeStorageData.PLAYER.characters_bought.Add(id);
+                        Game.Shop.Instance.ChooseSkinPreviewWithId(id);
+                    }, () =>
+                    {
+
+                    });
+                }
                 break;
             case "Hat":
-                RuntimeStorageData.PLAYER.hat_using = id;
-                if (!RuntimeStorageData.PLAYER.hats_bought.Contains(id))
-                    RuntimeStorageData.PLAYER.hats_bought.Add(id);
-                Game.Shop.Instance.ChooseHatPreviewWithId(id);
+                if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                {
+                    //da mua
+                    RuntimeStorageData.PLAYER.hat_using = id;
+                    Game.Shop.Instance.ChooseHatPreviewWithId(id);
+                }
+                else
+                {
+                    //chua mua
+                    IronSourceManager.Instance.ShowReward(() =>
+                    {
+                        RuntimeStorageData.PLAYER.hat_using = id;
+                        if (!RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                            RuntimeStorageData.PLAYER.hats_bought.Add(id);
+                        Game.Shop.Instance.ChooseHatPreviewWithId(id);
+                    }, () =>
+                    {
+
+                    });
+                }
+
                 break;
             case "Hair":
-                RuntimeStorageData.PLAYER.hair_using = id;
-                if (!RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
-                    RuntimeStorageData.PLAYER.hairs_bought.Add(id);
-                Game.Shop.Instance.ChooseHairPreviewWithId(id);
+                if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                {
+                    //da mua
+                    RuntimeStorageData.PLAYER.hair_using = id;
+                    Game.Shop.Instance.ChooseHairPreviewWithId(id);
+                }
+                else
+                {
+                    //chua mua
+                    IronSourceManager.Instance.ShowReward(() =>
+                    {
+                        RuntimeStorageData.PLAYER.hair_using = id;
+                        if (!RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                            RuntimeStorageData.PLAYER.hairs_bought.Add(id);
+                        Game.Shop.Instance.ChooseHairPreviewWithId(id);
+                    }, () =>
+                    {
+
+                    });
+                }
                 break;
             case "Utility":
-                RuntimeStorageData.PLAYER.utility_using = id;
-                if (!RuntimeStorageData.PLAYER.utility_bought.Contains(id))
-                    RuntimeStorageData.PLAYER.utility_bought.Add(id);
-                Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
+                if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
+                {
+                    //da mua
+                    RuntimeStorageData.PLAYER.utility_using = id;
+                    Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
+                }
+                else
+                {
+                    //chua mua
+                    IronSourceManager.Instance.ShowReward(() =>
+                    {
+                        RuntimeStorageData.PLAYER.utility_using = id;
+                        if (!RuntimeStorageData.PLAYER.utility_bought.Contains(id))
+                            RuntimeStorageData.PLAYER.utility_bought.Add(id);
+                        Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
+                    }, () =>
+                    {
+
+                    });
+                }
                 break;
         }
 

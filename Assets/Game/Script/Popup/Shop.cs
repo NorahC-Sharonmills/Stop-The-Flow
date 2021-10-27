@@ -467,16 +467,18 @@ namespace Game
         public void Home()
         {
             SoundManager.Instance.PlayOnShot(Sound.CLICK);
-            m_Animator.Play("Hide");
-            CoroutineUtils.PlayCoroutine(() =>
+            IronSourceManager.Instance.ShowInter(() =>
             {
-                m_ShopObjectPreview.SetActive(false);
+                m_Animator.Play("Hide");
+                CoroutineUtils.PlayCoroutine(() =>
+                {
+                    m_ShopObjectPreview.SetActive(false);
 
-                m_Canvas.SetActive(false);
-                m_ShopObject.SetActive(false);
-                Game.UIManager.Instance.Home();
-            }, 0.2f);
-
+                    m_Canvas.SetActive(false);
+                    m_ShopObject.SetActive(false);
+                    Game.UIManager.Instance.Home();
+                }, 0.2f);
+            });
             Game.LevelManager.Instance.Characters[0].GetComponent<Game.Character>().ReloadCharacter();
         }
 

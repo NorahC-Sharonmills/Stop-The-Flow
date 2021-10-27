@@ -179,14 +179,27 @@ namespace Game
             IsVictory = true;
             IsLose = false;
 
-            SoundManager.Instance.PlayOnShot(Sound.WIN);
-            for(int i = 0; i < Characters.Count; i++)
+            Game.GameManager.Instance.Victory(() =>
             {
-                var script = Characters[i].GetComponent<Character>();
-                script.ShowVictory();
-            }
+                SoundManager.Instance.PlayOnShot(Sound.WIN);
+                for (int i = 0; i < Characters.Count; i++)
+                {
+                    var script = Characters[i].GetComponent<Character>();
+                    script.ShowVictory();
+                }
 
-            Game.UIManager.Instance.ShowVictoryUI();
+                Game.UIManager.Instance.ShowVictoryUI();
+            }, () =>
+            {
+                SoundManager.Instance.PlayOnShot(Sound.WIN);
+                for (int i = 0; i < Characters.Count; i++)
+                {
+                    var script = Characters[i].GetComponent<Character>();
+                    script.ShowVictory();
+                }
+
+                Game.UIManager.Instance.ShowVictoryUI();
+            });
         }
 
         public void OnLose()
