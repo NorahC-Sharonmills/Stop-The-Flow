@@ -55,7 +55,7 @@ namespace Game
                         Game.LevelManager.Instance.IsVictory == false &&
                         Game.LevelManager.Instance.IsLose == false)
                     {
-                        SoundManager.Instance.PlaySoundAsyncWithDelay(Sound.SCREAM, 1f);
+                        SoundManager.Instance.PlaySoundAsyncWithDelay(Sound.SCREAM, 2.5f);
                     }    
                     CharacterModels.transform.localPosition = Vector3.zero;
                     CharacterModels.transform.localRotation = Quaternion.identity;

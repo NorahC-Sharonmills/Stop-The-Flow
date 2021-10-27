@@ -6,8 +6,8 @@ public class DrawManager : MonoSingleton<DrawManager>
 {
     public GameObject linePrefabs;
 
-    private GameObject currentLine;
-    private LineRenderer lineRenderer;
+    private GameObject currentLine = null;
+    private LineRenderer lineRenderer = null;
     private List<Vector3> fingerPositions;
 
     private GameObject currentWaterLine;
@@ -67,38 +67,46 @@ public class DrawManager : MonoSingleton<DrawManager>
             CreateLine();
         }
 
+        if(Input.GetMouseButton(0))
+        {
+
+            if (!IsLine)
+            {
+                CreateLine();
+            }
+            else
+            {
+                int layerMask = 1 << 9;
+                layerMask = ~layerMask;
+
+                if (Physics.SphereCast(m_Camera.ScreenToWorldPoint(Input.mousePosition), radius, m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask))
+                {
+                    if (hit.collider.name == "Plane")
+                    {
+                        Vector3 tempFingerPos = hit.point;
+                        if (fingerPositions == null)
+                            CreateLine();
+
+                        if (fingerPositions.Count < 0)
+                            CreateLine();
+                        float _distance = Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]);
+                        if (_distance > distance && _distance < 4f * distance)
+                        {
+                            UpdateLine(tempFingerPos);
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log(hit.collider.name);
+                    }
+                }
+            }    
+        }
+
         if (!IsLine)
             return;
 
-        if(Input.GetMouseButton(0))
-        {
-            int layerMask = 1 << 9;
-            layerMask = ~layerMask;
-
-
-            if (Physics.SphereCast(m_Camera.ScreenToWorldPoint(Input.mousePosition), radius, m_Camera.transform.forward, out RaycastHit hit, Mathf.Infinity, layerMask))
-            {
-                if (hit.collider.name == "Plane")
-                {
-                    Vector3 tempFingerPos = hit.point;
-                    if (fingerPositions == null)
-                        CreateLine();
-
-                    if (fingerPositions.Count < 0)
-                        CreateLine();
-                    float _distance = Vector3.Distance(tempFingerPos, fingerPositions[fingerPositions.Count - 1]);
-                    if (_distance > distance && _distance < 4f * distance)
-                    {
-                        UpdateLine(tempFingerPos);
-                    }  
-                }
-                else
-                {
-                    Debug.Log(hit.collider.name);
-                }    
-            }
-        }  
-        if(Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             if (fingerPositions == null)
                 return;
@@ -136,8 +144,10 @@ public class DrawManager : MonoSingleton<DrawManager>
 
     private void CreateLine()
     {
-        currentLine = Instantiate(linePrefabs, Vector3.zero, Quaternion.identity);
-        lineRenderer = currentLine.GetComponent<LineRenderer>();
+        if (currentLine == null)
+            currentLine = Instantiate(linePrefabs, Vector3.zero, Quaternion.identity);
+        if (lineRenderer == null)
+            lineRenderer = currentLine.GetComponent<LineRenderer>();
 
         fingerPositions = new List<Vector3>();
 
