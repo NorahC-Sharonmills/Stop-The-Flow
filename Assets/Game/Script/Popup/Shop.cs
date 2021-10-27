@@ -466,6 +466,7 @@ namespace Game
 
         public void Home()
         {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
             m_Animator.Play("Hide");
             CoroutineUtils.PlayCoroutine(() =>
             {
@@ -481,7 +482,8 @@ namespace Game
 
         public void OnTab(string tab)
         {
-            for(int i = 0; i < tabs.Length; i++)
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
+            for (int i = 0; i < tabs.Length; i++)
             {
                 tabs[i].SetActive(false);
                 buttons[i].color = m_DisableColor;

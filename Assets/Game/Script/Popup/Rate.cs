@@ -18,8 +18,14 @@ namespace Game
             m_Canvas.SetActive(true);
         }
 
+        public void Hide()
+        {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
+        }    
+
         public void RateUs()
         {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
 #if UNITY_EDITOR
             Application.OpenURL($"https://play.google.com/store/apps/details?id=water.color.sort.puzzle.pour.game");
 #elif UNITY_ANDROID

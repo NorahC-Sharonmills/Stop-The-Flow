@@ -25,6 +25,7 @@ namespace Game
 
         public void ButtonNext()
         {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
             RuntimeStorageData.PLAYER.level += 1;
             GameManager.LoadScene(SceneName.Game, true, false);
         }
@@ -40,6 +41,7 @@ namespace Game
 
         public void Replay()
         {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
             GameManager.LoadScene(SceneName.Game, true, true);
         }
 
@@ -122,8 +124,6 @@ namespace Game
 
         public void ShowLoseUI()
         {
-            //m_LoseUI.SetActive(true);
-            //m_LevelUI.SetActive(false);
             CoroutineUtils.PlayCoroutine(() =>
             {
                 Replay();
@@ -132,6 +132,7 @@ namespace Game
 
         public void OpenShop()
         {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
             m_GameCamera.SetActive(false);
             m_ShopCamera.SetActive(true);
 
@@ -143,6 +144,7 @@ namespace Game
 
         public void OnSettingShow()
         {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
             Game.Setting.Instance.OnShow();
         }
     }

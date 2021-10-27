@@ -959,6 +959,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1782424889}
+        m_TargetAssemblyTypeName: Game.Rate, Assembly-CSharp
+        m_MethodName: RateUs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &127303684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1997,7 +2009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &295707932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6546,6 +6558,10 @@ MonoBehaviour:
   sounds:
   - sound: 3
     clip: {fileID: 8300000, guid: b2b4606b6e9dd4b5aa26fbe706e603d9, type: 3}
+  - sound: 2
+    clip: {fileID: 8300000, guid: cab2e928e66e2428cbbbebc2e95b78ce, type: 3}
+  - sound: 4
+    clip: {fileID: 8300000, guid: c98b4fb0865af46c09769326d555f5f9, type: 3}
 --- !u!4 &1064640179
 Transform:
   m_ObjectHideFlags: 0
@@ -8312,6 +8328,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1782424889}
+        m_TargetAssemblyTypeName: Game.Rate, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1477179983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9007,6 +9035,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1782424886}
+        m_TargetAssemblyTypeName: Game.Setting, Assembly-CSharp
+        m_MethodName: ConnectHide
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

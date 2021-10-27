@@ -156,7 +156,7 @@ namespace Game
             IsVictory = true;
             IsLose = false;
 
-            Debug.Log("Victory");
+            SoundManager.Instance.PlayOnShot(Sound.WIN);
             for(int i = 0; i < Characters.Count; i++)
             {
                 var script = Characters[i].GetComponent<Character>();

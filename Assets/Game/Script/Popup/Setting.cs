@@ -39,6 +39,11 @@ namespace Game
             m_Canvas.SetActive(true);
         }
 
+        public void ConnectHide()
+        {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
+        }    
+
         public void OnShow()
         {
             if (RuntimeStorageData.SOUND.isVibrate)
@@ -74,6 +79,7 @@ namespace Game
 
         public void OnHide()
         {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
             Game.GameManager.PopupStatus = PopupStatus.Hide;
 
             m_Canvas.SetActive(false);
@@ -82,7 +88,8 @@ namespace Game
 
         public void OnClick(string id)
         {
-            switch(id)
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
+            switch (id)
             {
                 case "vibrate":
                     RuntimeStorageData.SOUND.isVibrate = !RuntimeStorageData.SOUND.isVibrate;
