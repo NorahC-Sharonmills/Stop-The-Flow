@@ -70,7 +70,17 @@ public class FirebaseManager : MonoSingletonGlobal<FirebaseManager>
 
     public void ShowBanner()
     {
-        Firebase.Analytics.FirebaseAnalytics.LogEvent("ads_banner");
+        if (IsFirebaseInitialized)
+        {
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("ads_banner");
+        }
+        else
+        {
+            actions.Enqueue(() =>
+            {
+                Firebase.Analytics.FirebaseAnalytics.LogEvent("ads_banner");
+            });
+        }
     }
 
     public void ShowInter()
