@@ -467,6 +467,7 @@ namespace Game
         public void Home()
         {
             SoundManager.Instance.PlayOnShot(Sound.CLICK);
+            FirebaseManager.Instance.ShowInterBackHome();
             IronSourceManager.Instance.ShowInter(() =>
             {
                 m_Animator.Play("Hide");

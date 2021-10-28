@@ -36,7 +36,6 @@ namespace Game
 
             // thêm các đoạn load các thứ vào đây
             yield return ResourceManager.Instance.InitializedResource();
-            yield return IronSourceManager.Instance.InitializedIronsource();
 
             Game.Setting.Instance.Initializeded();
             Game.Shop.Instance.Initializeded();

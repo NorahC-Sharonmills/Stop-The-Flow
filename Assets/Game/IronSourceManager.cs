@@ -208,6 +208,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
         {
             Debug.Log("show banner");
             IronSource.Agent.displayBanner();
+            FirebaseManager.Instance.ShowBanner();
         }
         else
         {
@@ -234,6 +235,8 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
 
         if (RuntimeStorageData.PLAYER.isAds)
         {
+            FirebaseManager.Instance.ShowInter();
+
 #if UNITY_EDITOR
             if (m_SetAction)
             {
@@ -272,6 +275,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     public void ShowReward(Action success, Action fail)
     {
         isReward = false;
+        FirebaseManager.Instance.ShowReward();
 #if UNITY_EDITOR
         if (m_SetAction)
         {

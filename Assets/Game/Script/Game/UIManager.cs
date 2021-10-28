@@ -25,11 +25,26 @@ namespace Game
 
         public void ButtonNext()
         {
+            FirebaseManager.Instance.ShowInterNext();
             IronSourceManager.Instance.ShowInter(() =>
             {
                 SoundManager.Instance.PlayOnShot(Sound.CLICK);
                 RuntimeStorageData.PLAYER.level += 1;
                 GameManager.LoadScene(SceneName.Game, true, false);
+            });
+        }
+
+        public void ButtonSkip()
+        {
+            FirebaseManager.Instance.ClickSkip();
+            FirebaseManager.Instance.ShowRewardSkip();
+            IronSourceManager.Instance.ShowReward(() =>
+            {
+                SoundManager.Instance.PlayOnShot(Sound.CLICK);
+                RuntimeStorageData.PLAYER.level += 1;
+                GameManager.LoadScene(SceneName.Game, true, false);
+            }, () =>
+            {
             });
         }
 
@@ -135,6 +150,7 @@ namespace Game
                     Replay();
                 }, () =>
                 {
+                    FirebaseManager.Instance.ShowInterReplay();
                     IronSourceManager.Instance.ShowInter(() =>
                     {
                         Replay();
@@ -151,6 +167,7 @@ namespace Game
             m_ShopCamera.SetActive(true);
 
             Game.Shop.Instance.Show();
+            FirebaseManager.Instance.ClickShop();
 
             m_LevelUI.SetActive(false);
             m_HomeUI.SetActive(false);
@@ -160,6 +177,12 @@ namespace Game
         {
             SoundManager.Instance.PlayOnShot(Sound.CLICK);
             Game.Setting.Instance.OnShow();
+        }
+
+        public void OnRemoveAds()
+        {
+            SoundManager.Instance.PlayOnShot(Sound.CLICK);
+            FirebaseManager.Instance.RemoveAdsClick();
         }
     }
 }

@@ -108,6 +108,8 @@ namespace Game
                 IsTutorial = true;
             }
 
+            FirebaseManager.Instance.LevelPlay();
+
             StaticVariable.GameState = GameState.PAUSE;
         }
 

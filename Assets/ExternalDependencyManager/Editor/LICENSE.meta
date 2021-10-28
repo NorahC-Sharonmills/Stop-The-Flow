@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: a24ad7f00efb946f8af7940e1c93ecf5
+guid: 8eecd69617bb46e28e67b904a04a18b1
+labels:
+- gvh
+- gvh_version-8.4.0
+- gvhp_exportpath-ExternalDependencyManager/Editor/LICENSE
 DefaultImporter:
   externalObjects: {}
   userData: 

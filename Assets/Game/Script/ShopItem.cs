@@ -158,6 +158,7 @@ public class ShopItem : MonoBehaviour
                 else
                 {
                     //chua mua
+                    FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
                         RuntimeStorageData.PLAYER.character_using = id;
@@ -182,6 +183,7 @@ public class ShopItem : MonoBehaviour
                 else
                 {
                     //chua mua
+                    FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
                         RuntimeStorageData.PLAYER.hat_using = id;
@@ -207,6 +209,7 @@ public class ShopItem : MonoBehaviour
                 else
                 {
                     //chua mua
+                    FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
                         RuntimeStorageData.PLAYER.hair_using = id;
@@ -231,6 +234,7 @@ public class ShopItem : MonoBehaviour
                 else
                 {
                     //chua mua
+                    FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
                         RuntimeStorageData.PLAYER.utility_using = id;
