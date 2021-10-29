@@ -213,8 +213,16 @@ namespace Game
 
             IsLose = true;
             IsVictory = false;
-
             Game.UIManager.Instance.ShowLoseUI();
         }
+
+        private bool IsSound = false;
+        public void PlaySound(Sound sound)
+        {
+            if (IsSound)
+                return;
+            IsSound = true;
+            SoundManager.Instance.PlayOnShot(sound);
+        }    
     }
 }

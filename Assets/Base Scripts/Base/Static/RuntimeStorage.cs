@@ -102,22 +102,33 @@ public static class RuntimeStorageData
                     _player.id = SystemInfo.deviceUniqueIdentifier;
                     _player.level = 1;
                     _player.coin = 0;
-                    _player.character_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabOutfits[1].name;
-                    _player.characters_bought = new System.Collections.Generic.List<string>();
-                    _player.characters_bought.Add(_player.character_using);
-                    _player.character_color_using = 2;
-                    _player.hair_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabHairs[2].name;
-                    _player.hairs_bought = new System.Collections.Generic.List<string>();
-                    _player.hairs_bought.Add(_player.hair_using);
-                    _player.hairs_bought.Add("None");
-                    _player.hair_color_using = 1;
-                    _player.hat_using = "None";
-                    _player.hats_bought = new System.Collections.Generic.List<string>();
-                    _player.hats_bought.Add(_player.hat_using);
-                    _player.face_using = Game.ResourceManager.Instance.ShopInfo.m_PrefabsFaces[0].name;
-                    _player.utility_using = "None";
-                    _player.utility_bought = new System.Collections.Generic.List<string>();
-                    _player.utility_bought.Add("None");
+
+                    _player.m_SkinUsing = Game.ResourceManager.Instance.ShopInfo.m_PrefabOutfits[1].name;
+                    _player.m_SkinColor = 2;
+                    _player.m_SkinBoughts = new System.Collections.Generic.List<ItemBought>();
+                    ItemBought _skin = new ItemBought();
+                    _skin.id = _player.m_SkinUsing;
+                    _skin.colors.Add(_player.m_SkinColor);
+
+                    _player.m_HairUsing = Game.ResourceManager.Instance.ShopInfo.m_PrefabHairs[2].name;
+                    _player.m_HairBoughts = new System.Collections.Generic.List<ItemBought>();
+                    _player.m_HairColorUsing = 1;
+                    ItemBought _hair = new ItemBought();
+                    _hair.id = _player.m_HairUsing;
+                    _hair.colors.Add(_player.m_HairColorUsing);
+                    _player.m_HairBoughts.Add(_hair);
+
+                    _player.m_HatUsing = "None";
+                    _player.m_HatBoughts = new System.Collections.Generic.List<ItemBought>();
+                    ItemBought _hat = new ItemBought();
+                    _hat.id = _player.m_HatUsing;
+                    _player.m_HatBoughts.Add(_hat);
+
+                    _player.m_FaceUsing = Game.ResourceManager.Instance.ShopInfo.m_PrefabsFaces[0].name;
+
+                    _player.m_UtilityUsing = "None";
+                    _player.m_UtilityBoughts = new System.Collections.Generic.List<string>();
+                    _player.m_UtilityBoughts.Add("None");
                     return _player as T;
                 default:
                     return null;

@@ -120,23 +120,23 @@ namespace Game
                         }
                     }
 
-                    var HairRenderer = CharacterInfo.GetHairWithName(RuntimeStorageData.PLAYER.hair_using);
+                    var HairRenderer = CharacterInfo.GetHairWithName(RuntimeStorageData.PLAYER.m_HairUsing);
                     if(HairRenderer != null)
                     {
                         Material[] Hairmats = HairRenderer.materials;
-                        Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.hair_color_using];
+                        Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.m_HairColorUsing];
                         HairRenderer.materials = Hairmats;
                     }
 
-                    var HatRenderer = CharacterInfo.GetHatWithName(RuntimeStorageData.PLAYER.hat_using);
+                    var HatRenderer = CharacterInfo.GetHatWithName(RuntimeStorageData.PLAYER.m_HatUsing);
                     if (HatRenderer != null)
                     {
                         Material[] HatMats = HatRenderer.materials;
-                        HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.hat_color_using];
+                        HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.m_HatColorUsing];
                         HatRenderer.materials = HatMats;
                     }
 
-                    var UtilityRenderer = CharacterInfo.GetItemOnHand(RuntimeStorageData.PLAYER.utility_using);
+                    var UtilityRenderer = CharacterInfo.GetItemOnHand(RuntimeStorageData.PLAYER.m_UtilityUsing);
 
                     break;
             }
@@ -230,8 +230,6 @@ namespace Game
         {
             Debug.Log("Dead");
 
-            SoundManager.Instance.PlayOnShot(Sound.SCREAM);
-
             //m_Rigibody.isKinematic = true;
             m_Rigibody.constraints = RigidbodyConstraints.FreezePositionY | 
                 RigidbodyConstraints.FreezeRotationX | 
@@ -243,10 +241,12 @@ namespace Game
                     m_Animator.Play("Dead");
                     CharacterInfo.SetFace(ShopCharacter.FaceType.Angry);
                     SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    PlaySound(global::Sound.SCREAM);
                     break;
                 case Enum.CharacterType.Animal:
                     IsForce = true;
                     m_Animator.Play("Dead");
+                    PlaySound(Sound.CHICKEN_DYING);
                     break;
             }
 
@@ -257,5 +257,14 @@ namespace Game
                 m_Rigibody.constraints = RigidbodyConstraints.FreezeAll;
             }
         }
+
+        private bool isSound = false;
+        private void PlaySound(Sound sound)
+        {
+            if (isSound)
+                return;
+            isSound = true;
+            SoundManager.Instance.PlayOnShot(sound);
+        }    
     }
 }

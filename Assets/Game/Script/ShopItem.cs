@@ -28,9 +28,9 @@ public class ShopItem : MonoBehaviour
         switch(type)
         {
             case "Clothes":
-                if(RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                if(RuntimeStorageData.PLAYER.m_SkinBoughts.Exists(x => x.id == id))
                 {
-                    if(RuntimeStorageData.PLAYER.character_using == id)
+                    if(RuntimeStorageData.PLAYER.m_SkinUsing == id)
                     {
                         m_BoderUsing.color = ColorUsing;
                         m_ObjectLocked.SetActive(false);
@@ -51,9 +51,9 @@ public class ShopItem : MonoBehaviour
                 }
                 break;
             case "Hat":
-                if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                if (RuntimeStorageData.PLAYER.m_HatBoughts.Exists(x => x.id == id))
                 {
-                    if (RuntimeStorageData.PLAYER.hat_using == id)
+                    if (RuntimeStorageData.PLAYER.m_HatUsing == id)
                     {
                         m_BoderUsing.color = ColorUsing;
                         m_ObjectLocked.SetActive(false);
@@ -81,9 +81,9 @@ public class ShopItem : MonoBehaviour
                 }
                 break;
             case "Hair": 
-                if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                if (RuntimeStorageData.PLAYER.m_HairBoughts.Exists(x => x.id == id))
                 {
-                    if (RuntimeStorageData.PLAYER.hair_using == id)
+                    if (RuntimeStorageData.PLAYER.m_HairUsing == id)
                     {
                         m_BoderUsing.color = ColorUsing;
                         m_ObjectLocked.SetActive(false);
@@ -111,9 +111,9 @@ public class ShopItem : MonoBehaviour
                 }
                 break;
             case "Utility":
-                if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
+                if (RuntimeStorageData.PLAYER.m_UtilityBoughts.Contains(id))
                 {
-                    if (RuntimeStorageData.PLAYER.utility_using == id)
+                    if (RuntimeStorageData.PLAYER.m_UtilityUsing == id)
                     {
                         m_BoderUsing.color = ColorUsing;
                         m_ObjectLocked.SetActive(false);
@@ -145,13 +145,15 @@ public class ShopItem : MonoBehaviour
 
     public void OnClick()
     {
+
+        Debug.Log(string.Format("--- click type {0} id {1}", type, id));
         switch (type)
         {
             case "Clothes":
-                if(RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                if(RuntimeStorageData.PLAYER.m_SkinBoughts.Exists(x => x.id == id))
                 {
                     //da mua
-                    RuntimeStorageData.PLAYER.character_using = id;
+                    RuntimeStorageData.PLAYER.m_SkinUsing = id;
                     Game.Shop.Instance.ChooseSkinPreviewWithId(id);
                     Game.Shop.Instance.ReloadButton(type);
                 }
@@ -161,9 +163,13 @@ public class ShopItem : MonoBehaviour
                     FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
-                        RuntimeStorageData.PLAYER.character_using = id;
-                        if (!RuntimeStorageData.PLAYER.characters_bought.Contains(id))
-                            RuntimeStorageData.PLAYER.characters_bought.Add(id);
+                        RuntimeStorageData.PLAYER.m_SkinUsing = id;
+                        //if (!RuntimeStorageData.PLAYER.characters_bought.Contains(id))
+                        //    RuntimeStorageData.PLAYER.characters_bought.Add(id);
+                        ItemBought _skin = new ItemBought();
+                        _skin.id = id;
+                        _skin.colors.Add(0);
+                        RuntimeStorageData.PLAYER.m_SkinBoughts.Add(_skin);
                         Game.Shop.Instance.ChooseSkinPreviewWithId(id);
                         Game.Shop.Instance.ReloadButton(type);
                     }, () =>
@@ -173,10 +179,10 @@ public class ShopItem : MonoBehaviour
                 }
                 break;
             case "Hat":
-                if (RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                if (RuntimeStorageData.PLAYER.m_HatBoughts.Exists(x => x.id == id))
                 {
                     //da mua
-                    RuntimeStorageData.PLAYER.hat_using = id;
+                    RuntimeStorageData.PLAYER.m_HatUsing = id;
                     Game.Shop.Instance.ChooseHatPreviewWithId(id);
                     Game.Shop.Instance.ReloadButton(type);
                 }
@@ -186,9 +192,13 @@ public class ShopItem : MonoBehaviour
                     FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
-                        RuntimeStorageData.PLAYER.hat_using = id;
-                        if (!RuntimeStorageData.PLAYER.hats_bought.Contains(id))
-                            RuntimeStorageData.PLAYER.hats_bought.Add(id);
+                        RuntimeStorageData.PLAYER.m_HatUsing = id;
+                        //if (!RuntimeStorageData.PLAYER.hats_bought.Contains(id))
+                        //    RuntimeStorageData.PLAYER.hats_bought.Add(id);
+                        ItemBought _hat = new ItemBought();
+                        _hat.id = id;
+                        _hat.colors.Add(0);
+                        RuntimeStorageData.PLAYER.m_HatBoughts.Add(_hat);
                         Game.Shop.Instance.ChooseHatPreviewWithId(id);
                         Game.Shop.Instance.ReloadButton(type);
                     }, () =>
@@ -199,10 +209,10 @@ public class ShopItem : MonoBehaviour
 
                 break;
             case "Hair":
-                if (RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                if (RuntimeStorageData.PLAYER.m_HairBoughts.Exists(x => x.id == id))
                 {
                     //da mua
-                    RuntimeStorageData.PLAYER.hair_using = id;
+                    RuntimeStorageData.PLAYER.m_HairUsing = id;
                     Game.Shop.Instance.ChooseHairPreviewWithId(id);
                     Game.Shop.Instance.ReloadButton(type);
                 }
@@ -212,9 +222,13 @@ public class ShopItem : MonoBehaviour
                     FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
-                        RuntimeStorageData.PLAYER.hair_using = id;
-                        if (!RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
-                            RuntimeStorageData.PLAYER.hairs_bought.Add(id);
+                        RuntimeStorageData.PLAYER.m_HairUsing = id;
+                        //if (!RuntimeStorageData.PLAYER.hairs_bought.Contains(id))
+                        //    RuntimeStorageData.PLAYER.hairs_bought.Add(id);
+                        ItemBought _hair = new ItemBought();
+                        _hair.id = id;
+                        _hair.colors.Add(0);
+                        RuntimeStorageData.PLAYER.m_HairBoughts.Add(_hair);
                         Game.Shop.Instance.ChooseHairPreviewWithId(id);
                         Game.Shop.Instance.ReloadButton(type);
                     }, () =>
@@ -224,10 +238,10 @@ public class ShopItem : MonoBehaviour
                 }
                 break;
             case "Utility":
-                if (RuntimeStorageData.PLAYER.utility_bought.Contains(id))
+                if (RuntimeStorageData.PLAYER.m_UtilityBoughts.Contains(id))
                 {
                     //da mua
-                    RuntimeStorageData.PLAYER.utility_using = id;
+                    RuntimeStorageData.PLAYER.m_UtilityUsing = id;
                     Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
                     Game.Shop.Instance.ReloadButton(type);
                 }
@@ -237,9 +251,9 @@ public class ShopItem : MonoBehaviour
                     FirebaseManager.Instance.ShowRewardUnlock();
                     IronSourceManager.Instance.ShowReward(() =>
                     {
-                        RuntimeStorageData.PLAYER.utility_using = id;
-                        if (!RuntimeStorageData.PLAYER.utility_bought.Contains(id))
-                            RuntimeStorageData.PLAYER.utility_bought.Add(id);
+                        RuntimeStorageData.PLAYER.m_UtilityUsing = id;
+                        if (!RuntimeStorageData.PLAYER.m_UtilityBoughts.Contains(id))
+                            RuntimeStorageData.PLAYER.m_UtilityBoughts.Add(id);
                         Game.Shop.Instance.ChooseUtilityPreviewWithId(id);
                         Game.Shop.Instance.ReloadButton(type);
                     }, () =>

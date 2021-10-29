@@ -9,19 +9,40 @@ public class PlayerSerializable
     public bool isAds = true;
     public int level = 1;
     public int coin = 0;
-    public string character_using = "";
-    public int character_color_using = 0;
-    public string character_skin_color_using = "";
-    public List<string> characters_bought;
-    public string hat_using = "";
-    public int hat_color_using = 0;
-    public List<string> hats_bought;
-    public string hair_using = "";
-    public int hair_color_using = 0;
-    public List<string> hairs_bought;
-    public string face_using = "";
-    public string utility_using = "";
-    public int utility_color_using = 0;
-    public List<string> utility_bought;
 
+    public string m_SkinUsing = "";
+    public int m_SkinColor = 0;
+    public string m_SkinColorUsing = "";
+    public List<ItemBought> m_SkinBoughts;
+
+    public string m_HatUsing = "";
+    public int m_HatColorUsing = 0;
+    public List<ItemBought> m_HatBoughts;
+
+    public string m_HairUsing = "";
+    public int m_HairColorUsing = 0;
+    public List<ItemBought> m_HairBoughts;
+
+    public string m_FaceUsing = "";
+
+    public string m_UtilityUsing = "";
+    public List<string> m_UtilityBoughts;
+}
+
+[System.Serializable]
+public class ItemBought
+{
+    public string id;
+    public List<int> colors;
+
+    public ItemBought()
+    {
+        colors = new List<int>();
+    }
+
+    public ItemBought(string _id, List<int> _colors)
+    {
+        id = _id;
+        colors = _colors;
+    }
 }

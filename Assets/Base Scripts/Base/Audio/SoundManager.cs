@@ -10,7 +10,8 @@ public enum Sound
     POPUP_OPEN,
     CLICK,
     SCREAM,
-    WIN
+    WIN,
+    CHICKEN_DYING
 }
 
 public class SoundManager : MonoSingletonGlobal<SoundManager>
