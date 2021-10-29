@@ -40,11 +40,21 @@ namespace Game
         {
             if (m_HairContainer == null)
             {
-                m_HairContainer = new GameObject("HairContainer").transform;
-                m_HairContainer.parent = m_Head;
-                m_HairContainer.localPosition = Vector3.zero;
-                m_HairContainer.localRotation = Quaternion.identity;
-                m_HairContainer.localScale = Vector3.one;
+                for (int i = 0; i < m_Head.childCount; i++)
+                {
+                    if (m_Head.GetChild(i).name == "HairContainer")
+                        m_HairContainer = m_Head.GetChild(i);
+                }
+
+                if (m_HairContainer == null)
+                {
+
+                    m_HairContainer = new GameObject("HairContainer").transform;
+                    m_HairContainer.parent = m_Head;
+                    m_HairContainer.localPosition = Vector3.zero;
+                    m_HairContainer.localRotation = Quaternion.identity;
+                    m_HairContainer.localScale = Vector3.one;
+                }
             }
 
             MeshRenderer rs = null;
@@ -80,11 +90,20 @@ namespace Game
         {
             if (m_HatContainer == null)
             {
-                m_HatContainer = new GameObject("HatContainer").transform;
-                m_HatContainer.parent = m_Head;
-                m_HatContainer.localPosition = Vector3.zero;
-                m_HatContainer.localRotation = Quaternion.identity;
-                m_HatContainer.localScale = Vector3.one;
+                for (int i = 0; i < m_Head.childCount; i++)
+                {
+                    if (m_Head.GetChild(i).name == "HatContainer")
+                        m_HatContainer = m_Head.GetChild(i);
+                }
+
+                if (m_HatContainer == null)
+                {
+                    m_HatContainer = new GameObject("HatContainer").transform;
+                    m_HatContainer.parent = m_Head;
+                    m_HatContainer.localPosition = Vector3.zero;
+                    m_HatContainer.localRotation = Quaternion.identity;
+                    m_HatContainer.localScale = Vector3.one;
+                }
             }
 
             MeshRenderer rs = null;

@@ -54,8 +54,6 @@ namespace Game
             m_WaterType = m_Level.LevelData.WaterType;
             m_SizeCamera = m_Level.LevelData.SizeCamera;
 
-            Debug.Log(RuntimeStorageData.PLAYER.level);
-
             switch(RuntimeStorageData.PLAYER.level)
             {
                 case 50:

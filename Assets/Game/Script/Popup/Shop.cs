@@ -480,7 +480,13 @@ namespace Game
                     Game.UIManager.Instance.Home();
                 }, 0.2f);
             });
-            Game.LevelManager.Instance.Characters[0].GetComponent<Game.Character>().ReloadCharacter();
+            var chars = Game.LevelManager.Instance.Characters;
+            for(int i = 0; i < chars.Count; i++)
+            {
+                var _sc = chars[i].GetComponent<Game.Character>();
+                if (_sc != null)
+                    _sc.ReloadCharacter();
+            }    
         }
 
         public void OnTab(string tab)

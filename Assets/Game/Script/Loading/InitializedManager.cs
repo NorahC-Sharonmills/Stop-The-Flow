@@ -40,6 +40,8 @@ namespace Game
             Game.Setting.Instance.Initializeded();
             Game.Shop.Instance.Initializeded();
 
+            yield return FirebaseManager.Instance.InitializedFirebaseGlobal();
+
 
             GameManager.LoadScene(SceneName.Game);
         }

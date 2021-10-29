@@ -72,19 +72,8 @@ public class MetaballParticleClass : MonoBehaviour {
 				}
 				return;
 			}
-			
-			Debug.Log(col.collider.name);
-
 		}			
     }
-
-    private void Onc(Collision col)
-    {
-		if (col.collider.name.Contains("point"))
-		{
-
-		}
-	}
 
     private void OnTriggerEnter(Collider col)
     {

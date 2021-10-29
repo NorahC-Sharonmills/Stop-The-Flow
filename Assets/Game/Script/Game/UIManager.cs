@@ -25,13 +25,22 @@ namespace Game
 
         public void ButtonNext()
         {
-            FirebaseManager.Instance.ShowInterNext();
-            IronSourceManager.Instance.ShowInter(() =>
+            if (RuntimeStorageData.PLAYER.level <= 3)
             {
                 SoundManager.Instance.PlayOnShot(Sound.CLICK);
                 RuntimeStorageData.PLAYER.level += 1;
                 GameManager.LoadScene(SceneName.Game, true, false);
-            });
+            }
+            else
+            {
+                FirebaseManager.Instance.ShowInterNext();
+                IronSourceManager.Instance.ShowInter(() =>
+                {
+                    SoundManager.Instance.PlayOnShot(Sound.CLICK);
+                    RuntimeStorageData.PLAYER.level += 1;
+                    GameManager.LoadScene(SceneName.Game, true, false);
+                });
+            }    
         }
 
         public void ButtonSkip()
@@ -150,11 +159,18 @@ namespace Game
                     Replay();
                 }, () =>
                 {
-                    FirebaseManager.Instance.ShowInterReplay();
-                    IronSourceManager.Instance.ShowInter(() =>
+                    if (RuntimeStorageData.PLAYER.level <= 3)
                     {
                         Replay();
-                    });
+                    }
+                    else
+                    {
+                        FirebaseManager.Instance.ShowInterReplay();
+                        IronSourceManager.Instance.ShowInter(() =>
+                        {
+                            Replay();
+                        });
+                    }
                 });
                 //Replay();
             }, 3f);

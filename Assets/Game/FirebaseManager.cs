@@ -8,14 +8,21 @@ public class FirebaseManager : MonoSingletonGlobal<FirebaseManager>
 {
     private bool IsFirebaseInitialized = false;
 
-    IEnumerator Start()
+    public IEnumerator InitializedFirebaseGlobal()
     {
         yield return InitializedFirebase();
         yield return IronSourceManager.Instance.InitializedIronsource();
         yield return InitializedFirebaseMessaging();
-
         OpenApplication();
     }
+    //IEnumerator Start()
+    //{
+    //    yield return InitializedFirebase();
+    //    yield return IronSourceManager.Instance.InitializedIronsource();
+    //    yield return InitializedFirebaseMessaging();
+
+    //    OpenApplication();
+    //}
 
     IEnumerator InitializedFirebase()
     {
@@ -159,8 +166,6 @@ public class FirebaseManager : MonoSingletonGlobal<FirebaseManager>
                 }
             });
         }
-
-        Debug.Log(StringRealLevel);
     }
 
     private Queue<System.Action> actions = new Queue<System.Action>();
