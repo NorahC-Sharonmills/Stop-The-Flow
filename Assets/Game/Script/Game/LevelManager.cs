@@ -41,6 +41,10 @@ namespace Game
 
         [Header("Water Tank")]
         public DataTank[] dataTanks;
+
+        private bool isCustomCharacter = false;
+        public bool IsCustomCharacter => isCustomCharacter;
+
         protected override void Awake()
         {
             base.Awake();
@@ -48,8 +52,19 @@ namespace Game
             //m_Camera.orthographicSize = m_Level.LevelData.SizeCamera;
             m_AttackType = m_Level.LevelData.AttackType;
             m_WaterType = m_Level.LevelData.WaterType;
-
             m_SizeCamera = m_Level.LevelData.SizeCamera;
+
+            Debug.Log(RuntimeStorageData.PLAYER.level);
+
+            switch(RuntimeStorageData.PLAYER.level)
+            {
+                case 50:
+                    isCustomCharacter = false;
+                    break;
+                default:
+                    isCustomCharacter = true;
+                    break;
+            }    
 
 
             var objects = m_Level.LevelData.Datas;

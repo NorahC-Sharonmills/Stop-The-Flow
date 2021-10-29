@@ -130,8 +130,10 @@ namespace Game
             string path = "";
             GameObject obj = null;
 
-            if (objects.NameObject.Contains("Character"))
+            if(LevelManager.Instance.IsCustomCharacter && objects.NameObject.Contains("Character"))
+            {
                 objects.NameObject = "Character";
+            }
 
             if (Instance.PrefabDics.ContainsKey(objects.NameObject))
             {

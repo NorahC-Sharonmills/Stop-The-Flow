@@ -37,8 +37,10 @@ namespace Game
                     m_Animator.SetBool("Eat", true);
                     break;
                 case Enum.CharacterType.Human:
-                    //SoundManager.Instance.PlayLoopInfinity(Sound.SCREAM);
-                    m_Animator.enabled = false;
+                    if (LevelManager.Instance.IsCustomCharacter)
+                        m_Animator.enabled = false;
+                    else
+                        m_Animator.enabled = true;
                     ReloadCharacter();
                     break;
             }
@@ -46,65 +48,70 @@ namespace Game
 
         private void LateUpdate()
         {
-            switch (CharacterType)
+            if (LevelManager.Instance.IsCustomCharacter)
             {
-                case Enum.CharacterType.Animal:
-                    break;
-                case Enum.CharacterType.Human:
-                    //if(StaticVariable.GameState == GameState.PAUSE &&
-                    //    Game.LevelManager.Instance.IsVictory == false &&
-                    //    Game.LevelManager.Instance.IsLose == false)
-                    //{
-                    //    SoundManager.Instance.PlaySoundAsyncWithDelay(Sound.SCREAM, 2.5f);
-                    //}    
-                    CharacterModels.transform.localPosition = Vector3.zero;
-                    CharacterModels.transform.localRotation = Quaternion.identity;
-                    break;
+                switch (CharacterType)
+                {
+                    case Enum.CharacterType.Animal:
+                        break;
+                    case Enum.CharacterType.Human:
+                        CharacterModels.transform.localPosition = Vector3.zero;
+                        CharacterModels.transform.localRotation = Quaternion.identity;
+                        break;
+                }
             }
         }
 
 
         public void ReloadCharacter()
         {
-            switch (CharacterType)
+            if(LevelManager.Instance.IsCustomCharacter)
             {
-                case Enum.CharacterType.Human:
-                    bool IsCreated = true;
-                    GameObject prefabs = Game.Shop.Instance.GetSkinRuntime();
-                    for (int i = 0; i < transform.childCount; i++)
-                    {
-                        if(transform.GetChild(i).name == prefabs.name)
+                switch (CharacterType)
+                {
+                    case Enum.CharacterType.Human:
+                        bool IsCreated = true;
+                        GameObject prefabs = Game.Shop.Instance.GetSkinRuntime();
+                        for (int i = 0; i < transform.childCount; i++)
                         {
-                            IsCreated = false;
-                            transform.GetChild(i).gameObject.SetActive(true);
-                            CharacterModels = transform.GetChild(i).gameObject;
+                            if (transform.GetChild(i).name == prefabs.name)
+                            {
+                                IsCreated = false;
+                                transform.GetChild(i).gameObject.SetActive(true);
+                                CharacterModels = transform.GetChild(i).gameObject;
+                            }
+                            else
+                            {
+                                transform.GetChild(i).gameObject.SetActive(false);
+                            }
                         }
-                        else
+                        if (IsCreated)
                         {
-                            transform.GetChild(i).gameObject.SetActive(false);
+                            CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
+                            CharacterModels.name = CharacterModels.name.Replace("(Clone)", "");
                         }
-                    }
-                    if (IsCreated)
-                    {
-                        CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
-                        CharacterModels.name = CharacterModels.name.Replace("(Clone)", "");
-                    }
 
-                    CharacterModels.transform.localPosition = Vector3.zero;
-                    CharacterModels.transform.localRotation = Quaternion.identity;
-                    m_Animator = CharacterModels.GetComponent<Animator>();
-                    m_Animator.enabled = true;
-                    m_Animator.runtimeAnimatorController = m_AnimatorController;
-                    m_Animator.Play("Idle");
+                        CharacterModels.transform.localPosition = Vector3.zero;
+                        CharacterModels.transform.localRotation = Quaternion.identity;
+                        m_Animator = CharacterModels.GetComponent<Animator>();
+                        m_Animator.enabled = true;
+                        m_Animator.runtimeAnimatorController = m_AnimatorController;
+                        m_Animator.Play("Idle");
 
-                    CharacterInfo = CharacterModels.GetComponent<ShopCharacter>();
-                    CharacterInfo.SetFace(ShopCharacter.FaceType.Worried);
+                        CharacterInfo = CharacterModels.GetComponent<ShopCharacter>();
+                        CharacterInfo.SetFace(ShopCharacter.FaceType.Worried);
 
-                    ReloadAccessory();
+                        ReloadAccessory();
 
-                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
-                    break;
-            }
+                        SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                        break;
+                }
+            }    
+            else
+            {
+
+            }    
+
         }
 
         public void ReloadAccessory()
@@ -204,8 +211,11 @@ namespace Game
             {
                 case Enum.CharacterType.Human:
                     m_Animator.Play("Victory");
-                    CharacterInfo.SetFace(ShopCharacter.FaceType.Happy);
-                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    if(LevelManager.Instance.IsCustomCharacter)
+                    {
+                        CharacterInfo.SetFace(ShopCharacter.FaceType.Happy);
+                        SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    }    
                     break;
                 case Enum.CharacterType.Animal:
                     m_Animator.Play("Victory");
@@ -239,14 +249,23 @@ namespace Game
                 case Enum.CharacterType.Human:
                     IsForce = true;
                     m_Animator.Play("Dead");
-                    CharacterInfo.SetFace(ShopCharacter.FaceType.Angry);
-                    SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    if (LevelManager.Instance.IsCustomCharacter)
+                    {
+                        CharacterInfo.SetFace(ShopCharacter.FaceType.Angry);
+                        SetGameLayerRecursive(CharacterModels, gameObject.layer);
+                    }
                     PlaySound(global::Sound.SCREAM);
+                    //LevelManager.Instance.PlaySound(Sound.SCREAM);
                     break;
                 case Enum.CharacterType.Animal:
                     IsForce = true;
                     m_Animator.Play("Dead");
+                    //PlaySound(Sound.CHICKEN_DYING);
+                    LevelManager.Instance.PlaySound(Sound.CHICKEN_DYING);
+                    break;
+                case Enum.CharacterType.Bulding:
                     PlaySound(Sound.CHICKEN_DYING);
+                    LevelManager.Instance.PlaySound(Sound.CHICKEN_DYING);
                     break;
             }
 
