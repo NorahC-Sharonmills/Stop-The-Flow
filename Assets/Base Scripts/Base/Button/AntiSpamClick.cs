@@ -7,18 +7,24 @@ using UnityEngine.UI;
 public class AntiSpamClick : MonoBehaviour
 {
     private Button button;
+    public float timer = 0.5f;
     private void Start()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(() => {
-            button.interactable = false;
-            StartCoroutine(ReActiveButton());
+            if(gameObject.activeInHierarchy)
+            {
+                button.interactable = false;
+                StartCoroutine(ReActiveButton());
+            }
         });
     }
 
     private IEnumerator ReActiveButton()
     {
-        yield return WaitForSecondCache.GetWFSCache(.5f);
+        if (!gameObject.activeInHierarchy)
+            yield break;
+        yield return WaitForSecondCache.GetWFSCache(timer);
         button.interactable = true;
     }
 }

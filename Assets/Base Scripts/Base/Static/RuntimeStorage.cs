@@ -109,6 +109,7 @@ public static class RuntimeStorageData
                     ItemBought _skin = new ItemBought();
                     _skin.id = _player.m_SkinUsing;
                     _skin.colors.Add(_player.m_SkinColor);
+                    _player.m_SkinBoughts.Add(_skin);
 
                     _player.m_HairUsing = Game.ResourceManager.Instance.ShopInfo.m_PrefabHairs[2].name;
                     _player.m_HairBoughts = new System.Collections.Generic.List<ItemBought>();

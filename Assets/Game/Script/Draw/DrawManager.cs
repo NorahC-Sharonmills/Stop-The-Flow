@@ -95,10 +95,6 @@ public class DrawManager : MonoSingleton<DrawManager>
                             UpdateLine(tempFingerPos);
                         }
                     }
-                    else
-                    {
-                        Debug.Log(hit.collider.name);
-                    }
                 }
             }    
         }
