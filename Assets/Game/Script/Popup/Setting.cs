@@ -122,6 +122,7 @@ namespace Game
                     }
                     break;
                 case "restore_purchase":
+                    IAPService.Instance.RestorePurchases();
                     break;
             }
         }

@@ -23,6 +23,9 @@ namespace Game
         [Header("Text")]
         public Text m_LevelText;
 
+        [Header("Object")]
+        public GameObject m_RemoveAdsObject;
+
         public void ButtonNext()
         {
             if (RuntimeStorageData.PLAYER.level <= 3)
@@ -89,6 +92,8 @@ namespace Game
             m_GameUI.SetActive(false);
 
             m_ShopCamera.SetActive(false);
+
+            HideRemoveAds();
         }
 
 #if UNITY_EDITOR
@@ -199,6 +204,23 @@ namespace Game
         {
             SoundManager.Instance.PlayOnShot(Sound.CLICK);
             FirebaseManager.Instance.RemoveAdsClick();
+            IAPService.Instance.BuyProductID(IAPService.remove_ads_id, () =>
+            {
+                RuntimeStorageData.PLAYER.isAds = false;
+                HideRemoveAds();
+            });
+        }
+
+        public void HideRemoveAds()
+        {
+            if(RuntimeStorageData.PLAYER.isAds)
+            {
+                m_RemoveAdsObject.SetActive(true);
+            }
+            else
+            {
+                m_RemoveAdsObject.SetActive(false);
+            }
         }
     }
 }
