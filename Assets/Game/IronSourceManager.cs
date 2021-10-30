@@ -228,7 +228,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
 
 
             time += Time.deltaTime;
-            if (time > 5f)
+            if (time > 10f)
             {
                 time = 0;
                 if (!IronSource.Agent.isInterstitialReady())
@@ -237,7 +237,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
                     RewardAdsState = AdsState.MISSING;
             }
 
-            AutoSpamStatusAds();
+            //AutoSpamStatusAds();
         }
     }    
 
