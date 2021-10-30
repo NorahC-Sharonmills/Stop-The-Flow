@@ -11160,6 +11160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7015acb4064240328299bfd2f6ea768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_IronsourceAndroidKey: ff2df2a9
+  m_IronsourceIOSKey: 
   m_SetAction: 1
 --- !u!1 &1849562710
 GameObject:

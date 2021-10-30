@@ -127,7 +127,6 @@ namespace Game
                                     }
                                 }, clips[i].length);
                             }
-                            Debug.Log(clips[i].name);
                         }
                         break;
                 }

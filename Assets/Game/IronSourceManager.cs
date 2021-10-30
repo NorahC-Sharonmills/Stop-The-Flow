@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
 {
-    private string ironsource_your_app_key = "";
+    private string IronsourceKey = "";
+    public string m_IronsourceAndroidKey = "";
+    public string m_IronsourceIOSKey = "";
     private Coroutine cacheCoroutineInter;
     private Coroutine cacheCoroutineReward;
 
@@ -39,12 +41,12 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     public IEnumerator InitializedIronsource()
     {
 #if UNITY_ANDROID || UNITY_EDITOR
-        ironsource_your_app_key = "110ae14e5";
-        Debug.Log(ironsource_your_app_key + " android");
+        IronsourceKey = m_IronsourceAndroidKey;
+        //Debug.Log(IronsourceKey + " android");
 #endif
 #if UNITY_IOS
-            ironsource_your_app_key = "1101a6edd";
-            Debug.Log(ironsource_your_app_key + " ios:");
+            IronsourceKey = m_IronsourceIOSKey;
+            //Debug.Log(IronsourceKey + " ios");
 #endif
         yield return null;
         AddListenInter();
@@ -59,17 +61,27 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
         IronSource.Agent.validateIntegration();
         IsAutoLoadAds = true;
 
-        AutoSpamStatusAds();
+        //AutoSpamStatusAds();
     }
 
+    private float m_TimeStatus = 0;
     private void AutoSpamStatusAds()
     {
-        StartCoroutine(CorotineSpamStatusAds());
+        if(m_TimeStatus > 5f)
+        {
+            m_TimeStatus = 0;
+            Debug.Log(string.Format("ads status : inter is {0} - reward is {1}", InterAdsState, RewardAdsState));
+        }
+        else
+        {
+            m_TimeStatus += Time.deltaTime;
+        }
+        //StartCoroutine(CorotineSpamStatusAds());
     }
 
     private IEnumerator CorotineSpamStatusAds()
     {
-        Debug.Log(string.Format("ads status : inter is {0} - reward is {1}", InterAdsState, RewardAdsState));
+        //Debug.Log(string.Format("ads status : inter is {0} - reward is {1}", InterAdsState, RewardAdsState));
         yield return WaitForSecondCache.WAIT_TIME_FIVE;
         StartCoroutine(CorotineSpamStatusAds());
     }
@@ -80,44 +92,44 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
         IronSourceEvents.onInterstitialAdReadyEvent += () =>
         {
             InterAdsState = AdsState.READY;
-            Debug.Log("onInterstitialAdReadyEvent");
+            //Debug.Log("onInterstitialAdReadyEvent");
         };
         // Invoked when the initialization process has failed.
         // @param description - string - contains information about the failure.
         IronSourceEvents.onInterstitialAdLoadFailedEvent += (IronSourceError) =>
         {
             InterAdsState = AdsState.MISSING;
-            Debug.Log("onInterstitialAdLoadFailedEvent");
+            //Debug.Log("onInterstitialAdLoadFailedEvent");
         };
         // Invoked right before the Interstitial screen is about to open.
         // NOTE - This event is available only for some of the networks. 
         // You should treat this event as an interstitial impression, but rather use InterstitialAdOpenedEvent
         IronSourceEvents.onInterstitialAdShowSucceededEvent += () =>
         {
-            Debug.Log("onInterstitialAdShowSucceededEvent");
+            //Debug.Log("onInterstitialAdShowSucceededEvent");
         };
         // Invoked when the ad fails to show.
         // @param description - string - contains information about the failure.
         IronSourceEvents.onInterstitialAdShowFailedEvent += (IronSourceError) =>
         {
-            Debug.Log("onInterstitialAdShowFailedEvent");
+            //Debug.Log("onInterstitialAdShowFailedEvent");
             m_InterFail?.Invoke();
             InterAdsState = AdsState.MISSING;
         };
         // Invoked when end user clicked on the interstitial ad
         IronSourceEvents.onInterstitialAdClickedEvent += () =>
         {
-            Debug.Log("onInterstitialAdClickedEvent");
+            //Debug.Log("onInterstitialAdClickedEvent");
         };
         // Invoked when the Interstitial Ad Unit has opened
         IronSourceEvents.onInterstitialAdOpenedEvent += () =>
         {
-            Debug.Log("onInterstitialAdOpenedEvent");
+            //Debug.Log("onInterstitialAdOpenedEvent");
         };
         // Invoked when the interstitial ad closed and the user goes back to the application screen.
         IronSourceEvents.onInterstitialAdClosedEvent += () =>
         {
-            Debug.Log("onInterstitialAdClosedEvent");
+            //Debug.Log("onInterstitialAdClosedEvent");
             m_InterSuccess?.Invoke();
 #if UNITY_IOS
                 Time.timeScale = 1;
@@ -138,17 +150,17 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
         //tasks till the video ad will be closed.
         IronSourceEvents.onRewardedVideoAdOpenedEvent += () =>
         {
-            Debug.Log("onRewardedVideoAdOpenedEvent");       
+            //Debug.Log("onRewardedVideoAdOpenedEvent");       
         };
         IronSourceEvents.onRewardedVideoAdClickedEvent += (IronSourcePlacement) =>
         {
-            Debug.Log("onRewardedVideoAdClickedEvent");
+            //Debug.Log("onRewardedVideoAdClickedEvent");
         };
         //Invoked when the RewardedVideo ad view is about to be closed.
         //Your activity will now regain its focus.
         IronSourceEvents.onRewardedVideoAdClosedEvent += () =>
         {
-            Debug.Log("onRewardedVideoAdClosedEvent");
+            //Debug.Log("onRewardedVideoAdClosedEvent");
             if (isReward)
             {
 #if UNITY_IOS
@@ -173,7 +185,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
         //Value will change to false when no videos are available.
         IronSourceEvents.onRewardedVideoAvailabilityChangedEvent += (available) =>
         {
-            Debug.Log("onRewardedVideoAvailabilityChangedEvent " + available);
+            //Debug.Log("onRewardedVideoAvailabilityChangedEvent " + available);
             //Change the in-app 'Traffic Driver' state according to availability.
             bool rewardedVideoAvailability = available;
             if (!available)
@@ -184,21 +196,21 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
         //Invoked when the video ad starts playing. 
         IronSourceEvents.onRewardedVideoAdStartedEvent += () =>
         {
-            Debug.Log("onRewardedVideoAdStartedEvent");
+            //Debug.Log("onRewardedVideoAdStartedEvent");
         };
         //Invoked when the video ad finishes playing. 
         IronSourceEvents.onRewardedVideoAdEndedEvent += () =>
         {
-            Debug.Log("onRewardedVideoAdEndedEvent");
+            //Debug.Log("onRewardedVideoAdEndedEvent");
         };
         IronSourceEvents.onRewardedVideoAdRewardedEvent += (IronSourcePlacement) =>
         {
-            Debug.Log("onRewardedVideoAdRewardedEvent");
+            //Debug.Log("onRewardedVideoAdRewardedEvent");
             isReward = true;
         };
         IronSourceEvents.onRewardedVideoAdShowFailedEvent += (IronSourceError) =>
         {
-            Debug.Log("onRewardedVideoAdShowFailedEvent");
+            //Debug.Log("onRewardedVideoAdShowFailedEvent");
             m_RewardFail?.Invoke();
             RewardAdsState = AdsState.MISSING;
         };
@@ -224,21 +236,23 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
                 if (!IronSource.Agent.isRewardedVideoAvailable())
                     RewardAdsState = AdsState.MISSING;
             }
+
+            AutoSpamStatusAds();
         }
     }    
 
     private void LoadBanner()
     {
-        Debug.Log("Load Banner");
+        //Debug.Log("Load Banner");
         //For Banners
-        IronSource.Agent.init(ironsource_your_app_key, IronSourceAdUnits.BANNER);
+        IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
         IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
         IronSourceEvents.onBannerAdLoadFailedEvent += (IronSourceError) =>
         {
             CoroutineUtils.PlayCoroutine(() =>
             {
                 //For Banners
-                IronSource.Agent.init(ironsource_your_app_key, IronSourceAdUnits.BANNER);
+                IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
                 IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
                 BannerShow();
             }, 1f);
@@ -251,7 +265,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     {
         //For Interstitial
         InterAdsState = AdsState.LOADING;
-        IronSource.Agent.init(ironsource_your_app_key, IronSourceAdUnits.INTERSTITIAL);
+        IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.INTERSTITIAL);
         IronSource.Agent.loadInterstitial();
     }
 
@@ -259,14 +273,14 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     {
         RewardAdsState = AdsState.LOADING;
         //For Rewarded Video
-        IronSource.Agent.init(ironsource_your_app_key, IronSourceAdUnits.REWARDED_VIDEO);
+        IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.REWARDED_VIDEO);
     }
 
     public void BannerShow()
     {
         if (RuntimeStorageData.PLAYER.isAds)
         {
-            Debug.Log("show banner");
+            //Debug.Log("show banner");
             IronSource.Agent.displayBanner();
             FirebaseManager.Instance.ShowBanner();
         }
@@ -278,7 +292,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
 
     public void BannerHide()
     {
-        Debug.Log("hide banner");
+        //Debug.Log("hide banner");
         IronSource.Agent.hideBanner();
     }
 
