@@ -206,6 +206,7 @@ namespace Game
                 if (m_Characters[i].name == str)
                 {
                     m_Characters[i].gameObject.SetActive(true);
+                    m_Characters[i].Dance();
                 }
                 else
                 {

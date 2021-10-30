@@ -35,6 +35,15 @@ namespace Game
             }
         }
 
+        private Animator m_Animator;
+        public void Dance()
+        {
+            if (m_Animator == null)
+                m_Animator = this.GetComponent<Animator>();
+
+            m_Animator.Play("Dance");
+        }
+
         private Transform m_HairContainer = null;
         public MeshRenderer GetHairWithName(string str)
         {
@@ -64,6 +73,7 @@ namespace Game
                 {
                     rs = m_HairContainer.GetChild(i).GetComponent<MeshRenderer>();
                     m_HairContainer.GetChild(i).gameObject.SetActive(true);
+                    Dance();
                 }
                 else
                 {
@@ -113,6 +123,7 @@ namespace Game
                 {
                     rs = m_HatContainer.GetChild(i).GetComponent<MeshRenderer>();
                     m_HatContainer.GetChild(i).gameObject.SetActive(true);
+                    Dance();
                 }
                 else
                 {
@@ -232,6 +243,7 @@ namespace Game
                 {
                     rs = m_HandContainer.GetChild(i).GetComponent<MeshRenderer>();
                     m_HandContainer.GetChild(i).gameObject.SetActive(true);
+                    Dance();
                 }
                 else
                 {
