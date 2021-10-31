@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 523392447}
     m_Modifications:
+    - target: {fileID: 3951570640446778268, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     - target: {fileID: 3951570640678994554, guid: 727af81f2c9aa7d48aff2d6943677deb, type: 3}
       propertyPath: m_Name
       value: Fair Aqua Female Outfit Fan 04
@@ -1135,6 +1139,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5428328917373125640, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdf509ce4afa1bc47ae378660ef68fbb, type: 3}
 --- !u!4 &157946666 stripped
@@ -2041,6 +2049,7 @@ RectTransform:
   - {fileID: 183462632}
   - {fileID: 536889082}
   - {fileID: 982314665}
+  - {fileID: 1184794611}
   m_Father: {fileID: 1782424885}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3181,6 +3190,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5830288082591699841, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8af66524b44a83488a1ef23c6cee50e, type: 3}
 --- !u!4 &463151069 stripped
@@ -3483,6 +3496,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 523392447}
     m_Modifications:
+    - target: {fileID: 5467087324692342671, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     - target: {fileID: 8879577703394696527, guid: 57dfb3c7add6c334c971f96bb766868e, type: 3}
       propertyPath: m_Name
       value: Fair Aqua Female Outfit Fan 08
@@ -4880,6 +4897,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4472847617122972980, guid: 2c515779070edfe47967b33447447fd6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c515779070edfe47967b33447447fd6, type: 3}
 --- !u!4 &751259676 stripped
@@ -5991,6 +6012,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2496540344089286010, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85df4cf2437c81c4cb7bbee21dd327a4, type: 3}
 --- !u!4 &924614201 stripped
@@ -7580,6 +7605,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146622975}
+  m_CullTransparentMesh: 1
+--- !u!1 &1184794610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1184794611}
+  - component: {fileID: 1184794613}
+  - component: {fileID: 1184794612}
+  m_Layer: 0
+  m_Name: Banner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1184794611
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184794610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 295707932}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 125}
+  m_SizeDelta: {x: 1920, y: 250}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1184794612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184794610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1184794613
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184794610}
   m_CullTransparentMesh: 1
 --- !u!114 &1195219518
 MonoBehaviour:
@@ -9770,6 +9870,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3514601915821385294, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cef77ae93d03fb42bc93798f9237dd8, type: 3}
 --- !u!4 &1660439333 stripped
@@ -11160,8 +11264,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7015acb4064240328299bfd2f6ea768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IronsourceAndroidKey: ff2df2a9
+  m_IronsourceAndroidKey: 110ae14e5
   m_IronsourceIOSKey: 
+  BannerSize: {fileID: 1184794611}
   m_SetAction: 1
 --- !u!1 &1849562710
 GameObject:
@@ -11213,6 +11318,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 523392447}
     m_Modifications:
+    - target: {fileID: 8662904704169113998, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     - target: {fileID: 8662904705158607506, guid: 44af06a9b9b5b0841bc0f08839e5fe9e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -11388,6 +11497,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1785358763614290310, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d88a5d1b4ad6644980ced980c109636, type: 3}
 --- !u!4 &1887729336 stripped
@@ -11521,6 +11634,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 523392447}
     m_Modifications:
+    - target: {fileID: 1876245778776568, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5d11176071f344a43afd8365586922ed, type: 2}
     - target: {fileID: 1876245824535997, guid: 750b3ab12ae59c4479abd358795c1f0c, type: 3}
       propertyPath: m_Name
       value: Fair Aqua Female Outfit Fan 07

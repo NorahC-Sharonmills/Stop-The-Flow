@@ -16,6 +16,9 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     private Action m_InterSuccess;
     private Action m_InterFail;
 
+    //[Header("Banner")]
+    //public RectTransform BannerSize;
+
     public enum AdsState
     {
         LOADING,
@@ -239,21 +242,20 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
 
             //AutoSpamStatusAds();
         }
-    }    
-
+    }
+    private IronSourceBannerSize BannerSize = new IronSourceBannerSize(430, 50);
     private void LoadBanner()
     {
         //Debug.Log("Load Banner");
-        //For Banners
         IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
-        IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+        IronSource.Agent.loadBanner(BannerSize, IronSourceBannerPosition.BOTTOM);
         IronSourceEvents.onBannerAdLoadFailedEvent += (IronSourceError) =>
         {
             CoroutineUtils.PlayCoroutine(() =>
             {
                 //For Banners
                 IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
-                IronSource.Agent.loadBanner(IronSourceBannerSize.BANNER, IronSourceBannerPosition.BOTTOM);
+                IronSource.Agent.loadBanner(BannerSize, IronSourceBannerPosition.BOTTOM);
                 BannerShow();
             }, 1f);
         };
