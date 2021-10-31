@@ -11266,7 +11266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IronsourceAndroidKey: 110ae14e5
   m_IronsourceIOSKey: 
-  BannerSize: {fileID: 1184794611}
+  BannerLabel: {fileID: 1184794610}
   m_SetAction: 1
 --- !u!1 &1849562710
 GameObject:

@@ -41,38 +41,45 @@ namespace Game
                 m_Animator.Play("FadeOut");
                 CoroutineUtils.PlayCoroutine(() =>
                 {
-                    m_Canvas.SetActive(false);
-                    m_FadeObject.SetActive(false);
+                    if(!Game.Rate.Instance.IsRate)
+                    {
+                        m_Canvas.SetActive(false);
+                        m_FadeObject.SetActive(false);
+                    }
+                    else
+                    {
+                        m_FadeObject.SetActive(false);
+                    }
                 }, FadeOut_Time);
             }, FadeIn_Time);
         }
 
-        public void FadeIn(bool isAuto = false)
-        {
-            m_Canvas.SetActive(true);
-            m_FadeObject.SetActive(true);
-            m_Animator.Play("FadeIn");
-            if(isAuto)
-            {
-                CoroutineUtils.PlayCoroutine(() =>
-                {
-                    m_Animator.Play("FadeOut");
-                }, FadeIn_Time);
-            }
-        }    
+        //public void FadeIn(bool isAuto = false)
+        //{
+        //    m_Canvas.SetActive(true);
+        //    m_FadeObject.SetActive(true);
+        //    m_Animator.Play("FadeIn");
+        //    if(isAuto)
+        //    {
+        //        CoroutineUtils.PlayCoroutine(() =>
+        //        {
+        //            m_Animator.Play("FadeOut");
+        //        }, FadeIn_Time);
+        //    }
+        //}    
         
-        public void FadeOut(bool isAuto = false)
-        {
-            m_Canvas.SetActive(true);
-            m_Animator.Play("FadeOut");
-            if (isAuto)
-            {
-                CoroutineUtils.PlayCoroutine(() =>
-                {
-                    m_Animator.Play("FadeIn");
-                }, FadeOut_Time);
-            }
-        }    
+        //public void FadeOut(bool isAuto = false)
+        //{
+        //    m_Canvas.SetActive(true);
+        //    m_Animator.Play("FadeOut");
+        //    if (isAuto)
+        //    {
+        //        CoroutineUtils.PlayCoroutine(() =>
+        //        {
+        //            m_Animator.Play("FadeIn");
+        //        }, FadeOut_Time);
+        //    }
+        //}    
     }
 }
 

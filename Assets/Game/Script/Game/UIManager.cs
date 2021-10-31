@@ -28,11 +28,11 @@ namespace Game
 
         public void ButtonNext()
         {
-            if (RuntimeStorageData.PLAYER.level <= 3)
+            if (RuntimeStorageData.PLAYER.level < 3)
             {
                 SoundManager.Instance.PlayOnShot(Sound.CLICK);
                 RuntimeStorageData.PLAYER.level += 1;
-                GameManager.LoadScene(SceneName.Game, true, false);
+                GameManager.LoadScene(SceneName.Game, true, true);
             }
             else
             {
@@ -41,7 +41,7 @@ namespace Game
                 {
                     SoundManager.Instance.PlayOnShot(Sound.CLICK);
                     RuntimeStorageData.PLAYER.level += 1;
-                    GameManager.LoadScene(SceneName.Game, true, false);
+                    GameManager.LoadScene(SceneName.Game, true, true);
                 });
             }    
         }
@@ -164,7 +164,7 @@ namespace Game
                     Replay();
                 }, () =>
                 {
-                    if (RuntimeStorageData.PLAYER.level <= 3)
+                    if (RuntimeStorageData.PLAYER.level < 3)
                     {
                         Replay();
                     }

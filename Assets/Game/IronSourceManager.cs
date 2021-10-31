@@ -16,8 +16,8 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     private Action m_InterSuccess;
     private Action m_InterFail;
 
-    //[Header("Banner")]
-    //public RectTransform BannerSize;
+    [Header("Banner")]
+    public GameObject BannerLabel;
 
     public enum AdsState
     {
@@ -243,24 +243,36 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
             //AutoSpamStatusAds();
         }
     }
-    private IronSourceBannerSize BannerSize = new IronSourceBannerSize(430, 50);
+    private IronSourceBannerSize BannerSize;
     private void LoadBanner()
     {
-        //Debug.Log("Load Banner");
-        IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
-        IronSource.Agent.loadBanner(BannerSize, IronSourceBannerPosition.BOTTOM);
-        IronSourceEvents.onBannerAdLoadFailedEvent += (IronSourceError) =>
+        if (RuntimeStorageData.PLAYER.isAds)
         {
-            CoroutineUtils.PlayCoroutine(() =>
+            Debug.Log("Load Banner");
+            BannerSize = new IronSourceBannerSize((int)(Screen.width / 2 - (int)(Screen.width / 40)), 50);
+            BannerLabel.SetActive(false);
+            IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
+            IronSource.Agent.loadBanner(BannerSize, IronSourceBannerPosition.BOTTOM);
+            IronSourceEvents.onBannerAdLoadFailedEvent += (IronSourceError) =>
             {
-                //For Banners
-                IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
-                IronSource.Agent.loadBanner(BannerSize, IronSourceBannerPosition.BOTTOM);
-                BannerShow();
-            }, 1f);
-        };
+                if (RuntimeStorageData.PLAYER.isAds)
+                {
+                    CoroutineUtils.PlayCoroutine(() =>
+                {
+                    //For Banners
+                    IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
+                    IronSource.Agent.loadBanner(BannerSize, IronSourceBannerPosition.BOTTOM);
+                    BannerShow();
+                }, 0.5f);
+                }
+            };
+            IronSourceEvents.onBannerAdLoadedEvent += () =>
+            {
+                BannerLabel.SetActive(true);
+            };
 
-        BannerShow();
+            BannerShow();
+        }
     }
 
     private void LoadInter()

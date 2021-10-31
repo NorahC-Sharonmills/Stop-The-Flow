@@ -9,6 +9,11 @@ namespace Game
         public GameObject m_Canvas;
         public GameObject m_RateObject;
 
+        public bool IsRate
+        {
+            get { return m_RateObject.activeInHierarchy; }
+        }
+
         [Header("Link")]
         public string IOSAppID = "";
 

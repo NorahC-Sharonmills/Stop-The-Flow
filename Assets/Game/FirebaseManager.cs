@@ -8,21 +8,14 @@ public class FirebaseManager : MonoSingletonGlobal<FirebaseManager>
 {
     private bool IsFirebaseInitialized = false;
 
-    public IEnumerator InitializedFirebaseGlobal()
+    IEnumerator Start()
     {
         yield return InitializedFirebase();
         yield return IronSourceManager.Instance.InitializedIronsource();
         yield return InitializedFirebaseMessaging();
+
         OpenApplication();
     }
-    //IEnumerator Start()
-    //{
-    //    yield return InitializedFirebase();
-    //    yield return IronSourceManager.Instance.InitializedIronsource();
-    //    yield return InitializedFirebaseMessaging();
-
-    //    OpenApplication();
-    //}
 
     IEnumerator InitializedFirebase()
     {

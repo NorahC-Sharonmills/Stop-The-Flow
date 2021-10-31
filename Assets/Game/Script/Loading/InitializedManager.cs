@@ -40,10 +40,10 @@ namespace Game
             Game.Setting.Instance.Initializeded();
             Game.Shop.Instance.Initializeded();
 
-            yield return FirebaseManager.Instance.InitializedFirebaseGlobal();
+            //yield return FirebaseManager.Instance.InitializedFirebaseGlobal();
 
 
-            GameManager.LoadScene(SceneName.Game);
+            GameManager.LoadScene(SceneName.Game, true, true);
         }
     }
 }
