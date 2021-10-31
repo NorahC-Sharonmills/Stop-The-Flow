@@ -19,7 +19,6 @@ namespace Game
     {
         private IEnumerator Start()
         {
-            Debug.Log("Read all data");
             bool IsFirst = PlayerPrefs.GetInt(PlayerPrefsString.IsFirst, 0) == 0 ? true : false;
             if (IsFirst)
             {
@@ -30,20 +29,10 @@ namespace Game
             {
                 RuntimeStorageData.ReadAllData();
             }
-
-            // kiểm tra xem data đã sẵn sàng chưa
             yield return new WaitUntil(() => RuntimeStorageData.IsReady);
-
-            // thêm các đoạn load các thứ vào đây
-            yield return ResourceManager.Instance.InitializedResource();
-
             Game.Setting.Instance.Initializeded();
             Game.Shop.Instance.Initializeded();
-
-            //yield return FirebaseManager.Instance.InitializedFirebaseGlobal();
-
-
-            GameManager.LoadScene(SceneName.Game, true, true);
+            GameManager.LoadScene(SceneName.Game);
         }
     }
 }

@@ -101,10 +101,11 @@ namespace Game
         protected override void Awake()
         {
             base.Awake();
+            InitializedResource();
 
         }
 
-        public IEnumerator InitializedResource()
+        public void InitializedResource()
         {
             for (int i = 0; i < levels.Length; i++)
             {
@@ -113,7 +114,6 @@ namespace Game
 
                 LevelDics.Add(i + 1, level);
             }
-            yield return null;
         }
 
         public static Level GetLevel(int level)

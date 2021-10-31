@@ -53,8 +53,16 @@ public static class RuntimeStorageData
 
         if (File.Exists(dataPath))
         {
-            var data = ReadDataExist<T>(dataPath);
-            return data;
+            try
+            {
+                var data = ReadDataExist<T>(dataPath);
+                return data;
+            }
+            catch (System.Exception error)
+            {
+                var data = GetDataDefault<T>(dataType);
+                return data;
+            }
         }
         else
         {
