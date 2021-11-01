@@ -10,6 +10,7 @@ public class FirebaseManager : MonoSingletonGlobal<FirebaseManager>
 
     IEnumerator Start()
     {
+        yield return WaitForSecondCache.WAIT_TIME_ONE;
         yield return InitializedFirebase();
         yield return IronSourceManager.Instance.InitializedIronsource();
         yield return InitializedFirebaseMessaging();

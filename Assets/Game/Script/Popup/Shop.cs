@@ -106,9 +106,10 @@ namespace Game
             return rs;
         }
 
-        protected override void Awake()
+        [HideInInspector] public bool IsInitialized = false;
+        public void InitializedAllItem()
         {
-            base.Awake();
+            IsInitialized = true;
             ShopScriptableObject Data = ResourceManager.Instance.ShopInfo;
             for (int i = 0; i < Data.m_PrefabOutfits.Length; i++)
             {
@@ -195,6 +196,73 @@ namespace Game
                 Item.UIObject3D.CameraDistance = Data.m_UtilityShowSettings[i].CameraDistance;
                 Item.UIObject3D.CameraFOV = Data.m_UtilityShowSettings[i].CameraFOV;
             }
+
+            for (int i = 0; i < m_Characters.Length; i++)
+            {
+                if (m_Characters[i].name == RuntimeStorageData.PLAYER.m_SkinUsing)
+                {
+                    m_Characters[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    m_Characters[i].gameObject.SetActive(false);
+                }
+
+                MeshRenderer HairRenderer = m_Characters[i].GetHairWithName(RuntimeStorageData.PLAYER.m_HairUsing);
+                if (RuntimeStorageData.PLAYER.m_HairUsing != "None")
+                {
+                    Material[] Hairmats = HairRenderer.materials;
+                    Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.m_HairColorUsing];
+                    HairRenderer.materials = Hairmats;
+                }
+
+
+                MeshRenderer HatRenderer = m_Characters[i].GetHatWithName(RuntimeStorageData.PLAYER.m_HatUsing);
+                if (RuntimeStorageData.PLAYER.m_HatUsing != "None")
+                {
+                    Material[] HatMats = HatRenderer.materials;
+                    HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.m_HatColorUsing];
+                    HatRenderer.materials = HatMats;
+                }
+
+                MeshRenderer UtilityRenderer = m_Characters[i].GetItemOnHand(RuntimeStorageData.PLAYER.m_UtilityUsing);
+
+                MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.m_FaceUsing);
+                Material[] FaceMats = FaceRenderer.materials;
+                FaceMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialFaceColors[0];
+                FaceRenderer.materials = FaceMats;
+            }
+
+            for (int i = 0; i < m_CharacterNoCameraRenderers.Length; i++)
+            {
+                SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetChild(0).GetComponent<SkinnedMeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.m_SkinColor];
+                Renderer.materials = mats;
+
+                m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
+                m_Characters[i].GetHeadMeshRenderer.materials = mats;
+            }
+
+            for (int i = 0; i < m_HairNoCameraRenderers.Length; i++)
+            {
+                MeshRenderer Renderer = m_HairNoCameraRenderers[i].GetComponent<MeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.m_HairColorUsing];
+                Renderer.materials = mats;
+            }
+
+            for (int i = 0; i < m_HatNoCameraRenderers.Length; i++)
+            {
+                MeshRenderer Renderer = m_HatNoCameraRenderers[i].GetComponent<MeshRenderer>();
+                Material[] mats = Renderer.materials;
+                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.m_HatColorUsing];
+                Renderer.materials = mats;
+            }
+
+            HairChoose = RuntimeStorageData.PLAYER.m_HairUsing;
+            HatChoose = RuntimeStorageData.PLAYER.m_HatUsing;
+            UtilityChoose = RuntimeStorageData.PLAYER.m_UtilityUsing;
         }
 
         private Vector3 DefaultRotationUtility = new Vector3(-37.5f, -270f, 0f);
@@ -252,76 +320,6 @@ namespace Game
             {
                 MeshRenderer Renderer = m_Characters[i].GetItemOnHand(str);
             }
-        }
-
-        public void Initializeded()
-        {
-            for (int i = 0; i < m_Characters.Length; i++)
-            {
-                if (m_Characters[i].name == RuntimeStorageData.PLAYER.m_SkinUsing)
-                {
-                    m_Characters[i].gameObject.SetActive(true);
-                }
-                else
-                {
-                    m_Characters[i].gameObject.SetActive(false);
-                }
-
-                MeshRenderer HairRenderer = m_Characters[i].GetHairWithName(RuntimeStorageData.PLAYER.m_HairUsing);
-                if(RuntimeStorageData.PLAYER.m_HairUsing != "None")
-                {
-                    Material[] Hairmats = HairRenderer.materials;
-                    Hairmats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.m_HairColorUsing];
-                    HairRenderer.materials = Hairmats;
-                }
-
-
-                MeshRenderer HatRenderer = m_Characters[i].GetHatWithName(RuntimeStorageData.PLAYER.m_HatUsing);
-                if(RuntimeStorageData.PLAYER.m_HatUsing != "None")
-                {
-                    Material[] HatMats = HatRenderer.materials;
-                    HatMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.m_HatColorUsing];
-                    HatRenderer.materials = HatMats;
-                }
-
-                MeshRenderer UtilityRenderer = m_Characters[i].GetItemOnHand(RuntimeStorageData.PLAYER.m_UtilityUsing);
-
-                MeshRenderer FaceRenderer = m_Characters[i].GetFaceWithName(RuntimeStorageData.PLAYER.m_FaceUsing);
-                Material[] FaceMats = FaceRenderer.materials;
-                FaceMats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialFaceColors[0];
-                FaceRenderer.materials = FaceMats;
-            }
-
-            for (int i = 0; i < m_CharacterNoCameraRenderers.Length; i++)
-            {
-                SkinnedMeshRenderer Renderer = m_CharacterNoCameraRenderers[i].GetChild(0).GetComponent<SkinnedMeshRenderer>();
-                Material[] mats = Renderer.materials;
-                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.m_SkinColor];
-                Renderer.materials = mats;
-
-                m_Characters[i].GetSkinnedMeshRenderer.materials = mats;
-                m_Characters[i].GetHeadMeshRenderer.materials = mats;
-            }
-
-            for (int i = 0; i < m_HairNoCameraRenderers.Length; i++)
-            {
-                MeshRenderer Renderer = m_HairNoCameraRenderers[i].GetComponent<MeshRenderer>();
-                Material[] mats = Renderer.materials;
-                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHairColors[RuntimeStorageData.PLAYER.m_HairColorUsing];
-                Renderer.materials = mats;
-            }
-
-            for (int i = 0; i < m_HatNoCameraRenderers.Length; i++)
-            {
-                MeshRenderer Renderer = m_HatNoCameraRenderers[i].GetComponent<MeshRenderer>();
-                Material[] mats = Renderer.materials;
-                mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[RuntimeStorageData.PLAYER.m_HatColorUsing];
-                Renderer.materials = mats;
-            }
-
-            HairChoose = RuntimeStorageData.PLAYER.m_HairUsing;
-            HatChoose = RuntimeStorageData.PLAYER.m_HatUsing;
-            UtilityChoose = RuntimeStorageData.PLAYER.m_UtilityUsing;
         }
 
         [HideInInspector]

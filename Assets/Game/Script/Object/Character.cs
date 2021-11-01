@@ -85,10 +85,12 @@ namespace Game
                                 transform.GetChild(i).gameObject.SetActive(false);
                             }
                         }
+
                         if (IsCreated)
                         {
                             CharacterModels = Instantiate(Game.Shop.Instance.GetSkinRuntime(), transform);
                             CharacterModels.name = CharacterModels.name.Replace("(Clone)", "");
+                            CharacterModels.SetActive(true);
                         }
 
                         CharacterModels.transform.localPosition = Vector3.zero;
@@ -100,9 +102,10 @@ namespace Game
 
                         CharacterInfo = CharacterModels.GetComponent<ShopCharacter>();
                         CharacterInfo.SetFace(ShopCharacter.FaceType.Worried);
-
+                        Material[] mats = CharacterInfo.GetSkinnedMeshRenderer.materials;
+                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialWhiteOutfitsColors[RuntimeStorageData.PLAYER.m_SkinColor];
+                        CharacterInfo.GetSkinnedMeshRenderer.materials = mats;
                         ReloadAccessory();
-
                         SetGameLayerRecursive(CharacterModels, gameObject.layer);
                         break;
                 }

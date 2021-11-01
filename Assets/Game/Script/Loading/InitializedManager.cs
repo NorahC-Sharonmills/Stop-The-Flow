@@ -19,6 +19,7 @@ namespace Game
     {
         private IEnumerator Start()
         {
+            yield return WaitForSecondCache.WAIT_TIME_ONE;
             bool IsFirst = PlayerPrefs.GetInt(PlayerPrefsString.IsFirst, 0) == 0 ? true : false;
             if (IsFirst)
             {
@@ -30,8 +31,8 @@ namespace Game
                 RuntimeStorageData.ReadAllData();
             }
             yield return new WaitUntil(() => RuntimeStorageData.IsReady);
-            Game.Setting.Instance.Initializeded();
-            Game.Shop.Instance.Initializeded();
+            //Game.Setting.Instance.Initializeded();
+            //Game.Shop.Instance.Initializeded();
             GameManager.LoadScene(SceneName.Game);
         }
     }

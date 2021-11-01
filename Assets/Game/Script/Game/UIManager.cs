@@ -183,7 +183,10 @@ namespace Game
 
         public void OpenShop()
         {
-            //SoundManager.Instance.PlayOnShot(Sound.CLICK);
+            if (!Game.Shop.Instance.IsInitialized)
+            {
+                Game.Shop.Instance.InitializedAllItem();
+            }    
             m_GameCamera.SetActive(false);
             m_ShopCamera.SetActive(true);
 

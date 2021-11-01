@@ -12,8 +12,9 @@ public class IAPService : MonoSingletonGlobal<IAPService>, IStoreListener
     private static IStoreController m_StoreController;          // The Unity Purchasing system.
     private static IExtensionProvider m_StoreExtensionProvider; // The store-specific Purchasing subsystems.
     public static string remove_ads_id = "remove_ads";
-    void Start()
+    IEnumerator Start()
     {
+        yield return WaitForSecondCache.WAIT_TIME_ONE;
         if (m_StoreController == null)
         {
             InitializePurchasing();

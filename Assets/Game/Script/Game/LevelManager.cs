@@ -126,6 +126,11 @@ namespace Game
             StaticVariable.GameState = GameState.PAUSE;
         }
 
+        private void Start()
+        {
+            Game.Loading.Instance.Hide();
+        }
+
         private GameObject Tutorial;
         private bool IsTutorial = false;
         private List<GameObject> helps = new List<GameObject>();
