@@ -3,7 +3,7 @@
 //  IronSource
 //
 //  Created by Guy Lis on 09/09/2020.
-//  Copyright © 2020 IronSource. All rights reserved.
+//  Copyright © 2020 ironSource. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

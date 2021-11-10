@@ -17,7 +17,7 @@
 #import "ISApplicationSettings.h"
 #import "ISExternalSettings.h"
 #import "ISSKAdNetworkSettings.h"
-
+#import "ISPixelSettings.h"
 @interface ISServerResponseParser : NSObject
 
 /* ProvidersConfig Array's Hold 'ISAdapterConfig' obj */
@@ -35,6 +35,8 @@
 @property (nonatomic, strong) ISEventsSettings                    *interstitialEvents;
 @property (nonatomic, strong) ISEventsSettings                    *offerwallEvents;
 @property (nonatomic, strong) ISEventsSettings                    *bannerEvents;
+@property (nonatomic, strong) ISEventsSettings                    *pixelEvents;
+
 
 @property (nonatomic, strong) ISLoggersSettings                   *loggers;
 @property (nonatomic, strong) ISAuctionSettings                   *auctionSettings;
@@ -43,6 +45,7 @@
 @property (nonatomic, strong) ISApplicationSettings               *applicationSettings;
 @property (nonatomic, strong) ISExternalSettings                  *externalSettings;
 @property (nonatomic, strong) ISSKAdNetworkSettings               *skanSettings;
+@property (nonatomic, strong) ISPixelSettings                     *pixelSettings;
 
 @property (nonatomic, strong) NSString                            *segmentName;
 @property (nonatomic, strong) NSString                            *segmentId;

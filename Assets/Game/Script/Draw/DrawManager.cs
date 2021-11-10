@@ -62,6 +62,9 @@ public class DrawManager : MonoSingleton<DrawManager>
         if (IsComplete)
             return;
 
+        if (Game.Shop.Instance.IsShop)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             CreateLine();

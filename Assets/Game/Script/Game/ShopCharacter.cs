@@ -88,6 +88,7 @@ namespace Game
                     return rs;
                 GameObject HairObject = Instantiate(findObject, m_HairContainer) as GameObject;
                 HairObject.name = HairObject.name.Replace("(Clone)", "");
+                HairObject.layer = this.gameObject.layer;
                 rs = HairObject.GetComponent<MeshRenderer>();
             }
 
@@ -138,6 +139,7 @@ namespace Game
                     return rs;
                 GameObject HatObject = Instantiate(findObject, m_HatContainer) as GameObject;
                 HatObject.name = HatObject.name.Replace("(Clone)", "");
+                HatObject.layer = gameObject.layer;
                 rs = HatObject.GetComponent<MeshRenderer>();
             }
 
@@ -209,6 +211,7 @@ namespace Game
                     return rs;
                 GameObject FaceObject = Instantiate(findObject, m_FaceContainer) as GameObject;
                 FaceObject.name = FaceObject.name.Replace("(Clone)", "");
+                FaceObject.layer = gameObject.layer;
                 rs = FaceObject.GetComponent<MeshRenderer>();
             }
 
@@ -258,6 +261,7 @@ namespace Game
                     return rs;
                 GameObject FaceObject = Instantiate(findObject, m_HandContainer) as GameObject;
                 FaceObject.name = FaceObject.name.Replace("(Clone)", "");
+                FaceObject.layer = gameObject.layer;
                 rs = FaceObject.GetComponent<MeshRenderer>();
             }
 

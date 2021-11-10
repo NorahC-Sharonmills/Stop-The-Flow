@@ -35,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 #define IS_OFFERWALL @"offerwall"
 #define IS_BANNER @"banner"
 
-static NSString * const MEDIATION_SDK_VERSION     = @"7.1.7";
-static NSString * GitHash = @"c065eca39";
+static NSString * const MEDIATION_SDK_VERSION     = @"7.1.12";
+static NSString * GitHash = @"507f6e6c7";
 
 /*
     This constant is for sending an external impression data from mopub

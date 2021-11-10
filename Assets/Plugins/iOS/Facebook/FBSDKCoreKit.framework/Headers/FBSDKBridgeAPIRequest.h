@@ -1,47 +1,21 @@
-// Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
-//
-// You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-// copy, modify, and distribute this software in source code or binary form for use
-// in connection with the web services and APIs provided by Facebook.
-//
-// As with any software that integrates with the Facebook platform, your use of
-// this software is subject to the Facebook Developer Principles and Policies
-// [http://developers.facebook.com/policy/]. This copyright notice shall be
-// included in all copies or substantial portions of the software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-// COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-// IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-// CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-#import "TargetConditionals.h"
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ * All rights reserved.
+ *
+ * This source code is licensed under the license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
 #if !TARGET_OS_TV
 
 #import <Foundation/Foundation.h>
 
-#import "FBSDKBridgeAPIProtocol.h"
-#import "FBSDKBridgeAPIProtocolType.h"
+#import <FBSDKCoreKit/FBSDKBridgeAPIProtocolType.h>
+#import <FBSDKCoreKit/FBSDKBridgeAPIRequest.h>
+#import <FBSDKCoreKit/FBSDKBridgeAPIRequestProtocol.h>
+#import <FBSDKCoreKit/FBSDKURLScheme.h>
 
-/**
- Internal Type exposed to facilitate transition to Swift.
- API Subject to change or removal without warning. Do not use.
-
- @warning UNSAFE - DO NOT USE
- */
-@protocol FBSDKBridgeAPIRequestProtocol <NSObject, NSCopying>
-
-@property (nonatomic, copy, readonly) NSString *scheme;
-@property (nonatomic, copy, readonly) NSString *actionID;
-@property (nonatomic, copy, readonly) NSString *methodName;
-@property (nonatomic, assign, readonly) FBSDKBridgeAPIProtocolType protocolType;
-@property (nonatomic, readonly, strong) id<FBSDKBridgeAPIProtocol> protocol;
-
-- (NSURL *)requestURL:(NSError *__autoreleasing *)errorRef;
-
-@end
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Internal Type exposed to facilitate transition to Swift.
@@ -50,27 +24,29 @@
  @warning UNSAFE - DO NOT USE
  */
 NS_SWIFT_NAME(BridgeAPIRequest)
-@interface FBSDKBridgeAPIRequest : NSObject <NSCopying, NSObject, FBSDKBridgeAPIRequestProtocol>
+@interface FBSDKBridgeAPIRequest : NSObject <NSCopying, FBSDKBridgeAPIRequest>
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
-+ (instancetype)bridgeAPIRequestWithProtocolType:(FBSDKBridgeAPIProtocolType)protocolType
-                                          scheme:(NSString *)scheme
-                                      methodName:(NSString *)methodName
-                                   methodVersion:(NSString *)methodVersion
-                                      parameters:(NSDictionary *)parameters
-                                        userInfo:(NSDictionary *)userInfo;
++ (nullable instancetype)bridgeAPIRequestWithProtocolType:(FBSDKBridgeAPIProtocolType)protocolType
+                                                   scheme:(FBSDKURLScheme)scheme
+                                               methodName:(nullable NSString *)methodName
+                                            methodVersion:(nullable NSString *)methodVersion
+                                               parameters:(nullable NSDictionary<NSString *, id> *)parameters
+                                                 userInfo:(nullable NSDictionary<NSString *, id> *)userInfo;
 
-@property (nonatomic, copy, readonly) NSString *actionID;
-@property (nonatomic, copy, readonly) NSString *methodName;
-@property (nonatomic, copy, readonly) NSString *methodVersion;
-@property (nonatomic, copy, readonly) NSDictionary *parameters;
-@property (nonatomic, assign, readonly) FBSDKBridgeAPIProtocolType protocolType;
-@property (nonatomic, copy, readonly) NSString *scheme;
-@property (nonatomic, copy, readonly) NSDictionary *userInfo;
+@property (nonatomic, readonly, copy) NSString *actionID;
+@property (nullable, nonatomic, readonly, copy) NSString *methodName;
+@property (nullable, nonatomic, readonly, copy) NSString *methodVersion;
+@property (nullable, nonatomic, readonly, copy) NSDictionary<NSString *, id> *parameters;
+@property (nonatomic, readonly, assign) FBSDKBridgeAPIProtocolType protocolType;
+@property (nonatomic, readonly, copy) FBSDKURLScheme scheme;
+@property (nullable, nonatomic, readonly, copy) NSDictionary<NSString *, id> *userInfo;
 
-- (NSURL *)requestURL:(NSError *__autoreleasing *)errorRef;
+- (nullable NSURL *)requestURL:(NSError *_Nullable *)errorRef;
 
 @end
+
+NS_ASSUME_NONNULL_END
 
 #endif

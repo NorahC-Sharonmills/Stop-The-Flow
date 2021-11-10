@@ -3,7 +3,7 @@
 //  IronSource
 //
 //  Created by Hadar Pur on 08/10/2020.
-//  Copyright © 2020 IronSource. All rights reserved.
+//  Copyright © 2020 ironSource. All rights reserved.
 //
 
 #ifndef ISConsentViewDelegate_h

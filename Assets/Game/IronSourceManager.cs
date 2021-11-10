@@ -8,8 +8,6 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     private string IronsourceKey = "";
     public string m_IronsourceAndroidKey = "";
     public string m_IronsourceIOSKey = "";
-    private Coroutine cacheCoroutineInter;
-    private Coroutine cacheCoroutineReward;
 
     private Action m_RewardSuccess;
     private Action m_RewardFail;
@@ -45,11 +43,9 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     {
 #if UNITY_ANDROID || UNITY_EDITOR
         IronsourceKey = m_IronsourceAndroidKey;
-        //Debug.Log(IronsourceKey + " android");
 #endif
 #if UNITY_IOS
             IronsourceKey = m_IronsourceIOSKey;
-            //Debug.Log(IronsourceKey + " ios");
 #endif
         yield return null;
         AddListenInter();
@@ -79,14 +75,6 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
         {
             m_TimeStatus += Time.deltaTime;
         }
-        //StartCoroutine(CorotineSpamStatusAds());
-    }
-
-    private IEnumerator CorotineSpamStatusAds()
-    {
-        //Debug.Log(string.Format("ads status : inter is {0} - reward is {1}", InterAdsState, RewardAdsState));
-        yield return WaitForSecondCache.WAIT_TIME_FIVE;
-        StartCoroutine(CorotineSpamStatusAds());
     }
 
     private void AddListenInter()
@@ -239,8 +227,9 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
                 if (!IronSource.Agent.isRewardedVideoAvailable())
                     RewardAdsState = AdsState.MISSING;
             }
-
-            //AutoSpamStatusAds();
+#if UNITY_IOS
+            AutoSpamStatusAds();
+#endif
         }
     }
     private IronSourceBannerSize BannerSize;
@@ -248,8 +237,13 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     {
         if (RuntimeStorageData.PLAYER.isAds)
         {
-            Debug.Log("Load Banner");
+            Debug.Log("Load Banner id : " + IronsourceKey);
+#if UNITY_IOS
+            BannerSize = IronSourceBannerSize.BANNER;
+#endif
+#if UNITY_ANDROID
             BannerSize = new IronSourceBannerSize((int)(Screen.width / 2 - (int)(Screen.width / 40)), 50);
+#endif
             BannerLabel.SetActive(false);
             IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.BANNER);
             IronSource.Agent.loadBanner(BannerSize, IronSourceBannerPosition.BOTTOM);
@@ -278,6 +272,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
     private void LoadInter()
     {
         //For Interstitial
+        Debug.Log("Load Inter id : " + IronsourceKey);
         InterAdsState = AdsState.LOADING;
         IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.INTERSTITIAL);
         IronSource.Agent.loadInterstitial();
@@ -285,6 +280,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
 
     private void LoadReward()
     {
+        Debug.Log("Load Reward id : " + IronsourceKey);
         RewardAdsState = AdsState.LOADING;
         //For Rewarded Video
         IronSource.Agent.init(IronsourceKey, IronSourceAdUnits.REWARDED_VIDEO);
@@ -328,8 +324,9 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
             {
                 success?.Invoke();
             }
+            return;
 #elif UNITY_IOS
-                Time.timeScale = 0;
+            Time.timeScale = 0;
                 AudioListener.pause = true;
                 IronSource.Agent.onApplicationPause(true);
 
@@ -337,7 +334,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
                 m_InterSuccess = success;
                 m_InterFail = () =>
                 {
-                    fail?.Invoke();
+                    success?.Invoke();
                     Time.timeScale = 1;
                     AudioListener.pause = false;
                     IronSource.Agent.onApplicationPause(false);
@@ -368,7 +365,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
             fail?.Invoke();
         }
 #elif UNITY_IOS
-            Time.timeScale = 0;
+        Time.timeScale = 0;
             AudioListener.pause = true;
             IronSource.Agent.onApplicationPause(true);
 

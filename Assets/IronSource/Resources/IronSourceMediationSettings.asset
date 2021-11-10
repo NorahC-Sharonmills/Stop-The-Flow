@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronSourceMediationSettings
   m_EditorClassIdentifier: 
   AndroidAppKey: 110ae14e5
-  IOSAppKey: 
+  IOSAppKey: 101fea961
   EnableIronsourceSDKInitAPI: 0
   AddIronsourceSkadnetworkID: 0
   EnableAdapterDebug: 0

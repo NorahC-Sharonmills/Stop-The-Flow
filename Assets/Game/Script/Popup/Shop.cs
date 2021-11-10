@@ -452,6 +452,7 @@ namespace Game
             }
         }
 
+        public bool IsShop = false;
         public void Show()
         {
             m_Canvas.SetActive(true);
@@ -461,10 +462,19 @@ namespace Game
             OnTab("clothes");
 
             m_ShopObjectPreview.SetActive(true);
+            IsShop = true;
         }
 
         public void Home()
         {
+            var chars = Game.LevelManager.Instance.Characters;
+            for (int i = 0; i < chars.Count; i++)
+            {
+                var _sc = chars[i].GetComponent<Game.Character>();
+                if (_sc != null)
+                    _sc.ReloadCharacter();
+            }
+
             SoundManager.Instance.PlayOnShot(Sound.CLICK);
             FirebaseManager.Instance.ShowInterBackHome();
             IronSourceManager.Instance.ShowInter(() =>
@@ -478,14 +488,8 @@ namespace Game
                     m_ShopObject.SetActive(false);
                     Game.UIManager.Instance.Home();
                 }, 0.2f);
-            });
-            var chars = Game.LevelManager.Instance.Characters;
-            for(int i = 0; i < chars.Count; i++)
-            {
-                var _sc = chars[i].GetComponent<Game.Character>();
-                if (_sc != null)
-                    _sc.ReloadCharacter();
-            }    
+                IsShop = false;
+            });   
         }
 
         public void OnTab(string tab)

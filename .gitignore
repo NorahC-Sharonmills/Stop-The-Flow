@@ -9,6 +9,7 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/[Bb]uild Draw/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -59,3 +60,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.so
+# Assets/Firebase/Plugins/x86_64/FirebaseCppApp-8_4_0.so.meta
+# Assets/Firebase/Plugins/x86_64/FirebaseCppMessaging.so.meta
+# Assets/Firebase/Plugins/x86_64/FirebaseCppAnalytics.so.meta
