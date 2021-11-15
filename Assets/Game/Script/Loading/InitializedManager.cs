@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GameAnalyticsSDK;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,10 +31,18 @@ namespace Game
             {
                 RuntimeStorageData.ReadAllData();
             }
+            yield return null;
+            InitializedGameAnalytic();
             yield return new WaitUntil(() => RuntimeStorageData.IsReady);
-            //Game.Setting.Instance.Initializeded();
-            //Game.Shop.Instance.Initializeded();
             GameManager.LoadScene(SceneName.Game);
+        }
+
+        private void InitializedGameAnalytic()
+        {
+            Debug.Log("Initialized Game Analytic with id : " + SystemInfo.deviceUniqueIdentifier);
+            GameAnalytics.Initialize();
+            //GameAnalytics.SetCustomId(SystemInfo.deviceUniqueIdentifier);
+            GameAnalytics.SetEnabledManualSessionHandling(true);
         }
     }
 }

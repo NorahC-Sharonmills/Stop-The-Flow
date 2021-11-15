@@ -72,6 +72,10 @@ namespace Game
                         break;
                 }
             }
+            else
+            {
+
+            }    
         }
 
         private void FixedUpdate()
