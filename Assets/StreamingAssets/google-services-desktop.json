@@ -1,39 +1,36 @@
 {
-  "project_info": {
-    "project_number": "126600303034",
-    "project_id": "draw-rescue",
-    "storage_bucket": "draw-rescue.appspot.com"
-  },
   "client": [
     {
+      "services": {
+        "appinvite_service": {
+          "status": 1
+        }, 
+        "analytics_service": {
+          "status": 0
+        }
+      }, 
+      "oauth_client": [
+        {
+          "client_id": "126600303034-5arppicv8or6grk3o8oc7sivdt0ld1o7.apps.googleusercontent.com"
+        }
+      ], 
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvw6Ar1LDCJAmBQ5xA-ptP-qSZx_V-7x0"
+        }
+      ], 
       "client_info": {
-        "mobilesdk_app_id": "1:126600303034:android:3553abb4dfe35ded614d83",
+        "mobilesdk_app_id": "1:126600303034:ios:266a280995339936614d83", 
         "android_client_info": {
           "package_name": "com.rescue.drawpuzzle.savegame"
         }
-      },
-      "oauth_client": [
-        {
-          "client_id": "126600303034-lf75u0jvdj8p3v5pvb2oveq00jfhcb6m.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCvpdAJc9lcdrSFVYbLDwSDXEHMOLlPpaw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "126600303034-lf75u0jvdj8p3v5pvb2oveq00jfhcb6m.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
       }
     }
-  ],
-  "configuration_version": "1"
+  ], 
+  "configuration_version": "1", 
+  "project_info": {
+    "storage_bucket": "draw-rescue.appspot.com", 
+    "project_id": "draw-rescue", 
+    "project_number": "126600303034"
+  }
 }

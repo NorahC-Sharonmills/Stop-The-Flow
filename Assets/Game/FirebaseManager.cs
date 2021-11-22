@@ -45,8 +45,8 @@ public class FirebaseManager : MonoSingletonGlobal<FirebaseManager>
     {
         yield return new WaitUntil(() => IsFirebaseInitialized);
         Debug.Log("Firebase Messaging initialized");
-        Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseMessaging_TokenReceived;
-        Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseMessaging_MessageReceived;
+        //Firebase.Messaging.FirebaseMessaging.TokenReceived += FirebaseMessaging_TokenReceived;
+        //Firebase.Messaging.FirebaseMessaging.MessageReceived += FirebaseMessaging_MessageReceived;
     }
 
     private void FirebaseMessaging_MessageReceived(object sender, Firebase.Messaging.MessageReceivedEventArgs e)
