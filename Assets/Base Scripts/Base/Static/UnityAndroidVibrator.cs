@@ -1,7 +1,7 @@
 using UnityEngine;
 public class UnityAndroidVibrator : MonoSingletonGlobal<UnityAndroidVibrator> 
 {
-    #if UNITY_ANDROID || UNITY_EDITOR 
+#if UNITY_ANDROID || UNITY_EDITOR 
     private static AndroidJavaObject plugin = null;
 #endif
 
@@ -22,10 +22,12 @@ public class UnityAndroidVibrator : MonoSingletonGlobal<UnityAndroidVibrator>
     /// <param name="DurationInMilliseconds">Duration in milliseconds.</param>
     public void VibrateForGivenDuration(int DurationInMilliseconds)
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
         if(RuntimeStorageData.SOUND.isVibrate)
         {
             plugin.Call("VibrateForGivenDuration", DurationInMilliseconds);
         }
+#endif
     }
 
     /// <summary>
@@ -33,7 +35,9 @@ public class UnityAndroidVibrator : MonoSingletonGlobal<UnityAndroidVibrator>
     /// </summary>
     public void StopVibrate()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
             plugin.Call("StopVibrate");
+#endif
     }
 
 
@@ -46,9 +50,11 @@ public class UnityAndroidVibrator : MonoSingletonGlobal<UnityAndroidVibrator>
     /// <param name="Pattern">Pattern.</param>
     public void CustomVibrate(long[] Pattern)
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (RuntimeStorageData.SOUND.isVibrate)
         {
             plugin.Call("CustomVibrate", Pattern);
         }
+#endif
     }
 }

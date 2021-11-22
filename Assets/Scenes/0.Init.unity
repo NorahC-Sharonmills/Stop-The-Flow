@@ -11223,7 +11223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IronsourceAndroidKey: 110ae14e5
-  m_IronsourceIOSKey: 
+  m_IronsourceIOSKey: 11c5158ad
   BannerLabel: {fileID: 1184794610}
   m_SetAction: 1
 --- !u!1 &1849562710

@@ -337,7 +337,7 @@ public class IronSourceManager : MonoSingletonGlobal<IronSourceManager>
                 m_InterSuccess = success;
                 m_InterFail = () =>
                 {
-                    fail?.Invoke();
+                    success?.Invoke();
                     Time.timeScale = 1;
                     AudioListener.pause = false;
                     IronSource.Agent.onApplicationPause(false);

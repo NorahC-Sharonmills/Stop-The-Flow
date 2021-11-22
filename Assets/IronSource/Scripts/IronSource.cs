@@ -5,12 +5,12 @@ using System;
 
 public class IronSource : IronSourceIAgent
 {
-	private IronSourceIAgent _platformAgent ;
+	private IronSourceIAgent _platformAgent;
 	private static IronSource _instance;
-	private const string UNITY_PLUGIN_VERSION = "7.1.11.1-r";
+	private const string UNITY_PLUGIN_VERSION = "7.1.12.1-r";
 	private static bool isUnsupportedPlatform;
 
-	private IronSource ()
+	private IronSource()
 	{
 		if (!isUnsupportedPlatform)
 		{
@@ -24,79 +24,79 @@ public class IronSource : IronSourceIAgent
 		}
 
 		else
-        {
+		{
 			_platformAgent = new UnsupportedPlatformAgent();
 		}
 		var type = typeof(IronSourceEvents);
-        var mgr = new GameObject("IronSourceEvents", type).GetComponent<IronSourceEvents>(); // Creates IronSourceEvents gameObject
-    }
+		var mgr = new GameObject("IronSourceEvents", type).GetComponent<IronSourceEvents>(); // Creates IronSourceEvents gameObject
+	}
 
-    #region IronSourceIAgent implementation
-    public static IronSource Agent {
+	#region IronSourceIAgent implementation
+	public static IronSource Agent {
 		get {
 			if (_instance == null) {
-				_instance = new IronSource ();
-            }
+				_instance = new IronSource();
+			}
 			return _instance;
 		}
 	}
 
-	public static string pluginVersion ()
+	public static string pluginVersion()
 	{
 		return UNITY_PLUGIN_VERSION;
 	}
 
-	public static string unityVersion ()
+	public static string unityVersion()
 	{
 		return Application.unityVersion;
 	}
 
 	public static void setUnsupportedPlatform()
-    {
+	{
 		isUnsupportedPlatform = true;
 	}
 
 	//******************* Base API *******************//
 
-	public void onApplicationPause (bool pause)
+	public void onApplicationPause(bool pause)
 	{
-		_platformAgent.onApplicationPause (pause);
+		_platformAgent.onApplicationPause(pause);
 	}
 
-	public void setMediationSegment (string segment)
+	public void setMediationSegment(string segment)
 	{
-		_platformAgent.setMediationSegment (segment);
+		_platformAgent.setMediationSegment(segment);
 	}
 
-	public string getAdvertiserId ()
+	public string getAdvertiserId()
 	{
-		return _platformAgent.getAdvertiserId ();
-	}
-	
-	public void validateIntegration ()
-	{
-		_platformAgent.validateIntegration ();
-	}
-	
-	public void shouldTrackNetworkState (bool track)
-	{
-		_platformAgent.shouldTrackNetworkState (track);
+		return _platformAgent.getAdvertiserId();
 	}
 
-	public bool setDynamicUserId (string dynamicUserId)
+	public void validateIntegration()
 	{
-		return _platformAgent.setDynamicUserId (dynamicUserId);
+		_platformAgent.validateIntegration();
+	}
+
+	public void shouldTrackNetworkState(bool track)
+	{
+		_platformAgent.shouldTrackNetworkState(track);
+	}
+
+	public bool setDynamicUserId(string dynamicUserId)
+	{
+		return _platformAgent.setDynamicUserId(dynamicUserId);
 	}
 
 	public void setAdaptersDebug(bool enabled)
 	{
-		_platformAgent.setAdaptersDebug (enabled);
+		_platformAgent.setAdaptersDebug(enabled);
 	}
 
-    public void setMetaData(string key, string value)
-    {
-        _platformAgent.setMetaData(key, value);
-    }
+	public void setMetaData(string key, string value)
+	{
+		_platformAgent.setMetaData(key, value);
+	}
 
 	public void setMetaData(string key, params string[] values)
 	{
