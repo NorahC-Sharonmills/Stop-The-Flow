@@ -293,75 +293,27 @@ namespace UI.ThreeDimensional
             }
         }
 
-        //private bool _enabled = false;
-
-        void DestroyResources()
-        {
-            //if (_targetCamera != null) _targetCamera.targetTexture = null;
-            //if (_texture2D != null) _Destroy(_texture2D);
-            //if (_sprite != null) _Destroy(_sprite);
-            //if (_renderTexture != null) _Destroy(_renderTexture);
-        }
-
-        /// <summary>
-        /// Clear all textures/etc. destroy the current target objects, and then start from scratch.
-        /// Necessary, if, for example, the RectTransform size has changed.
-        /// Fairly performance-intensive - only call this if strictly necessary.
-        /// </summary>
         public void HardUpdateDisplay()
         {
             Cleanup();
-
-            //UpdateDisplay();
             UIObject3DTimer.AtEndOfFrame(() => UpdateDisplay(), this);
-            //UIObject3DTimer.DelayedCall(0.05f, () => { imageComponent.color = color; }, this, true);
         }
 
-        //private void _Destroy(UnityEngine.Object o)
-        //{
-        //    if (Application.isPlaying) Destroy(o);
-        //    else DestroyImmediate(o);
-        //}
-
-        /// <summary>
-        /// Unity's Start() method. Used for initialization.
-        /// </summary>
         void Start()
         {
-            //var color = imageComponent.color;
-            //if (Application.isPlaying)
-            //{
-            //    imageComponent.color = new Color(0, 0, 0, 0);
-            //    //imageComponent.sprite = null;
-            //}
-
             UIObject3DTimer.AtEndOfFrame(() => SetStarted(), this, true);
             UIObject3DTimer.AtEndOfFrame(() => OnEnable(), this);
-
-            // Some models (particularly, models with rigs) can cause Unity to crash if they are instantiated this early (for some reason)
-            // as such, we must delay very briefly to avoid this before rendering
             UIObject3DTimer.DelayedCall(0.01f, () =>
             {
                 Cleanup();
                 UpdateDisplay();
-
-                //UIObject3DTimer.DelayedCall(0.05f, () => { imageComponent.color = color; }, this, true);
             }, this, true);
         }
-
-        /// <summary>
-        /// For internal use only. Public so as to be accessible within Editor-only code.
-        /// </summary>
         public void SetStarted()
         {
             started = true;
         }
 
-        /// <summary>
-        /// Update the target / camera / etc. to match  the configuration values,
-        /// then queue a render at the end of the frame (or, optionally, render instantly)
-        /// </summary>
-        /// <param name="instantRender"></param>
         public void UpdateDisplay(bool instantRender = false)
         {
             if (!Application.isPlaying && !started)
@@ -385,17 +337,9 @@ namespace UI.ThreeDimensional
             Render(instantRender);
         }
 
-        /// <summary>
-        /// Unity's 'OnEnable' method. Handles some initialization.
-        /// </summary>
         void OnEnable()
         {
-            // If Start hasn't been called yet, then this has been called too early.
-            // Start() will call this when it is time
             if (!started) return;
-
-            //_enabled = true;
-
             if (objectLayer != -1)
             {
                 ClearObjectLayerFromCameras();
@@ -527,13 +471,6 @@ namespace UI.ThreeDimensional
             }
         }
 
-        /// <summary>
-        /// Get a reference to the current target used by this UIObject3D
-        /// You can use this, for example, to access components on your prefab instance
-        /// and call methods to trigger animations/etc.
-        /// Please note, if you do use animations on the target object, you will need to set 'RenderConstantly' to true (at least, for the duration of the animation)
-        /// </summary>
-        /// <returns></returns>
         public Transform GetTargetInstance()
         {
             return target;
@@ -933,8 +870,6 @@ namespace UI.ThreeDimensional
             _targetCamera.gameObject.layer = objectLayer;
             _targetCamera.cullingMask = LayerMask.GetMask(LayerMask.LayerToName(objectLayer));
             _targetCamera.backgroundColor = BackgroundColor;
-
-            //_targetCamera.gameObject.SetActive(false);
 
             SetupCameraLight();
         }
