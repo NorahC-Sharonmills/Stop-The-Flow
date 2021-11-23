@@ -34,25 +34,25 @@ namespace Game
                 case "Clothes":
                     for(int i = 0; i < Clothes.Count; i++)
                     {
-                        Clothes[i].Initialized();
+                        Clothes[i].Initialized(i);
                     }    
                     break;
                 case "Hat":
                     for (int i = 0; i < Hats.Count; i++)
                     {
-                        Hats[i].Initialized();
+                        Hats[i].Initialized(i);
                     }
                     break;
                 case "Hair":
                     for (int i = 0; i < Hairs.Count; i++)
                     {
-                        Hairs[i].Initialized();
+                        Hairs[i].Initialized(i);
                     }
                     break;
                 case "Utility":
                     for (int i = 0; i < Utilitys.Count; i++)
                     {
-                        Utilitys[i].Initialized();
+                        Utilitys[i].Initialized(i);
                     }
                     break;
             }    
@@ -404,9 +404,12 @@ namespace Game
                     for (int i = 0; i < m_Characters.Length; i++)
                     {
                         MeshRenderer Renderer = m_Characters[i].GetHatWithName(HatChoose);
-                        Material[] mats = Renderer.materials;
-                        mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[index];
-                        Renderer.materials = mats;
+                        if(Renderer != null)
+                        {
+                            Material[] mats = Renderer.materials;
+                            mats[0] = Game.ResourceManager.Instance.ShopInfo.m_MaterialHatColors[index];
+                            Renderer.materials = mats;
+                        }    
                     }
 
                     RuntimeStorageData.PLAYER.m_HatColorUsing = index;
@@ -508,7 +511,7 @@ namespace Game
 
                     for(int i = 0; i < Clothes.Count; i++)
                     {
-                        Clothes[i].Initialized();
+                        Clothes[i].Initialized(i);
                     }
 
                     for (int i = 0; i < Colors.Length; i++)
@@ -531,7 +534,7 @@ namespace Game
 
                     for (int i = 0; i < Hairs.Count; i++)
                     {
-                        Hairs[i].Initialized();
+                        Hairs[i].Initialized(i);
                     }
 
                     for (int i = 0; i < Colors.Length; i++)
@@ -554,7 +557,7 @@ namespace Game
 
                     for (int i = 0; i < Hats.Count; i++)
                     {
-                        Hats[i].Initialized();
+                        Hats[i].Initialized(i);
                     }
 
                     for (int i = 0; i < Colors.Length; i++)
@@ -577,7 +580,7 @@ namespace Game
 
                     for (int i = 0; i < Utilitys.Count; i++)
                     {
-                        Utilitys[i].Initialized();
+                        Utilitys[i].Initialized(i);
                     }
 
                     for (int i = 0; i < Colors.Length; i++)

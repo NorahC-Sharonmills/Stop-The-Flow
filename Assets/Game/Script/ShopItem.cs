@@ -19,11 +19,14 @@ public class ShopItem : MonoBehaviour
 
     public string id = "";
     public string type = "";
+    public int index = 0;
 
-    public void Initialized()
+    public void Initialized(int _index)
     {
         m_None.SetActive(false);
         m_Image.SetActive(true);
+
+        this.index = _index;
 
         switch(type)
         {

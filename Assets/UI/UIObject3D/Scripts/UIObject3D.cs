@@ -149,33 +149,6 @@ namespace UI.ThreeDimensional
             }
         }
 
-        [SerializeField, HideInInspector]
-        private Vector2 _textureSize = default(Vector2);
-        /// <summary>
-        /// Readonly property that is used to determine the size of the texture rendered by UIObject3D
-        /// (Affected by 'RenderScale')
-        /// </summary>
-        public Vector2 TextureSize
-        {
-            get
-            {
-                if (_textureSize != default(Vector2)) return _textureSize;
-
-                if (target != null)
-                {
-                    Vector2 size = new Vector2(Mathf.Abs(Mathf.Floor(rectTransform.rect.width)), Mathf.Abs(Mathf.Floor(rectTransform.rect.height))) * RenderScale;
-
-                    if (size.x == 0 || size.y == 0) size = new Vector2(256, 256);
-
-                    _textureSize = size;
-
-                    return size;
-                }
-
-                return Vector2.one;
-            }
-        }
-
         [SerializeField]
         private Color _BackgroundColor = Color.clear;
         /// <summary>
@@ -314,6 +287,8 @@ namespace UI.ThreeDimensional
                     copyTextureSupportedPopulated = true;
                 }
 
+                _copyTextureSupported = false;
+
                 return _copyTextureSupported;
             }
         }
@@ -322,10 +297,10 @@ namespace UI.ThreeDimensional
 
         void DestroyResources()
         {
-            if (_targetCamera != null) _targetCamera.targetTexture = null;
-            if (_texture2D != null) _Destroy(_texture2D);
-            if (_sprite != null) _Destroy(_sprite);
-            if (_renderTexture != null) _Destroy(_renderTexture);
+            //if (_targetCamera != null) _targetCamera.targetTexture = null;
+            //if (_texture2D != null) _Destroy(_texture2D);
+            //if (_sprite != null) _Destroy(_sprite);
+            //if (_renderTexture != null) _Destroy(_renderTexture);
         }
 
         /// <summary>
@@ -335,15 +310,6 @@ namespace UI.ThreeDimensional
         /// </summary>
         public void HardUpdateDisplay()
         {
-            //var color = imageComponent.color;
-            //if (Application.isPlaying)
-            //{
-            //    imageComponent.color = new Color(0, 0, 0, 0);
-            //    //imageComponent.sprite = null;
-            //}
-
-            DestroyResources();
-
             Cleanup();
 
             //UpdateDisplay();
@@ -351,11 +317,11 @@ namespace UI.ThreeDimensional
             //UIObject3DTimer.DelayedCall(0.05f, () => { imageComponent.color = color; }, this, true);
         }
 
-        private void _Destroy(UnityEngine.Object o)
-        {
-            if (Application.isPlaying) Destroy(o);
-            else DestroyImmediate(o);
-        }
+        //private void _Destroy(UnityEngine.Object o)
+        //{
+        //    if (Application.isPlaying) Destroy(o);
+        //    else DestroyImmediate(o);
+        //}
 
         /// <summary>
         /// Unity's Start() method. Used for initialization.
@@ -541,16 +507,9 @@ namespace UI.ThreeDimensional
         /// </summary>
         public void Cleanup()
         {
-            _texture2D = null;
-            _sprite = null;
+
             _renderTexture = null;
-
-            _target = null;
-            _targetContainer = null;
-
             targetBounds = default(Bounds);
-            _textureSize = default(Vector2);
-
             if (_container != null)
             {
                 UIObject3DUtilities.UnRegisterTargetContainer(this);
@@ -601,39 +560,11 @@ namespace UI.ThreeDimensional
 
             if (targetCamera.targetTexture != this.renderTexture) targetCamera.targetTexture = this.renderTexture;
             targetCamera.Render();
-
-
-            if (copyTextureSupported)
-            {
-                Graphics.CopyTexture(renderTexture, texture2D);
-            }
-            else
-            {
-                var rect = new Rect(0, 0, (int)TextureSize.x, (int)TextureSize.y);
-                this.texture2D.ReadPixels(rect, 0, 0);
-                this.texture2D.Apply();
-            }
-
             if (!copyTextureSupported) RenderTexture.active = previousRenderTexture;
 
             renderQueued = false;
         }
 
-        /*
-         * As of Unity 2017.2, there seems to be a bug which calls this method
-         * repeatedly when UIObject3D is nested within a layout group, which causes all sorts of problems.
-         * As such, I have decided to remove this method for now; the primary downside is that
-         * resizing a UIObject3D instance will no longer resize the texture. In most scenarios,
-         * this will not be noticeable. Leaving the method out increases performance markedly,
-         * as resizing the texture/etc. is very expensive.
-        void OnRectTransformDimensionsChange()
-        {
-        }
-        */
-
-        /// <summary>
-        /// Unity's Update() method. Called every frame.
-        /// </summary>
         void Update()
         {
             if (!Application.isPlaying) return;
@@ -662,96 +593,15 @@ namespace UI.ThreeDimensional
         }
 
         #region Internal Components
-        private RectTransform _rectTransform;
-        protected RectTransform rectTransform
-        {
-            get
-            {
-                if (_rectTransform == null) _rectTransform = this.GetComponent<RectTransform>();
-                return _rectTransform;
-            }
-        }
 
-        //[SerializeField, HideInInspector]
-        //private UIObject3DImage _imageComponent;
-        ///// <summary>
-        ///// An image component which renders the sprite created by UIObject3D
-        ///// </summary>
-        //public UIObject3DImage imageComponent
-        //{
-        //    get
-        //    {
-        //        bool setProperties = false;
-        //        if (_imageComponent == null)
-        //        {
-        //            _imageComponent = this.GetComponent<UIObject3DImage>();
-        //            setProperties = true;
-        //        }
-
-        //        if (_imageComponent == null)
-        //        {
-        //            _imageComponent = this.gameObject.AddComponent<UIObject3DImage>();
-        //            setProperties = true;
-        //        }
-
-        //        if (setProperties)
-        //        {
-        //            _imageComponent.type = Image.Type.Simple;
-        //            _imageComponent.preserveAspect = true;
-        //        }
-
-        //        return _imageComponent;
-        //    }
-        //}
-
-        private Texture2D _texture2D;
-        protected Texture2D texture2D
-        {
-            get
-            {
-                if (_texture2D == null) _texture2D = new Texture2D((int)TextureSize.x, (int)TextureSize.y, TextureFormat.ARGB32, false, false);
-
-                return _texture2D;
-            }
-        }
-
-        private Sprite _sprite;
-        protected Sprite sprite
-        {
-            get
-            {
-                if (_sprite == null)
-                {
-                    _sprite = Sprite.Create(texture2D, new Rect(0, 0, (int)TextureSize.x, (int)TextureSize.y), new Vector2(0.5f, 0.5f));
-                }
-
-                return _sprite;
-            }
-        }
-
-        private RenderTexture _renderTexture;
+        public RenderTexture _renderTexture;
         protected RenderTexture renderTexture
         {
             get
             {
-                if (_renderTexture == null)
-                {
-#if UNITY_2019_OR_NEWER
-                    _renderTexture = new RenderTexture((int)TextureSize.x, (int)TextureSize.y, 16, RenderTextureFormat.Default);
-#else
-                    _renderTexture = new RenderTexture((int)TextureSize.x, (int)TextureSize.y, 16, RenderTextureFormat.ARGB32);
-#endif
-
-#if !UNITY_2020_2_OR_NEWER // there appears to be a bug in Unity 2020.2 which breaks things when using anti-aliasing
-                    // Use anti-aliasing as per quality settings
-                    if (QualitySettings.antiAliasing > 0) _renderTexture.antiAliasing = QualitySettings.antiAliasing;
-#endif
-                    if (QualitySettings.anisotropicFiltering > 0) _renderTexture.anisoLevel = (int)QualitySettings.anisotropicFiltering;
-
-                    _renderTexture.filterMode = FilterMode.Trilinear;
-                    _renderTexture.useMipMap = false;
-                }
-
+                _renderTexture = Game.GameManager.Instance.textures[this.GetComponentInParent<ShopItem>().index];
+                if (QualitySettings.anisotropicFiltering > 0) _renderTexture.anisoLevel = (int)QualitySettings.anisotropicFiltering;
+                _renderTexture.filterMode = FilterMode.Trilinear;
                 return _renderTexture;
             }
         }
@@ -820,8 +670,6 @@ namespace UI.ThreeDimensional
             {
                 if (_targetContainer == null)
                 {
-                    if (container == null) return null;
-
                     _targetContainer = new GameObject().transform;
                     _targetContainer.SetParent(container);
 
@@ -841,7 +689,8 @@ namespace UI.ThreeDimensional
         {
             get
             {
-                if (_target == null && started) SetupTarget();
+                //if (_target == null && started) SetupTarget();
+                if (_target == null) SetupTarget();
 
                 return _target;
             }
@@ -878,7 +727,10 @@ namespace UI.ThreeDimensional
 
         private void UpdateTargetPositioningAndScale()
         {
-            if (_target == null) return;
+            if (_target == null)
+            {
+                GetTargetInstance();
+            };
             var renderer = _target.GetComponentInChildren<Renderer>();
 
             _target.name = "Target";
@@ -1077,13 +929,12 @@ namespace UI.ThreeDimensional
             _targetCamera.backgroundColor = Color.clear;
             _targetCamera.nearClipPlane = 0.1f;
             _targetCamera.farClipPlane = 50f;
-
             _targetCamera.fieldOfView = CameraFOV;
-
             _targetCamera.gameObject.layer = objectLayer;
             _targetCamera.cullingMask = LayerMask.GetMask(LayerMask.LayerToName(objectLayer));
-
             _targetCamera.backgroundColor = BackgroundColor;
+
+            //_targetCamera.gameObject.SetActive(false);
 
             SetupCameraLight();
         }

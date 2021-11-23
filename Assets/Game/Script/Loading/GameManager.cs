@@ -31,6 +31,8 @@ namespace Game
 
         }
 
+        public RenderTexture[] textures;
+
         private int LoseValue = 0;
         private int VictoryValue = 0;
         public void Lose(System.Action success, System.Action fail)
