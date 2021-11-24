@@ -216,14 +216,7 @@ namespace Game
 
         public void HideRemoveAds()
         {
-            if(RuntimeStorageData.PLAYER.isAds)
-            {
-                m_RemoveAdsObject.SetActive(true);
-            }
-            else
-            {
-                m_RemoveAdsObject.SetActive(false);
-            }
+            m_RemoveAdsObject.SetActive(RuntimeStorageData.PLAYER.isAds);
         }
     }
 }
